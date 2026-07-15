@@ -1,0 +1,61 @@
+/* ==========================================================================
+   COMPONENT: CARDS
+   ========================================================================== */
+
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.card h3 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.25px;
+}
+
+.card p {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.card-description {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.card-footer {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.card-icon {
+  background-color: var(--ice-blue);
+  color: var(--blue);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}

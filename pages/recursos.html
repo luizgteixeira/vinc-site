@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Principal -->
+  <title>Recursos | Vinc - Funcionalidades e Proteção Jurídica</title>
+  <meta name="description" content="Explore todos os recursos e ferramentas integradas que o Vinc oferece para blindar os canais de atendimento e garantir a segurança das comunicações.">
+  <link rel="canonical" href="https://www.vinc.com.br/pages/recursos.html">
+
+  <!-- Favicon -->
+  <link rel="icon" href="../assets/icons/vinc_icon_256px.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/icons/vinc_icon_512px.png">
+
+  <!-- Pré-conexões -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/1-settings/global.css">
+  <link rel="stylesheet" href="../css/1-settings/tipografia.css">
+  <link rel="stylesheet" href="../css/2-components/botoes.css">
+  <link rel="stylesheet" href="../css/2-components/cards.css">
+  <link rel="stylesheet" href="../css/2-components/formularios.css">
+  <link rel="stylesheet" href="../css/2-components/modal.css">
+  <link rel="stylesheet" href="../css/2-components/menu.css">
+  <link rel="stylesheet" href="../css/2-components/rodape.css">
+  <link rel="stylesheet" href="../css/3-pages/recursos.css">
+  <link rel="stylesheet" href="../css/1-settings/responsivo.css">
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header class="header">
+    <div class="container header-content" id="header-container">
+      <a href="../index.html" class="logo" id="logo-main">
+        <img src="../assets/icons/vinc_icon_256px.png" alt="Logotipo do Vinc" class="logo-icon" width="40" height="40" decoding="async">
+        <span class="logo-text">Vinc<span class="logo-dot">.</span></span>
+      </a>
+
+      <nav class="menu" id="navigation-menu" aria-label="Menu principal">
+        <a href="../index.html">Início</a>
+        <div class="menu-item-dropdown">
+          <a href="como-funciona.html" id="como-funciona-toggle" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Como Funciona <span class="arrow"></span></a>
+          <div class="submenu" role="menu" aria-labelledby="como-funciona-toggle">
+            <a href="como-funciona.html" role="menuitem">Visão Geral</a>
+            <a href="faq.html" role="menuitem">FAQ</a>
+          </div>
+        </div>
+        <a href="recursos.html" class="ativo">Recursos</a>
+        <a href="seguranca.html">Segurança</a>
+        <a href="blog.html">Blog</a>
+        <div class="menu-item-dropdown">
+          <a href="#" id="gestao-toggle" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Gestão <span class="arrow"></span></a>
+          <div class="submenu" role="menu" aria-labelledby="gestao-toggle">
+            <a href="advogados.html" role="menuitem">Advogados</a>
+            <a href="clientes.html" role="menuitem">Clientes</a>
+            <a href="escritorios.html" role="menuitem">Escritório</a>
+          </div>
+        </div>
+        <a href="contato.html">Contato</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-controls="navigation-menu" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main>
+    <!-- Hero Recursos -->
+    <section class="hero-recursos" aria-labelledby="recursos-hero-title">
+      <div class="container">
+        <div class="hero-recursos-content">
+          <div class="hero-text">
+            <span class="tag">Proteção Completa</span>
+            <h1 id="recursos-hero-title">Funcionalidades criadas para blindar sua confiança.</h1>
+            <p style="margin-top: 15px; color: var(--text-secondary);">O <span class="vinc-brand">Vinc</span> reúne o que há de mais avançado em segurança digital e verificação de identidade, traduzido em uma experiência simples para advogados e clientes.</p>
+          </div>
+          <div class="hero-image">
+            <img src="../assets/images/vinc_dashboard_mock.jpg" alt="Interface do Aplicativo Vinc" width="600" height="400" decoding="async">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Funcionalidade 1: Validação de Contatos -->
+    <section class="feature-section">
+      <div class="container">
+        <div class="feature-header">
+          <div class="feature-icon">🔍</div>
+          <h2>Validação instantânea em duas vias</h2>
+          <p>Sempre que alguém entrar em contato se identificando como seu escritório, o <span class="vinc-brand">Vinc</span> valida a origem real desse remetente em milissegundos.</p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card card">
+            <div class="card-icon" style="font-size: 32px;">✅</div>
+            <h3>Remetente Autêntico</h3>
+            <p>Se o contato for legítimo, o <span class="vinc-brand">Vinc</span> exibe o selo <span class="status-confirmed">Verificado</span>.</p>
+          </div>
+          <div class="feature-card card">
+            <div class="card-icon" style="font-size: 32px;">🚫</div>
+            <h3>Ameaça Potencial</h3>
+            <p>Se for uma tentativa de golpe, o contato é marcado como <span class="status-rejected">Rejeitado</span> e bloqueado.</p>
+          </div>
+          <div class="feature-card card">
+            <div class="card-icon" style="font-size: 32px;">⏳</div>
+            <h3>Em Verificação</h3>
+            <p>Novos números passam por análise automática temporária, ficando com status <span class="status-pending">Pendente</span>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Funcionalidade 2: Verificação de Boletos -->
+    <section class="feature-section">
+      <div class="container">
+        <div class="feature-header">
+          <div class="feature-icon">📄</div>
+          <h2>Verificação Criptográfica de Boletos</h2>
+          <p>Evite o golpe do boleto falso. Antes de pagar qualquer guia ou custa processual, valide a autenticidade com o scanner de segurança do <span class="vinc-brand">Vinc</span>.</p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card card">
+            <div class="card-icon" style="font-size: 32px;">🧾</div>
+            <h3>Código de Barras Seguro</h3>
+            <p>Validamos os dígitos diretamente com o banco emissor e o CNPJ registrado oficial do escritório.</p>
+          </div>
+          <div class="feature-card card">
+            <div class="card-icon" style="font-size: 32px;">⚡</div>
+            <h3>Check de Chave Pix</h3>
+            <p>Certifique-se de que a chave Pix de destino pertence ao beneficiário oficial antes de efetuar transferências.</p>
+          </div>
+          <div class="feature-card card">
+            <div class="card-icon" style="font-size: 32px;">📂</div>
+            <h3>Histórico de Custas</h3>
+            <p>Mantenha um relatório seguro e autenticado de todos os pagamentos realizados no app.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conectividade e Interação Segura -->
+    <section class="connection-section">
+      <div class="container">
+        <div class="connection-grid">
+          <div class="connection-text">
+            <span class="tag" style="margin-bottom: 12px; display: inline-block;">Sincronização em Tempo Real</span>
+            <h2>O elo direto e seguro com seu escritório</h2>
+            <p>Sempre que o escritório de advocacia emite uma nova comunicação, atualiza um status processual ou envia uma guia de pagamento, essas informações são instantaneamente criptografadas e disponibilizadas no seu aplicativo <span class="vinc-brand">Vinc</span>.</p>
+            <p>Esse canal exclusivo e seguro elimina intermediários vulneráveis a fraudes, como e-mails clonados ou contatos falsos de aplicativos de mensagens, garantindo que você tenha em mãos apenas informações validadas diretamente pela sua equipe jurídica.</p>
+          </div>
+          <div class="connection-image-container">
+            <div class="connection-image-card">
+              <img src="../assets/images/celular-escritorio.jpg" 
+                alt="Aplicativo Vinc conectando clientes e escritórios de advocacia com segurança." 
+                loading="lazy" 
+                decoding="async" 
+                width="450" 
+                height="300">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Infográfico -->
+    <section class="infographic-section" aria-labelledby="infografico-title">
+      <div class="container">
+        <h2 id="infografico-title" style="margin-bottom: 40px;">Círculo Completo de Segurança</h2>
+        <img src="../assets/images/vinc_infografico.jpg" alt="Infográfico explicativo da arquitetura de segurança Vinc" class="infographic-image" width="900" height="450" decoding="async">
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="final-cta-section">
+      <div class="container">
+        <h2>Contrate a segurança que seu escritório merece.</h2>
+        <p>Proporcione total tranquilidade jurídica aos seus clientes e evite danos irreparáveis de reputação.</p>
+        <div class="cta-buttons" style="margin-top: 30px;">
+          <a href="contato.html" class="btn-primary">Entrar em Contato</a>
+          <a href="seguranca.html" class="btn-secondary">Política de Segurança</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="footer-content" id="footer-container">
+      <p class="footer-main">
+        <span class="vinc-brand">Vinc</span>: a tecnologia que protege a confiança entre você e seu advogado.
+      </p>
+      <div class="footer-whatsapp-wrap">
+        <a href="https://wa.me/5531992609970" class="footer-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Fale pelo WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="24" height="24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.966-.272-.099-.471-.149-.67.149-.198.297-.768.966-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.149-.174.199-.297.298-.496.099-.198.05-.372-.025-.521-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.372-.01-.571-.01-.198 0-.521.074-.792.372-.271.297-1.036 1.018-1.036 2.479 0 1.462 1.061 2.875 1.207 3.073.146.198 2.089 3.2 5.076 4.487.709.306 1.262.49 1.694.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347Z" />
+            <path d="M20.52 3.449A11.93 11.93 0 0 0 12.003 0C5.64 0 0.495 5.145.495 11.51c0 2.027.53 4.004 1.537 5.748L0 24l6.924-1.818a11.95 11.95 0 0 0 5.56 1.415h.004c6.364 0 11.509-5.145 11.509-11.51 0-3.074-1.197-5.97-3.367-8.14ZM12.003 21.09h-.003a9.92 9.92 0 0 1-5.05-1.387l-.362-.215-4.107 1.078 1.096-4.001-.236-.367a9.91 9.91 0 0 1-1.535-5.31c0-5.49 4.47-9.96 9.96-9.96 2.66 0 5.16 1.035 7.035 2.912a9.9 9.9 0 0 1 2.912 7.035c0 5.49-4.47 9.96-9.96 9.96Z" />
+          </svg>
+        </a>
+        <a href="https://wa.me/5531992609970" class="footer-whatsapp-text" target="_blank" rel="noopener noreferrer">Dúvidas? Converse comigo!</a>
+      </div>
+      <p class="footer-copy">
+        © 2026 <span class="vinc-brand">Vinc</span>. Todos os direitos reservados. Desenvolvido por <a href="https://www.luizgustavodev.com/" target="_blank" rel="noopener noreferrer">Luiz Gustavo</a>.
+      </p>
+    </div>
+  </footer>
+
+  <script src="../js/script.js" type="module"></script>
+</body>
+</html>

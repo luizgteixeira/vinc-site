@@ -1,0 +1,365 @@
+/* ==========================================
+   VARIÁVEIS E ESTILOS GLOBAIS
+========================================== */
+:root {
+  /* Cores principais da marca */
+  --blue: #2A5EA8;
+  --deep-blue: #1A3E7A;
+  --verified-green: #2E8B57;
+  --neutral-blue: #5D6B82;
+  --ice-blue: #E8EDF5;
+
+  /* Estados */
+  --alert: #E05C3A;
+
+  /* Textos */
+  --text-primary: #182235;
+  --text-secondary: #5D6B82;
+
+  /* Superfícies */
+  --surface: #FFFFFF;
+  --background: #F6F8FC;
+  --border: #D7E0EC;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 8px rgba(24, 34, 53, 0.08);
+  --shadow-md: 0 8px 24px rgba(24, 34, 53, 0.12);
+
+  /* Bordas */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  /* Espaçamento padrão */
+  --container-width: 1200px;
+
+  /* Tipografia Fluida */
+  --font-size-h1: clamp(2.25rem, 1.5rem + 3vw, 3.5rem);
+  --font-size-h2: clamp(1.75rem, 1.25rem + 2vw, 2.5rem);
+}
+
+/* Reset básico e foco de acessibilidade */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+body {
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+main {
+  padding-top: 70px;
+}
+
+.logo {
+  color: var(--deep-blue);
+  text-decoration: none;
+}
+
+button {
+  background: var(--blue);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.3px;
+  text-transform: none;
+}
+
+button:hover {
+  background: var(--deep-blue);
+}
+
+.badge-verificado {
+  color: var(--verified-green);
+}
+
+/* ============================================
+   TIPOGRAFIA RESPONSIVA
+   ============================================ */
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+}
+
+/* ============================================
+   COMPONENTES GLOBAIS
+   ============================================ */
+
+/* --- Cabeçalho de Seção --- */
+.section-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 60px auto;
+}
+
+.section-header h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.section-header p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+/* --- Outros Componentes --- */
+.tag {
+  display: inline-block;
+  background: var(--ice-blue);
+  color: var(--deep-blue);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.quote-box {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: var(--ice-blue);
+  border-left: 4px solid var(--blue);
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--deep-blue);
+  line-height: 1.6;
+}
+
+/* ============================================
+   CTA QUOTE
+   ============================================ */
+.cta-quote {
+  position: relative;
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 850px;
+  padding: 30px 40px;
+  background-color: var(--surface);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+blockquote.cta-quote {
+  margin: 40px auto;
+}
+
+.cta-quote::before,
+.cta-quote::after {
+  content: none;
+}
+
+.cta-quote .vinc-brand {
+  font-style: normal;
+}
+
+.cta-quote:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================
+   CONTAINER GERAL
+   ============================================ */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* ============================================
+   HIGHLIGHT SECTION
+   ============================================ */
+.highlight-section {
+  padding: 60px 20px;
+  background-color: var(--deep-blue);
+  background-image: linear-gradient(135deg, var(--deep-blue) 0%, #112a5a 100%);
+  color: #fff;
+  text-align: center;
+}
+
+.highlight-icon {
+  color: var(--blue);
+  margin-bottom: 24px;
+}
+
+.highlight-icon svg {
+  width: 48px;
+  height: 48px;
+  stroke: var(--ice-blue);
+}
+
+.highlight-section h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ice-blue);
+  margin-bottom: 16px;
+}
+
+.highlight-section p,
+.highlight-text {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto 32px auto;
+  color: var(--ice-blue);
+}
+
+.highlight-text .vinc-brand,
+.highlight-text strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.highlight-badge {
+  display: inline-block;
+  border: 1px solid rgba(42, 94, 168, 0.5);
+  background-color: rgba(42, 94, 168, 0.3);
+  color: var(--ice-blue);
+  padding: 10px 20px;
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ============================================
+   CTA BUTTONS
+   ============================================ */
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* ============================================
+   ACCORDION (FAQ / Contato)
+   ============================================ */
+.accordion-item {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: 15px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.accordion-item:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.accordion-header h3 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.accordion-icon,
+.accordion-arrow {
+  transition: transform 0.3s ease;
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--blue);
+}
+
+.accordion-item.active .accordion-arrow,
+.accordion-item.active .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+  padding: 0 20px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.accordion-item.active .accordion-content {
+  padding: 0 20px 20px 20px;
+}
+
+/* ============================================
+   SEÇÃO DE CTA FINAL COMPARTILHADA
+   ============================================ */
+.final-cta-section {
+  padding: 100px 30px;
+  background-color: var(--surface);
+  text-align: center;
+}
+
+.final-cta-section h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.final-cta-section p {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 650px;
+  margin: 0 auto 40px auto;
+  line-height: 1.6;
+}
+

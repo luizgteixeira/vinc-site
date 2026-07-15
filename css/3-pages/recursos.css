@@ -1,0 +1,218 @@
+/* ============================================
+   RECURSOS - HERO
+   ============================================ */
+.hero-recursos {
+  padding: calc(80px + 82px) 0 80px;
+}
+
+.hero-recursos .hero-recursos-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 60px;
+  padding: 60px 0;
+}
+
+.hero-recursos .hero-text {
+  text-align: center;
+}
+
+.hero-recursos .hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================
+   RECURSOS - SEÇÕES DE FEATURES
+   ============================================ */
+.feature-section {
+  padding: 100px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.feature-section:nth-child(odd) {
+  background-color: var(--background);
+}
+
+.feature-section:last-of-type {
+  border-bottom: none;
+}
+
+.feature-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 60px auto;
+}
+
+.feature-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  /* Extends .card */
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-md);
+  padding: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.feature-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.status-confirmed {
+  color: var(--verified-green);
+  font-weight: 600;
+}
+
+.status-rejected {
+  color: var(--alert);
+  font-weight: 600;
+}
+
+.status-pending {
+  color: var(--neutral-blue);
+  font-weight: 600;
+}
+
+/* ============================================
+   RECURSOS - INFOGRÁFICO
+   ============================================ */
+.infographic-section {
+  padding: 60px 0;
+  background-color: var(--surface);
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.infographic-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================
+   RECURSOS - CONEXÃO ESCRITÓRIO E APP
+   ============================================ */
+.connection-section {
+  padding: 100px 0;
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border);
+}
+
+.connection-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.connection-text {
+  text-align: left;
+}
+
+.connection-text h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  line-height: 1.25;
+}
+
+.connection-text p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.connection-text p:last-of-type {
+  margin-bottom: 0;
+}
+
+.connection-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.connection-image-card {
+  background-color: #ffffff;
+  border-radius: var(--radius-lg, 16px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  max-width: 480px;
+  width: 100%;
+  box-sizing: border-box;
+  animation: floatUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.connection-image-card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md, 8px);
+  margin: 0 auto;
+}
+
+@keyframes floatUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade da seção de conexão */
+@media (max-width: 1024px) {
+  .connection-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .connection-image-container {
+    order: -1; /* Imagem acima do texto no mobile */
+  }
+
+  .connection-text {
+    text-align: center;
+  }
+
+  .connection-text h2 {
+    font-size: 28px;
+  }
+}
+

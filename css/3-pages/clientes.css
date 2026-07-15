@@ -1,0 +1,337 @@
+/* ============================================
+   CLIENTES - SEÇÃO "POR QUE VOCÊ PRECISA"
+   ============================================ */
+.why-vinc-section {
+  padding: 100px 0;
+  background-color: var(--surface);
+}
+
+.why-vinc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.why-vinc-section .text-content > p {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.avoid-cards-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.avoid-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 16px;
+  align-items: center;
+}
+
+.avoid-card-icon {
+  grid-row: 1 / 3;
+  width: 48px;
+  height: 48px;
+}
+
+.avoid-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.avoid-card p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.why-vinc-section .image-card {
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+}
+
+.why-vinc-section .image-content img {
+  width: 100%;
+  height: auto;
+  max-width: 420px;
+  display: block;
+  margin: 0 auto;
+  border-radius: var(--radius-md);
+}
+
+/* ============================================
+   CLIENTES - SEÇÃO DE FUNCIONALIDADES
+   ============================================ */
+.features-clientes-section {
+  padding: 100px 0;
+  background-color: var(--background);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  text-align: center;
+}
+
+.feature-card .card-icon {
+  margin: 0 auto 20px auto;
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.feature-card p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ============================================
+   CLIENTES - SEÇÃO "TECNOLOGIA A SEU FAVOR"
+   ============================================ */
+.tech-favor-grid {
+  display: grid;
+  grid-template-columns: 45% 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.tech-favor-section .text-content h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.tech-favor-section .text-content p {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.tech-favor-section .image-card {
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+}
+
+.tech-favor-section .image-content img {
+  width: 100%;
+  height: auto;
+  max-width: 420px;
+  display: block;
+  margin: 0 auto;
+  border-radius: var(--radius-md);
+}
+
+/* ============================================
+   CLIENTES - SEÇÃO "COMO USAR" (TIMELINE)
+   ============================================ */
+.how-to-use-section {
+  padding: 100px 0;
+  background-color: var(--background);
+}
+
+.timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 70px;
+  margin-bottom: 50px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--surface);
+  border: 2px solid var(--border);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.timeline-content h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.timeline-content p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ============================================
+   CLIENTES - CTA FINAL
+   ============================================ */
+.final-cta-clientes {
+  padding: 100px 30px;
+  background-color: var(--surface);
+  text-align: center;
+}
+
+.final-cta-clientes h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================
+   CLIENTES - SEÇÃO DE DEMONSTRAÇÃO PRÁTICA
+   ============================================ */
+.practice-section {
+  padding: 100px 0;
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border);
+}
+
+.practice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.practice-card {
+  background-color: #ffffff;
+  border-radius: var(--radius-lg, 16px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: practiceFadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.practice-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.practice-image-wrapper {
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto 24px auto;
+  border-radius: var(--radius-md, 8px);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.practice-image-wrapper img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: var(--radius-md, 8px);
+}
+
+.practice-card-content {
+  margin-top: auto;
+}
+
+.practice-card-content h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.practice-card-content p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@keyframes practiceFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade da Seção Prática */
+@media (max-width: 768px) {
+  .practice-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 20px;
+  }
+
+  .practice-card {
+    padding: 24px 16px;
+  }
+
+  .practice-image-wrapper {
+    max-width: 240px;
+  }
+}
+

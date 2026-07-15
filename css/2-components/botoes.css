@@ -1,0 +1,64 @@
+/* ==========================================================================
+   COMPONENT: BOTÕES
+   ========================================================================== */
+
+/* Botão Principal */
+.btn-primary {
+  display: inline-block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  text-decoration: none;
+  text-align: center;
+  border-radius: var(--radius-md);
+  padding: 14px 32px;
+  border: none;
+  background-color: var(--blue);
+  color: var(--white);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--blue-dark);
+  transform: translateY(-2px);
+}
+
+/* Botão Secundário */
+.btn-secondary {
+  display: inline-block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-decoration: none;
+  text-align: center;
+  border-radius: var(--radius-md);
+  padding: 14px 32px;
+  border: 1px solid var(--border);
+  background-color: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--ice-blue);
+  border-color: var(--blue-light);
+  transform: translateY(-2px);
+}
+
+/* Botão Pequeno / Menu */
+.btn-small, .btn-menu {
+  display: inline-block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.4;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}

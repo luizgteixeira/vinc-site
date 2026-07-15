@@ -1,0 +1,165 @@
+/* ============================================
+   CONTATO - SEÇÃO DE CARDS
+   ============================================ */
+.contact-section {
+  padding: 100px 0;
+  background-color: var(--background);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  align-items: start;
+}
+
+.contact-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.contact-card .card-icon {
+  margin-bottom: 24px;
+  flex-shrink: 0;
+}
+
+.contact-card h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.contact-card .intro-text {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.contact-block {
+  margin-bottom: 24px;
+}
+
+.contact-block:last-child {
+  margin-bottom: 0;
+}
+
+.contact-block h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.contact-block p,
+.contact-block ul {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.contact-block a {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact-block a:hover {
+  text-decoration: underline;
+}
+
+.contact-block ul {
+  list-style-position: inside;
+  padding-left: 0;
+}
+
+.security-rule-card {
+  background-color: var(--ice-blue);
+  border-left: 3px solid var(--blue);
+  padding: 15px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 16px;
+}
+
+.official-channels-grid {
+  margin-top: 32px;
+}
+
+/* ============================================
+   CONTATO - SEÇÃO CHECKLIST (ACCORDION)
+   ============================================ */
+.checklist-section {
+  padding: 100px 0;
+  background-color: var(--background);
+}
+
+.checklist-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.checklist-warning {
+  background-color: var(--ice-blue);
+  border-left: 4px solid var(--blue);
+  padding: 20px;
+  border-radius: var(--radius-md);
+  margin-bottom: 40px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.accordion-item {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.accordion-header h3 {
+  margin: 0;
+  font-size: inherit;
+}
+
+.accordion-arrow {
+  transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-arrow {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 20px 20px 20px;
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}

@@ -1,0 +1,125 @@
+/* ============================================
+   FAQ - HERO
+   ============================================ */
+.hero-faq {
+  padding: calc(60px + 70px) 0 60px;
+  text-align: center;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-faq .subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto 12px auto;
+  line-height: 1.6;
+}
+
+.hero-faq .support-text {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 24px auto;
+  line-height: 1.6;
+}
+
+.hero-seals {
+  display: flex;
+  justify-content: center;
+  gap: 16px 32px;
+  flex-wrap: wrap;
+}
+
+.seal-item {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   FAQ - SEÇÃO INTRODUTÓRIA
+   ============================================ */
+.faq-intro-section {
+  padding: 60px 0;
+  background-color: var(--surface);
+}
+
+.faq-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.faq-intro-grid .image-content {
+  order: -1;
+}
+
+.faq-intro-section .text-content p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.faq-intro-section .image-card {
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+}
+
+.faq-intro-section .image-content img {
+  width: 100%;
+  height: auto;
+  max-width: 450px;
+  display: block;
+  margin: 0 auto;
+  border-radius: var(--radius-md);
+}
+
+/* ============================================
+   FAQ - SEÇÃO ACCORDION
+   ============================================ */
+.faq-section {
+  padding: 60px 0;
+  background-color: var(--background);
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.accordion-content p {
+  margin-bottom: 1em;
+}
+
+.accordion-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================
+   FAQ - CTA FINAL
+   ============================================ */
+.final-cta-faq {
+  padding: 60px 0;
+  background-color: var(--surface);
+  text-align: center;
+}
+
+.final-cta-faq h2 {
+  margin-bottom: 16px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.final-cta-faq .cta-subtitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}

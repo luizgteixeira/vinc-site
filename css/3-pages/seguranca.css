@@ -1,0 +1,379 @@
+/* ============================================
+   SEGURANÇA - HERO
+   ============================================ */
+.hero-seguranca {
+  background-color: var(--background);
+}
+
+/* ============================================
+   SEGURANÇA - INTRO
+   ============================================ */
+.intro-section {
+  padding: 80px 0;
+  text-align: center;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.intro-section h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.intro-section p {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ============================================
+   SEGURANÇA - PILARES
+   ============================================ */
+.pillar-section {
+  padding: 100px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.pillar-section:nth-of-type(odd) {
+  background-color: var(--background);
+}
+
+.pillar-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.pillar-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.pillar-header h3 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.pillar-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.pillar-grid-duo {
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.pillar-with-image {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.pillar-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.pillar-cards-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pillar-grid,
+.pillar-grid-duo {
+  display: grid;
+  gap: 30px;
+}
+
+.pillar-card {
+  /* Extends .card */
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-md);
+  padding: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pillar-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-sm);
+}
+
+.pillar-card h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.pillar-card p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.pillar-content-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.pillar-text h4 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.pillar-text h4:last-of-type {
+  margin-top: 30px;
+}
+
+.pillar-diagram {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.diagram-item {
+  background: var(--ice-blue);
+  color: var(--deep-blue);
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
+}
+
+.diagram-arrow {
+  color: var(--neutral-blue);
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/* ============================================
+   SEGURANÇA - DESTAQUE PRINCIPAL
+   ============================================ */
+.main-highlight-section {
+  padding: 100px 0;
+  background-color: var(--deep-blue);
+  color: #fff;
+  text-align: center;
+}
+
+.main-highlight-icon {
+  font-size: 48px;
+  margin-bottom: 24px;
+  color: var(--blue);
+}
+
+.main-highlight-section h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ice-blue);
+  margin-bottom: 24px;
+}
+
+.main-highlight-text {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.main-highlight-text .vinc-brand,
+.main-highlight-text strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ============================================
+   SEGURANÇA - TIMELINE
+   ============================================ */
+.timeline-section {
+  padding: 80px 0;
+  background-color: var(--background);
+}
+
+.timeline {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.timeline-item {
+  text-align: center;
+}
+
+.timeline-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.timeline-item span {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.timeline-connector {
+  flex-grow: 1;
+  height: 2px;
+  background-color: var(--border);
+  margin: 0 20px;
+}
+
+/* ============================================
+   SEGURANÇA - PREVENÇÃO E ALERTA DE GOLPES
+   ============================================ */
+.prevention-section {
+  padding: 100px 0;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.prevention-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.prevention-content {
+  text-align: left;
+}
+
+.prevention-heading {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 12px 0 20px 0;
+  line-height: 1.25;
+}
+
+.prevention-desc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.prevention-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.prevention-mini-card {
+  display: flex;
+  gap: 20px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.prevention-mini-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.mini-card-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.mini-card-text h5 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.mini-card-text p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.prevention-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prevention-image-card {
+  background-color: #ffffff;
+  border-radius: var(--radius-lg, 16px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  max-width: 440px;
+  width: 100%;
+  box-sizing: border-box;
+  animation: preventionFloatUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.prevention-image-card img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: var(--radius-md, 8px);
+  margin: 0 auto;
+}
+
+@keyframes preventionFloatUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade da prevenção de golpes */
+@media (max-width: 1024px) {
+  .prevention-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .prevention-image-container {
+    order: 1; /* No mobile, a imagem aparece abaixo dos cards */
+    margin-top: 20px;
+  }
+
+  .prevention-content {
+    text-align: center;
+  }
+
+  .prevention-heading {
+    font-size: 28px;
+  }
+  
+  .prevention-mini-card {
+    text-align: left;
+  }
+}
+

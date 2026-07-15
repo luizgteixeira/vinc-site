@@ -1,0 +1,246 @@
+/* ==========================================
+   MENU E CABEÇALHO (HEADER)
+========================================== */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(215, 224, 236, .7);
+  transition: background-color .3s ease, border-color .3s ease;
+}
+
+.header.scrolled {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(215, 224, 236, 0.6);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Garante fundo sólido quando o menu mobile está aberto, prevenindo transparência indesejada */
+.header.menu-aberto {
+  background-color: var(--surface) !important;
+  backdrop-filter: none !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.header-content {
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 34px;
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--deep-blue);
+  letter-spacing: -1px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.logo-text {
+  display: flex;
+  align-items: center;
+}
+
+.logo-dot {
+  color: var(--blue);
+}
+
+/* Estilo da marca Vinc */
+.vinc-brand {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  color: var(--deep-blue);
+  display: inline-block;
+  letter-spacing: -1px;
+}
+
+.menu {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  display: flex;
+  gap: 40px;
+  position: static;
+  flex-direction: row;
+  background: none;
+  backdrop-filter: none;
+  padding: 0;
+  border-bottom: none;
+  align-items: center;
+}
+
+.menu a {
+  text-decoration: none;
+  color: var(--deep-blue);
+  position: relative;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+/* ============================================
+   SUBMENUS (DROPDOWN)
+   ============================================ */
+.menu-item-dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.dropdown-toggle .arrow {
+  /* Indicador visual (seta) */
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid currentColor;
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 8px 0;
+  margin-top: 12px;
+  box-shadow: var(--shadow-md);
+  min-width: 200px;
+  z-index: 1001;
+  transform: translateY(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.submenu a {
+  display: block;
+  white-space: nowrap;
+  padding: 10px 15px;
+  border-bottom: none;
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+}
+
+.submenu a:hover {
+  background-color: var(--ice-blue);
+  color: var(--deep-blue);
+}
+
+.menu-item-dropdown:hover .submenu {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.menu a.ativo {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.submenu a::before {
+  display: none;
+}
+
+.menu-item-dropdown:hover .dropdown-toggle .arrow,
+.menu-item-dropdown.submenu-aberto .dropdown-toggle .arrow {
+  transform: rotate(180deg);
+}
+
+.menu a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--blue), var(--deep-blue));
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.menu a.ativo::before {
+  width: 100%;
+}
+
+.menu a:hover::before {
+  width: 100%;
+}
+
+/* Menu Toggle (Hamburger) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  gap: 5px;
+  z-index: 1001;
+}
+
+.hamburger {
+  position: relative;
+  width: 24px;
+  height: 2.5px;
+  background: var(--deep-blue);
+  border-radius: 2px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2.5px;
+  background: var(--deep-blue);
+  border-radius: 2px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  top: 8px;
+}
+
+.menu-toggle.ativo .hamburger {
+  background: transparent;
+}
+
+.menu-toggle.ativo .hamburger::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.menu-toggle.ativo .hamburger::after {
+  top: 0;
+  transform: rotate(-45deg);
+}

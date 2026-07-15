@@ -1,0 +1,290 @@
+/* ============================================
+   ARQUIVO CENTRAL DE RESPONSIVIDADE
+   Abordagem: Mobile First
+   ============================================ */
+
+/* ============================================
+   TABLET (E TELAS MENORES)
+   ============================================ */
+@media (max-width: 1024px) {
+  /* como-funciona.css */
+  .image-text-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .passos-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* seguranca.css */
+  .pillar-content-split,
+  .pillar-with-image {
+    grid-template-columns: 1fr;
+  }
+
+  .pillar-diagram {
+    margin-top: 40px;
+  }
+}
+
+/* ============================================
+   MOBILE & TABLET (ATÉ 1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+  /* --- Menu Mobile --- */
+  .hero-recursos {
+    padding: calc(60px + 70px) 0 60px;
+  }
+
+  .header-content {
+    height: 70px;
+    padding: 0 16px;
+  }
+
+  .logo {
+    font-size: 24px;
+    gap: 8px;
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 20px;
+    gap: 0;
+    box-shadow: var(--shadow-sm);
+    z-index: 1001;
+    pointer-events: auto;
+  }
+
+  .menu.ativo {
+    display: flex;
+  }
+
+  .menu a,
+  .menu .dropdown-toggle {
+    padding: 15px 10px;
+    border-bottom: 1px solid var(--border);
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .menu a:hover::before,
+  .menu a.ativo::before {
+    display: none;
+  }
+
+  .menu .menu-item-dropdown {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .menu .submenu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    margin-top: 0;
+    padding: 0 0 0 20px;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .menu .menu-item-dropdown.submenu-aberto .submenu {
+    max-height: 500px;
+  }
+
+  .menu .submenu a {
+    padding: 12px 15px;
+    font-size: 15px;
+  }
+
+  .menu-toggle {
+    display: flex;
+    z-index: 1002;
+    pointer-events: auto;
+  }
+
+  /* --- Ajustes Gerais --- */
+  .cta-quote {
+    font-size: clamp(1rem, 4.5vw, 1.125rem);
+    padding: 25px 30px;
+    margin: 30px auto;
+  }
+
+  /* como-funciona.css */
+  .hero-page {
+    padding: 60px 0;
+  }
+
+  .hero-page h1 {
+    font-size: 36px;
+  }
+
+  .hero-page .subtitle {
+    font-size: 16px;
+  }
+
+  .passos-section,
+  .cta-section {
+    padding: 60px 0;
+  }
+
+  .cta-section h2 {
+    font-size: 28px;
+  }
+
+  /* seguranca.css */
+  .intro-section {
+    padding: 60px 0;
+  }
+
+  .intro-section h2 {
+    font-size: 28px;
+  }
+
+  .pillar-section {
+    padding: 80px 0;
+  }
+
+  .pillar-header h3 {
+    font-size: 24px;
+  }
+
+  .main-highlight-section {
+    padding: 80px 20px;
+  }
+
+  .main-highlight-text {
+    font-size: 22px;
+  }
+
+  .timeline {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .timeline-connector {
+    width: 2px;
+    height: 30px;
+    margin: 0;
+  }
+
+  .final-cta-section {
+    padding: 80px 20px;
+  }
+
+  .final-cta-section h2 {
+    font-size: 28px;
+  }
+
+  .checklist-section {
+    padding: 80px 20px;
+  }
+}
+
+/* ============================================
+   TABLET (A PARTIR DE 769px)
+   ============================================ */
+@media (min-width: 769px) {
+  /* home.css */
+  .protecao-section {
+    padding: 80px 0;
+  }
+
+  .protecao-intro,
+  .protecao-descricao {
+    font-size: 1.125rem;
+    text-align: justify;
+    word-spacing: 0.1em;
+  }
+
+  /* rodape.css */
+  footer {
+    padding: 60px 30px;
+  }
+
+  /* como-funciona.css */
+  .image-text-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+
+  /* recursos.css */
+  .hero-recursos .hero-recursos-content {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-recursos .hero-text {
+    text-align: left;
+  }
+
+  .cta-buttons {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .brand-protection-grid,
+  .how-to-start-grid,
+  .resources-grid,
+  .faq-intro-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .management-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* global.css */
+  .highlight-section {
+    padding: 80px 30px;
+  }
+}
+
+/* ============================================
+   DESKTOP (A PARTIR DE 1025px)
+   ============================================ */
+@media (min-width: 1025px) {
+  main {
+    padding-top: 82px;
+  }
+
+  .hero-recursos,
+  .hero-escritorios,
+  .hero-faq {
+    padding: calc(80px + 82px) 0 80px;
+  }
+  /* home.css */
+  .protecao-section {
+    padding: 100px 0 120px 0;
+  }
+
+  /* como-funciona.css */
+  .passos-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  /* escritorios.css */
+  .management-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
