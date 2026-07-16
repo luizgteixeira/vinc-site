@@ -201,15 +201,15 @@ const BLOG_POSTS = [
       <div class="post-regra-ouro">
         <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
         <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
-        <p class="post-regra-ouro-sub">A tecnologia deve ser desenhada para eliminar a necessidade de adivinhação. No Vinc, a confiança é construída por meio de tokens criptográficos, não por fotos de perfil ou palavras convincentes.</p>
+        <p class="post-regra-ouro-sub">A tecnologia deve ser desenhada para eliminar a necessidade de adivinhação. No Vinc, a confiança é construída por meio de chaves de assinatura digital criptografadas de segurança automática, não por fotos de perfil ou palavras convincentes.</p>
       </div>
 
       <h2>Os Pilares Lógicos da nossa Infraestrutura</h2>
       <p>A arquitetura de software do Vinc baseia-se em engenharia de ponta que impede a manipulação fraudulenta de dados:</p>
       <ul>
-        <li><strong>Autenticação Descentralizada via Token (JWT):</strong> Cada operação financeira, envio de boleto ou agendamento de atualização processual é assinado eletronicamente no nosso backend, gerando chaves criptográficas de mão dupla.</li>
-        <li><strong>O Backend como Fonte Única da Verdade:</strong> Diferente de outros softwares onde o aplicativo cliente (como o Flutter) decide permissões ou validações localmente (o que permite burlar o sistema se o celular do cliente for hackeado), as regras de segurança e autenticação são executadas e mantidas integralmente no nosso servidor protegido em Cloud, isolando as credenciais sensíveis.</li>
-        <li><strong>Geração Dinâmica de Desafios:</strong> Quando o escritório envia uma mensagem crítica, o Vinc gera um "Desafio Ativo de Segurança". O cliente final, utilizando o painel seguro do Vinc, valida o token gerado. Se as chaves não coincidirem perfeitamente, o alerta de fraude é disparado instantaneamente para ambas as partes.</li>
+        <li><strong>Autenticação Segura com Assinatura Digital:</strong> Cada operação financeira, envio de boleto ou aviso de atualização do processo é assinado digitalmente de forma única e segura, gerando chaves criptográficas de proteção de mão dupla.</li>
+        <li><strong>Servidor Seguro como Central de Validação:</strong> Diferente de outros sistemas em que as regras de segurança rodam no celular do usuário (o que pode ser burlado caso o aparelho seja invadido), as regras de segurança e autenticação do Vinc são executadas e mantidas integralmente em nosso servidor em nuvem protegido, mantendo todas as suas informações em total isolamento.</li>
+        <li><strong>Geração Dinâmica de Desafios:</strong> Quando o escritório envia uma mensagem importante, o Vinc cria uma confirmação instantânea chamada "Desafio Ativo de Segurança". O aplicativo do cliente valida essa assinatura digital de forma automática. Se as informações não baterem perfeitamente, o alerta de tentativa de golpe é disparado para você e para o escritório de advocacia.</li>
       </ul>
 
       <h2>Segurança Sem Complicação</h2>
@@ -218,7 +218,7 @@ const BLOG_POSTS = [
     seo: {
       metaTitle: "Zero Trust na Advocacia e Tecnologia Vinc | Blog",
       metaDesc: "Entenda os princípios de segurança Zero Trust e criptografia que tornam a plataforma Vinc o canal de comunicação jurídica mais seguro do mercado.",
-      keywords: "zero trust advocacia, seguranca criptografica vinc, jwt seguranca juridica, backend unico verdade, vinc",
+      keywords: "zero trust advocacia, seguranca criptografica vinc, assinatura digital seguranca juridica, servidor unico verdade, vinc",
     }
   },
   {
@@ -312,44 +312,323 @@ const BLOG_POSTS = [
     }
   },
   {
-    id: "post-6",
-    title: "Estudo de Caso: Como um Cliente de São Paulo Identificou um Boleto Falso e Evitou um Prejuízo de R$ 38.000",
-    slug: "estudo-de-caso-evitou-boleto-falso-prejuizo",
-    excerpt: "Uma simulação baseada em fatos anonimizados que demonstra o poder real de prevenção da plataforma Vinc diante de uma engenharia social sofisticada.",
-    category: CATEGORIES.CASOS_SUCESSO.name,
-    categorySlug: CATEGORIES.CASOS_SUCESSO.slug,
-    categoryIcon: CATEGORIES.CASOS_SUCESSO.icon,
-    categoryColor: CATEGORIES.CASOS_SUCESSO.color,
-    publishedAt: "01 Jul 2026",
+    id: "post-7",
+    title: "Golpe do Falso Advogado: Como Criminosos Usam Nomes Reais para Aplicar Fraudes",
+    slug: "golpe-falso-advogado-nomes-reais",
+    excerpt: "Descubra como golpistas cruzam dados públicos reais com perfis falsos no WhatsApp e aprenda por que o Vinc usa o roteamento por vínculo para desarmar essa fraude.",
+    category: CATEGORIES.ANATOMIA_GOLPES.name,
+    categorySlug: CATEGORIES.ANATOMIA_GOLPES.slug,
+    categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
+    categoryColor: CATEGORIES.ANATOMIA_GOLPES.color,
+    publishedAt: "16 Jul 2026",
     readingTime: 5,
     author: AUTHORS.vinc_security,
-    featuredImage: "../assets/images/vinc_advocacy_shield.jpg",
+    featuredImage: "../assets/images/celular-escritorio.jpg",
     content: `
-      <p>Para ilustrar o impacto prático de um ecossistema verificado de segurança, compartilhamos o estudo de caso de uma tentativa de estelionato neutralizada pela plataforma Vinc. Visando resguardar a privacidade, todos os nomes, valores precisos e dados geográficos foram modificados e anonimizados, servindo como um material estritamente educativo.</p>
-      
-      <h2>A Abordagem: Engenharia Social de Alta Precisão</h2>
-      <p>Um empresário de São Paulo, autor de um processo societário complexo de alta expressão financeira, recebeu um contato telefônico por WhatsApp de uma conta comercial que utilizava a imagem corporativa do escritório de advocacia responsável por sua defesa técnica. O interlocutor, fingindo ser o assistente financeiro sênior da banca, informou em tom muito cordial que "a sentença favorável havia sido assinada pelo juiz", mas que a liberação dos depósitos judiciais exigia a quitação de custas tributárias cartorárias urgentes.</p>
-      
-      <h2>A Armadilha: O Boleto Adulterado</h2>
-      <p>Para facilitar a transação, o suposto profissional enviou um arquivo de boleto bancário no formato PDF no valor de <strong>R$ 38.000</strong>. O documento apresentava dados perfeitos: o logotipo do banco emitente correto, o nome do escritório como cedente, e os dados pessoais do cliente como sacado. Visualmente, o documento era impecável e extremamente convincente.</p>
-      
+      <p>O <strong>Golpe do Falso Advogado</strong> é uma das ameaças que mais crescem no Brasil. O que torna essa fraude extremamente perigosa é que os golpistas não inventam personagens: eles usam nomes reais de advogados atuantes e dados verdadeiros de processos públicos para enganar os clientes.</p>
+
+      <h2>A Engenharia Social por Trás do Nome Real</h2>
+      <p>Criminosos monitoram os diários oficiais e plataformas de consulta processual. Ao identificar uma decisão favorável, como a expedição de um alvará ou precatório, eles buscam o nome do advogado responsável e o do cliente. Com ferramentas de enriquecimento de dados, localizam o WhatsApp do cliente e entram em contato se passando pelo profissional real.</p>
+      <p>Eles copiam fotos de perfil, logotipos do escritório e até termos técnicos da petição para construir uma imagem de autoridade. O cliente, ao pesquisar o nome do advogado na internet, encontra o registro legítimo e acaba caindo na armadilha.</p>
+
       <div class="post-regra-ouro">
         <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
         <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
-        <p class="post-regra-ouro-sub">Mesmo que um documento de cobrança apresente seu nome, seu CPF e o nome correto do seu advogado, valide a transação antes de transferir qualquer recurso.</p>
+        <p class="post-regra-ouro-sub">O sistema Vinc não confia apenas no nome ou na foto de quem está enviando a mensagem. A confiança é validada por meio de relações reais de contrato criptografadas.</p>
       </div>
 
-      <h2>A Prevenção: O Vinc Entra em Ação</h2>
-      <p>Instruído pela banca jurídica desde o início da prestação de serviços a seguir o protocolo de segurança, o empresário não realizou o pagamento imediato do boleto. Ele acessou seu painel seguro do Vinc, onde o escritório havia integrado seu canal oficial de cobrança.</p>
-      <p>Ao conferir a aba de solicitações financeiras pendentes no Vinc, o cliente percebeu que **não constava nenhum boleto ou ordem de cobrança cadastrada** para aquela data ou valor. Diante disso, ele utilizou a ferramenta de scanner criptográfico do Vinc para escanear a linha digitável do boleto recebido por WhatsApp. O sistema indicou imediatamente que o beneficiário real de destino dos fundos era uma conta de pessoa física estranha de uma fintech de pagamento no interior do país, e não a conta judicial do escritório parceiro.</p>
-      
-      <h2>O Desfecho: Prejuízo Zero e Segurança Fortalecida</h2>
-      <p>O cliente reportou imediatamente o contato fraudulento através do botão de alerta de suspeitas no Vinc. O escritório de advocacia, de posse das informações enviadas e do número do golpista, pôde orientar os demais clientes e registrar boletim de ocorrência junto à delegacia de crimes cibernéticos de forma ágil, com total auditoria de logs e evidências. A filosofia de **confirmar antes de confiar** salvou o patrimônio de um cliente e blindou a integridade da marca do escritório.</p>
+      <h2>Como o Vinc Protege: Roteamento por Vínculo</h2>
+      <p>No Vinc, a segurança é baseada na verificação de um relacionamento ativo e formal:</p>
+      <ul>
+        <li><strong>Validação de Contrato Real:</strong> A plataforma vincula o <strong>Cliente</strong> diretamente ao seu <strong>Contrato</strong> e ao seu <strong>Advogado Responsável</strong> dentro do nosso sistema fechado.</li>
+        <li><strong>Canais Blindados de Envio:</strong> Qualquer solicitação de pagamento ou atualização processual precisa partir do painel autenticado do escritório.</li>
+        <li><strong>Zero Confiança em Nomes:</strong> Se uma mensagem chegar ao seu WhatsApp alegando ser do seu advogado, mas não estiver validada na plataforma Vinc, ela é considerada nula e insegura.</li>
+      </ul>
+
+      <h2>Por Que Essa Abordagem Desarma os Golpistas?</h2>
+      <p>Como os criminosos não possuem acesso às chaves de segurança do Vinc nem ao canal autenticado da sociedade de advogados, eles são incapazes de simular o selo de confirmação digital. O cliente sabe instantaneamente que aquele contato externo é fraudulento.</p>
+
+      <div class="post-signature" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
+        <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--text-primary);">Vinc — confirme antes de confiar.</p>
+        <p style="margin: 0; font-style: italic; color: var(--text-secondary); font-size: 14px;">Desenvolvido com foco total em soberania tecnológica e segurança jurídica.</p>
+      </div>
     `,
     seo: {
-      metaTitle: "Como Cliente Evitou Golpe do Boleto de R$ 38.000 | Vinc",
-      metaDesc: "Veja neste caso prático anonimizado como as chaves de verificação de boletos e canais oficiais do Vinc impediram uma fraude financeira sofisticada de R$ 38.000.",
-      keywords: "estudo de caso golpe do boleto, evitar boleto falso, seguranca pagamento advocacia, vinc",
+      metaTitle: "Golpe do Falso Advogado e Uso de Nomes Reais | Blog Vinc",
+      metaDesc: "Descubra como golpistas usam nomes reais de advogados e dados públicos para fraudar clientes, e como o roteamento por vínculo do Vinc impede essa prática.",
+      keywords: "golpe do falso advogado, falsidade ideologica whatsapp, oab falso advogado, seguranca juridica, vinc",
+    }
+  },
+  {
+    id: "post-8",
+    title: "Por que o Roteamento por Vínculo é Mais Seguro que Conversar Apenas pelo WhatsApp?",
+    slug: "roteamento-por-vinculo-vs-whatsapp",
+    excerpt: "Entenda a diferença crucial entre reconhecer um nome na tela e validar um relacionamento jurídico real com criptografia e servidores seguros.",
+    category: CATEGORIES.TECNOLOGIA_DADOS.name,
+    categorySlug: CATEGORIES.TECNOLOGIA_DADOS.slug,
+    categoryIcon: CATEGORIES.TECNOLOGIA_DADOS.icon,
+    categoryColor: CATEGORIES.TECNOLOGIA_DADOS.color,
+    publishedAt: "16 Jul 2026",
+    readingTime: 5,
+    author: AUTHORS.luiz_gustavo,
+    featuredImage: "../assets/images/vinc_infrastructure.jpg",
+    content: `
+      <p>O WhatsApp tornou-se a ferramenta de comunicação mais popular do país, mas sua flexibilidade também o transformou no canal favorito de estelionatários. Para combater fraudes, precisamos entender um conceito de segurança digital fundamental: a diferença entre <strong>identidade</strong> e <strong>vínculo</strong>.</p>
+
+      <h2>Identidade versus Vínculo</h2>
+      <p>No WhatsApp desprotegido, qualquer pessoa pode adotar a identidade que desejar. Um golpista compra um chip novo, baixa uma foto pública, digita o nome de um advogado renomado no perfil e pronto: ele "é" o advogado para qualquer leigo. Isso acontece porque o aplicativo apenas valida que aquele número de telefone está ativo, mas não verifica a legitimidade da profissão ou a relação com o cliente.</p>
+      <p>O <strong>Roteamento por Vínculo do Vinc</strong> resolve esse problema. Em vez de simplesmente tentar confirmar quem é a pessoa do outro lado, o sistema valida criptograficamente se existe um relacionamento contratual ativo e legítimo entre aquele emissor específico e o destinatário.</p>
+
+      <div class="post-regra-ouro">
+        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
+        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
+        <p class="post-regra-ouro-sub">Não basta confirmar se o nome está correto. É necessário validar se a mensagem foi enviada de dentro do canal verificado e atrelada ao seu contrato de prestação de serviços.</p>
+      </div>
+
+      <h2>Servidor Seguro como Central da Verdade</h2>
+      <p>No modelo do Vinc, as decisões de segurança não ocorrem no celular do cliente ou na rede do WhatsApp. Nosso <strong>servidor seguro</strong> em nuvem atua como a central de validação:</p>
+      <ul>
+        <li><strong>Confirmação Baseada em Contratos:</strong> O sistema checa se o advogado emissor está de fato autorizado pela sociedade contratada para tratar com o cliente em questão.</li>
+        <li><strong>Criptografia de Mão Dupla:</strong> A mensagem ou boleto recebe um carimbo digital gerado pelo servidor, inviabilizando qualquer tipo de interceptação ou falsificação externa.</li>
+        <li><strong>Ambiente Isolado:</strong> Informações críticas e chaves de acesso ficam blindadas em nosso banco de dados centralizado, impedindo que golpistas obtenham dados mesmo se o smartphone do usuário for comprometido.</li>
+      </ul>
+
+      <h2>Por que Abandonar Chats Desprotegidos?</h2>
+      <p>Conversar apenas pelo WhatsApp deixa o cliente exposto a táticas de engenharia social de alta precisão. O roteamento por vínculo do Vinc remove o fator humano da checagem: o aplicativo faz a validação técnica de forma invisível, garantindo que você fale apenas com quem realmente tem direito de falar sobre seu processo jurídico.</p>
+
+      <div class="post-signature" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
+        <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--text-primary);">Vinc — confirme antes de confiar.</p>
+        <p style="margin: 0; font-style: italic; color: var(--text-secondary); font-size: 14px;">Desenvolvido com foco total em soberania tecnológica e segurança jurídica.</p>
+      </div>
+    `,
+    seo: {
+      metaTitle: "Roteamento por Vínculo vs WhatsApp na Advocacia | Blog Vinc",
+      metaDesc: "Descubra por que a validação de vínculos baseada em contratos e servidores seguros é imensamente superior ao uso de chats abertos do WhatsApp.",
+      keywords: "roteamento por vinculo, whatsapp advocacia seguro, servidor seguro vinc, assinatura digital contratos, vinc",
+    }
+  },
+  {
+    id: "post-9",
+    title: "Privacidade e LGPD: Por que as Notificações do Vinc Não Mostram Informações Sensíveis?",
+    slug: "privacidade-lgpd-notificacoes-vinc",
+    excerpt: "Descubra como o design inteligente e as notificações genéricas protegem suas informações e evitam a engenharia social visual de acordo com a LGPD.",
+    category: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.name,
+    categorySlug: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.slug,
+    categoryIcon: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.icon,
+    categoryColor: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.color,
+    publishedAt: "16 Jul 2026",
+    readingTime: 4,
+    author: AUTHORS.vinc_security,
+    featuredImage: "../assets/images/seguranca.jpg",
+    content: `
+      <p>Muitas pessoas estão acostumadas a ler o conteúdo completo de mensagens diretamente na tela bloqueada do celular. Embora prático, esse hábito representa um risco severo de segurança e privacidade, violando as diretrizes básicas da <strong>Lei Geral de Proteção de Dados (LGPD)</strong>. É por isso que as notificações do Vinc são desenhadas de forma diferente.</p>
+
+      <h2>O Conceito de Notificações Genéricas</h2>
+      <p>Quando o seu escritório de advocacia te envia um aviso ou um boleto importante, a notificação do Vinc que aparece na sua tela diz apenas algo como: <em>"Nova atualização de segurança pendente. Toque para verificar."</em></p>
+      <p>Nós ocultamos intencionalmente o nome do advogado, o número do processo, valores financeiros ou detalhes do assunto. Essa abordagem simples e direta cumpre objetivos estratégicos:</p>
+      <ul>
+        <li><strong>Proteção da Tela Bloqueada:</strong> Impede que pessoas ao seu redor (em transporte público, reuniões ou em casa) visualizem dados particulares e sigilosos do seu processo jurídico.</li>
+        <li><strong>Prevenção Contra Engenharia Social Visual:</strong> Evita que golpistas ou pessoas mal-intencionadas utilizem as informações que aparecem na tela do seu celular para criar novas abordagens de fraude.</li>
+        <li><strong>Minimização de Dados:</strong> O Vinc segue o princípio de exibir apenas o estritamente necessário no ambiente externo, deixando as informações ricas protegidas atrás de uma camada de autenticação biométrica ou senha dentro do aplicativo.</li>
+      </ul>
+
+      <div class="post-regra-ouro">
+        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
+        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
+        <p class="post-regra-ouro-sub">A privacidade de dados deve ser garantida em todas as esferas. O sigilo do seu processo começa no momento em que a tela do seu celular acende.</p>
+      </div>
+
+      <h2>Alinhamento com a LGPD e Segurança Corporativa</h2>
+      <p>Para escritórios de advocacia, enviar informações de processos por notificações abertas pode ser interpretado como negligência em caso de auditorias de privacidade. O design seguro do Vinc auxilia as bancas de advocacia a estarem em total conformidade legal, oferecendo uma experiência de <em>Privacy by Design</em> (privacidade desde a concepção) para seus clientes finais.</p>
+      <p>Para ler os detalhes, o usuário deve destravar o aparelho e acessar a plataforma autenticada. Segurança e privacidade andam de mãos dadas.</p>
+
+      <div class="post-signature" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
+        <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--text-primary);">Vinc — confirme antes de confiar.</p>
+        <p style="margin: 0; font-style: italic; color: var(--text-secondary); font-size: 14px;">Desenvolvido com foco total em soberania tecnológica e segurança jurídica.</p>
+      </div>
+    `,
+    seo: {
+      metaTitle: "Notificações do Vinc e Conformidade LGPD | Blog Vinc",
+      metaDesc: "Descubra como as notificações genéricas do Vinc protegem seus dados confidenciais de acordo com a LGPD, impedindo que bisbilhoteiros vejam dados processuais.",
+      keywords: "lgpd notificacoes, privacidade de dados celular, notificacoes genericas, seguranca da informacao, vinc",
+    }
+  },
+  {
+    id: "post-10",
+    title: "\"Escritório Ciente\": O Que Significa Marcar Ciência de um Relato?",
+    slug: "escritorio-ciente-marcar-ciencia-relato",
+    excerpt: "Esclareça o funcionamento e os limites do botão de ciência no painel do Vinc, garantindo total transparência e alinhamento entre clientes e advogados.",
+    category: CATEGORIES.GUIA_FUNCIONALIDADES.name,
+    categorySlug: CATEGORIES.GUIA_FUNCIONALIDADES.slug,
+    categoryIcon: CATEGORIES.GUIA_FUNCIONALIDADES.icon,
+    categoryColor: CATEGORIES.GUIA_FUNCIONALIDADES.color,
+    publishedAt: "16 Jul 2026",
+    readingTime: 4,
+    author: AUTHORS.luiz_gustavo,
+    featuredImage: "../assets/images/vinc_shield_client.jpg",
+    content: `
+      <p>A transparência é a chave para uma comunicação jurídica eficiente. No ecossistema do Vinc, quando um cliente identifica uma atividade suspeita ou um contato estranho e envia um aviso, o escritório de advocacia pode marcar aquele relato como <strong>\"Escritório Ciente\"</strong>. Mas você sabe exatamente o que esse botão significa e quais são as suas responsabilidades?</p>
+
+      <h2>O Fluxo do Relato e Acompanhamento</h2>
+      <p>Quando você recebe um contato suspeito no WhatsApp alegando ser do seu escritório e o reporta na plataforma Vinc, um alerta é gerado em tempo real no painel administrativo dos seus advogados. Ao visualizar a notificação, analisar o caso e tomar as providências internas cabíveis, o advogado clica no botão para sinalizar que o escritório está ciente da ocorrência.</p>
+      <p>Isso garante que o cliente receba uma confirmação imediata de que seu alerta foi recebido e está sob verificação, fortalecendo o canal de comunicação direto e a relação de parceria contra os criminosos.</p>
+
+      <div class="post-regra-ouro">
+        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
+        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
+        <p class="post-regra-ouro-sub">A ciência mútua é o primeiro passo para conter golpes. O cliente avisa, o escritório avalia e o sistema documenta a interação com total segurança digital.</p>
+      </div>
+
+      <h2>O que \"Ciência\" NÃO Significa</h2>
+      <p>Para evitar mal-entendidos e garantir a segurança jurídica, é fundamental esclarecer os limites dessa funcionalidade:</p>
+      <ul>
+        <li><strong>Não é uma decisão jurídica:</strong> Marcar ciência indica apenas o recebimento técnico do relato de segurança, e não uma orientação processual ou análise do mérito da causa.</li>
+        <li><strong>Não confirma a identidade do suspeito:</strong> O selo de ciente apenas acusa que o escritório tomou conhecimento de que alguém tentou se passar por eles, mas não realiza investigações policiais automáticas sobre o autor da fraude.</li>
+        <li><strong>Não encerra o caso:</strong> É apenas um marcador de progresso. O processo de investigação de um crime cibernético e o envio de boletins de ocorrência continuam seguindo os rituais tradicionais de segurança e assessoria jurídica.</li>
+      </ul>
+      <p>Em resumo, o status \"Escritório Ciente\" serve para aproximar o cliente de sua equipe jurídica, eliminando o silêncio que costuma gerar ansiedade e permitindo respostas ágeis em momentos críticos.</p>
+
+      <div class="post-signature" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
+        <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--text-primary);">Vinc — confirme antes de confiar.</p>
+        <p style="margin: 0; font-style: italic; color: var(--text-secondary); font-size: 14px;">Desenvolvido com foco total em soberania tecnológica e segurança jurídica.</p>
+      </div>
+    `,
+    seo: {
+      metaTitle: "Entenda o Status de Escritório Ciente | Blog Vinc",
+      metaDesc: "Descubra como o status de Escritório Ciente melhora o acompanhamento de relatos suspeitos e de segurança, fortalecendo a relação entre cliente e escritório.",
+      keywords: "escritorio ciente, relato de seguranca vinc, monitoramento de golpes, transparencia juridica, vinc",
+    }
+  },
+  {
+    id: "post-11",
+    title: "Por que o Vinc Não Possui Cadastro Público?",
+    slug: "por-que-vinc-nao-possui-cadastro-publico",
+    excerpt: "Descubra por que a entrada na plataforma ocorre apenas por meio de convites e chaves de ativação exclusivas, blindando a reputação dos escritórios parceiros.",
+    category: CATEGORIES.GESTAO_REPUTACAO.name,
+    categorySlug: CATEGORIES.GESTAO_REPUTACAO.slug,
+    categoryIcon: CATEGORIES.GESTAO_REPUTACAO.icon,
+    categoryColor: CATEGORIES.GESTAO_REPUTACAO.color,
+    publishedAt: "16 Jul 2026",
+    readingTime: 4,
+    author: AUTHORS.luiz_gustavo,
+    featuredImage: "../assets/images/vinc_advocacy_shield.jpg",
+    content: `
+      <p>Ao navegar pelo site do Vinc, você deve ter percebido que não existe um botão de \"Criar Conta Grátis\" ou \"Cadastre-se\" aberto ao público geral. Essa decisão arquitetônica não é um capricho de design, mas sim um pilar de segurança digital essencial para manter a integridade da nossa plataforma.</p>
+
+      <h2>Proteção Contra Perfis Falsos e Engenharia Social</h2>
+      <p>Plataformas com cadastro público e aberto sofrem constantemente com a criação de perfis falsos. Criminosos poderiam facilmente criar uma conta se passando por um advogado legítimo ou criar uma sociedade de advogados fantasma para aplicar golpes de dentro do próprio sistema, gerando falsos selos de verificação.</p>
+      <p>Para evitar essa vulnerabilidade de forma definitiva, o Vinc adota uma política rígida de <strong>entrada restrita por convites e chaves de ativação exclusivas</strong>.</p>
+
+      <div class="post-regra-ouro">
+        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
+        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
+        <p class="post-regra-ouro-sub">A segurança de um ecossistema fechado reside na qualidade e veracidade de seus membros. Cada usuário da nossa rede passa por uma rigorosa validação prévia.</p>
+      </div>
+
+      <h2>Como Funciona o Fluxo de Homologação</h2>
+      <p>Para que um escritório ou advogado autônomo ingresse na plataforma, a jornada segue um protocolo minucioso:</p>
+      <ol>
+        <li><strong>Solicitação de Chave de Ativação:</strong> O advogado preenche o formulário oficial de contato fornecendo seus dados institucionais e registro na OAB.</li>
+        <li><strong>Auditoria Manual e Verificação Cadastral:</strong> Nosso time de segurança digital valida as credenciais processuais e cadastrais junto ao Cadastro Nacional de Advogados (CNA).</li>
+        <li><strong>Emissão da Chave Única:</strong> Após a homologação, o escritório recebe uma chave eletrônica única e criptografada para ativar seu painel seguro.</li>
+      </ol>
+      <p>Esse modelo de controle absoluto impede fraudes na origem, garante a reputação dos escritórios credenciados e dá aos clientes finais a certeza de que estão falando em um ambiente 100% autêntico e livre de golpistas.</p>
+
+      <div class="post-signature" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
+        <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--text-primary);">Vinc — confirme antes de confiar.</p>
+        <p style="margin: 0; font-style: italic; color: var(--text-secondary); font-size: 14px;">Desenvolvido com foco total em soberania tecnológica e segurança jurídica.</p>
+      </div>
+    `,
+    seo: {
+      metaTitle: "Por Que o Vinc Não Tem Cadastro Aberto | Blog Vinc",
+      metaDesc: "Entenda por que o Vinc é um ecossistema fechado e acessível somente por meio de chaves de ativação homologadas e convites exclusivos.",
+      keywords: "cadastro fechado vinc, chave de ativação oab, seguranca corporativa, blindagem contra golpistas, vinc",
+    }
+  },
+  {
+    id: "post-12",
+    title: "Vinc: Blindando a Relação entre Advogados e Clientes contra Fraudes",
+    slug: "vinc-blindando-relacao-advogados-clientes",
+    excerpt: "No cenário jurídico atual, entenda como o ecossistema do Vinc protege a identidade do escritório e o patrimônio dos clientes através de relações de vínculos autenticados.",
+    category: CATEGORIES.GESTAO_REPUTACAO.name,
+    categorySlug: CATEGORIES.GESTAO_REPUTACAO.slug,
+    categoryIcon: CATEGORIES.GESTAO_REPUTACAO.icon,
+    categoryColor: CATEGORIES.GESTAO_REPUTACAO.color,
+    publishedAt: "16 Jul 2026",
+    readingTime: 4,
+    author: AUTHORS.luiz_gustavo,
+    featuredImage: "../assets/images/vinc_dashboard_mock.jpg",
+    content: `
+      <p>No cenário jurídico atual, a reputação e a marca de um escritório de advocacia são seus ativos mais preciosos. Contudo, essa credibilidade conquistada com anos de dedicação também se tornou o alvo principal de quadrilhas especializadas. Criminosos se apropriam de nomes de advogados reais e usam dados de processos públicos para enganar clientes em tentativas de golpes sofisticados.</p>
+
+      <p>Nesse cenário de vulnerabilidade, o <strong>Vinc</strong> surge como a solução definitiva para reestabelecer a segurança e a integridade da comunicação, baseando sua atuação em uma regra de ouro inabalável: <strong>confirmar antes de confiar</strong>.</p>
+
+      <h2>O que é o Vinc?</h2>
+      <p>O Vinc é um ecossistema de prevenção a fraudes projetado especificamente para o ambiente jurídico. Diferente de chats e aplicativos de mensagens comuns que não possuem qualquer tipo de checagem profissional, o Vinc não tenta adivinhar ou presumir se um contato é seguro por fotos ou nomes de perfil. Em vez disso, nossa plataforma valida a existência de um <strong>vínculo real</strong> entre as partes antes de autorizar qualquer interação de segurança.</p>
+
+      <div class="post-regra-ouro">
+        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
+        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
+        <p class="post-regra-ouro-sub">A segurança não deve depender da intuição humana. Toda comunicação sensível precisa ser validada por uma infraestrutura dedicada a confirmar vínculos contratuais reais.</p>
+      </div>
+
+      <h2>A Tecnologia do Vínculo Real</h2>
+      <p>O coração do Vinc é o seu sistema de roteamento inteligente de segurança. Quando um cliente final recebe uma abordagem duvidosa no dia a dia — como um pedido urgente de transferência via PIX, solicitações de documentos confidenciais ou comunicados sobre andamento processual —, ele simplesmente registra essa interação no aplicativo Vinc.</p>
+      <p>A partir daí, a tecnologia inteligente entra em ação de maneira totalmente automatizada:</p>
+      <ul>
+        <li><strong>Isolamento do Nome:</strong> O sistema desconsidera totalmente o nome informado pelo contato suspeito, usando-o apenas como contexto complementar de análise.</li>
+        <li><strong>Identificação de Vínculo:</strong> O sistema faz uma varredura em nossa base de dados centralizada e segura para identificar quais profissionais realmente possuem vínculo contratual legítimo e autorizado com aquele cliente específico.</li>
+        <li><strong>Alerta Instantâneo:</strong> O Vinc envia automaticamente um alerta de verificação direto para o painel do advogado responsável cadastrado.</li>
+        <li><strong>Confirmação Rápida:</strong> Com apenas alguns cliques no celular ou computador, o advogado confirma ou rejeita a autenticidade daquela solicitação.</li>
+      </ul>
+      <p>Esse processo inovador elimina por completo a eficácia das táticas mais comuns de engenharia social, tirando dos golpistas a capacidade de enganar as vítimas.</p>
+
+      <h2>Benefícios Claros para Toda a Cadeia de Segurança</h2>
+      <p>O modelo baseado em relações autenticadas gera valor imediato para todos os envolvidos na prestação de serviços jurídicos:</p>
+
+      <h3>1. Tranquilidade e Autonomia para Clientes</h3>
+      <ul>
+        <li><strong>Fim da Incerteza:</strong> Alívio imediato e tranquilidade ao receber qualquer tipo de solicitação ou cobrança.</li>
+        <li><strong>Transparência Total:</strong> Acompanhamento em tempo real do status de validação das suas interações de segurança.</li>
+        <li><strong>Histórico Seguro:</strong> Acesso fácil ao registro de todas as consultas e confirmações realizadas ao longo do contrato.</li>
+      </ul>
+
+      <h3>2. Proteção de Identidade para Advogados</h3>
+      <ul>
+        <li><strong>Blindagem de Nome:</strong> Proteção ativa da identidade profissional e do registro na OAB de usos indevidos.</li>
+        <li><strong>Alertas de Segurança:</strong> Notificações rápidas e seguras sobre contatos suspeitos realizados em nome do profissional.</li>
+        <li><strong>Validação Ágil:</strong> Ferramentas fáceis que permitem responder às dúvidas de segurança dos clientes sem interromper a rotina de trabalho.</li>
+      </ul>
+
+      <h3>3. Governança e Controle para Escritórios</h3>
+      <ul>
+        <li><strong>Acesso Homologado:</strong> Cadastro estritamente fechado, sem permissão para entrada pública, mitigando a criação de contas ou identidades falsas na rede.</li>
+        <li><strong>Gestão Centralizada:</strong> Painel de controle completo para administração de contratos de clientes, chaves de ativação e usuários autorizados da equipe.</li>
+        <li><strong>Soberania Tecnológica:</strong> Domínio absoluto sobre os canais oficiais de comunicação, blindando a integridade da reputação institucional do escritório.</li>
+      </ul>
+
+      <h2>Segurança sem Concessões Tecnológicas</h2>
+      <p>Para garantir que o sistema seja verdadeiramente imune a adulterações, toda a inteligência e as regras de segurança do Vinc estão hospedadas em nossos servidores protegidos (backend). Nenhuma validação ou decisão crítica é realizada localmente no aplicativo instalado no celular do usuário. Isso significa que mesmo em caso de perda, roubo ou invasão física do smartphone, as chaves criptográficas permanecem totalmente seguras e invioláveis na nuvem.</p>
+
+      <h2>Conclusão</h2>
+      <p>À medida que as tentativas de fraudes evoluem e se tornam mais convincentes, as barreiras de proteção precisam acompanhar essa evolução. O Vinc reduz drasticamente a superfície de ataque utilizada pelos estelionatários ao transformar a checagem de identidade em uma validação rigorosa de relacionamento real e legítimo.</p>
+      <p>Mais do que simplesmente confirmar quem está falando, o Vinc certifica que aquela pessoa possui o direito e o vínculo real para falar com você.</p>
+
+      <div class="post-cta-box" style="margin-top: 40px; padding: 24px; background-color: var(--ice-blue); border-left: 4px solid var(--blue); border-radius: 0 var(--radius-md) var(--radius-md) 0;">
+        <h3 style="margin-top: 0; margin-bottom: 12px; color: var(--blue); font-size: 18px; font-weight: bold;">Quer conhecer uma nova forma de proteger clientes e escritórios?</h3>
+        <p style="margin-bottom: 20px; color: var(--text-primary); font-size: 15px; line-height: 1.6;">Conheça o Vinc e descubra como um ecossistema baseado em vínculos reais pode reduzir drasticamente tentativas de fraudes e elevar a confiança mútua na comunicação jurídica.</p>
+        <a href="/pages/contato.html" class="btn-primary" style="display: inline-block; text-decoration: none; font-size: 14px; padding: 10px 20px;">Solicitar chave de ativação</a>
+      </div>
+
+      <div class="post-signature" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
+        <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--text-primary);">Vinc — confirme antes de confiar.</p>
+        <p style="margin: 0; font-style: italic; color: var(--text-secondary); font-size: 14px;">Desenvolvido com foco total em soberania tecnológica e segurança jurídica.</p>
+      </div>
+    `,
+    seo: {
+      metaTitle: "Vinc: Blindando a Relação entre Advogados e Clientes contra Fraudes | Blog Vinc",
+      metaDesc: "Descubra como o ecossistema do Vinc protege a identidade do escritório de advocacia e o patrimônio dos clientes através da tecnologia de vínculo contratual real.",
+      keywords: "antifraude advocacia, roteamento de vinculo, blindagem de escritorio, chave de ativação vinc, seguranca juridica"
     }
   }
 ];

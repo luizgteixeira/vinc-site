@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Principal -->
+  <title>Demonstração | Vinc - Veja o Aplicativo em Funcionamento</title>
+  <meta name="description" content="Assista à demonstração do Vinc e conheça os fluxos de segurança que conectam clientes, advogados e escritórios de advocacia de forma totalmente blindada contra fraudes.">
+  <link rel="canonical" href="https://www.vinc.com.br/pages/demonstracao.html">
+
+  <!-- Favicon -->
+  <link rel="icon" href="../assets/icons/vinc_icon_256px.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/icons/vinc_icon_512px.png">
+
+  <!-- Pré-conexões -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/1-settings/global.css">
+  <link rel="stylesheet" href="../css/1-settings/tipografia.css">
+  <link rel="stylesheet" href="../css/2-components/botoes.css">
+  <link rel="stylesheet" href="../css/2-components/cards.css">
+  <link rel="stylesheet" href="../css/2-components/formularios.css">
+  <link rel="stylesheet" href="../css/2-components/modal.css">
+  <link rel="stylesheet" href="../css/2-components/menu.css">
+  <link rel="stylesheet" href="../css/2-components/rodape.css">
+  <link rel="stylesheet" href="../css/3-pages/demonstracao.css">
+  <link rel="stylesheet" href="../css/1-settings/responsivo.css">
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header class="header">
+    <div class="container header-content" id="header-container">
+      <a href="../index.html" class="logo" id="logo-main">
+        <img src="../assets/icons/vinc_icon_256px.png" alt="Logotipo do Vinc" class="logo-icon" width="40" height="40" decoding="async">
+        <span class="logo-text">Vinc<span class="logo-dot">.</span></span>
+      </a>
+
+      <nav class="menu" id="navigation-menu" aria-label="Menu principal">
+        <a href="../index.html">Início</a>
+        <div class="menu-item-dropdown">
+          <a href="como-funciona.html" id="como-funciona-toggle" class="dropdown-toggle ativo" aria-haspopup="true" aria-expanded="false">Como Funciona <span class="arrow"></span></a>
+          <div class="submenu" role="menu" aria-labelledby="como-funciona-toggle">
+            <a href="como-funciona.html" role="menuitem">Visão Geral</a>
+            <a href="demonstracao.html" role="menuitem" class="ativo">Demonstração</a>
+            <a href="faq.html" role="menuitem">FAQ</a>
+          </div>
+        </div>
+        <a href="recursos.html">Recursos</a>
+        <a href="seguranca.html">Segurança</a>
+        <a href="blog.html">Blog</a>
+        <div class="menu-item-dropdown">
+          <a href="#" id="gestao-toggle" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Gestão <span class="arrow"></span></a>
+          <div class="submenu" role="menu" aria-labelledby="gestao-toggle">
+            <a href="advogados.html" role="menuitem">Advogados</a>
+            <a href="clientes.html" role="menuitem">Clientes</a>
+            <a href="escritorios.html" role="menuitem">Escritório</a>
+          </div>
+        </div>
+        <a href="contato.html">Contato</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-controls="navigation-menu" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main>
+    
+    <!-- 1. Seção Hero -->
+    <section class="demo-hero" aria-labelledby="hero-title" id="hero-demo-section">
+      <div class="container demo-hero-grid">
+        <div class="demo-hero-text">
+          <span class="tag">Demonstração Ativa</span>
+          <h1 id="hero-title">Veja o Vinc em funcionamento</h1>
+          <p class="subtitle">Conheça como clientes, advogados e escritórios confirmam contatos antes de confiar, utilizando um ambiente seguro, moderno e protegido contra fraudes.</p>
+          <div class="demo-hero-buttons">
+            <a href="contato.html" class="btn-primary" id="btn-hero-solicitar">Solicitar chave de ativação</a>
+            <a href="#video-demonstracao" class="btn-secondary" id="btn-hero-assistir">Assistir demonstração</a>
+          </div>
+        </div>
+        <div class="mockup-wrapper">
+          <div class="phone-mockup" id="hero-phone">
+            <div class="phone-speaker"></div>
+            <div class="phone-screen">
+              <div class="app-header">
+                <span class="app-brand">Vinc<span>.</span></span>
+                <span class="app-status-dot"></span>
+              </div>
+              <div>
+                <div class="app-card" style="margin-top: 40px;">
+                  <div class="app-card-title">Canal Oficial</div>
+                  <div class="app-card-value">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#2E8B57" stroke-width="3" width="18" height="18">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Conexão Segura
+                  </div>
+                </div>
+                <div class="app-case-box">
+                  <div style="font-size: 11px; font-weight: bold; margin-bottom: 4px;">Escritório Verificado</div>
+                  <div style="font-size: 10px; opacity: 0.8; line-height: 1.4;">Teixeira & Associados Advocacia</div>
+                </div>
+                <div class="app-card" style="border-color: rgba(46, 139, 87, 0.4); background: rgba(46, 139, 87, 0.08);">
+                  <div class="app-card-title" style="color: #2E8B57;">Status Recente</div>
+                  <div style="font-size: 12px; font-weight: bold; margin-top: 4px; color: #fff;">Nenhum alerta pendente</div>
+                </div>
+              </div>
+              <div class="app-btn">Validar Nova Mensagem</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Seção Por que conhecer o Vinc? -->
+    <section class="por-que-section" aria-labelledby="por-que-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="por-que-title">Por que conhecer o Vinc?</h2>
+          <p>Entenda os três pilares que tornam o nosso ecossistema a barreira mais eficiente contra fraudes.</p>
+        </div>
+        <div class="por-que-grid">
+          <!-- Card Educação -->
+          <div class="por-que-card" id="por-que-edu">
+            <div class="por-que-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+            <h3>Educação</h3>
+            <p>O aplicativo possui um fluxo extremamente simples para você registrar e validar qualquer contato suspeito recebido fora do aplicativo.</p>
+          </div>
+
+          <!-- Card Segurança -->
+          <div class="por-que-card" id="por-que-seg">
+            <div class="por-que-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <h3>Segurança</h3>
+            <p>O sistema protege os clientes contra golpes e engenharia social utilizando como base os vínculos reais registrados entre clientes e advogados no banco de dados.</p>
+          </div>
+
+          <!-- Card Transparência -->
+          <div class="por-que-card" id="por-que-trans">
+            <div class="por-que-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </div>
+            <h3>Transparência</h3>
+            <p>Todas as tentativas de verificação ficam registradas de forma clara, permitindo o acompanhamento imediato e em tempo real pelo escritório responsável.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Seção Demonstração em Vídeo e Fluxo de Etapas -->
+    <section class="video-section" id="video-demonstracao" aria-labelledby="video-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="video-title">Veja o Aplicativo na Prática</h2>
+          <p>Assista ao nosso vídeo de demonstração interativa e descubra como o ecossistema protege a sua relação jurídica.</p>
+        </div>
+        
+        <!-- Player Responsivo Placeholder -->
+        <div class="video-player-container" id="player-container">
+          <div class="video-placeholder" id="triggerVideoModal" style="cursor: pointer;">
+            <div class="video-play-btn">
+              <svg viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+            <span class="video-text">ASSISTIR À DEMONSTRAÇÃO</span>
+          </div>
+        </div>
+
+        <!-- Fluxo Horizontal de 5 Etapas -->
+        <div class="flow-container">
+          <h3 class="flow-title">Fluxo Operacional de Blindagem</h3>
+          <div class="flow-steps">
+            
+            <div class="flow-step">
+              <div class="flow-icon">01</div>
+              <span class="flow-step-text">Cliente recebe mensagem suspeita</span>
+            </div>
+
+            <div class="flow-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+
+            <div class="flow-step">
+              <div class="flow-icon">02</div>
+              <span class="flow-step-text">Seleciona o contrato</span>
+            </div>
+
+            <div class="flow-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+
+            <div class="flow-step">
+              <div class="flow-icon">03</div>
+              <span class="flow-step-text">Envia a suspeita</span>
+            </div>
+
+            <div class="flow-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+
+            <div class="flow-step">
+              <div class="flow-icon">04</div>
+              <span class="flow-step-text">Advogado recebe a notificação</span>
+            </div>
+
+            <div class="flow-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+
+            <div class="flow-step">
+              <div class="flow-icon">05</div>
+              <span class="flow-step-text">Cliente recebe a confirmação</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. Seção Capturas de Tela do Aplicativo -->
+    <section class="screenshots-section" aria-labelledby="screens-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="screens-title">Capturas de Tela do Aplicativo</h2>
+          <p>Conheça a interface limpa e focada em usabilidade projetada especialmente para o cliente final.</p>
+        </div>
+        <div class="screenshots-grid">
+          
+          <!-- Card 1: Boas-vindas -->
+          <div class="screen-card">
+            <div class="card-phone-mockup">
+              <div class="card-phone-screen">
+                <div class="card-phone-header">Vinc.</div>
+                <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 8px;">
+                  <div style="font-size: 11px; font-weight: bold;">Seja bem-vindo</div>
+                  <div style="font-size: 8px; opacity: 0.7;">Escaneie o QR Code do seu escritório de advocacia para ativar.</div>
+                  <div style="border: 1px dashed var(--blue); height: 80px; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                    <span style="font-size: 8px;">[ QR Code ]</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3>Boas-vindas</h3>
+            <p>Tela inicial limpa com as boas-vindas do escritório parceiro e opção de onboarding via QR code institucional.</p>
+          </div>
+
+          <!-- Card 2: Seleção de contrato -->
+          <div class="screen-card">
+            <div class="card-phone-mockup">
+              <div class="card-phone-screen">
+                <div class="card-phone-header">Vinc.</div>
+                <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 8px;">
+                  <div style="font-size: 9px; font-weight: bold;">Selecione o Contrato</div>
+                  <div style="border: 1px solid var(--border); padding: 6px; border-radius: 6px; background: rgba(255,255,255,0.05);">
+                    <div style="font-weight: bold; font-size: 8px;">Proc. Nº 5002931-10</div>
+                    <div style="font-size: 7px; opacity: 0.6;">Cível / Contratos</div>
+                  </div>
+                  <div style="border: 1px solid var(--blue); padding: 6px; border-radius: 6px; background: rgba(42,94,168,0.1);">
+                    <div style="font-weight: bold; font-size: 8px; color: var(--blue);">Proc. Nº 5018320-44</div>
+                    <div style="font-size: 7px; opacity: 0.6;">Trabalhista</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3>Seleção de contrato</h3>
+            <p>Exibição simplificada dos contratos ou casos judiciais ativos vinculados diretamente ao CPF do cliente.</p>
+          </div>
+
+          <!-- Card 3: Aguardando análise -->
+          <div class="screen-card">
+            <div class="card-phone-mockup">
+              <div class="card-phone-screen">
+                <div class="card-phone-header">Vinc.</div>
+                <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; text-align: center;">
+                  <div style="width: 30px; height: 30px; border: 2px solid var(--blue); border-top-color: transparent; border-radius: 50%; animation: rotateGlow 1.5s linear infinite;"></div>
+                  <div>
+                    <div style="font-size: 9px; font-weight: bold;">Validando Dados...</div>
+                    <div style="font-size: 7px; opacity: 0.6; margin-top: 4px;">Aguardando retorno do escritório.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3>Aguardando análise</h3>
+            <p>Tela de verificação ativa com animação segura de escaneamento enquanto o escritório valida as informações.</p>
+          </div>
+
+          <!-- Card 4: Notificação Push -->
+          <div class="screen-card">
+            <div class="card-phone-mockup">
+              <div class="card-phone-screen" style="background: #000; padding: 10px;">
+                <div style="font-size: 8px; opacity: 0.5; margin-bottom: 8px;">Notificações Recentes</div>
+                <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 8px;">
+                  <div style="display: flex; justify-content: space-between; font-size: 8px; font-weight: bold; margin-bottom: 2px;">
+                    <span>Vinc</span>
+                    <span style="opacity: 0.5;">Agora</span>
+                  </div>
+                  <div style="font-size: 7px;">Nova verificação concluída com sucesso.</div>
+                </div>
+              </div>
+            </div>
+            <h3>Notificação Push</h3>
+            <p>Alertas operacionais genéricos enviados para a tela de bloqueio, preservando a privacidade e detalhes do caso.</p>
+          </div>
+
+          <!-- Card 5: Contato confirmado -->
+          <div class="screen-card">
+            <div class="card-phone-mockup">
+              <div class="card-phone-screen">
+                <div class="card-phone-header">Vinc.</div>
+                <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 8px; text-align: center;">
+                  <div style="width: 34px; height: 34px; background: rgba(46,139,87,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#2E8B57" stroke-width="3" width="20" height="20">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </div>
+                  <div class="screen-badge-verificado">CONTATO LEGÍTIMO</div>
+                  <div style="font-size: 8px; opacity: 0.7;">O contato foi oficialmente certificado pelo seu advogado.</div>
+                </div>
+              </div>
+            </div>
+            <h3>Contato confirmado</h3>
+            <p>Selo verde de legitimidade confirmando que a abordagem recebida é oficial do seu advogado responsável.</p>
+          </div>
+
+          <!-- Card 6: Escritório ciente -->
+          <div class="screen-card">
+            <div class="card-phone-mockup">
+              <div class="card-phone-screen">
+                <div class="card-phone-header">Vinc.</div>
+                <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 8px; text-align: center;">
+                  <div style="width: 34px; height: 34px; background: rgba(224,92,58,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="16" x2="12" y2="12"></line>
+                      <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                  </div>
+                  <div class="screen-badge-alerta">ESCRITÓRIO CIENTE</div>
+                  <div style="font-size: 8px; opacity: 0.7;">A tentativa de fraude foi notificada ao gestor do caso.</div>
+                </div>
+              </div>
+            </div>
+            <h3>Escritório ciente</h3>
+            <p>Status informando que o escritório visualizou seu relato, garantindo conformidade e proteção imediata.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Seção Painel Administrativo -->
+    <section class="dashboard-section" aria-labelledby="dash-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="dash-title">Painel Administrativo do Escritório</h2>
+          <p>O Vinc oferece uma plataforma robusta baseada na web para controle absoluto de acessos, convites e acompanhamento de segurança.</p>
+        </div>
+        
+        <!-- Notebook Mockup -->
+        <div class="dashboard-wrapper">
+          <img src="../assets/images/vinc_dashboard_mock.jpg" alt="Painel de Controle Vinc" class="dashboard-img" width="950" height="534" decoding="async">
+        </div>
+
+        <div class="dashboard-cards-grid">
+          <!-- Item 1 -->
+          <div class="dash-item-card">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="8.5" cy="7" r="4"></circle>
+                <line x1="20" y1="8" x2="20" y2="14"></line>
+                <line x1="23" y1="11" x2="17" y2="11"></line>
+              </svg>
+              Convites
+            </h4>
+            <p>Geração e gestão de convites temporários criptografados para garantir onboarding seguro de novos clientes e profissionais de equipe.</p>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="dash-item-card">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              Contratos
+            </h4>
+            <p>Gerenciamento integrado e rastreamento de todos os casos e processos judiciais com os respectivos vínculos ativos no sistema.</p>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="dash-item-card">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              Usuários
+            </h4>
+            <p>Controle de acesso baseado em funções para advogados, administradores e equipe de staff, mantendo a governança interna de dados.</p>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="dash-item-card">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Solicitações
+            </h4>
+            <p>Painel de alertas com fila de solicitações de verificação em tempo real enviadas por clientes em situação de contato suspeito.</p>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="dash-item-card">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              Relatórios
+            </h4>
+            <p>Geração de relatórios consolidados de conformidade, tentativas de fraude registradas e métricas operacionais de mitigação de risco.</p>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="dash-item-card">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+              Indicadores
+            </h4>
+            <p>Gráficos analíticos rápidos exibindo tempo médio de resposta do escritório aos relatos e status de segurança do ecossistema.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Seção Segurança e Diferenciais -->
+    <section class="security-demo-section" aria-labelledby="sec-title">
+      <div class="container security-demo-grid">
+        <div class="security-demo-illustration">
+          <div class="security-lock-visual">
+            <div class="security-lock-glow"></div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              <circle cx="12" cy="16" r="1.5"></circle>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <span class="tag" style="margin-bottom: 12px;">Infraestrutura Zero Trust</span>
+          <h2 id="sec-title" style="font-size: 32px; font-weight: 800; color: var(--text-primary); margin-bottom: 24px;">Controles Avançados de Segurança</h2>
+          <ul class="security-list">
+            
+            <li class="security-list-item">
+              <div class="security-list-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div class="security-list-content">
+                <h4>Ecossistema restrito</h4>
+                <p>Nenhuma informação sensível é exposta ao público em geral. Apenas conexões oficiais autorizadas entram no servidor.</p>
+              </div>
+            </li>
+
+            <li class="security-list-item">
+              <div class="security-list-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div class="security-list-content">
+                <h4>Acesso apenas por convite</h4>
+                <p>Nenhum fraudador consegue forjar um cadastro próprio no aplicativo, blindando completamente a base de dados.</p>
+              </div>
+            </li>
+
+            <li class="security-list-item">
+              <div class="security-list-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div class="security-list-content">
+                <h4>Autenticação segura</h4>
+                <p>Validação baseada em chaves de criptografia e canais assinados digitalmente diretamente do escritório de advocacia.</p>
+              </div>
+            </li>
+
+            <li class="security-list-item">
+              <div class="security-list-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div class="security-list-content">
+                <h4>Comunicação criptografada</h4>
+                <p>Integridade de mensagens e arquivos protegidos de ponta a ponta, seguindo os mais altos padrões corporativos.</p>
+              </div>
+            </li>
+
+            <li class="security-list-item">
+              <div class="security-list-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div class="security-list-content">
+                <h4>Sem cadastro público</h4>
+                <p>Impossibilita ataques de preenchimento automático de credenciais ou spoofing de identidade corporativa.</p>
+              </div>
+            </li>
+
+            <li class="security-list-item">
+              <div class="security-list-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div class="security-list-content">
+                <h4>Verificação baseada em vínculos reais</h4>
+                <p>Nenhum golpista pode interferir nos roteamentos internos do aplicativo, pois o caso é atrelado apenas a quem atua nele.</p>
+              </div>
+            </li>
+
+            <li class="security-list-item">
+              <div class="security-list-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div class="security-list-content">
+                <h4>Proteção contra engenharia social</h4>
+                <p>Criação de um hábito de dupla verificação no usuário, enfraquecendo tentativas de urgência emocional criadas por criminosos.</p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Seção Perfis do Sistema -->
+    <section class="profiles-section" aria-labelledby="profiles-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="profiles-title">Perfis do Sistema</h2>
+          <p>Diferentes níveis de acesso planejados para simplificar o controle e otimizar as comunicações.</p>
+        </div>
+        <div class="profiles-grid">
+          
+          <!-- Cliente -->
+          <div class="profile-card" id="profile-client">
+            <div class="profile-visual">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <h3>Cliente</h3>
+            <p>Registra contatos suspeitos rapidamente, acompanha a verificação em tempo real e visualiza o status de ciência do escritório.</p>
+          </div>
+
+          <!-- Advogado -->
+          <div class="profile-card" id="profile-lawyer">
+            <div class="profile-visual">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3>Advogado</h3>
+            <p>Recebe as notificações de segurança dos seus clientes vinculados, respondendo prontamente se o contato relatado é legítimo.</p>
+          </div>
+
+          <!-- Administrador -->
+          <div class="profile-card" id="profile-admin">
+            <div class="profile-visual">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </div>
+            <h3>Administrador</h3>
+            <p>Gerencia escritórios de advocacia parceiros, coordena usuários administrativos e staff, e supervisiona contratos no ecossistema.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Chamada Final (Final CTA) -->
+    <section class="final-cta-section" aria-labelledby="cta-final-title">
+      <div class="container">
+        <h2 id="cta-final-title">Confirme antes de confiar.</h2>
+        <p>O Vinc oferece uma nova forma de proteger clientes e escritórios utilizando uma plataforma segura, moderna e baseada em vínculos reais.</p>
+        <div class="cta-buttons">
+          <a href="contato.html" class="btn-primary" id="btn-final-solicitar">Solicitar chave de ativação</a>
+          <a href="contato.html" class="btn-secondary" id="btn-final-contato">Entrar em contato</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="footer-content" id="footer-container">
+      <p class="footer-main">
+        <span class="vinc-brand">Vinc</span>: a tecnologia que protege a confiança entre você e seu advogado.
+      </p>
+      <div class="footer-whatsapp-wrap">
+        <a href="https://wa.me/5531992609970" class="footer-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Fale pelo WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="24" height="24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.966-.272-.099-.471-.149-.67.149-.198.297-.768.966-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.149-.174.199-.297.298-.496.099-.198.05-.372-.025-.521-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.372-.01-.571-.01-.198 0-.521.074-.792.372-.271.297-1.036 1.018-1.036 2.479 0 1.462 1.061 2.875 1.207 3.073.146.198 2.089 3.2 5.076 4.487.709.306 1.262.49 1.694.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347Z" />
+            <path d="M20.52 3.449A11.93 11.93 0 0 0 12.003 0C5.64 0 0.495 5.145.495 11.51c0 2.027.53 4.004 1.537 5.748L0 24l6.924-1.818a11.95 11.95 0 0 0 5.56 1.415h.004c6.364 0 11.509-5.145 11.509-11.51 0-3.074-1.197-5.97-3.367-8.14ZM12.003 21.09h-.003a9.92 9.92 0 0 1-5.05-1.387l-.362-.215-4.107 1.078 1.096-4.001-.236-.367a9.91 9.91 0 0 1-1.535-5.31c0-5.49 4.47-9.96 9.96-9.96 2.66 0 5.16 1.035 7.035 2.912a9.9 9.9 0 0 1 2.912 7.035c0 5.49-4.47 9.96-9.96 9.96Z" />
+          </svg>
+        </a>
+        <a href="https://wa.me/5531992609970" class="footer-whatsapp-text" target="_blank" rel="noopener noreferrer">Dúvidas? Converse comigo!</a>
+      </div>
+      <p class="footer-copy">
+        © 2026 <span class="vinc-brand">Vinc</span>. Todos os direitos reservados. Desenvolvido por <a href="https://www.luizgustavodev.com/" target="_blank" rel="noopener noreferrer">Luiz Gustavo</a>.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Modal de Vídeo Demonstrativo (Auditoria de UX/UI e iframe) -->
+  <div class="modal-overlay" id="videoModal" aria-hidden="true" role="dialog" aria-labelledby="modal-video-title">
+    <div class="modal-container" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-video-title">Demonstração do Vinc</h3>
+        <button class="modal-close" id="closeVideoModal" aria-label="Fechar modal">&times;</button>
+      </div>
+      <div class="modal-body" style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--text-primary); line-height: 1.6;">
+        <p style="margin-bottom: 16px; font-weight: 500;">Esta é uma demonstração interativa da nossa plataforma de comunicação segura.</p>
+        <p style="margin-bottom: 24px; color: var(--text-secondary); font-size: 14px;">Em um ambiente de produção real, este player carregará o vídeo institucional demonstrando o passo a passo do aplicativo para clientes, o painel web administrativo dos advogados e os alertas em tempo real contra tentativas de golpes ou fraudes por WhatsApp.</p>
+        <button class="btn-primary" id="btnOkVideoModal" style="width: 100%; font-weight: 600; padding: 12px; border-radius: var(--radius-md);">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const trigger = document.getElementById('triggerVideoModal');
+      const modal = document.getElementById('videoModal');
+      const closeBtn = document.getElementById('closeVideoModal');
+      const okBtn = document.getElementById('btnOkVideoModal');
+
+      if (trigger && modal && closeBtn && okBtn) {
+        const openModal = () => {
+          modal.classList.add('active');
+          modal.setAttribute('aria-hidden', 'false');
+          okBtn.focus();
+        };
+
+        const closeModal = () => {
+          modal.classList.remove('active');
+          modal.setAttribute('aria-hidden', 'true');
+          trigger.focus();
+        };
+
+        trigger.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        okBtn.addEventListener('click', closeModal);
+
+        // Fechar ao clicar fora da modal-container
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+
+        // Fechar com a tecla Escape
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+          }
+        });
+      }
+    });
+  </script>
+
+  <script src="../js/script.js" type="module"></script>
+</body>
+</html>

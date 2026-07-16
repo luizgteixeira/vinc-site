@@ -1,230 +1,159 @@
-# Vinc
+# Vinc — Website Oficial & Centro de Conhecimento
 
-O **Vinc** é uma plataforma de segurança e blindagem digital jurídica de ponta, projetada para estabelecer e proteger a confiança mútua entre escritórios de advocacia, advogados autônomos e seus clientes. Atuando como um escudo ativo de cibersegurança, o sistema previne fraudes modernas baseadas em engenharia social, especialmente o golpe do "número novo" (falsa identidade por WhatsApp), boletos bancários adulterados e desvios de pagamentos via chaves Pix.
+O **Vinc** é um website institucional e informativo, acompanhado de um completo **Centro de Conhecimento Antifraude Jurídica**. Desenvolvido sob rigorosos padrões de usabilidade (UX), acessibilidade (a11y) e otimização para motores de busca (SEO), o site apresenta a plataforma Vinc ao mercado e educa advogados, escritórios e clientes finais sobre prevenção de fraudes virtuais jurídicas.
 
 > **Vinc — confirme antes de confiar.**
 
+<div align="center">
   <img src="public/assets/icons/vinc_icon_256px.png" alt="Vinc Logo" width="128" height="128" />
-  <p><em>Sua barreira lógica e criptográfica de segurança contra fraudes jurídicas.</em></p>
+  <p><em>A vitrine digital e central de educação preventiva da maior plataforma de blindagem contra engenharia social jurídica do país.</em></p>
+</div>
 
-![Next.js](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![Prisma](https://img.shields.io/badge/Prisma-39827F?style=for-the-badge&logo=prisma&logoColor=white)
-![Linter](https://img.shields.io/badge/eslint-3A3307?style=for-the-badge&logo=eslint&logoColor=61DAFB)
+<div align="center">
 
----
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23F7DF1E.svg?style=flat-square&logo=javascript&logoColor=black)
+![Tailwind CSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat-square&logo=tailwind-css&logoColor=white)
+![SEO](https://img.shields.io/badge/SEO-Otimizado-brightgreen?style=flat-square)
 
-## 📖 Sobre o Projeto
-
-No atual cenário digital, criminosos virtuais utilizam dados de diários oficiais públicos para identificar pessoas com processos judiciais em andamento e valores a receber. Fingindo ser os advogados responsáveis pelas causas, golpistas entram em contato via redes sociais urgindo o pagamento de taxas cartorárias fictícias para a liberação de alvarás e indenizações.
-
-O **Vinc** foi concebido para quebrar esse elo de vulnerabilidade através de autenticação criptográfica e confirmação de identidade em duas vias. Ele funciona como uma fonte única de verdade onde qualquer mensagem, cobrança ou documento enviado aos clientes pode ser validado instantaneamente.
+</div>
 
 ---
 
-## 🎯 Objetivos do Ecossistema
+## 📖 Sobre o Site
 
-- **Neutralizar a Engenharia Social:** Fornecer meios intuitivos para que clientes possam validar de forma inequívoca a identidade de quem os contata.
-- **Blindar a Reputação Jurídica:** Garantir que escritórios de advocacia e advogados autônomos tenham controle total sobre as comunicações enviadas em seu nome, mitigando o uso indevido de suas marcas profissionais.
-- **Assegurar Transações Financeiras:** Fornecer verificação criptográfica para boletos bancários e chaves Pix de destino, evitando o pagamento de documentos fraudados ou adulterados.
-- **Garantir Compliance Legal:** Servir como um canal estruturado de troca de documentos sensíveis em conformidade com as exigências da Lei Geral de Proteção de Dados (LGPD).
+O site do **Vinc** serve como o ponto de contato primário entre escritórios de advocacia, clientes e a segurança jurídica digital. No cenário atual, criminosos virtuais utilizam informações públicas de diários oficiais para ludibriar clientes que possuem processos na Justiça. O site do Vinc combate essa engenharia social fornecendo:
 
----
-
-## 🚀 Funcionalidades Principais
-
-### 1. Validação em Duas Vias de Identidade
-
-Sempre que um cliente receber uma comunicação de seu suposto representante legal, ele pode conferir a legitimidade da origem. Se o contato for autêntico e partir do sistema homologado, o Vinc emite o selo **Verificado**, garantindo o sigilo da conversa.
-
-### 2. Validador Criptográfico de Boletos e Pix
-
-Permite ao usuário digitalizar ou colar a linha digitável de qualquer cobrança recebida. O Vinc verifica se o banco emitente, o cedente oficial e a conta de destino coincidem com a base cadastral registrada e homologada pelo escritório de advocacia parceiro, barrando fraudes.
-
-### 3. Painel Administrativo "Escritório Ciente"
-
-O ambiente do advogado permite gerenciar toda a carteira de clientes vinculados, emitir ordens de pagamento auditadas, disparar notificações push seguras de forma rastreável e manter um histórico imutável de todas as interações e documentos expedidos.
+1.  **Páginas Institucionais:** Explicando de forma clara, técnica e transparente como funciona a barreira lógica e a validação criptográfica do sistema Vinc.
+2.  **Educação Antifraude (Blog):** Um hub de artigos práticos e dinâmicos para desarmar táticas de falsificação de identidade (WhatsApp), boletos falsificados e desvios de Pix.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🎨 Identidade Visual e Filosofia de Design
 
-A arquitetura do Vinc combina robustez de backend e leveza de carregamento no cliente final:
+A interface do site baseia-se no **minimalismo suíço moderno**, projetado com extremo rigor estético para transmitir autoridade, sobriedade e segurança técnica:
 
-- **Frontend Core:** HTML5, CSS3 estruturado através de classes utilitárias modernas e JavaScript modular.
-- **Framework de Produção:** [Next.js](https://nextjs.org/) (com TypeScript para tipagem estática e garantia de qualidade de código).
-- **Estilização e Design:** [Tailwind CSS](https://tailwindcss.com/) v4 para construção de uma interface responsiva, fluida e consistente.
-- **Modelagem de Dados:** [Prisma ORM](https://www.prisma.io/) pronto para orquestrar comunicações de dados relacionais e auditorias seguras.
-- **Qualidade de Código:** ESLint e TypeScript Compiler integrados para validação estática pré-build.
+-   **Paleta de Cores de Alta Confiança**: Tons neutros profundos (carvão), fundos off-white sofisticados e acentos em **Azul Profundo** (`#2563eb`), que simboliza estabilidade institucional. O **Vermelho Carmim** (`#e11d48`) é reservado exclusivamente para sinalização de perigos e alertas.
+-   **Tipografia Selecionada**: Títulos dinâmicos e modernos estilizados com fontes geométricas elegantes, pareados com metadados e marcadores em fontes monoespaçadas ("JetBrains Mono") para uma estética polida de tecnologia confiável.
+-   **Zero Poluição Visual (Anti-AI-Slop)**: O design evita elementos falsificados, logs de carregamento de mentira, status de simulação ou gráficos que não entreguem valor real. Toda a tela reflete o valor de um produto de software real de alta segurança.
 
 ---
 
-## 📁 Estrutura do Projeto
+## 📁 Estrutura Completa do Projeto
 
-O repositório está organizado para manter uma clara separação entre a lógica do servidor (Next.js) e os ativos estáticos otimizados carregados pelo navegador.
+O projeto é estruturado de forma a separar o ambiente de suporte Next.js (utilizado para orquestração e build na nuvem) dos arquivos estáticos de altíssima performance que constituem o site real do Vinc:
 
-```bash
-vinc-site/
-├── app/                    # Next.js App Router (Páginas do servidor e ponto de entrada)
-│   ├── globals.css         # Importações do Tailwind CSS e regras globais
-│   ├── layout.tsx          # Layout base do Next.js (definição de fontes e cabeçalhos de página)
-│   └── page.tsx            # Página inicial de montagem da plataforma
-├── assets/                 # Recursos e imagens de desenvolvimento do projeto
-├── hooks/                  # Hooks personalizados do React para gestão de estado
-├── lib/                    # Arquivos utilitários e funções auxiliares reutilizáveis
-├── prisma/                 # Modelagem do banco de dados (Prisma ORM)
-├── public/                 # Ativos públicos servidos diretamente ao navegador
-│   ├── assets/             # Ícones e logotipos oficiais do Vinc (vetores de alta fidelidade)
-│   ├── css/                # Folhas de estilo modulares
-│   │   ├── 1-settings/     # Regras básicas, resets e variáveis globais de responsividade
-│   │   ├── 2-components/   # Componentes reusados (botões, cards, menus, índices)
-│   │   └── 3-pages/        # Estilos específicos de cada página (como blog.css)
-│   ├── js/                 # Arquivos javascript de controle de comportamento dinâmico (blog.js)
-│   └── pages/              # Páginas estáticas modulares de alta performance (HTML5)
-│       ├── advogados.html  # Detalhamento para advogados autônomos
-│       ├── artigo-detalhes.html # Template dinâmico para leitura detalhada de posts
-│       ├── blog.html       # Centro de Conhecimento Antifraude (Listagem do Blog)
-│       ├── clientes.html   # Funcionalidades voltadas ao cliente final
-│       ├── como-funciona.html # Fluxo de funcionamento e proteção em duas vias
-│       ├── contato.html    # Canal de contato e onboarding de escritórios
-│       ├── escritorios.html # Apresentação institucional para médias e grandes bancas
-│       ├── faq.html        # Perguntas frequentes sobre segurança cibernética jurídica
-│       ├── recursos.html   # Detalhamento técnico de scanners e verificadores
-│       └── seguranca.html  # Explicação das barreiras lógicas e criptografia do sistema
-├── .env.example            # Exemplo de variáveis de ambiente e chaves da aplicação
-├── eslint.config.mjs       # Configuração de validação do Linter (ESLint)
-├── metadata.json           # Configurações de metadados, permissões e capacidades
-├── package.json            # Manifest do Node.js (scripts de execução, dependências e build)
-└── tsconfig.json           # Definição e regras de compilação do TypeScript
+```text
+├── app/                              # Wrapper de desenvolvimento do Next.js
+│   ├── globals.css                   # Estilos globais e importação do Tailwind
+│   ├── layout.tsx                    # Layout padrão do Next.js e fontes integradas
+│   └── page.tsx                      # Página inicial (redireciona para o index.html principal)
+│
+├── public/                           # Diretório principal com todos os arquivos estáticos do site
+│   ├── index.html                    # Página inicial (Landing Page) institucional do Vinc
+│   │
+│   ├── pages/                        # Centro de páginas internas do ecossistema Vinc
+│   │   ├── como-funciona.html        # Arquitetura Zero Trust e segurança multifator do aplicativo
+│   │   ├── demonstracao.html         # Demonstração interativa, capturas de tela e fluxos operacionais
+│   │   ├── advogados.html            # Soluções direcionadas para advogados autônomos e pequenas bancas
+│   │   ├── escritorios.html          # Governança de marca e proteção para grandes escritórios
+│   │   ├── clientes.html             # Guia prático de usabilidade e blindagem para o cliente final
+│   │   ├── recursos.html             # Detalhes técnicos sobre o scanner de boletos e autenticador de links
+│   │   ├── seguranca.html            # Padrões criptográficos profundos e conformidade com a LGPD
+│   │   ├── faq.html                  # Central de Dúvidas Frequentes estruturada com accordions interativos
+│   │   ├── contato.html              # Central de Onboarding e formulário de solicitação de chaves
+│   │   ├── blog.html                 # Portal do Centro de Conhecimento (listagem de artigos)
+│   │   └── artigo-detalhes.html      # Template de leitura dinâmica para os artigos do blog
+│   │
+│   ├── css/                          # Arquitetura modular de estilos CSS (ITCSS-like)
+│   │   ├── 1-settings/               # Variáveis globais de design, reset e fontes tipográficas
+│   │   ├── 2-components/             # Componentes reutilizáveis (botões, cards, menus, accordions)
+│   │   └── 3-pages/                  # Ajustes visuais específicos de cada página do ecossistema
+│   │
+│   ├── js/                           # Motores funcionais de interatividade do site
+│   │   ├── script.js                 # Comportamento de navegação, FAQ interativo, modais e validações de formulário
+│   │   └── blog.js                   # CMS Dinâmico do Blog (JSON-LD SEO, TOC automático, filtros e roteamento)
+│   │
+│   ├── assets/                       # Biblioteca de mídias e recursos de marca do Vinc
+│   │   ├── icons/                    # Logos e launcher icons do Vinc (256px e 512px)
+│   │   └── images/                   # Ilustrações, banners de suporte, mockups de painéis e infográficos
+│   │
+│   ├── robots.txt                    # Diretivas para motores de busca
+│   └── sitemap.xml                   # Mapa do site indexável para otimização de SEO
+│
+├── src/                              # Diretório complementar de desenvolvimento do ecossistema
+│   └── assets/images/                # Recursos de imagens temporárias e assets em pipeline
+│
+└── [Arquivos de Configuração]        # Configurações globais de dependências, linter e build
+    ├── package.json                  # Gerenciamento de scripts, dependências e build do ecossistema
+    ├── metadata.json                 # Metadados do aplicativo e permissões exigidas
+    ├── tsconfig.json                 # Configuração de TypeScript para o Next.js
+    └── eslint.config.mjs             # Regras de conformidade e boas práticas do código
 ```
 
 ---
 
-## 💻 Como Executar o Projeto Localmente
+## ✍️ Centro de Conhecimento (Blog Dinâmico)
 
-Siga o passo a passo para baixar, instalar e rodar o projeto em seu ambiente de desenvolvimento:
+O blog do Vinc é controlado por um sistema de gerenciamento client-side em JavaScript (`public/js/blog.js`), que orquestra as seguintes **6 categorias editoriais**:
 
-### Pré-requisitos
+1.  **🚨 Anatomia de Golpes e Alertas**: Explica detalhadamente as fraudes mais comuns (falso advogado, Pix de alvará, e-mails falsificados).
+2.  **🛡️ Gestão de Reputação para Advogados**: Mostra como escritórios de advocacia podem blindar suas marcas contra o uso fraudulento de seus nomes.
+3.  **⚙️ Tecnologia e Soberania de Dados**: Apresenta conceitos de cibersegurança (tokens JWT, criptografia simétrica) de forma acessível.
+4.  **📖 Guia de Funcionalidades e Onboarding**: Tutoriais passo a passo de como parear clientes e usar as chaves de segurança.
+5.  **🔒 Cibersegurança e Compliance (LGPD)**: Governança de privacidade, auditoria eletrônica de dados e boas práticas legais digitais.
+6.  **🤝 Casos de Sucesso e Segurança Jurídica**: Estudos de caso baseados em simulações realistas e anonimizadas de golpes desarmados com sucesso.
 
-Certifique-se de possuir em sua máquina:
+### ⚙️ Recursos Tecnológicos Integrados no Blog:
+-   **Índice de Conteúdo Automático (TOC)**: Geração e inserção em tempo real de uma lista de tópicos baseada nas tags `H2` de cada artigo, com links de rolagem suave.
+-   **SEO Dinâmico**: Injeção programática de metadados, títulos, tags Open Graph para redes sociais e **dados estruturados em JSON-LD** (*BlogPosting*) para indexação prioritária em motores de busca (como o Google).
+-   **Navegação Semântica (Breadcrumbs)**: Facilitando a acessibilidade para leitores de tela e melhorando o rastreamento hierárquico do site.
+-   **Malha de Links Relacionados**: Exibição dinâmica de artigos complementares no final de cada leitura, evitando páginas órfãs e aumentando o tempo de permanência do usuário no site.
+-   **Newsletter Ativa via Mailto**: Formulário integrado que valida a entrada do usuário e gera dinamicamente um e-mail formatado de inscrição enviado para `contato@luizgustavodev.com`.
 
-- [Node.js](https://nodejs.org/) (versão 18.x ou superior recomendada)
+---
 
-- NPM ou outro gerenciador de pacotes equivalente (como Bun ou Yarn)
+## 🛠️ Como Visualizar e Executar o Site
 
-### Instruções
+Como o site é construído em HTML5, CSS3 e JavaScript estáticos, ele roda diretamente nos navegadores de forma leve e rápida.
 
-1. *Clonar o repositório:*
+### Execução Simples
+Basta abrir o arquivo `/public/index.html` em qualquer navegador web de sua preferência.
 
-    ```bash
-    git clone https://github.com/luizgteixeira/vinc-site.git
-    cd vinc-site
-    ```
+### Execução no Servidor Local de Desenvolvimento
+Para rodar o ecossistema com suporte aos scripts do projeto e ao servidor de desenvolvimento:
 
-2. **Instalar as dependências:**
-
+1.  **Instale os pacotes**:
     ```bash
     npm install
     ```
-
-3. **Iniciar o servidor de desenvolvimento:**
-
+2.  **Inicie o servidor de testes**:
     ```bash
     npm run dev
     ```
-
-    O servidor iniciará localmente e o site estará acessível através do endereço: `http://localhost:3000`.
-
-4. **Validar a sintaxe do código (Linter):**
-
-    ```bash
-    npm run lint
-    ```
-
-5. **Compilar para produção:**
-
-    ```bash
-    npm run build
-    ```
-
-    Os arquivos otimizados, minificados e prontos para distribuição em nuvem serão gerados na pasta de build.
+3.  **Acesse no navegador**:
+    Abra [http://localhost:3000](http://localhost:3000) para navegar pelo site e ler os artigos do blog de forma integrada.
 
 ---
 
-## ✍️ Centro de Conhecimento Antifraude (Blog do Vinc)
+## 📱 Responsividade e Acessibilidade (UX)
 
-O blog do Vinc foi transformado em um verdadeiro **Centro de Conhecimento**, estruturado de forma a educar o mercado, gerar leads qualificados e fortalecer o SEO orgânico do site.
-
-### Categorias Editoriais Implementadas
-
-1. **🚨 Anatomia de Golpes e Alertas:** Desmonta táticas de engenharia social ensinando o leitor a identificar golpes (como falso advogado ou WhatsApp clonado) antes que aconteçam.
-2. **🛡️ Gestão de Reputação para Advogados:** Boas práticas de comunicação digital para que bancas de advocacia mantenham a confiança intacta de seus clientes.
-3. **⚙️ Tecnologia e Soberania de Dados:** Explicação amigável de criptografia, chaves assimétricas, tokens de autenticação (JWT) e a segurança de se usar o backend como única fonte da verdade.
-4. **📖 Guia de Funcionalidades e Onboarding:** Manuais instrucionais passo a passo sobre pareamento de clientes, ativação de chaves e uso do sistema.
-5. **🔒 Cibersegurança e Compliance (LGPD):** Governança corporativa, privacidade de dados de processos judiciais e auditoria ativa.
-6. **🤝 Casos de Sucesso e Segurança:** Histórias e estudos de caso baseados em dados reais, completamente anonimizados, demonstrando tentativas de fraudes bloqueadas.
-
----
-
-## 📈 Otimização de SEO e UX
-
-O site conta com estratégias técnicas de indexação e usabilidade de alto nível:
-
-- **Metadados Dinâmicos (SEO):** Tags Open Graph (Facebook/LinkedIn) e Twitter Cards são atualizadas em tempo real via JS para garantir pré-visualizações ricas e atraentes nas redes sociais.
-- **Dados Estruturados (JSON-LD):** Geração automática de esquemas do tipo `BlogPosting` da Schema.org, permitindo que mecanismos de pesquisa (como o Google) indexem os artigos com formatos ricos de pesquisa.
-- **Navegação Semântica (Breadcrumbs):** Trilhas de navegação amigáveis melhoram a orientação do usuário e a acessibilidade, ao mesmo tempo em que fortalecem o ranqueamento estrutural.
-- **Índice de Conteúdo Dinâmico (TOC):** O sistema do blog varre o artigo de forma automatizada e gera um painel dinâmico de leitura rápida com links de rolagem suave para cada tag `H2` encontrada.
-- **Newsletter Ativa via Mailto:** Os formulários capturam nome e e-mail e constroem um link inteligente de protocolo `mailto` direcionando as informações formatadas de inscrição direto para a caixa de e-mail `contato@luizgustavodev.com`.
-
----
-
-## 📱 Responsividade e Acessibilidade
-
-O Vinc adota design inclusivo de ponta a ponta:
-
-- **Mobile-First:** Menus, tabelas, blocos de artigos e o índice de conteúdos reorganizam-se perfeitamente para uma experiência de toque ágil em
-telas de smartphones.
-
-- **Contraste de Cores:** Combinações cromáticas rigorosamente avaliadas para proporcionar leitura confortável e livre de fadiga ocular, seguindo os padrões WCAG.
-
-- **Navegação Limpa:** Sem poluição visual, pop-ups invasivos ou logs fictícios de simulação. O design do Vinc prioriza a clareza e usabilidade focado no usuário.
-
----
-
-## 🔒 Segurança de Dados
-
-Todas as informações de fluxo de dados na plataforma Vinc seguem as diretrizes rígidas da **Lei Geral de Proteção de Dados (LGPD)**. Os logs de acesso e validações são mantidos criptografados, assegurando privacidade plena para advogados e clientes, sem armazenamento desnecessário de dados sob segredo de justiça.
-
----
-
-## 🤝 Contribuição
-
-Contribuições para o desenvolvimento do Vinc são sempre bem-vindas! Se você deseja propor uma melhoria, correção ou nova funcionalidade, siga estes passos:
-
-1. Faça um **Fork** do repositório.
-2. Crie uma branch para sua modificação (`git checkout -b feature/nova-funcionalidade`).
-3. Realize o commit de suas alterações com mensagens claras e objetivas (`git commit -am 'feat: adiciona nova funcionalidade de segurança'`).
-4. Envie sua branch para o repositório remoto (`git push origin feature/nova-funcionalidade`).
-5. Abra um **Pull Request** detalhando as modificações para que nossa equipe técnica avalie.
-
----
-
-## 📄 Licença
-
-Este projeto está licenciado sob a Licença **MIT**. Consulte o arquivo [LICENSE](LICENSE) (caso presente no repositório) para obter mais informações detalhadas.
+O site do Vinc foi minuciosamente revisado para garantir a melhor experiência em qualquer dispositivo:
+-   **Contraste e Legibilidade**: Combinações cromáticas em conformidade com as diretrizes do WCAG para leitura agradável e sem fadiga visual.
+-   **Layout Mobile-First**: Menus de navegação suspensos, tabelas informativas, botões e cards de artigos que se adaptam fluidamente a smartphones e tablets.
+-   **Foco na Usabilidade**: Links intuitivos, estrutura de tópicos bem hierarquizada e navegação rápida por categorias.
 
 ---
 
 ## 👤 Autor
 
-Desenvolvido com zelo técnico por **Luiz Gustavo**.
+Criado e mantido com rigor técnico por **Luiz Gustavo**.
 
-- Site Oficial:** [Vinc](https://ais-pre-vxglezchibg6wbuunkpezb-350713325872.us-west2.run.app)
-
-- GitHub:** [@luizgteixeira](https://github.com/luizgteixeira)
-
-- Contato Profissional:** [contato@luizgustavodev.com](mailto:contato@luizgustavodev.com)
+-   **Website do Autor**: [luizgustavodev.com](https://luizgustavodev.com)
+-   **Website Oficial do Vinc**: [Vinc](https://ais-pre-vxglezchibg6wbuunkpezb-350713325872.us-west2.run.app)
+-   **GitHub**: [@luizgteixeira](https://github.com/luizgteixeira)
+-   **E-mail de Contato**: [contato@luizgustavodev.com](mailto:contato@luizgustavodev.com)
 
 ---
 *Vinc. Segurança Digital Jurídica © 2026. Todos os direitos reservados.*
