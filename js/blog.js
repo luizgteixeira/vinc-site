@@ -902,6 +902,93 @@ function loadSinglePost() {
       ${post.content}
     </article>
 
+    <!-- Seção de Interação / Feedback (Fase 1) -->
+    <section class="post-interaction-box" id="post-feedback-section" aria-labelledby="feedback-section-title">
+      <h3 class="interaction-heading" id="feedback-section-title">📬 Compartilhe sua Opinião</h3>
+      
+      <form id="feedback-interaction-form" onsubmit="event.preventDefault();">
+        <!-- ETAPA 1 — Avaliação do artigo -->
+        <fieldset style="border: none; padding: 0; margin: 0 0 24px 0;">
+          <legend class="interaction-subheading" style="font-size: 1.05rem; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;">Este artigo foi útil?</legend>
+          <div class="rating-options" role="radiogroup" aria-label="Avaliação do artigo">
+            <button type="button" class="rating-btn" data-rating="very-useful" role="radio" aria-checked="false" aria-label="Muito útil">
+              <span class="emoji" aria-hidden="true">👍</span>
+              <span>Muito útil</span>
+            </button>
+            <button type="button" class="rating-btn" data-rating="useful" role="radio" aria-checked="false" aria-label="Útil">
+              <span class="emoji" aria-hidden="true">🙂</span>
+              <span>Útil</span>
+            </button>
+            <button type="button" class="rating-btn" data-rating="so-so" role="radio" aria-checked="false" aria-label="Mais ou menos">
+              <span class="emoji" aria-hidden="true">😐</span>
+              <span>Mais ou menos</span>
+            </button>
+            <button type="button" class="rating-btn" data-rating="not-helpful" role="radio" aria-checked="false" aria-label="Não ajudou">
+              <span class="emoji" aria-hidden="true">👎</span>
+              <span>Não ajudou</span>
+            </button>
+          </div>
+          <div id="rating-feedback-msg" class="feedback-message" style="display: none;" aria-live="polite"></div>
+        </fieldset>
+
+        <!-- ETAPA 2 — Interesse em novos conteúdos -->
+        <fieldset style="border: none; padding: 0; margin: 0 0 24px 0;">
+          <legend class="interaction-subheading" style="font-size: 1.05rem; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;">Gostaria de ler mais conteúdos sobre:</legend>
+          <div class="topics-grid" id="topics-selection-grid">
+            <label class="topic-label" id="label-golpes">
+              <input type="checkbox" name="topics" value="Golpes digitais" id="checkbox-golpes">
+              <span>Golpes digitais</span>
+            </label>
+            <label class="topic-label" id="label-seguranca">
+              <input type="checkbox" name="topics" value="Segurança Jurídica" id="checkbox-seguranca">
+              <span>Segurança Jurídica</span>
+            </label>
+            <label class="topic-label" id="label-lgpd">
+              <input type="checkbox" name="topics" value="LGPD" id="checkbox-lgpd">
+              <span>LGPD</span>
+            </label>
+            <label class="topic-label" id="label-ia">
+              <input type="checkbox" name="topics" value="Inteligência Artificial" id="checkbox-ia">
+              <span>Inteligência Artificial</span>
+            </label>
+            <label class="topic-label" id="label-escritorios">
+              <input type="checkbox" name="topics" value="Escritórios de Advocacia" id="checkbox-escritorios">
+              <span>Escritórios de Advocacia</span>
+            </label>
+            <label class="topic-label" id="label-clientes">
+              <input type="checkbox" name="topics" value="Clientes" id="checkbox-clientes">
+              <span>Clientes</span>
+            </label>
+            <label class="topic-label" id="label-advogados">
+              <input type="checkbox" name="topics" value="Advogados" id="checkbox-advogados">
+              <span>Advogados</span>
+            </label>
+            <label class="topic-label" id="label-engenharia">
+              <input type="checkbox" name="topics" value="Engenharia Social" id="checkbox-engenharia">
+              <span>Engenharia Social</span>
+            </label>
+            <label class="topic-label" id="label-seguranca-dig">
+              <input type="checkbox" name="topics" value="Segurança Digital" id="checkbox-seguranca-dig">
+              <span>Segurança Digital</span>
+            </label>
+            <label class="topic-label" id="label-outros">
+              <input type="checkbox" name="topics" value="Outros" id="checkbox-outros">
+              <span>Outros</span>
+            </label>
+          </div>
+          <div id="topics-feedback-msg" class="feedback-message" style="display: none;" aria-live="polite"></div>
+        </fieldset>
+
+        <!-- ETAPA 3 — Sugestão de temas -->
+        <div class="suggestions-box">
+          <label for="suggestion-text" class="interaction-subheading" style="font-size: 1.05rem; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; display: block;">Sugestões ou Comentários (Opcional)</label>
+          <textarea id="suggestion-text" class="suggestions-textarea" placeholder="Conte para nós suas sugestões de temas, comentários sobre o blog (ex: frequência de posts) ou feedbacks gerais." aria-label="Sua sugestão de temas ou comentários para o blog"></textarea>
+          <button type="button" class="btn-primary btn-submit-suggestion" id="btn-send-suggestion" style="margin-top: 12px;">Enviar sugestão</button>
+          <div id="suggestion-feedback-msg" class="feedback-message" style="display: none;" aria-live="polite"></div>
+        </div>
+      </form>
+    </section>
+
     <!-- Caixa de Apresentação de Autor -->
     <section class="post-author-box" aria-labelledby="author-heading" id="post-author-section">
       <img src="${post.author.avatarUrl}" alt="Foto de ${post.author.name}" class="post-author-avatar" width="80" height="80">
@@ -947,6 +1034,147 @@ function loadSinglePost() {
       // Injeta o Índice de Conteúdo logo no topo do texto do artigo para melhorar UX
       postBody.insertBefore(tocContainer, postBody.firstChild);
     }
+  }
+
+  // Inicializa os event listeners do bloco de feedback/interação (Fase 1)
+  initFeedbackSection(post);
+}
+
+/**
+ * Inicializa a seção de feedback interativo do artigo (Fase 1)
+ * Prepara a estrutura com IDs consistentes e separação de responsabilidades para futura integração com backend do Vinc.
+ */
+function initFeedbackSection(post) {
+  const postId = post.id;
+  const postTitle = post.title;
+  const ratingButtons = document.querySelectorAll(".rating-btn");
+  const checkboxes = document.querySelectorAll('.topic-label input[type="checkbox"]');
+  const sendSuggestionBtn = document.getElementById("btn-send-suggestion");
+  const suggestionTextarea = document.getElementById("suggestion-text");
+
+  // Elementos de mensagem de feedback
+  const ratingFeedbackMsg = document.getElementById("rating-feedback-msg");
+  const topicsFeedbackMsg = document.getElementById("topics-feedback-msg");
+  const suggestionFeedbackMsg = document.getElementById("suggestion-feedback-msg");
+
+  // 1. Lógica da Avaliação (Etapa 1)
+  ratingButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Remove classe ativa de todos e desmarca aria-checked
+      ratingButtons.forEach((b) => {
+        b.classList.remove("active");
+        b.setAttribute("aria-checked", "false");
+      });
+
+      // Ativa o botão selecionado
+      btn.classList.add("active");
+      btn.setAttribute("aria-checked", "true");
+
+      const ratingValue = btn.getAttribute("data-rating");
+
+      // PONTO DE INTEGRAÇÃO FUTURA COM BACKEND:
+      // POST /blog/articles/{postId}/rating => body: { rating: ratingValue }
+      console.log(`[Vinc API - Future Rating Integration] Enviar avaliação do post ${postId}: ${ratingValue}`);
+
+      // Exibir feedback visual elegante
+      if (ratingFeedbackMsg) {
+        ratingFeedbackMsg.style.display = "flex";
+        ratingFeedbackMsg.className = "feedback-message success";
+        ratingFeedbackMsg.innerHTML = "✨ Sua opinião nos ajuda a produzir conteúdos melhores. Obrigado pelo seu feedback!";
+      }
+    });
+  });
+
+  // 2. Lógica de Interesse em Novos Temas (Etapa 2)
+  checkboxes.forEach((cb) => {
+    cb.addEventListener("change", () => {
+      const parentLabel = cb.closest(".topic-label");
+      if (cb.checked) {
+        parentLabel.classList.add("checked");
+      } else {
+        parentLabel.classList.remove("checked");
+      }
+
+      // Obtém todos os temas marcados
+      const selectedTopics = Array.from(checkboxes)
+        .filter(c => c.checked)
+        .map(c => c.value);
+
+      // PONTO DE INTEGRAÇÃO FUTURA COM BACKEND:
+      // POST /blog/articles/{postId}/topics => body: { topics: selectedTopics }
+      console.log(`[Vinc API - Future Topics Integration] Enviar temas de interesse para o post ${postId}:`, selectedTopics);
+
+      // Exibir feedback visual discreto
+      if (topicsFeedbackMsg) {
+        topicsFeedbackMsg.style.display = "flex";
+        topicsFeedbackMsg.className = "feedback-message info";
+        topicsFeedbackMsg.innerHTML = `📌 Preferências de temas atualizadas com sucesso! (${selectedTopics.length} selecionado(s))`;
+        if (selectedTopics.length === 0) {
+          topicsFeedbackMsg.style.display = "none";
+        }
+      }
+    });
+  });
+
+  // 3. Lógica de Sugestão de Temas (Etapa 3)
+  if (sendSuggestionBtn && suggestionTextarea) {
+    sendSuggestionBtn.addEventListener("click", () => {
+      const text = suggestionTextarea.value.trim();
+      const textToSend = text || "Nenhuma sugestão ou comentário enviado";
+
+      // PONTO DE INTEGRAÇÃO FUTURA COM BACKEND:
+      // POST /blog/articles/{postId}/suggestions => body: { suggestion: textToSend }
+      console.log(`[Vinc API - Future Suggestion Integration] Enviar sugestão para o post ${postId}: ${textToSend}`);
+
+      // Obter avaliação selecionada no momento
+      const activeRatingBtn = document.querySelector(".rating-btn.active");
+      const activeRatingLabel = activeRatingBtn ? activeRatingBtn.innerText.trim().replace(/\s+/g, " ") : "Nenhuma avaliação selecionada";
+
+      // Obter temas de interesse selecionados
+      const selectedTopics = Array.from(checkboxes)
+        .filter(c => c.checked)
+        .map(c => c.value);
+      const topicsText = selectedTopics.length > 0 ? selectedTopics.join(", ") : "Nenhum tema selecionado";
+
+      // Formatar corpo do e-mail com as respostas consolidadas
+      const subject = encodeURIComponent(`Feedback do Blog Vinc - Artigo: ${postTitle}`);
+      const body = encodeURIComponent(
+        `Olá Luiz Gustavo,\n\n` +
+        `Seguem as respostas coletadas na seção de feedback e interação do Blog do Vinc:\n\n` +
+        `-----------------------------------------\n` +
+        `Artigo Lido:\n` +
+        `   => ${postTitle} (ID: ${postId})\n\n` +
+        `1. Avaliação do Artigo:\n` +
+        `   => ${activeRatingLabel}\n\n` +
+        `2. Gostaria de ler mais sobre:\n` +
+        `   => ${topicsText}\n\n` +
+        `3. Sugestão ou Comentários:\n` +
+        `   => ${textToSend}\n` +
+        `-----------------------------------------\n\n` +
+        `Enviado a partir do sistema de feedback interativo do Blog Vinc.`
+      );
+
+      // Dispara o envio de e-mail via mailto
+      const mailtoUrl = `mailto:contato@luizgustavodev.com?subject=${subject}&body=${body}`;
+      
+      // Abre o cliente de e-mail do usuário de maneira segura
+      const mailLink = document.createElement("a");
+      mailLink.href = mailtoUrl;
+      mailLink.target = "_blank";
+      mailLink.click();
+
+      // Exibir feedback visual de sucesso
+      if (suggestionFeedbackMsg) {
+        suggestionFeedbackMsg.style.display = "flex";
+        suggestionFeedbackMsg.className = "feedback-message success";
+        suggestionFeedbackMsg.style.borderLeft = "3px solid var(--verified-green)";
+        suggestionFeedbackMsg.style.color = "var(--verified-green)";
+        suggestionFeedbackMsg.innerHTML = "🎉 Sugestão enviada com sucesso. Obrigado pela sua contribuição!";
+      }
+
+      // Limpa o campo
+      suggestionTextarea.value = "";
+    });
   }
 }
 
