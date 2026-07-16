@@ -29,7 +29,7 @@
 .protecao-section {
   padding: 60px 0;
   background: var(--surface);
-  background-image: url('../assets/images/fundo-splash-page.png');
+  background-image: url('../../assets/images/fundo-splash-page.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
