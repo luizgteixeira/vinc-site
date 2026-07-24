@@ -196,6 +196,56 @@
   }
 }
 
+/* ============================================
+   RECURSOS - PAINEL ADMINISTRATIVO
+   ============================================ */
+.dashboard-section {
+  padding: 100px 0;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.dashboard-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.dash-item-card {
+  padding: 24px;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.dash-item-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dash-item-card h4 svg {
+  width: 18px;
+  height: 18px;
+  color: var(--blue);
+}
+
+.dash-item-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .dashboard-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Responsividade da seção de conexão */
 @media (max-width: 1024px) {
   .connection-grid {

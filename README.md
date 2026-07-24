@@ -47,8 +47,7 @@ O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build s
 ├── index.html                        # Página inicial (Landing Page) institucional do Vinc
 │
 ├── pages/                            # Centro de páginas internas do ecossistema Vinc
-│   ├── como-funciona.html            # Arquitetura Zero Trust e segurança multifator do aplicativo
-│   ├── demonstracao.html             # Demonstração interativa, capturas de tela e fluxos operacionais
+│   ├── como-funciona.html            # Arquitetura Zero Trust, segurança multifator e fluxo operacional
 │   ├── advogados.html                # Soluções direcionadas para advogados autônomos e pequenas bancas
 │   ├── escritorios.html              # Governança de marca e proteção para grandes escritórios
 │   ├── clientes.html                 # Guia prático de usabilidade e blindagem para o cliente final

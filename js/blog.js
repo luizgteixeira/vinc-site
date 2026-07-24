@@ -9,7 +9,7 @@
  * 3. Detalhamento de artigos com SEO dinâmico, meta tags e dados estruturados (JSON-LD).
  * 4. Geração automática e dinâmica do Índice de Conteúdo (Table of Contents) baseado em tags H2.
  * 5. Barra lateral (sidebar) responsiva com posts populares, contagem por categorias e nuvem de tags.
- * 6. Inscrição simulada de newsletter.
+ * 6. Inscrição de newsletter integrada ao Mailchimp (envio real via formulário oculto).
  * 
  * Todas as modificações foram documentadas em português, seguindo as diretrizes editoriais do Vinc.
  */
@@ -1248,7 +1248,7 @@ function renderSinglePostNotFound() {
 }
 
 // --------------------------------------------------------------------------
-// NEWSLETTER E CADASTRO (SIMULAÇÃO CLIENT-SIDE)
+// NEWSLETTER E CADASTRO (INTEGRAÇÃO MAILCHIMP)
 // --------------------------------------------------------------------------
 
 /**
@@ -1256,16 +1256,14 @@ function renderSinglePostNotFound() {
  */
 function initNewsletter() {
   const forms = document.querySelectorAll(".newsletter-form");
-  
+
   forms.forEach((form) => {
     form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      
-      const emailInput = form.querySelector('input[type="email"]');
-      const nameInput = form.querySelector('input[type="text"]');
+      const emailInput = form.querySelector('input[name="EMAIL"]');
       const feedback = form.nextElementSibling; // Elemento .newsletter-feedback seguinte
-      
+
       if (!emailInput || !emailInput.value) {
+        e.preventDefault();
         if (feedback) {
           feedback.textContent = "Por favor, digite um e-mail válido.";
           feedback.className = "newsletter-feedback error";
@@ -1273,32 +1271,22 @@ function initNewsletter() {
         return;
       }
 
-      const email = emailInput.value.trim();
-      const name = nameInput ? nameInput.value.trim() : "";
-      
+      // Não chamamos preventDefault: o <form> envia de verdade para o Mailchimp
+      // (action + method já configurados no HTML) dentro do iframe oculto
+      // "mc-newsletter-frame", sem sair da página. O Mailchimp não libera CORS
+      // para o navegador ler a resposta, então a confirmação abaixo é otimista.
       if (feedback) {
-        feedback.textContent = "Abrindo seu cliente de e-mail...";
+        feedback.textContent = "Enviando inscrição...";
         feedback.className = "newsletter-feedback success";
       }
 
-      // Constrói o link mailto para enviar os dados para o e-mail do desenvolvedor
-      const subject = encodeURIComponent("Inscrição na Newsletter de Segurança - Vinc");
-      const body = encodeURIComponent(`Olá Luiz Gustavo,\n\nGostaria de me cadastrar na newsletter de segurança e prevenção a fraudes da Vinc.\n\nNome: ${name}\nE-mail: ${email}\n\nAtenciosamente,\n${name}`);
-      const mailtoUrl = `mailto:contato@luizgustavodev.com?subject=${subject}&body=${body}`;
-
-      // Abre o cliente de e-mail padrão com as informações preenchidas
-      window.location.href = mailtoUrl;
-
-      // Executa a confirmação visual na tela
       setTimeout(() => {
         if (feedback) {
-          feedback.textContent = "E-mail de cadastro gerado com sucesso! Confirme o envio no seu aplicativo de e-mail.";
+          feedback.textContent = "Inscrição enviada! Você já faz parte da nossa lista de segurança.";
           feedback.className = "newsletter-feedback success";
         }
-        // Limpa os campos após o envio
-        emailInput.value = "";
-        if (nameInput) nameInput.value = "";
-      }, 1000);
+        form.reset();
+      }, 1200);
     });
   });
 }
