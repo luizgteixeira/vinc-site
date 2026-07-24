@@ -5,7 +5,7 @@ O **Vinc** é um website institucional e informativo, acompanhado de um completo
 > **Vinc — confirme antes de confiar.**
 
 <div align="center">
-  <img src="public/assets/icons/vinc_icon_256px.png" alt="Vinc Logo" width="128" height="128" />
+  <img src="assets/icons/vinc_icon_256px_1.png" alt="Vinc Logo" width="128" height="128" />
   <p><em>A vitrine digital e central de educação preventiva da maior plataforma de blindagem contra engenharia social jurídica do país.</em></p>
 </div>
 
@@ -14,7 +14,6 @@ O **Vinc** é um website institucional e informativo, acompanhado de um completo
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=flat-square&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23F7DF1E.svg?style=flat-square&logo=javascript&logoColor=black)
-![Tailwind CSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat-square&logo=tailwind-css&logoColor=white)
 ![SEO](https://img.shields.io/badge/SEO-Otimizado-brightgreen?style=flat-square)
 
 </div>
@@ -42,61 +41,47 @@ A interface do site baseia-se no **minimalismo suíço moderno**, projetado com 
 
 ## 📁 Estrutura Completa do Projeto
 
-O projeto é estruturado de forma a separar o ambiente de suporte Next.js (utilizado para orquestração e build na nuvem) dos arquivos estáticos de altíssima performance que constituem o site real do Vinc:
+O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build step, sem framework e sem dependências de Node.js):
 
 ```text
-├── app/                              # Wrapper de desenvolvimento do Next.js
-│   ├── globals.css                   # Estilos globais e importação do Tailwind
-│   ├── layout.tsx                    # Layout padrão do Next.js e fontes integradas
-│   └── page.tsx                      # Página inicial (redireciona para o index.html principal)
+├── index.html                        # Página inicial (Landing Page) institucional do Vinc
 │
-├── public/                           # Diretório principal com todos os arquivos estáticos do site
-│   ├── index.html                    # Página inicial (Landing Page) institucional do Vinc
-│   │
-│   ├── pages/                        # Centro de páginas internas do ecossistema Vinc
-│   │   ├── como-funciona.html        # Arquitetura Zero Trust e segurança multifator do aplicativo
-│   │   ├── demonstracao.html         # Demonstração interativa, capturas de tela e fluxos operacionais
-│   │   ├── advogados.html            # Soluções direcionadas para advogados autônomos e pequenas bancas
-│   │   ├── escritorios.html          # Governança de marca e proteção para grandes escritórios
-│   │   ├── clientes.html             # Guia prático de usabilidade e blindagem para o cliente final
-│   │   ├── recursos.html             # Detalhes técnicos sobre o scanner de boletos e autenticador de links
-│   │   ├── seguranca.html            # Padrões criptográficos profundos e conformidade com a LGPD
-│   │   ├── faq.html                  # Central de Dúvidas Frequentes estruturada com accordions interativos
-│   │   ├── contato.html              # Central de Onboarding e formulário de solicitação de chaves
-│   │   ├── blog.html                 # Portal do Centro de Conhecimento (listagem de artigos)
-│   │   └── artigo-detalhes.html      # Template de leitura dinâmica para os artigos do blog
-│   │
-│   ├── css/                          # Arquitetura modular de estilos CSS (ITCSS-like)
-│   │   ├── 1-settings/               # Variáveis globais de design, reset e fontes tipográficas
-│   │   ├── 2-components/             # Componentes reutilizáveis (botões, cards, menus, accordions)
-│   │   └── 3-pages/                  # Ajustes visuais específicos de cada página do ecossistema
-│   │
-│   ├── js/                           # Motores funcionais de interatividade do site
-│   │   ├── script.js                 # Comportamento de navegação, FAQ interativo, modais e validações de formulário
-│   │   └── blog.js                   # CMS Dinâmico do Blog (JSON-LD SEO, TOC automático, filtros e roteamento)
-│   │
-│   ├── assets/                       # Biblioteca de mídias e recursos de marca do Vinc
-│   │   ├── icons/                    # Logos e launcher icons do Vinc (256px e 512px)
-│   │   └── images/                   # Ilustrações, banners de suporte, mockups de painéis e infográficos
-│   │
-│   ├── robots.txt                    # Diretivas para motores de busca
-│   └── sitemap.xml                   # Mapa do site indexável para otimização de SEO
+├── pages/                            # Centro de páginas internas do ecossistema Vinc
+│   ├── como-funciona.html            # Arquitetura Zero Trust e segurança multifator do aplicativo
+│   ├── demonstracao.html             # Demonstração interativa, capturas de tela e fluxos operacionais
+│   ├── advogados.html                # Soluções direcionadas para advogados autônomos e pequenas bancas
+│   ├── escritorios.html              # Governança de marca e proteção para grandes escritórios
+│   ├── clientes.html                 # Guia prático de usabilidade e blindagem para o cliente final
+│   ├── recursos.html                 # Detalhes técnicos sobre o scanner de boletos e autenticador de links
+│   ├── seguranca.html                # Padrões criptográficos profundos e conformidade com a LGPD
+│   ├── faq.html                      # Central de Dúvidas Frequentes estruturada com accordions interativos
+│   ├── contato.html                  # Canais oficiais, checklist antifraude e solicitação de contato
+│   ├── blog.html                     # Portal do Centro de Conhecimento (listagem de artigos)
+│   └── artigo-detalhes.html          # Template de leitura dinâmica para os artigos do blog
 │
-├── src/                              # Diretório complementar de desenvolvimento do ecossistema
-│   └── assets/images/                # Recursos de imagens temporárias e assets em pipeline
+├── css/                               # Arquitetura modular de estilos CSS (ITCSS-like)
+│   ├── 1-settings/                    # Variáveis globais de design, reset e fontes tipográficas
+│   ├── 2-components/                  # Componentes reutilizáveis (botões, cards, menus, accordions)
+│   └── 3-pages/                       # Ajustes visuais específicos de cada página do ecossistema
 │
-└── [Arquivos de Configuração]        # Configurações globais de dependências, linter e build
-    ├── package.json                  # Gerenciamento de scripts, dependências e build do ecossistema
-    ├── metadata.json                 # Metadados do aplicativo e permissões exigidas
-    ├── tsconfig.json                 # Configuração de TypeScript para o Next.js
-    └── eslint.config.mjs             # Regras de conformidade e boas práticas do código
+├── js/                                 # Motores funcionais de interatividade do site
+│   ├── script.js                       # Navegação, menu mobile, dropdowns e accordions (FAQ/Contato)
+│   └── blog.js                         # CMS do Blog client-side (posts, filtros, SEO dinâmico, JSON-LD, TOC)
+│
+├── assets/                             # Biblioteca de mídias e recursos de marca do Vinc
+│   ├── fonts/                          # Fontes locais (Plus Jakarta Sans)
+│   ├── icons/                          # Logo e favicon do Vinc
+│   └── images/                         # Ilustrações, banners de suporte, mockups de painéis e infográficos
+│
+├── robots.txt                          # Diretivas para motores de busca
+└── sitemap.xml                         # Mapa do site indexável para otimização de SEO
 ```
 
 ---
 
 ## ✍️ Centro de Conhecimento (Blog Dinâmico)
 
-O blog do Vinc é controlado por um sistema de gerenciamento client-side em JavaScript (`public/js/blog.js`), que orquestra as seguintes **6 categorias editoriais**:
+O blog do Vinc é controlado por um sistema de gerenciamento client-side em JavaScript (`js/blog.js`), que orquestra as seguintes **6 categorias editoriais**:
 
 1.  **🚨 Anatomia de Golpes e Alertas**: Explica detalhadamente as fraudes mais comuns (falso advogado, Pix de alvará, e-mails falsificados).
 2.  **🛡️ Gestão de Reputação para Advogados**: Mostra como escritórios de advocacia podem blindar suas marcas contra o uso fraudulento de seus nomes.
@@ -116,24 +101,22 @@ O blog do Vinc é controlado por um sistema de gerenciamento client-side em Java
 
 ## 🛠️ Como Visualizar e Executar o Site
 
-Como o site é construído em HTML5, CSS3 e JavaScript estáticos, ele roda diretamente nos navegadores de forma leve e rápida.
+Como o site é construído em HTML5, CSS3 e JavaScript estáticos — sem build step, sem framework e sem dependências —, ele roda diretamente nos navegadores de forma leve e rápida.
 
 ### Execução Simples
-Basta abrir o arquivo `/public/index.html` em qualquer navegador web de sua preferência.
+Basta abrir o arquivo `index.html` (na raiz do projeto) em qualquer navegador web de sua preferência.
 
-### Execução no Servidor Local de Desenvolvimento
-Para rodar o ecossistema com suporte aos scripts do projeto e ao servidor de desenvolvimento:
+### Execução via Servidor Local (recomendado)
+Alguns recursos (como o roteamento de artigos do blog via `?slug=`) funcionam melhor servidos por HTTP em vez de `file://`. Qualquer servidor estático simples resolve:
 
-1.  **Instale os pacotes**:
-    ```bash
-    npm install
-    ```
-2.  **Inicie o servidor de testes**:
-    ```bash
-    npm run dev
-    ```
-3.  **Acesse no navegador**:
-    Abra [http://localhost:3000](http://localhost:3000) para navegar pelo site e ler os artigos do blog de forma integrada.
+```bash
+# Com Python 3
+python -m http.server 8080
+
+# Ou com a extensão Live Server do VS Code
+```
+
+Depois acesse `http://localhost:8080` no navegador.
 
 ---
 

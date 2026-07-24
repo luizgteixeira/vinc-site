@@ -20,13 +20,13 @@
 const AUTHORS = {
   luiz_gustavo: {
     name: "Luiz Gustavo",
-    avatarUrl: "../assets/icons/vinc_icon_256px.png",
+    avatarUrl: "../assets/icons/vinc_icon_256px_1.png",
     role: "Especialista em Segurança Digital & Dev Sênior",
     bio: "Co-fundador do Vinc, desenvolvedor e entusiasta de segurança da informação, dedicado a criar pontes seguras na comunicação jurídica nacional."
   },
   vinc_security: {
     name: "Vinc Security Team",
-    avatarUrl: "../assets/icons/vinc_icon_256px.png",
+    avatarUrl: "../assets/icons/vinc_icon_256px_1.png",
     role: "Time de Inteligência Antifraude",
     bio: "Equipe técnica de analistas de segurança do Vinc, focada no monitoramento constante de novas ameaças, engenharia social e vazamento de dados judiciais."
   }
@@ -851,7 +851,7 @@ function loadSinglePost() {
       "name": "Vinc",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.vinc.com.br/assets/icons/vinc_icon_512px.png"
+        "url": "https://www.vinc.com.br/assets/icons/vinc_icon_256px_1.png"
       }
     },
     "description": post.seo.metaDesc,

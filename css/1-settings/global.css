@@ -24,6 +24,7 @@
   /* Sombras */
   --shadow-sm: 0 2px 8px rgba(24, 34, 53, 0.08);
   --shadow-md: 0 8px 24px rgba(24, 34, 53, 0.12);
+  --shadow-lg: 0 16px 40px rgba(24, 34, 53, 0.16);
 
   /* Bordas */
   --radius-sm: 6px;

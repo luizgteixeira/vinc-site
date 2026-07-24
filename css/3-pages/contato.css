@@ -99,6 +99,31 @@
 }
 
 /* ============================================
+   CONTATO - FORMULÁRIO DE SOLICITAÇÃO
+   ============================================ */
+.request-section {
+  padding: 100px 0;
+  background-color: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.request-form {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.request-form .btn-primary {
+  width: 100%;
+  padding: 14px;
+}
+
+.request-form .newsletter-feedback {
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* ============================================
    CONTATO - SEÇÃO CHECKLIST (ACCORDION)
    ============================================ */
 .checklist-section {

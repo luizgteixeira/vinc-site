@@ -9,9 +9,27 @@
   <meta name="description" content="Entre em contato com o Vinc. Descubra canais de suporte oficiais e tire suas dúvidas sobre como blindar seu escritório de advocacia e proteger seus clientes.">
   <link rel="canonical" href="https://www.vinc.com.br/pages/contato.html">
 
+  <!-- Controle de Indexação -->
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+  <meta property="og:site_name" content="Vinc">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contato | Vinc - Segurança Digital Jurídica">
+  <meta property="og:description" content="Entre em contato com o Vinc. Descubra canais de suporte oficiais e tire suas dúvidas sobre como blindar seu escritório de advocacia e proteger seus clientes.">
+  <meta property="og:url" content="https://www.vinc.com.br/pages/contato.html">
+  <meta property="og:image" content="https://www.vinc.com.br/assets/images/vinc_advocacy_shield.jpg">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contato | Vinc - Segurança Digital Jurídica">
+  <meta name="twitter:description" content="Entre em contato com o Vinc. Descubra canais de suporte oficiais e tire suas dúvidas sobre como blindar seu escritório de advocacia e proteger seus clientes.">
+  <meta name="twitter:image" content="https://www.vinc.com.br/assets/images/vinc_advocacy_shield.jpg">
+
   <!-- Favicon -->
-  <link rel="icon" href="../assets/icons/vinc_icon_256px_1.ico" type="image/png">
-  <link rel="apple-touch-icon" href="../assets/icons/vinc_icon_512px.png">
+  <link rel="icon" href="../assets/icons/vinc_icon_256px_1.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/icons/vinc_icon_256px_1.png">
 
   <!-- Pré-conexões -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -123,6 +141,46 @@
       </div>
     </section>
 
+    <!-- Formulário de Solicitação de Contato -->
+    <section class="request-section" aria-labelledby="request-title">
+      <div class="container">
+        <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+          <h2 id="request-title" style="font-size: 32px; font-weight: 800; color: var(--text-primary);">Solicitar Chave de Ativação</h2>
+          <p style="color: var(--text-secondary); max-width: 600px; margin: 12px auto 0 auto; font-size: 16px;">Preencha os dados abaixo para que a equipe do <span class="vinc-brand">Vinc</span> analise seu credenciamento e envie as instruções de ativação por e-mail.</p>
+        </div>
+
+        <form id="request-form" class="request-form" aria-describedby="request-form-feedback">
+          <div class="form-group">
+            <label for="request-name">Nome completo</label>
+            <input type="text" id="request-name" name="name" class="form-control" required autocomplete="name">
+          </div>
+
+          <div class="form-group">
+            <label for="request-email">E-mail para contato</label>
+            <input type="email" id="request-email" name="email" class="form-control" required autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label for="request-profile">Você é</label>
+            <select id="request-profile" name="profile" class="form-control" required>
+              <option value="" disabled selected>Selecione uma opção</option>
+              <option value="Advogado autônomo">Advogado autônomo</option>
+              <option value="Escritório de advocacia">Escritório de advocacia</option>
+              <option value="Cliente de um escritório">Cliente de um escritório</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="request-message">Mensagem (opcional)</label>
+            <textarea id="request-message" name="message" class="form-control" placeholder="Conte um pouco sobre o seu escritório, registro na OAB ou dúvida específica."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary">Solicitar chave de ativação</button>
+          <div id="request-form-feedback" class="newsletter-feedback" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
     <!-- Checklist de Contato/Segurança (Accordion) -->
     <section class="checklist-section" aria-labelledby="checklist-title">
       <div class="container">
@@ -195,5 +253,37 @@
   </footer>
 
   <script src="../js/script.js" type="module"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('request-form');
+      const feedback = document.getElementById('request-form-feedback');
+      if (!form || !feedback) return;
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const profile = form.profile.value;
+        const message = form.message.value.trim() || 'Nenhuma mensagem adicional informada.';
+
+        const subject = encodeURIComponent('Solicitação de Chave de Ativação - Vinc');
+        const body = encodeURIComponent(
+          `Olá, equipe Vinc,\n\n` +
+          `Gostaria de solicitar uma chave de ativação.\n\n` +
+          `Nome: ${name}\n` +
+          `E-mail: ${email}\n` +
+          `Perfil: ${profile}\n` +
+          `Mensagem: ${message}\n`
+        );
+
+        window.location.href = `mailto:contato@vinc.com.br?subject=${subject}&body=${body}`;
+
+        feedback.textContent = 'Abrindo seu cliente de e-mail com a solicitação preenchida...';
+        feedback.className = 'newsletter-feedback success';
+        form.reset();
+      });
+    });
+  </script>
 </body>
 </html>
