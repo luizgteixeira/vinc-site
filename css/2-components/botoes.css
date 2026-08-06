@@ -25,6 +25,12 @@
   transform: translateY(-2px);
 }
 
+.btn-primary:disabled {
+  background-color: var(--neutral-blue);
+  cursor: not-allowed;
+  transform: none;
+}
+
 /* Botão Secundário */
 .btn-secondary {
   display: inline-block;

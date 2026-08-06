@@ -1,0 +1,35 @@
+/* ==========================================
+   PÁGINA: OBRIGADO (CONFIRMAÇÃO DE ENVIO)
+========================================== */
+.thanks-section {
+  padding: 120px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.thanks-card {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 60px 40px;
+}
+
+.thanks-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.thanks-card h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.thanks-card p {
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}

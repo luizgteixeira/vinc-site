@@ -851,7 +851,7 @@ function loadSinglePost() {
       "name": "Vinc",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.vinc.com.br/assets/icons/vinc_icon_256px_1.png"
+        "url": "https://www.vincapp.com.br/assets/icons/vinc_icon_256px_1.png"
       }
     },
     "description": post.seo.metaDesc,

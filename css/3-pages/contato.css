@@ -121,6 +121,15 @@
 .request-form .newsletter-feedback {
   text-align: center;
   margin-top: 16px;
+  font-weight: 600;
+}
+
+.request-form .newsletter-feedback.success {
+  color: var(--verified-green);
+}
+
+.request-form .newsletter-feedback.error {
+  color: var(--alert);
 }
 
 /* ============================================

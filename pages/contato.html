@@ -7,7 +7,7 @@
   <!-- SEO Principal -->
   <title>Contato | Vinc - Segurança Digital Jurídica</title>
   <meta name="description" content="Entre em contato com o Vinc. Descubra canais de suporte oficiais e tire suas dúvidas sobre como blindar seu escritório de advocacia e proteger seus clientes.">
-  <link rel="canonical" href="https://www.vinc.com.br/pages/contato.html">
+  <link rel="canonical" href="https://www.vincapp.com.br/pages/contato.html">
 
   <!-- Controle de Indexação -->
   <meta name="robots" content="index, follow">
@@ -17,15 +17,15 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Contato | Vinc - Segurança Digital Jurídica">
   <meta property="og:description" content="Entre em contato com o Vinc. Descubra canais de suporte oficiais e tire suas dúvidas sobre como blindar seu escritório de advocacia e proteger seus clientes.">
-  <meta property="og:url" content="https://www.vinc.com.br/pages/contato.html">
-  <meta property="og:image" content="https://www.vinc.com.br/assets/images/vinc_advocacy_shield.jpg">
+  <meta property="og:url" content="https://www.vincapp.com.br/pages/contato.html">
+  <meta property="og:image" content="https://www.vincapp.com.br/assets/images/vinc_advocacy_shield.jpg">
   <meta property="og:locale" content="pt_BR">
 
   <!-- Twitter / X Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Contato | Vinc - Segurança Digital Jurídica">
   <meta name="twitter:description" content="Entre em contato com o Vinc. Descubra canais de suporte oficiais e tire suas dúvidas sobre como blindar seu escritório de advocacia e proteger seus clientes.">
-  <meta name="twitter:image" content="https://www.vinc.com.br/assets/images/vinc_advocacy_shield.jpg">
+  <meta name="twitter:image" content="https://www.vincapp.com.br/assets/images/vinc_advocacy_shield.jpg">
 
   <!-- Favicon -->
   <link rel="icon" href="../assets/icons/vinc_icon_256px_1.png" type="image/png">
@@ -110,12 +110,7 @@
 
             <div class="contact-block">
               <h3>E-mail Geral</h3>
-              <p><a href="mailto:contato@vinc.com.br">contato@vinc.com.br</a></p>
-            </div>
-
-            <div class="contact-block">
-              <h3>Suporte ao Cliente</h3>
-              <p><a href="mailto:suporte@vinc.com.br">suporte@vinc.com.br</a></p>
+              <p><a href="mailto:contato@vincapp.com.br">contato@vincapp.com.br</a></p>
             </div>
           </div>
 
@@ -132,7 +127,7 @@
             <div class="official-channels-grid">
               <div class="contact-block">
                 <h3>Verificação de Identidade</h3>
-                <p>Todos os representantes oficiais do <span class="vinc-brand">Vinc</span> utilizam exclusivamente endereços de e-mail com domínio próprio <strong>@vinc.com.br</strong>.</p>
+                <p>Todos os representantes oficiais do <span class="vinc-brand">Vinc</span> utilizam exclusivamente endereços de e-mail com domínio próprio <strong>@vincapp.com.br</strong>.</p>
               </div>
             </div>
           </div>
@@ -148,7 +143,11 @@
           <p style="color: var(--text-secondary); max-width: 600px; margin: 12px auto 0 auto; font-size: 16px;">Preencha os dados abaixo para que a equipe do <span class="vinc-brand">Vinc</span> analise seu credenciamento e envie as instruções de ativação por e-mail.</p>
         </div>
 
-        <form id="request-form" class="request-form" aria-describedby="request-form-feedback">
+        <form id="request-form" class="request-form" aria-describedby="request-form-feedback" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="933b21fa-2815-45e6-9d9a-7935a7e8a000">
+          <input type="hidden" name="subject" value="Solicitação de Chave de Ativação - Vinc">
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off">
+
           <div class="form-group">
             <label for="request-name">Nome completo</label>
             <input type="text" id="request-name" name="name" class="form-control" required autocomplete="name">
@@ -174,7 +173,7 @@
             <textarea id="request-message" name="message" class="form-control" placeholder="Conte um pouco sobre o seu escritório, registro na OAB ou dúvida específica."></textarea>
           </div>
 
-          <button type="submit" class="btn-primary">Solicitar chave de ativação</button>
+          <button type="submit" class="btn-primary" id="request-form-submit">Solicitar chave de ativação</button>
           <div id="request-form-feedback" class="newsletter-feedback" aria-live="polite"></div>
         </form>
       </div>
@@ -252,37 +251,6 @@
   </footer>
 
   <script src="../js/script.js" type="module"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('request-form');
-      const feedback = document.getElementById('request-form-feedback');
-      if (!form || !feedback) return;
-
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const name = form.name.value.trim();
-        const email = form.email.value.trim();
-        const profile = form.profile.value;
-        const message = form.message.value.trim() || 'Nenhuma mensagem adicional informada.';
-
-        const subject = encodeURIComponent('Solicitação de Chave de Ativação - Vinc');
-        const body = encodeURIComponent(
-          `Olá, equipe Vinc,\n\n` +
-          `Gostaria de solicitar uma chave de ativação.\n\n` +
-          `Nome: ${name}\n` +
-          `E-mail: ${email}\n` +
-          `Perfil: ${profile}\n` +
-          `Mensagem: ${message}\n`
-        );
-
-        window.location.href = `mailto:contato@vinc.com.br?subject=${subject}&body=${body}`;
-
-        feedback.textContent = 'Abrindo seu cliente de e-mail com a solicitação preenchida...';
-        feedback.className = 'newsletter-feedback success';
-        form.reset();
-      });
-    });
-  </script>
+  <script src="../js/contato.js" type="module"></script>
 </body>
 </html>
