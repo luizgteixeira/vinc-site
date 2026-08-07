@@ -6,7 +6,7 @@
 
   <!-- SEO Principal -->
   <title>Perguntas Frequentes (FAQ) | Vinc - Segurança Digital Jurídica</title>
-  <meta name="description" content="Tire suas dúvidas sobre o Vinc. Saiba como o aplicativo combate golpes do WhatsApp e fraudes de boletos, garantindo a autenticidade na sua relação advogado-cliente.">
+  <meta name="description" content="Tire suas dúvidas sobre o Vinc e saiba como o app combate golpes do WhatsApp e fraudes de boletos, garantindo a relação advogado-cliente.">
   <link rel="canonical" href="https://www.vincapp.com.br/pages/faq.html">
 
   <!-- Controle de Indexação -->
@@ -16,7 +16,7 @@
   <meta property="og:site_name" content="Vinc">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Perguntas Frequentes (FAQ) | Vinc - Segurança Digital Jurídica">
-  <meta property="og:description" content="Tire suas dúvidas sobre o Vinc. Saiba como o aplicativo combate golpes do WhatsApp e fraudes de boletos, garantindo a autenticidade na sua relação advogado-cliente.">
+  <meta property="og:description" content="Tire suas dúvidas sobre o Vinc e saiba como o app combate golpes do WhatsApp e fraudes de boletos, garantindo a relação advogado-cliente.">
   <meta property="og:url" content="https://www.vincapp.com.br/pages/faq.html">
   <meta property="og:image" content="https://www.vincapp.com.br/assets/images/vinc_faq_banner.jpg">
   <meta property="og:locale" content="pt_BR">
@@ -24,12 +24,102 @@
   <!-- Twitter / X Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Perguntas Frequentes (FAQ) | Vinc - Segurança Digital Jurídica">
-  <meta name="twitter:description" content="Tire suas dúvidas sobre o Vinc. Saiba como o aplicativo combate golpes do WhatsApp e fraudes de boletos, garantindo a autenticidade na sua relação advogado-cliente.">
+  <meta name="twitter:description" content="Tire suas dúvidas sobre o Vinc e saiba como o app combate golpes do WhatsApp e fraudes de boletos, garantindo a relação advogado-cliente.">
   <meta name="twitter:image" content="https://www.vincapp.com.br/assets/images/vinc_faq_banner.jpg">
 
   <!-- Favicon -->
   <link rel="icon" href="../assets/icons/vinc_icon_256px_1.png" type="image/png">
   <link rel="apple-touch-icon" href="../assets/icons/vinc_icon_256px_1.png">
+
+  <!-- Dados estruturados Google (JSON-LD para FAQPage): habilita rich snippet de perguntas/respostas no SERP -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "O que é o Vinc?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O Vinc é um aplicativo antifraude desenvolvido para garantir a segurança e a legitimidade nos contatos entre clientes, advogados e escritórios de advocacia. Ele cria um canal oficial onde o cliente pode validar se uma abordagem recebida externamente (como mensagens pedindo Pix ou documentos) é realmente oficial."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como faço para criar uma conta no Vinc?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para garantir a segurança do sistema, o Vinc é um ecossistema restrito: clientes, advogados e equipe só podem entrar através de um convite oficial enviado pelo administrador do escritório, sem cadastro público aberto. Escritórios precisam de uma chave de ativação temporária, fornecida pela equipe do Vinc após análise de credenciamento."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Recebi um contato suspeito. Como o Vinc me protege?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ao receber qualquer mensagem ou ligação duvidosa fora do aplicativo, você deve abrir o Vinc, selecionar o seu contrato/caso relacionado e registrar quem a pessoa disse ser e o que ela solicitou. O sistema enviará essa dúvida imediatamente para os advogados oficialmente vinculados ao seu caso no banco de dados."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O Vinc usa o nome que o suspeito informou para decidir para quem enviar o alerta?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não. O nome informado pelo suspeito é tratado apenas como contexto visual para que o advogado entenda o golpe. O roteamento do alerta é feito estritamente pelo vínculo real registrado no sistema: Cliente, Contrato/Caso, Advogados Vinculados."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que significa quando o escritório \"marca ciência\" em um relato?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Marcar ciência significa que o escritório visualizou e leu o seu relato de tentativa de fraude. Isso não significa que o contato foi confirmado como legítimo ou que o problema jurídico foi resolvido; serve apenas para informar ao cliente que o escritório está ciente do ocorrido."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Meus dados ou detalhes do meu processo aparecem nas notificações do celular?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não. Para proteger sua privacidade, as notificações push são genéricas, exibindo apenas avisos operacionais como 'Nova verificação pendente' ou 'Escritório ciente do relato', nunca expondo nomes, valores, links ou detalhes sensíveis na tela de bloqueio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Se eu desinstalar o aplicativo, meus dados são apagados?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não. Desinstalar o app realiza apenas uma instalação limpa no aparelho, removendo cache e sessão local. Todos os dados reais (contratos, relatos, vínculos) permanecem protegidos no banco de dados remoto e estarão lá quando você reinstalar e fizer login novamente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Por que o administrador não pode cadastrar um cliente diretamente sem convite?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O fluxo de convite é o caminho oficial para garantir que o usuário passe pelo processo correto de ativação de conta, aceite de termos e definição de senha de forma segura. O cadastro direto contorna essas etapas de segurança e gera riscos operacionais."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Um funcionário administrativo do escritório (staff) pode confirmar uma verificação de segurança?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Na versão atual do Vinc, membros da equipe administrativa de nível geral não possuem permissão para confirmar códigos sensíveis. Essa responsabilidade é exclusiva dos advogados vinculados ao contrato, profissionais juridicamente responsáveis pelo caso."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que devo fazer se eu não tiver uma chave de ativação para meu escritório?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Se você é o responsável por um escritório e ainda não possui uma chave, acesse a página de Contato e preencha o formulário 'Solicitar Chave de Ativação'. Você informará seus dados e os do escritório para que a equipe do Vinc realize uma análise e envie as instruções por e-mail."
+          }
+        }
+      ]
+    }
+  </script>
 
   <!-- Pré-conexões -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

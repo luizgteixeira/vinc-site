@@ -827,10 +827,33 @@ function loadSinglePost() {
     document.head.appendChild(metaDescTag);
   }
 
+  // Atualizar Canonical: cada artigo precisa da sua própria URL canônica
+  // (slug incluído), senão o Google entende todos os artigos como duplicatas
+  // da mesma URL sem slug e deixa de indexar a maioria deles.
+  const canonicalUrl = `https://www.vincapp.com.br/pages/artigo-detalhes.html?slug=${post.slug}`;
+  let canonicalTag = document.querySelector('link[rel="canonical"]');
+  if (canonicalTag) {
+    canonicalTag.setAttribute("href", canonicalUrl);
+  } else {
+    canonicalTag = document.createElement("link");
+    canonicalTag.setAttribute("rel", "canonical");
+    canonicalTag.setAttribute("href", canonicalUrl);
+    document.head.appendChild(canonicalTag);
+  }
+
+  // Crawlers de preview (WhatsApp, LinkedIn, Slack) exigem URL absoluta em og:image/twitter:image
+  const absoluteImageUrl = post.featuredImage.replace("../", "https://www.vincapp.com.br/");
+
   // Atualizar Open Graph (Facebook, WhatsApp, LinkedIn)
   updateMetaTag("property", "og:title", `${post.title} | Vinc`);
   updateMetaTag("property", "og:description", post.seo.metaDesc);
-  updateMetaTag("property", "og:url", window.location.href);
+  updateMetaTag("property", "og:url", canonicalUrl);
+  updateMetaTag("property", "og:image", absoluteImageUrl);
+
+  // Atualizar Twitter / X Cards
+  updateMetaTag("name", "twitter:title", `${post.title} | Vinc`);
+  updateMetaTag("name", "twitter:description", post.seo.metaDesc);
+  updateMetaTag("name", "twitter:image", absoluteImageUrl);
 
   // Injetar dados estruturados JSON-LD do Schema.org para indexação do Google
   const schemaScript = document.createElement("script");
@@ -839,8 +862,8 @@ function loadSinglePost() {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": post.title,
-    "image": [post.featuredImage],
-    "datePublished": "2026-07-15T09:00:00-03:00",
+    "image": [absoluteImageUrl],
+    "datePublished": parsePublishedAtToISO(post.publishedAt),
     "author": [{
       "@type": "Person",
       "name": post.author.name,
@@ -1181,6 +1204,19 @@ function initFeedbackSection(post) {
 /**
  * Auxiliar para atualizar tags meta dinâmicas de SEO
  */
+// Converte datas no formato exibido "DD Mon YYYY" (ex.: "15 Jul 2026") para
+// ISO 8601, exigido pelo campo datePublished do Schema.org.
+const PT_BR_MONTHS = {
+  jan: "01", fev: "02", mar: "03", abr: "04", mai: "05", jun: "06",
+  jul: "07", ago: "08", set: "09", out: "10", nov: "11", dez: "12"
+};
+
+function parsePublishedAtToISO(publishedAt) {
+  const [day, month, year] = publishedAt.split(" ");
+  const monthNumber = PT_BR_MONTHS[month.toLowerCase()];
+  return `${year}-${monthNumber}-${day.padStart(2, "0")}T09:00:00-03:00`;
+}
+
 function updateMetaTag(attribute, value, content) {
   let tag = document.querySelector(`meta[${attribute}="${value}"]`);
   if (tag) {
