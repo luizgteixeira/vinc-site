@@ -10,7 +10,7 @@
  * 4. Geração automática e dinâmica do Índice de Conteúdo (Table of Contents) baseado em tags H2.
  * 5. Barra lateral (sidebar) responsiva com posts populares, contagem por categorias e nuvem de tags.
  * 6. Inscrição de newsletter integrada ao Mailchimp (envio real via formulário oculto).
- * 
+ *
  * Todas as modificações foram documentadas em português, seguindo as diretrizes editoriais do Vinc.
  */
 
@@ -99,10 +99,10 @@ const BLOG_POSTS = [
     featuredImage: "../assets/images/celular-escritorio.jpg",
     content: `
       <p>Nos últimos meses, houve um crescimento vertiginoso em golpes virtuais direcionados a clientes que possuem processos na Justiça brasileira. O mais recorrente deles é o chamado <strong>Golpe do Falso Advogado</strong>, aplicado principalmente através de aplicativos de mensagens como o WhatsApp. Para combater esse mal, a filosofia do Vinc é direta e imutável: <strong>Confirme antes de confiar</strong>.</p>
-      
+
       <h2>Como Funciona a Mecânica do Golpe?</h2>
       <p>O golpe não se baseia em uma quebra de segurança de servidores bancários ou criptografia de sistemas. É uma fraude baseada puramente na <strong>engenharia social</strong>. Os criminosos acessam diários oficiais públicos, coletam nomes de clientes que têm direito a receber algum dinheiro (alvarás expedidos, precatórios, revisões salariais) e localizam o contato de telefone desses clientes na internet. Em seguida, criam um perfil de WhatsApp idêntico ao do advogado ou escritório do cliente, copiando fotos, logotipos oficiais e descrições institucionais legítimas.</p>
-      
+
       <div class="post-regra-ouro">
         <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
         <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
@@ -152,10 +152,10 @@ const BLOG_POSTS = [
     featuredImage: "../assets/images/escritorios1.jpg",
     content: `
       <p>Levar décadas para estruturar uma carreira de sucesso e assistir a uma crise de confiança acontecer em minutos por culpa de golpistas que se passam por seus profissionais. Esse tem sido o maior temor de gestores e sócios de bancas jurídicas em todo o país. Proteger sua marca jurídica é proteger a estabilidade do seu negócio.</p>
-      
+
       <h2>A Responsabilidade das Bancas de Advocacia</h2>
       <p>Embora a fraude seja praticada por criminosos externos, os tribunais já têm julgado que escritórios de advocacia possuem o dever de zelar pela confidencialidade dos dados de seus processos e, principalmente, por canais de comunicação seguros com seus clientes. A ausência de alertas claros ou canais verificados pode gerar prejuízos financeiros e também abalos éticos imensuráveis à imagem corporativa do escritório.</p>
-      
+
       <div class="post-regra-ouro">
         <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
         <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
@@ -194,10 +194,10 @@ const BLOG_POSTS = [
     featuredImage: "../assets/images/vinc_infrastructure.jpg",
     content: `
       <p>Muitas soluções de segurança tentam mitigar as fraudes criando listas negras de spammers ou tentando adivinhar se um número de WhatsApp é falso usando heurísticas simples. Essa abordagem está ultrapassada. O Vinc foi arquitetado sobre o paradigma de <strong>Zero Trust</strong> (Nunca Confiar, Sempre Verificar), oferecendo uma barreira lógica inquebrável contra golpistas.</p>
-      
+
       <h2>O que é o Paradigma Zero Trust?</h2>
       <p>No conceito tradicional de segurança, uma rede ou canal (como o WhatsApp) é considerado confiável após uma verificação inicial básica. No Zero Trust, partimos do princípio oposto: <strong>qualquer requisição, mensagem ou contato externo é considerado potencialmente falso ou comprometido</strong>, não importando se possui uma foto de perfil correta ou se tem acesso a dados reais do processo judicial. A identidade do emissor deve ser atestada e validada criptograficamente a cada interação sensível.</p>
-      
+
       <div class="post-regra-ouro">
         <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
         <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
@@ -236,10 +236,10 @@ const BLOG_POSTS = [
     featuredImage: "../assets/images/vinc_shield_client.jpg",
     content: `
       <p>Começar a utilizar a plataforma de blindagem digital do Vinc é um processo simples, rápido e estruturado para que sua banca jurídica decole com total segurança jurídica em poucos minutos. Siga este guia prático de onboarding para registrar seu escritório, convidar seus profissionais e cadastrar seus primeiros clientes.</p>
-      
+
       <h2>Passo 1: Solicitação e Ativação da Chave Corporativa</h2>
       <p>O processo começa com a validação da sociedade de advogados ou profissional autônomo. Acesse a página de contato e solicite sua <strong>Chave de Ativação do Vinc</strong>. Nosso time de auditoria verificará o registro profissional na OAB de sua seccional correspondente. Uma vez homologado, você receberá por e-mail suas credenciais de administrador da plataforma.</p>
-      
+
       <div class="post-regra-ouro">
         <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
         <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
@@ -284,10 +284,10 @@ const BLOG_POSTS = [
     featuredImage: "../assets/images/seguranca.jpg",
     content: `
       <p>Escritórios de advocacia gerenciam dados pessoais altamente sensíveis: prontuários médicos, contratos comerciais, folhas de pagamento, acordos de divórcio e informações processuais protegidas por segredo de justiça. Sob as regras rígidas da <strong>Lei Geral de Proteção de Dados (LGPD)</strong>, as bancas jurídicas têm o dever legal de implementar medidas robustas de governança contra vazamentos e acessos não autorizados.</p>
-      
+
       <h2>O Papel do Vinc no Escudo da Privacidade</h2>
       <p>O Vinc atua como um parceiro estratégico para o encarregado de dados (DPO) e para os sócios do escritório. Em vez de transmitir guias, dados bancários de clientes ou cópias de certidões por canais abertos e vulneráveis de e-mail e chats de redes sociais que armazenam dados sem conformidade, o Vinc estabelece um canal proprietário e criptografado com total auditoria de acessos.</p>
-      
+
       <div class="post-regra-ouro">
         <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
         <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
@@ -651,7 +651,7 @@ function renderBlogPosts() {
   // Filtragem dos posts ativos com base na categoria e termo de pesquisa
   const filtered = BLOG_POSTS.filter((post) => {
     const matchesCategory = activeCategory === "Todos" || post.category === activeCategory;
-    const matchesSearch = 
+    const matchesSearch =
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.content.toLowerCase().includes(searchQuery.toLowerCase());
@@ -816,7 +816,7 @@ function loadSinglePost() {
 
   // 1. Atualizar Tags de SEO e Metadados dinamicamente para melhor indexação
   document.title = `${post.title} | Blog Vinc`;
-  
+
   let metaDescTag = document.querySelector('meta[name="description"]');
   if (metaDescTag) {
     metaDescTag.setAttribute("content", post.seo.metaDesc);
@@ -928,7 +928,7 @@ function loadSinglePost() {
     <!-- Seção de Interação / Feedback (Fase 1) -->
     <section class="post-interaction-box" id="post-feedback-section" aria-labelledby="feedback-section-title">
       <h3 class="interaction-heading" id="feedback-section-title">📬 Compartilhe sua Opinião</h3>
-      
+
       <form id="feedback-interaction-form" onsubmit="event.preventDefault();">
         <!-- ETAPA 1 — Avaliação do artigo -->
         <fieldset style="border: none; padding: 0; margin: 0 0 24px 0;">
@@ -1179,7 +1179,7 @@ function initFeedbackSection(post) {
 
       // Dispara o envio de e-mail via mailto
       const mailtoUrl = `mailto:contato@luizgustavodev.com?subject=${subject}&body=${body}`;
-      
+
       // Abre o cliente de e-mail do usuário de maneira segura
       const mailLink = document.createElement("a");
       mailLink.href = mailtoUrl;
@@ -1236,7 +1236,7 @@ function updateMetaTag(attribute, value, content) {
 function renderRelatedPostsMarkup(currentPost) {
   // Busca posts da mesma categoria (excluindo o post ativo)
   let related = BLOG_POSTS.filter((p) => p.id !== currentPost.id && p.category === currentPost.category);
-  
+
   // Caso não existam posts suficientes na mesma categoria, preenche com os demais
   if (related.length < 3) {
     const extra = BLOG_POSTS.filter((p) => p.id !== currentPost.id && p.category !== currentPost.category);
@@ -1379,7 +1379,7 @@ function initSidebar() {
         if (listPostsContainer) {
           e.preventDefault();
           activeCategory = link.getAttribute("data-category");
-          
+
           // Altera o estado visual correspondente na barra superior de categorias
           const filterButtons = document.querySelectorAll("#category-filters-wrap .category-btn");
           filterButtons.forEach((btn) => {
@@ -1389,7 +1389,7 @@ function initSidebar() {
               btn.classList.remove("active");
             }
           });
-          
+
           renderBlogPosts();
           listPostsContainer.scrollIntoView({ behavior: 'smooth' });
         } else {

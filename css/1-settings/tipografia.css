@@ -2,7 +2,26 @@
    FONTES E TIPOGRAFIA
 ========================================== */
 
-/* Importação do Google Fonts como fallback automático para garantir resiliência caso os arquivos locais não estejam disponíveis */
+/*
+ * ESTRATÉGIA DE CARREGAMENTO DA FONTE
+ * A fonte é servida por duas fontes distintas, propositalmente sobrepostas:
+ *
+ * 1. @import do Google Fonts (abaixo) carrega TODOS os pesos e itálicos da
+ *    família (300 a 800), servindo como cobertura completa da fonte.
+ * 2. Os três @font-face locais logo em seguida redeclaram os pesos 300/400/800
+ *    em estilo normal, self-hosted em assets/fonts/. Por serem declarados
+ *    DEPOIS do @import no mesmo arquivo, a cascata do CSS faz essas regras
+ *    locais vencerem para exatamente essa combinação de family+weight+style
+ *    — ou seja, o navegador nunca chega a baixar do Google os pesos que já
+ *    temos localmente.
+ *
+ * Resultado prático: os pesos 300/400/800 (os mais usados no site, em corpo
+ * de texto e headings) carregam localmente, sem round-trip até o Google;
+ * os pesos 500/600/700 e todos os itálicos (usados pontualmente, ex.:
+ * .cta-quote) continuam vindo do Google Fonts, que preenche essa lacuna.
+ * Não é um "fallback" no sentido de failover — é uma divisão fixa de
+ * responsabilidade resolvida via ordem de declaração no cascade.
+ */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
 /* Plus Jakarta Sans - Extra Bold (Local) */
