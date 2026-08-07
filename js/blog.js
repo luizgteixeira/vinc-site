@@ -101,7 +101,6 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
     categoryColor: CATEGORIES.ANATOMIA_GOLPES.color,
     publishedAt: '15 Jul 2026',
-    readingTime: 6,
     author: AUTHORS.vinc_security,
     featuredImage: '../assets/images/celular-escritorio.jpg',
     tags: ['Golpe', 'WhatsApp', 'Engenharia Social', 'Pix', 'Alvará'],
@@ -170,7 +169,6 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.GESTAO_REPUTACAO.icon,
     categoryColor: CATEGORIES.GESTAO_REPUTACAO.color,
     publishedAt: '12 Jul 2026',
-    readingTime: 5,
     author: AUTHORS.luiz_gustavo,
     featuredImage: '../assets/images/escritorios1.jpg',
     tags: ['Golpe', 'Advogado', 'Governança'],
@@ -215,7 +213,6 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.TECNOLOGIA_DADOS.icon,
     categoryColor: CATEGORIES.TECNOLOGIA_DADOS.color,
     publishedAt: '10 Jul 2026',
-    readingTime: 7,
     author: AUTHORS.luiz_gustavo,
     featuredImage: '../assets/images/vinc_infrastructure.jpg',
     tags: ['Zero Trust', 'Segurança', 'Vínculo'],
@@ -261,7 +258,6 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.GUIA_FUNCIONALIDADES.icon,
     categoryColor: CATEGORIES.GUIA_FUNCIONALIDADES.color,
     publishedAt: '08 Jul 2026',
-    readingTime: 4,
     author: AUTHORS.luiz_gustavo,
     featuredImage: '../assets/images/vinc_shield_client.jpg',
     tags: ['Advogado', 'Segurança', 'Escritório Ciente'],
@@ -312,7 +308,6 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.icon,
     categoryColor: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.color,
     publishedAt: '05 Jul 2026',
-    readingTime: 6,
     author: AUTHORS.vinc_security,
     featuredImage: '../assets/images/seguranca.jpg',
     tags: ['LGPD', 'Governança', 'Segurança'],
@@ -357,7 +352,6 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
     categoryColor: CATEGORIES.ANATOMIA_GOLPES.color,
     publishedAt: '16 Jul 2026',
-    readingTime: 5,
     author: AUTHORS.vinc_security,
     featuredImage: '../assets/images/celular-escritorio.jpg',
     tags: ['Golpe', 'Engenharia Social', 'Processo Judicial', 'WhatsApp'],
@@ -404,7 +398,6 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.TECNOLOGIA_DADOS.icon,
     categoryColor: CATEGORIES.TECNOLOGIA_DADOS.color,
     publishedAt: '16 Jul 2026',
-    readingTime: 5,
     author: AUTHORS.luiz_gustavo,
     featuredImage: '../assets/images/vinc_infrastructure.jpg',
     tags: ['WhatsApp', 'Vínculo', 'Segurança'],
@@ -451,7 +444,6 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.icon,
     categoryColor: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.color,
     publishedAt: '16 Jul 2026',
-    readingTime: 4,
     author: AUTHORS.vinc_security,
     featuredImage: '../assets/images/seguranca.jpg',
     tags: ['LGPD', 'Segurança'],
@@ -494,7 +486,6 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.GUIA_FUNCIONALIDADES.icon,
     categoryColor: CATEGORIES.GUIA_FUNCIONALIDADES.color,
     publishedAt: '16 Jul 2026',
-    readingTime: 4,
     author: AUTHORS.luiz_gustavo,
     featuredImage: '../assets/images/vinc_shield_client.jpg',
     tags: ['Escritório Ciente', 'Advogado', 'Governança'],
@@ -537,7 +528,6 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.GESTAO_REPUTACAO.icon,
     categoryColor: CATEGORIES.GESTAO_REPUTACAO.color,
     publishedAt: '16 Jul 2026',
-    readingTime: 4,
     author: AUTHORS.luiz_gustavo,
     featuredImage: '../assets/images/vinc_advocacy_shield.jpg',
     tags: ['Segurança', 'Advogado', 'Governança'],
@@ -581,7 +571,6 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.GESTAO_REPUTACAO.icon,
     categoryColor: CATEGORIES.GESTAO_REPUTACAO.color,
     publishedAt: '16 Jul 2026',
-    readingTime: 4,
     author: AUTHORS.luiz_gustavo,
     featuredImage: '../assets/images/vinc_dashboard_mock.jpg',
     tags: ['Golpe', 'Advogado', 'Fraude', 'Segurança', 'Vínculo'],
@@ -664,7 +653,6 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
     categoryColor: CATEGORIES.ANATOMIA_GOLPES.color,
     publishedAt: '07 Ago 2026',
-    readingTime: 5,
     author: AUTHORS.vinc_security,
     featuredImage: '../assets/images/advogados.jpg',
     tags: ['Advogado', 'Golpe', 'Segurança'],
@@ -718,7 +706,6 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
     categoryColor: CATEGORIES.ANATOMIA_GOLPES.color,
     publishedAt: '08 Ago 2026',
-    readingTime: 6,
     author: AUTHORS.luiz_gustavo,
     featuredImage: '../assets/images/vinc_shield.jpg',
     tags: ['Alvará', 'Processo Judicial', 'Golpe'],
@@ -773,7 +760,8 @@ function renderBlogPosts() {
   const featuredContainer = document.getElementById('featured-post-container');
   if (!postsContainer) return; // Se não estiver na página de listagem, sai da função
 
-  // Filtragem dos posts ativos com base na categoria e termo de pesquisa
+  // Filtragem dos posts ativos com base na categoria e termo de pesquisa,
+  // sempre ordenados do mais recente para o mais antigo (post.publishedAt)
   const filtered = BLOG_POSTS.filter((post) => {
     const matchesCategory =
       activeCategory === 'Todos' || post.category === activeCategory;
@@ -783,7 +771,11 @@ function renderBlogPosts() {
       post.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.tags.some((tag) => tag.toLowerCase() === searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
-  });
+  }).sort(
+    (a, b) =>
+      new Date(parsePublishedAtToISO(b.publishedAt)) -
+      new Date(parsePublishedAtToISO(a.publishedAt))
+  );
 
   const isFiltering = activeCategory !== 'Todos' || searchQuery !== '';
 
@@ -820,7 +812,7 @@ function renderBlogPosts() {
             </span>
             <span>${featuredPost.publishedAt}</span>
             <span>•</span>
-            <span>${featuredPost.readingTime} min de leitura</span>
+            <span>${getReadingTime(featuredPost)} min de leitura</span>
           </div>
           <h2 class="featured-title">
             <a href="artigo-detalhes.html?slug=${featuredPost.slug}">${featuredPost.title}</a>
@@ -859,6 +851,8 @@ function renderBlogPosts() {
                 ${post.categoryIcon} ${post.category}
               </span>
               <span>${post.publishedAt}</span>
+              <span>•</span>
+              <span>${getReadingTime(post)} min de leitura</span>
             </div>
             <h3 class="article-title">
               <a href="artigo-detalhes.html?slug=${post.slug}">${post.title}</a>
@@ -1113,7 +1107,7 @@ function loadSinglePost() {
         </span>
         <span style="color: var(--text-secondary); font-size: 14px;">${post.publishedAt}</span>
         <span style="color: var(--border);">|</span>
-        <span style="color: var(--text-secondary); font-size: 14px;">${post.readingTime} min de leitura</span>
+        <span style="color: var(--text-secondary); font-size: 14px;">${getReadingTime(post)} min de leitura</span>
       </div>
       <h1 class="post-title" id="post-main-title">${post.title}</h1>
     </header>
@@ -1437,6 +1431,20 @@ function parsePublishedAtToISO(publishedAt) {
   return `${year}-${monthNumber}-${day.padStart(2, '0')}T09:00:00-03:00`;
 }
 
+// Calcula o tempo de leitura a partir do conteúdo real do post (200 palavras/min,
+// padrão editorial comum), em vez de um número fixo por post que fica desatualizado
+// a cada edição de conteúdo.
+const WORDS_PER_MINUTE = 200;
+
+function getReadingTime(post) {
+  const plainText = post.content
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&[a-z]+;/gi, ' ')
+    .trim();
+  const wordCount = plainText.split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(wordCount / WORDS_PER_MINUTE));
+}
+
 function updateMetaTag(attribute, value, content) {
   let tag = document.querySelector(`meta[${attribute}="${value}"]`);
   if (tag) {
@@ -1482,6 +1490,8 @@ function renderRelatedPostsMarkup(currentPost) {
             ${post.categoryIcon} ${post.category}
           </span>
           <span>${post.publishedAt}</span>
+          <span>•</span>
+          <span>${getReadingTime(post)} min</span>
         </div>
         <h4 class="article-title" style="font-size: 1rem; margin-top: 4px; margin-bottom: 8px;">
           <a href="artigo-detalhes.html?slug=${post.slug}">${post.title}</a>
@@ -1590,7 +1600,7 @@ function initSidebar() {
         <span class="popular-number" style="color: ${post.categoryColor}; opacity: 0.4;">0${idx + 1}</span>
         <div class="popular-item-content">
           <a href="artigo-detalhes.html?slug=${post.slug}" class="popular-item-title">${post.title}</a>
-          <span class="popular-item-meta">${post.publishedAt} • ${post.readingTime} min</span>
+          <span class="popular-item-meta">${post.publishedAt} • ${getReadingTime(post)} min</span>
         </div>
       </li>
     `
