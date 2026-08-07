@@ -11,7 +11,6 @@
  * 5. Barra lateral (sidebar) responsiva com posts populares, contagem por categorias e nuvem de tags.
  * 6. Inscrição de newsletter integrada ao Mailchimp (envio real via formulário oculto).
  *
- * Todas as modificações foram documentadas em português, seguindo as diretrizes editoriais do Vinc.
  */
 
 // --------------------------------------------------------------------------
@@ -19,17 +18,17 @@
 // --------------------------------------------------------------------------
 const AUTHORS = {
   luiz_gustavo: {
-    name: "Luiz Gustavo",
-    avatarUrl: "../assets/icons/vinc_icon_256px_1.png",
-    role: "Especialista em Segurança Digital & Dev Sênior",
-    bio: "Co-fundador do Vinc, desenvolvedor e entusiasta de segurança da informação, dedicado a criar pontes seguras na comunicação jurídica nacional."
+    name: 'Luiz Gustavo',
+    avatarUrl: '../assets/icons/vinc_icon_256px_1.png',
+    role: 'Especialista em Segurança Digital & Dev Sênior',
+    bio: 'Co-fundador do Vinc, desenvolvedor e entusiasta de segurança da informação, dedicado a criar pontes seguras na comunicação jurídica nacional.',
   },
   vinc_security: {
-    name: "Vinc Security Team",
-    avatarUrl: "../assets/icons/vinc_icon_256px_1.png",
-    role: "Time de Inteligência Antifraude",
-    bio: "Equipe técnica de analistas de segurança do Vinc, focada no monitoramento constante de novas ameaças, engenharia social e vazamento de dados judiciais."
-  }
+    name: 'Vinc Security Team',
+    avatarUrl: '../assets/icons/vinc_icon_256px_1.png',
+    role: 'Time de Inteligência Antifraude',
+    bio: 'Equipe técnica de analistas de segurança do Vinc, focada no monitoramento constante de novas ameaças, engenharia social e vazamento de dados judiciais.',
+  },
 };
 
 // --------------------------------------------------------------------------
@@ -37,47 +36,53 @@ const AUTHORS = {
 // --------------------------------------------------------------------------
 const CATEGORIES = {
   ANATOMIA_GOLPES: {
-    name: "Anatomia de Golpes e Alertas",
-    slug: "anatomia-golpes",
-    description: "Educação preventiva para identificar e desarmar golpes de engenharia social.",
-    icon: "🚨",
-    color: "#e11d48" // Vermelho/Laranja Carmim para Alertas
+    name: 'Anatomia de Golpes e Alertas',
+    slug: 'anatomia-golpes',
+    description:
+      'Educação preventiva para identificar e desarmar golpes de engenharia social.',
+    icon: '🚨',
+    color: '#e11d48', // Vermelho/Laranja Carmim para Alertas
   },
   GESTAO_REPUTACAO: {
-    name: "Gestão de Reputação para Advogados",
-    slug: "gestao-reputacao",
-    description: "Estratégias para proteger a identidade digital profissional e a confiança do cliente.",
-    icon: "🛡️",
-    color: "#2563eb" // Azul Profundo para Confiança
+    name: 'Gestão de Reputação para Advogados',
+    slug: 'gestao-reputacao',
+    description:
+      'Estratégias para proteger a identidade digital profissional e a confiança do cliente.',
+    icon: '🛡️',
+    color: '#2563eb', // Azul Profundo para Confiança
   },
   TECNOLOGIA_DADOS: {
-    name: "Tecnologia e Soberania de Dados",
-    slug: "tecnologia-dados",
-    description: "Detalhamento acessível sobre criptografia, segurança e arquitetura de dados.",
-    icon: "⚙️",
-    color: "#0d9488" // Verde Azulado para Tecnologia
+    name: 'Tecnologia e Soberania de Dados',
+    slug: 'tecnologia-dados',
+    description:
+      'Detalhamento acessível sobre criptografia, segurança e arquitetura de dados.',
+    icon: '⚙️',
+    color: '#0d9488', // Verde Azulado para Tecnologia
   },
   GUIA_FUNCIONALIDADES: {
-    name: "Guia de Funcionalidades e Onboarding",
-    slug: "guia-funcionalidades",
-    description: "Manuais passo a passo para extrair o máximo de segurança da plataforma Vinc.",
-    icon: "📖",
-    color: "#d97706" // Âmbar para Educação Operacional
+    name: 'Guia de Funcionalidades e Onboarding',
+    slug: 'guia-funcionalidades',
+    description:
+      'Manuais passo a passo para extrair o máximo de segurança da plataforma Vinc.',
+    icon: '📖',
+    color: '#d97706', // Âmbar para Educação Operacional
   },
   CIBERSEGURANCA_COMPLIANCE: {
-    name: "Cibersegurança e Compliance (LGPD)",
-    slug: "ciberseguranca-compliance",
-    description: "Conformidade jurídica, governança de privacidade e as melhores práticas digitais.",
-    icon: "🔒",
-    color: "#4f46e5" // Índigo para Compliance
+    name: 'Cibersegurança e Compliance (LGPD)',
+    slug: 'ciberseguranca-compliance',
+    description:
+      'Conformidade jurídica, governança de privacidade e as melhores práticas digitais.',
+    icon: '🔒',
+    color: '#4f46e5', // Índigo para Compliance
   },
   CASOS_SUCESSO: {
-    name: "Casos de Sucesso e Segurança Jurídica",
-    slug: "casos-sucesso",
-    description: "Histórias e análises baseadas em simulações e dados anonimizados de segurança real.",
-    icon: "🤝",
-    color: "#16a34a" // Verde Esmeralda para Sucesso
-  }
+    name: 'Casos de Sucesso e Segurança Jurídica',
+    slug: 'casos-sucesso',
+    description:
+      'Histórias e análises baseadas em simulações e dados anonimizados de segurança real.',
+    icon: '🤝',
+    color: '#16a34a', // Verde Esmeralda para Sucesso
+  },
 };
 
 // --------------------------------------------------------------------------
@@ -85,18 +90,21 @@ const CATEGORIES = {
 // --------------------------------------------------------------------------
 const BLOG_POSTS = [
   {
-    id: "post-1",
-    title: "O Golpe do Falso Advogado no WhatsApp: Como Criminosos Exploram a Ansiedade Processual",
-    slug: "golpe-falso-advogado-whatsapp",
-    excerpt: "Entenda detalhadamente a engenharia social por trás do golpe do falso advogado no WhatsApp e aprenda a identificar os gatilhos psicológicos usados por quadrilhas.",
+    id: 'post-1',
+    title:
+      'O Golpe do Falso Advogado no WhatsApp: Como Criminosos Exploram a Ansiedade Processual',
+    slug: 'golpe-falso-advogado-whatsapp',
+    excerpt:
+      'Entenda detalhadamente a engenharia social por trás do golpe do falso advogado no WhatsApp e aprenda a identificar os gatilhos psicológicos usados por quadrilhas.',
     category: CATEGORIES.ANATOMIA_GOLPES.name,
     categorySlug: CATEGORIES.ANATOMIA_GOLPES.slug,
     categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
     categoryColor: CATEGORIES.ANATOMIA_GOLPES.color,
-    publishedAt: "15 Jul 2026",
+    publishedAt: '15 Jul 2026',
     readingTime: 6,
     author: AUTHORS.vinc_security,
-    featuredImage: "../assets/images/celular-escritorio.jpg",
+    featuredImage: '../assets/images/celular-escritorio.jpg',
+    tags: ['Golpe', 'WhatsApp', 'Engenharia Social', 'Pix', 'Alvará'],
     content: `
       <p>Nos últimos meses, houve um crescimento vertiginoso em golpes virtuais direcionados a clientes que possuem processos na Justiça brasileira. O mais recorrente deles é o chamado <strong>Golpe do Falso Advogado</strong>, aplicado principalmente através de aplicativos de mensagens como o WhatsApp. Para combater esse mal, a filosofia do Vinc é direta e imutável: <strong>Confirme antes de confiar</strong>.</p>
 
@@ -132,24 +140,27 @@ const BLOG_POSTS = [
       </div>
     `,
     seo: {
-      metaTitle: "O Golpe do Falso Advogado no WhatsApp | Blog Vinc",
-      metaDesc: "Descubra como funciona o golpe do falso advogado no WhatsApp. Entenda a engenharia social e aprenda a se blindar com as dicas práticas do Vinc.",
-      keywords: "golpe do falso advogado, falso advogado whatsapp, golpe do pix alvara, engenharia social juridica, vinc",
-    }
+      metaTitle: 'O Golpe do Falso Advogado no WhatsApp | Blog Vinc',
+      metaDesc:
+        'Descubra como funciona o golpe do falso advogado no WhatsApp. Entenda a engenharia social e aprenda a se blindar com as dicas práticas do Vinc.',
+    },
   },
   {
-    id: "post-2",
-    title: "Blindagem de Marca Jurídica: Como Proteger a Reputação do Seu Escritório Contra Golpes Digitais",
-    slug: "blindagem-de-marca-juridica-protecao-reputacao",
-    excerpt: "A reputação de um escritório é seu maior patrimônio. Veja como a falsidade ideológica pode prejudicar sua banca e como adotar uma postura proativa.",
+    id: 'post-2',
+    title:
+      'Blindagem de Marca Jurídica: Como Proteger a Reputação do Seu Escritório Contra Golpes Digitais',
+    slug: 'blindagem-de-marca-juridica-protecao-reputacao',
+    excerpt:
+      'A reputação de um escritório é seu maior patrimônio. Veja como a falsidade ideológica pode prejudicar sua banca e como adotar uma postura proativa.',
     category: CATEGORIES.GESTAO_REPUTACAO.name,
     categorySlug: CATEGORIES.GESTAO_REPUTACAO.slug,
     categoryIcon: CATEGORIES.GESTAO_REPUTACAO.icon,
     categoryColor: CATEGORIES.GESTAO_REPUTACAO.color,
-    publishedAt: "12 Jul 2026",
+    publishedAt: '12 Jul 2026',
     readingTime: 5,
     author: AUTHORS.luiz_gustavo,
-    featuredImage: "../assets/images/escritorios1.jpg",
+    featuredImage: '../assets/images/escritorios1.jpg',
+    tags: ['Golpe', 'Advogado', 'Governança'],
     content: `
       <p>Levar décadas para estruturar uma carreira de sucesso e assistir a uma crise de confiança acontecer em minutos por culpa de golpistas que se passam por seus profissionais. Esse tem sido o maior temor de gestores e sócios de bancas jurídicas em todo o país. Proteger sua marca jurídica é proteger a estabilidade do seu negócio.</p>
 
@@ -174,24 +185,27 @@ const BLOG_POSTS = [
       <p>Em um mercado competitivo, a segurança digital tornou-se um dos maiores diferenciais de valor de uma banca de advocacia. Oferecer aos clientes a paz de espírito de que sua comunicação é totalmente blindada gera fidelização, fortalece a reputação e demonstra compromisso com a excelência técnica e com a LGPD.</p>
     `,
     seo: {
-      metaTitle: "Proteção de Marca e Reputação Jurídica | Vinc",
-      metaDesc: "Descubra como blindar a reputação do seu escritório de advocacia contra golpes de falsidade ideológica e golpes de engenharia social no WhatsApp.",
-      keywords: "reputacao juridica, blindagem de marca escritorio, golpistas oab, seguranca escritorio advocacia, vinc",
-    }
+      metaTitle: 'Proteção de Marca e Reputação Jurídica | Vinc',
+      metaDesc:
+        'Descubra como blindar a reputação do seu escritório de advocacia contra golpes de falsidade ideológica e golpes de engenharia social no WhatsApp.',
+    },
   },
   {
-    id: "post-3",
-    title: "Zero Trust na Advocacia: Por Que 'Confiar' Nunca Deveria Ser o Padrão",
-    slug: "zero-trust-na-advocacia-arquitetura-vinc",
-    excerpt: "Entenda o princípio de segurança Zero Trust e por que o Vinc valida o vínculo real entre cliente, contrato e advogado antes de qualquer interação sensível.",
+    id: 'post-3',
+    title:
+      "Zero Trust na Advocacia: Por Que 'Confiar' Nunca Deveria Ser o Padrão",
+    slug: 'zero-trust-na-advocacia-arquitetura-vinc',
+    excerpt:
+      'Entenda o princípio de segurança Zero Trust e por que o Vinc valida o vínculo real entre cliente, contrato e advogado antes de qualquer interação sensível.',
     category: CATEGORIES.TECNOLOGIA_DADOS.name,
     categorySlug: CATEGORIES.TECNOLOGIA_DADOS.slug,
     categoryIcon: CATEGORIES.TECNOLOGIA_DADOS.icon,
     categoryColor: CATEGORIES.TECNOLOGIA_DADOS.color,
-    publishedAt: "10 Jul 2026",
+    publishedAt: '10 Jul 2026',
     readingTime: 7,
     author: AUTHORS.luiz_gustavo,
-    featuredImage: "../assets/images/vinc_infrastructure.jpg",
+    featuredImage: '../assets/images/vinc_infrastructure.jpg',
+    tags: ['Zero Trust', 'Segurança', 'Vínculo'],
     content: `
       <p>Muitas soluções de segurança tentam mitigar as fraudes criando listas negras de spammers ou tentando adivinhar se um número de WhatsApp é falso usando heurísticas simples. Essa abordagem tem um problema estrutural: parte do princípio de que dá para confiar em algo até prova em contrário. O Vinc segue o caminho oposto, alinhado ao paradigma de <strong>Zero Trust</strong> (Nunca Confiar, Sempre Verificar).</p>
 
@@ -217,24 +231,27 @@ const BLOG_POSTS = [
       <p>Quer ver o panorama completo de como esse princípio protege clientes, advogados e escritórios ao mesmo tempo? Leia <a href="artigo-detalhes.html?slug=vinc-blindando-relacao-advogados-clientes">o guia completo sobre como o Vinc blinda a relação entre advogados e clientes</a>.</p>
     `,
     seo: {
-      metaTitle: "Zero Trust na Advocacia: o Princípio do Vinc | Blog",
-      metaDesc: "Entenda o princípio de segurança Zero Trust e por que o Vinc valida o vínculo real entre cliente, contrato e advogado antes de qualquer interação.",
-      keywords: "zero trust advocacia, seguranca juridica vinc, vinculo cliente advogado, escritorio ciente, vinc",
-    }
+      metaTitle: 'Zero Trust na Advocacia: o Princípio do Vinc | Blog',
+      metaDesc:
+        'Entenda o princípio de segurança Zero Trust e por que o Vinc valida o vínculo real entre cliente, contrato e advogado antes de qualquer interação.',
+    },
   },
   {
-    id: "post-4",
-    title: "Guia de Onboarding Vinc: Como Ativar Seu Canal Oficial de Comunicação Segura",
-    slug: "guia-onboarding-vinc-como-ativar-canal-seguro",
-    excerpt: "Aprenda passo a passo a configurar e ativar o Vinc no seu escritório de advocacia. Um tutorial completo para advogados e clientes darem os primeiros passos.",
+    id: 'post-4',
+    title:
+      'Guia de Onboarding Vinc: Como Ativar Seu Canal Oficial de Comunicação Segura',
+    slug: 'guia-onboarding-vinc-como-ativar-canal-seguro',
+    excerpt:
+      'Aprenda passo a passo a configurar e ativar o Vinc no seu escritório de advocacia. Um tutorial completo para advogados e clientes darem os primeiros passos.',
     category: CATEGORIES.GUIA_FUNCIONALIDADES.name,
     categorySlug: CATEGORIES.GUIA_FUNCIONALIDADES.slug,
     categoryIcon: CATEGORIES.GUIA_FUNCIONALIDADES.icon,
     categoryColor: CATEGORIES.GUIA_FUNCIONALIDADES.color,
-    publishedAt: "08 Jul 2026",
+    publishedAt: '08 Jul 2026',
     readingTime: 4,
     author: AUTHORS.luiz_gustavo,
-    featuredImage: "../assets/images/vinc_shield_client.jpg",
+    featuredImage: '../assets/images/vinc_shield_client.jpg',
+    tags: ['Advogado', 'Segurança', 'Escritório Ciente'],
     content: `
       <p>Começar a utilizar a plataforma de blindagem digital do Vinc é um processo simples, rápido e estruturado para que sua banca jurídica decole com total segurança jurídica em poucos minutos. Siga este guia prático de onboarding para registrar seu escritório, convidar seus profissionais e cadastrar seus primeiros clientes.</p>
 
@@ -265,24 +282,27 @@ const BLOG_POSTS = [
       <p>Pronto! O canal de comunicação do seu escritório está ativado e totalmente protegido contra golpes digitais.</p>
     `,
     seo: {
-      metaTitle: "Guia de Onboarding e Ativação do Vinc | Blog",
-      metaDesc: "Siga o passo a passo de configuração e onboarding da plataforma Vinc. Saiba como ativar chaves, registrar advogados e proteger seus clientes de forma simples.",
-      keywords: "onboarding vinc, ativar canal seguro advocacia, guia seguranca vinc, painel escritorio ciente",
-    }
+      metaTitle: 'Guia de Onboarding e Ativação do Vinc | Blog',
+      metaDesc:
+        'Siga o passo a passo de configuração e onboarding da plataforma Vinc. Saiba como ativar chaves, registrar advogados e proteger seus clientes de forma simples.',
+    },
   },
   {
-    id: "post-5",
-    title: "Privacidade e Conformidade: Como o Vinc Auxilia Escritórios de Advocacia a Atender à LGPD",
-    slug: "privacidade-conformidade-lgpd-vinc-advocacia",
-    excerpt: "Entenda a relação profunda entre segurança da informação jurídica, Lei Geral de Proteção de Dados (LGPD) e o ecossistema tecnológico do Vinc.",
+    id: 'post-5',
+    title:
+      'Privacidade e Conformidade: Como o Vinc Auxilia Escritórios de Advocacia a Atender à LGPD',
+    slug: 'privacidade-conformidade-lgpd-vinc-advocacia',
+    excerpt:
+      'Entenda a relação profunda entre segurança da informação jurídica, Lei Geral de Proteção de Dados (LGPD) e o ecossistema tecnológico do Vinc.',
     category: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.name,
     categorySlug: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.slug,
     categoryIcon: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.icon,
     categoryColor: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.color,
-    publishedAt: "05 Jul 2026",
+    publishedAt: '05 Jul 2026',
     readingTime: 6,
     author: AUTHORS.vinc_security,
-    featuredImage: "../assets/images/seguranca.jpg",
+    featuredImage: '../assets/images/seguranca.jpg',
+    tags: ['LGPD', 'Governança', 'Segurança'],
     content: `
       <p>Escritórios de advocacia gerenciam dados pessoais altamente sensíveis: prontuários médicos, contratos comerciais, folhas de pagamento, acordos de divórcio e informações processuais protegidas por segredo de justiça. Sob as regras rígidas da <strong>Lei Geral de Proteção de Dados (LGPD)</strong>, as bancas jurídicas têm o dever legal de implementar medidas robustas de governança contra vazamentos e acessos não autorizados.</p>
 
@@ -307,24 +327,27 @@ const BLOG_POSTS = [
       <p>Nos termos do art. 52 da LGPD, a adoção reiterada de mecanismos e processos internos capazes de minimizar danos é um dos critérios que a Autoridade Nacional de Proteção de Dados (ANPD) pode considerar ao avaliar a gravidade de uma infração. Adotar um canal estruturado como o Vinc, em vez de e-mails e chats abertos, é parte de uma postura preventiva nesse sentido — o que não substitui, evidentemente, uma política de privacidade e um programa de governança de dados completos no escritório.</p>
     `,
     seo: {
-      metaTitle: "Conformidade LGPD para Escritórios de Advocacia | Vinc",
-      metaDesc: "Descubra como o Vinc auxilia escritórios a adotar uma postura preventiva em conformidade com a LGPD, restringindo o acesso a dados por vínculo real.",
-      keywords: "lgpd advocacia, segurança da informação juridica, conformidade anpd, dpo escritorio, vinc",
-    }
+      metaTitle: 'Conformidade LGPD para Escritórios de Advocacia | Vinc',
+      metaDesc:
+        'Descubra como o Vinc auxilia escritórios a adotar uma postura preventiva em conformidade com a LGPD, restringindo o acesso a dados por vínculo real.',
+    },
   },
   {
-    id: "post-7",
-    title: "Como Golpistas Descobrem Seu Nome e Seu Processo Antes de Aplicar o Golpe do Advogado Falso",
-    slug: "golpe-falso-advogado-nomes-reais",
-    excerpt: "Entenda de onde vêm os dados reais (nome, processo, advogado) que golpistas usam para dar credibilidade ao golpe do falso advogado, e por que isso não é uma falha de segurança sua.",
+    id: 'post-7',
+    title:
+      'Como Golpistas Descobrem Seu Nome e Seu Processo Antes de Aplicar o Golpe do Advogado Falso',
+    slug: 'golpe-falso-advogado-nomes-reais',
+    excerpt:
+      'Entenda de onde vêm os dados reais (nome, processo, advogado) que golpistas usam para dar credibilidade ao golpe do falso advogado, e por que isso não é uma falha de segurança sua.',
     category: CATEGORIES.ANATOMIA_GOLPES.name,
     categorySlug: CATEGORIES.ANATOMIA_GOLPES.slug,
     categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
     categoryColor: CATEGORIES.ANATOMIA_GOLPES.color,
-    publishedAt: "16 Jul 2026",
+    publishedAt: '16 Jul 2026',
     readingTime: 5,
     author: AUTHORS.vinc_security,
-    featuredImage: "../assets/images/celular-escritorio.jpg",
+    featuredImage: '../assets/images/celular-escritorio.jpg',
+    tags: ['Golpe', 'Engenharia Social', 'Processo Judicial', 'WhatsApp'],
     content: `
       <p>O <strong>Golpe do Falso Advogado</strong> é uma das ameaças que mais crescem no Brasil. O que torna essa fraude extremamente perigosa é que os golpistas não inventam personagens: eles usam nomes reais de advogados atuantes e dados verdadeiros de processos públicos para enganar os clientes.</p>
 
@@ -349,31 +372,29 @@ const BLOG_POSTS = [
       <h2>Por Que Essa Abordagem Desarma os Golpistas?</h2>
       <p>Como os criminosos não têm acesso ao painel autenticado do escritório nem ao vínculo formal registrado ali, eles não conseguem se passar pela validação do Vinc — só o profissional realmente vinculado ao caso consegue confirmar uma solicitação.</p>
       <p>Ter seus dados reais usados contra você não significa que algo vazou especificamente sobre o seu caso — veja em <a href="artigo-detalhes.html?slug=golpe-falso-advogado-whatsapp">nosso guia sobre o mecanismo completo do golpe do falso advogado no WhatsApp</a> os gatilhos psicológicos que os criminosos usam para explorar essa informação e como reagir na prática.</p>
-
-      <div class="post-signature" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
-        <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--text-primary);">Vinc — confirme antes de confiar.</p>
-        <p style="margin: 0; font-style: italic; color: var(--text-secondary); font-size: 14px;">Desenvolvido com foco total em soberania tecnológica e segurança jurídica.</p>
-      </div>
     `,
     seo: {
-      metaTitle: "Como Golpistas Descobrem Seus Dados | Blog Vinc",
-      metaDesc: "Entenda de onde vêm os dados reais que golpistas usam no golpe do falso advogado, e por que o roteamento por vínculo do Vinc neutraliza essa tática.",
-      keywords: "como golpistas descobrem dados, diarios oficiais golpe advogado, engenharia social dados publicos, roteamento por vinculo, vinc",
-    }
+      metaTitle: 'Como Golpistas Descobrem Seus Dados | Blog Vinc',
+      metaDesc:
+        'Entenda de onde vêm os dados reais que golpistas usam no golpe do falso advogado, e por que o roteamento por vínculo do Vinc neutraliza essa tática.',
+    },
   },
   {
-    id: "post-8",
-    title: "Por que o Roteamento por Vínculo é Mais Seguro que Conversar Apenas pelo WhatsApp?",
-    slug: "roteamento-por-vinculo-vs-whatsapp",
-    excerpt: "Entenda a diferença crucial entre reconhecer um nome na tela e validar um relacionamento jurídico real registrado no painel do escritório.",
+    id: 'post-8',
+    title:
+      'Por que o Roteamento por Vínculo é Mais Seguro que Conversar Apenas pelo WhatsApp?',
+    slug: 'roteamento-por-vinculo-vs-whatsapp',
+    excerpt:
+      'Entenda a diferença crucial entre reconhecer um nome na tela e validar um relacionamento jurídico real registrado no painel do escritório.',
     category: CATEGORIES.TECNOLOGIA_DADOS.name,
     categorySlug: CATEGORIES.TECNOLOGIA_DADOS.slug,
     categoryIcon: CATEGORIES.TECNOLOGIA_DADOS.icon,
     categoryColor: CATEGORIES.TECNOLOGIA_DADOS.color,
-    publishedAt: "16 Jul 2026",
+    publishedAt: '16 Jul 2026',
     readingTime: 5,
     author: AUTHORS.luiz_gustavo,
-    featuredImage: "../assets/images/vinc_infrastructure.jpg",
+    featuredImage: '../assets/images/vinc_infrastructure.jpg',
+    tags: ['WhatsApp', 'Vínculo', 'Segurança'],
     content: `
       <p>O WhatsApp tornou-se a ferramenta de comunicação mais popular do país, mas sua flexibilidade também o transformou no canal favorito de estelionatários. Para combater fraudes, precisamos entender um conceito de segurança digital fundamental: a diferença entre <strong>identidade</strong> e <strong>vínculo</strong>.</p>
 
@@ -398,31 +419,29 @@ const BLOG_POSTS = [
       <h2>Por que Abandonar Chats Desprotegidos?</h2>
       <p>Conversar apenas pelo WhatsApp deixa o cliente exposto a táticas de engenharia social de alta precisão. O roteamento por vínculo do Vinc remove o fator humano da checagem: em vez de você precisar avaliar se uma mensagem "parece" legítima, o sistema confirma se quem está falando realmente tem direito de falar sobre seu processo jurídico.</p>
       <p>Esse é só um dos pilares do ecossistema Vinc — veja <a href="artigo-detalhes.html?slug=vinc-blindando-relacao-advogados-clientes">o panorama completo de como clientes, advogados e escritórios são protegidos juntos</a>.</p>
-
-      <div class="post-signature" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
-        <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--text-primary);">Vinc — confirme antes de confiar.</p>
-        <p style="margin: 0; font-style: italic; color: var(--text-secondary); font-size: 14px;">Desenvolvido com foco total em soberania tecnológica e segurança jurídica.</p>
-      </div>
     `,
     seo: {
-      metaTitle: "Roteamento por Vínculo vs WhatsApp na Advocacia | Blog Vinc",
-      metaDesc: "Descubra por que a validação de vínculos registrados no painel do escritório é superior a apenas reconhecer um nome em um chat aberto do WhatsApp.",
-      keywords: "roteamento por vinculo, whatsapp advocacia seguro, vinculo cliente advogado, painel escritorio vinc, vinc",
-    }
+      metaTitle: 'Roteamento por Vínculo vs WhatsApp na Advocacia | Blog Vinc',
+      metaDesc:
+        'Descubra por que a validação de vínculos registrados no painel do escritório é superior a apenas reconhecer um nome em um chat aberto do WhatsApp.',
+    },
   },
   {
-    id: "post-9",
-    title: "Privacidade e LGPD: Por que as Notificações do Vinc Não Mostram Informações Sensíveis?",
-    slug: "privacidade-lgpd-notificacoes-vinc",
-    excerpt: "Descubra como o design inteligente e as notificações genéricas protegem suas informações e evitam a engenharia social visual de acordo com a LGPD.",
+    id: 'post-9',
+    title:
+      'Privacidade e LGPD: Por que as Notificações do Vinc Não Mostram Informações Sensíveis?',
+    slug: 'privacidade-lgpd-notificacoes-vinc',
+    excerpt:
+      'Descubra como o design inteligente e as notificações genéricas protegem suas informações e evitam a engenharia social visual de acordo com a LGPD.',
     category: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.name,
     categorySlug: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.slug,
     categoryIcon: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.icon,
     categoryColor: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.color,
-    publishedAt: "16 Jul 2026",
+    publishedAt: '16 Jul 2026',
     readingTime: 4,
     author: AUTHORS.vinc_security,
-    featuredImage: "../assets/images/seguranca.jpg",
+    featuredImage: '../assets/images/seguranca.jpg',
+    tags: ['LGPD', 'Segurança'],
     content: `
       <p>Muitas pessoas estão acostumadas a ler o conteúdo completo de mensagens diretamente na tela bloqueada do celular. Embora prático, esse hábito representa um risco severo de segurança e privacidade, violando as diretrizes básicas da <strong>Lei Geral de Proteção de Dados (LGPD)</strong>. É por isso que as notificações do Vinc são desenhadas de forma diferente.</p>
 
@@ -444,31 +463,28 @@ const BLOG_POSTS = [
       <h2>Alinhamento com a LGPD e Segurança Corporativa</h2>
       <p>Para escritórios de advocacia, enviar informações de processos por notificações abertas pode ser interpretado como negligência em caso de auditorias de privacidade. O design seguro do Vinc auxilia as bancas de advocacia a estarem em total conformidade legal, oferecendo uma experiência de <em>Privacy by Design</em> (privacidade desde a concepção) para seus clientes finais.</p>
       <p>Para ler os detalhes, o usuário deve destravar o aparelho e acessar a plataforma autenticada. Segurança e privacidade andam de mãos dadas.</p>
-
-      <div class="post-signature" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
-        <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--text-primary);">Vinc — confirme antes de confiar.</p>
-        <p style="margin: 0; font-style: italic; color: var(--text-secondary); font-size: 14px;">Desenvolvido com foco total em soberania tecnológica e segurança jurídica.</p>
-      </div>
     `,
     seo: {
-      metaTitle: "Notificações do Vinc e Conformidade LGPD | Blog Vinc",
-      metaDesc: "Descubra como as notificações genéricas do Vinc protegem seus dados confidenciais de acordo com a LGPD, impedindo que bisbilhoteiros vejam dados processuais.",
-      keywords: "lgpd notificacoes, privacidade de dados celular, notificacoes genericas, seguranca da informacao, vinc",
-    }
+      metaTitle: 'Notificações do Vinc e Conformidade LGPD | Blog Vinc',
+      metaDesc:
+        'Descubra como as notificações genéricas do Vinc protegem seus dados confidenciais de acordo com a LGPD, impedindo que bisbilhoteiros vejam dados processuais.',
+    },
   },
   {
-    id: "post-10",
-    title: "\"Escritório Ciente\": O Que Significa Marcar Ciência de um Relato?",
-    slug: "escritorio-ciente-marcar-ciencia-relato",
-    excerpt: "Esclareça o funcionamento e os limites do botão de ciência no painel do Vinc, garantindo total transparência e alinhamento entre clientes e advogados.",
+    id: 'post-10',
+    title: '"Escritório Ciente": O Que Significa Marcar Ciência de um Relato?',
+    slug: 'escritorio-ciente-marcar-ciencia-relato',
+    excerpt:
+      'Esclareça o funcionamento e os limites do botão de ciência no painel do Vinc, garantindo total transparência e alinhamento entre clientes e advogados.',
     category: CATEGORIES.GUIA_FUNCIONALIDADES.name,
     categorySlug: CATEGORIES.GUIA_FUNCIONALIDADES.slug,
     categoryIcon: CATEGORIES.GUIA_FUNCIONALIDADES.icon,
     categoryColor: CATEGORIES.GUIA_FUNCIONALIDADES.color,
-    publishedAt: "16 Jul 2026",
+    publishedAt: '16 Jul 2026',
     readingTime: 4,
     author: AUTHORS.luiz_gustavo,
-    featuredImage: "../assets/images/vinc_shield_client.jpg",
+    featuredImage: '../assets/images/vinc_shield_client.jpg',
+    tags: ['Escritório Ciente', 'Advogado', 'Governança'],
     content: `
       <p>A transparência é a chave para uma comunicação jurídica eficiente. No ecossistema do Vinc, quando um cliente identifica uma atividade suspeita ou um contato estranho e envia um aviso, o escritório de advocacia pode marcar aquele relato como <strong>\"Escritório Ciente\"</strong>. Mas você sabe exatamente o que esse botão significa e quais são as suas responsabilidades?</p>
 
@@ -490,31 +506,28 @@ const BLOG_POSTS = [
         <li><strong>Não encerra o caso:</strong> É apenas um marcador de progresso. O processo de investigação de um crime cibernético e o envio de boletins de ocorrência continuam seguindo os rituais tradicionais de segurança e assessoria jurídica.</li>
       </ul>
       <p>Em resumo, o status \"Escritório Ciente\" serve para aproximar o cliente de sua equipe jurídica, eliminando o silêncio que costuma gerar ansiedade e permitindo respostas ágeis em momentos críticos.</p>
-
-      <div class="post-signature" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
-        <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--text-primary);">Vinc — confirme antes de confiar.</p>
-        <p style="margin: 0; font-style: italic; color: var(--text-secondary); font-size: 14px;">Desenvolvido com foco total em soberania tecnológica e segurança jurídica.</p>
-      </div>
     `,
     seo: {
-      metaTitle: "Entenda o Status de Escritório Ciente | Blog Vinc",
-      metaDesc: "Descubra como o status de Escritório Ciente melhora o acompanhamento de relatos suspeitos e de segurança, fortalecendo a relação entre cliente e escritório.",
-      keywords: "escritorio ciente, relato de seguranca vinc, monitoramento de golpes, transparencia juridica, vinc",
-    }
+      metaTitle: 'Entenda o Status de Escritório Ciente | Blog Vinc',
+      metaDesc:
+        'Descubra como o status de Escritório Ciente melhora o acompanhamento de relatos suspeitos e de segurança, fortalecendo a relação entre cliente e escritório.',
+    },
   },
   {
-    id: "post-11",
-    title: "Por que o Vinc Não Possui Cadastro Público?",
-    slug: "por-que-vinc-nao-possui-cadastro-publico",
-    excerpt: "Descubra por que a entrada na plataforma ocorre apenas por meio de convites e chaves de ativação exclusivas, blindando a reputação dos escritórios parceiros.",
+    id: 'post-11',
+    title: 'Por que o Vinc Não Possui Cadastro Público?',
+    slug: 'por-que-vinc-nao-possui-cadastro-publico',
+    excerpt:
+      'Descubra por que a entrada na plataforma ocorre apenas por meio de convites e chaves de ativação exclusivas, blindando a reputação dos escritórios parceiros.',
     category: CATEGORIES.GESTAO_REPUTACAO.name,
     categorySlug: CATEGORIES.GESTAO_REPUTACAO.slug,
     categoryIcon: CATEGORIES.GESTAO_REPUTACAO.icon,
     categoryColor: CATEGORIES.GESTAO_REPUTACAO.color,
-    publishedAt: "16 Jul 2026",
+    publishedAt: '16 Jul 2026',
     readingTime: 4,
     author: AUTHORS.luiz_gustavo,
-    featuredImage: "../assets/images/vinc_advocacy_shield.jpg",
+    featuredImage: '../assets/images/vinc_advocacy_shield.jpg',
+    tags: ['Segurança', 'Advogado', 'Governança'],
     content: `
       <p>Ao navegar pelo site do Vinc, você deve ter percebido que não existe um botão de \"Criar Conta Grátis\" ou \"Cadastre-se\" aberto ao público geral. Essa decisão arquitetônica não é um capricho de design, mas sim um pilar de segurança digital essencial para manter a integridade da nossa plataforma.</p>
 
@@ -536,31 +549,29 @@ const BLOG_POSTS = [
         <li><strong>Emissão da Chave Única:</strong> Após a homologação, o escritório recebe uma chave de ativação única para acessar seu painel.</li>
       </ol>
       <p>Esse modelo de acesso restrito dificulta fraudes na origem e reduz o risco de que perfis falsos se façam passar por escritórios credenciados dentro da plataforma.</p>
-
-      <div class="post-signature" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
-        <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--text-primary);">Vinc — confirme antes de confiar.</p>
-        <p style="margin: 0; font-style: italic; color: var(--text-secondary); font-size: 14px;">Desenvolvido com foco total em soberania tecnológica e segurança jurídica.</p>
-      </div>
     `,
     seo: {
-      metaTitle: "Por Que o Vinc Não Tem Cadastro Aberto | Blog Vinc",
-      metaDesc: "Entenda por que o Vinc é um ecossistema fechado e acessível somente por meio de chaves de ativação homologadas e convites exclusivos.",
-      keywords: "cadastro fechado vinc, chave de ativação oab, seguranca corporativa, blindagem contra golpistas, vinc",
-    }
+      metaTitle: 'Por Que o Vinc Não Tem Cadastro Aberto | Blog Vinc',
+      metaDesc:
+        'Entenda por que o Vinc é um ecossistema fechado e acessível somente por meio de chaves de ativação homologadas e convites exclusivos.',
+    },
   },
   {
-    id: "post-12",
-    title: "Vinc: Blindando a Relação entre Advogados e Clientes contra Fraudes",
-    slug: "vinc-blindando-relacao-advogados-clientes",
-    excerpt: "No cenário jurídico atual, entenda como o ecossistema do Vinc protege a identidade do escritório e o patrimônio dos clientes através de relações de vínculos autenticados.",
+    id: 'post-12',
+    title:
+      'Vinc: Blindando a Relação entre Advogados e Clientes contra Fraudes',
+    slug: 'vinc-blindando-relacao-advogados-clientes',
+    excerpt:
+      'No cenário jurídico atual, entenda como o ecossistema do Vinc protege a identidade do escritório e o patrimônio dos clientes através de relações de vínculos autenticados.',
     category: CATEGORIES.GESTAO_REPUTACAO.name,
     categorySlug: CATEGORIES.GESTAO_REPUTACAO.slug,
     categoryIcon: CATEGORIES.GESTAO_REPUTACAO.icon,
     categoryColor: CATEGORIES.GESTAO_REPUTACAO.color,
-    publishedAt: "16 Jul 2026",
+    publishedAt: '16 Jul 2026',
     readingTime: 4,
     author: AUTHORS.luiz_gustavo,
-    featuredImage: "../assets/images/vinc_dashboard_mock.jpg",
+    featuredImage: '../assets/images/vinc_dashboard_mock.jpg',
+    tags: ['Golpe', 'Advogado', 'Fraude', 'Segurança', 'Vínculo'],
     content: `
       <p>No cenário jurídico atual, a reputação e a marca de um escritório de advocacia são seus ativos mais preciosos. Contudo, essa credibilidade conquistada com anos de dedicação também se tornou o alvo principal de quadrilhas especializadas. Criminosos se apropriam de nomes de advogados reais e usam dados de processos públicos para enganar clientes em tentativas de golpes sofisticados.</p>
 
@@ -620,52 +631,49 @@ const BLOG_POSTS = [
       <div class="post-cta-box" style="margin-top: 40px; padding: 24px; background-color: var(--ice-blue); border-left: 4px solid var(--blue); border-radius: 0 var(--radius-md) var(--radius-md) 0;">
         <h3 style="margin-top: 0; margin-bottom: 12px; color: var(--blue); font-size: 18px; font-weight: bold;">Quer conhecer uma nova forma de proteger clientes e escritórios?</h3>
         <p style="margin-bottom: 20px; color: var(--text-primary); font-size: 15px; line-height: 1.6;">Conheça o Vinc e descubra como um ecossistema baseado em vínculos reais pode reduzir drasticamente tentativas de fraudes e elevar a confiança mútua na comunicação jurídica.</p>
-        <a href="/pages/contato.html" class="btn-primary" style="display: inline-block; text-decoration: none; font-size: 14px; padding: 10px 20px;">Solicitar chave de ativação</a>
-      </div>
-
-      <div class="post-signature" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
-        <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--text-primary);">Vinc — confirme antes de confiar.</p>
-        <p style="margin: 0; font-style: italic; color: var(--text-secondary); font-size: 14px;">Desenvolvido com foco total em soberania tecnológica e segurança jurídica.</p>
+        <a href="contato.html" class="btn-primary" style="display: inline-block; text-decoration: none; font-size: 14px; padding: 10px 20px;">Solicitar chave de ativação</a>
       </div>
     `,
     seo: {
-      metaTitle: "Vinc: Blindando a Relação Advogado-Cliente | Blog",
-      metaDesc: "Descubra como o ecossistema do Vinc protege a identidade do escritório de advocacia e o patrimônio dos clientes através da tecnologia de vínculo contratual real.",
-      keywords: "antifraude advocacia, roteamento de vinculo, blindagem de escritorio, chave de ativação vinc, seguranca juridica"
-    }
-  }
+      metaTitle: 'Vinc: Blindando a Relação Advogado-Cliente | Blog',
+      metaDesc:
+        'Descubra como o ecossistema do Vinc protege a identidade do escritório de advocacia e o patrimônio dos clientes através da tecnologia de vínculo contratual real.',
+    },
+  },
 ];
 
 // --------------------------------------------------------------------------
 // LÓGICA DE GERENCIAMENTO DE ESTADO E RENDERIZAÇÃO DO BLOG (LISTAGEM)
 // --------------------------------------------------------------------------
-let activeCategory = "Todos";
-let searchQuery = "";
+let activeCategory = 'Todos';
+let searchQuery = '';
 
 /**
  * Filtra e renderiza os artigos na listagem principal do blog
  * Com suporte às novas cores, ícones e tags personalizadas.
  */
 function renderBlogPosts() {
-  const postsContainer = document.getElementById("blog-posts-container");
-  const featuredContainer = document.getElementById("featured-post-container");
+  const postsContainer = document.getElementById('blog-posts-container');
+  const featuredContainer = document.getElementById('featured-post-container');
   if (!postsContainer) return; // Se não estiver na página de listagem, sai da função
 
   // Filtragem dos posts ativos com base na categoria e termo de pesquisa
   const filtered = BLOG_POSTS.filter((post) => {
-    const matchesCategory = activeCategory === "Todos" || post.category === activeCategory;
+    const matchesCategory =
+      activeCategory === 'Todos' || post.category === activeCategory;
     const matchesSearch =
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.content.toLowerCase().includes(searchQuery.toLowerCase());
+      post.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.tags.some((tag) => tag.toLowerCase() === searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
-  const isFiltering = activeCategory !== "Todos" || searchQuery !== "";
+  const isFiltering = activeCategory !== 'Todos' || searchQuery !== '';
 
   // Estado vazio de busca
   if (filtered.length === 0) {
-    if (featuredContainer) featuredContainer.style.display = "none";
+    if (featuredContainer) featuredContainer.style.display = 'none';
     postsContainer.innerHTML = `
       <div class="empty-state" id="blog-empty-state">
         <div class="empty-state-icon">🔍</div>
@@ -680,7 +688,7 @@ function renderBlogPosts() {
 
   // Renderização do Artigo Destaque Superior (somente quando não estiver aplicando filtros)
   if (!isFiltering && featuredContainer) {
-    featuredContainer.style.display = "block";
+    featuredContainer.style.display = 'block';
     const featuredPost = filtered[0];
     postsToGrid = filtered.slice(1); // O restante dos artigos vai para a grade (grid)
 
@@ -716,13 +724,15 @@ function renderBlogPosts() {
       </article>
     `;
   } else if (featuredContainer) {
-    featuredContainer.style.display = "none";
+    featuredContainer.style.display = 'none';
   }
 
   // Renderização da grade de artigos (Grid responsivo)
   postsContainer.innerHTML = `
     <div class="articles-grid" id="articles-grid-container">
-      ${postsToGrid.map((post) => `
+      ${postsToGrid
+        .map(
+          (post) => `
         <article class="article-card" id="article-card-${post.id}">
           <a href="artigo-detalhes.html?slug=${post.slug}" class="article-img-link" aria-label="Ler artigo: ${post.title}">
             <img src="${post.featuredImage}" alt="Capa: ${post.title}" class="article-img" loading="lazy">
@@ -747,7 +757,9 @@ function renderBlogPosts() {
             </div>
           </div>
         </article>
-      `).join('')}
+      `
+        )
+        .join('')}
     </div>
   `;
 }
@@ -756,32 +768,38 @@ function renderBlogPosts() {
  * Inicializa os botões de filtro superior das categorias e o input de busca
  */
 function initBlogControls() {
-  const categoryContainer = document.getElementById("category-filters-wrap");
-  const searchInput = document.getElementById("blog-search-input");
+  const categoryContainer = document.getElementById('category-filters-wrap');
+  const searchInput = document.getElementById('blog-search-input');
 
   if (categoryContainer) {
     // Monta a estrutura de pílulas incluindo o ícone de cada categoria
     categoryContainer.innerHTML = `
-      <button class="category-btn ${activeCategory === "Todos" ? 'active' : ''}" data-category="Todos">🏷️ Todos</button>
-      ${Object.values(CATEGORIES).map((cat) => `
+      <button class="category-btn ${activeCategory === 'Todos' ? 'active' : ''}" data-category="Todos">🏷️ Todos</button>
+      ${Object.values(CATEGORIES)
+        .map(
+          (cat) => `
         <button class="category-btn ${cat.name === activeCategory ? 'active' : ''}" data-category="${cat.name}">
           <span style="color: ${cat.color}; margin-right: 4px;">${cat.icon}</span> ${cat.name}
         </button>
-      `).join('')}
+      `
+        )
+        .join('')}
     `;
 
-    categoryContainer.querySelectorAll(".category-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        categoryContainer.querySelectorAll(".category-btn").forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        activeCategory = btn.getAttribute("data-category");
+    categoryContainer.querySelectorAll('.category-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        categoryContainer
+          .querySelectorAll('.category-btn')
+          .forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.getAttribute('data-category');
         renderBlogPosts();
       });
     });
   }
 
   if (searchInput) {
-    searchInput.addEventListener("input", (e) => {
+    searchInput.addEventListener('input', (e) => {
       searchQuery = e.target.value.trim();
       renderBlogPosts();
     });
@@ -797,12 +815,12 @@ function initBlogControls() {
  * e gerando automaticamente o Índice de Conteúdo (Table of Contents) do artigo.
  */
 function loadSinglePost() {
-  const singlePostContainer = document.getElementById("single-post-container");
+  const singlePostContainer = document.getElementById('single-post-container');
   if (!singlePostContainer) return; // Se não estiver na página de artigo-detalhes, sai
 
   // Extrai o parâmetro slug da URL
   const urlParams = new URLSearchParams(window.location.search);
-  const slug = urlParams.get("slug");
+  const slug = urlParams.get('slug');
 
   if (!slug) {
     renderSinglePostNotFound();
@@ -825,11 +843,11 @@ function loadSinglePost() {
 
   let metaDescTag = document.querySelector('meta[name="description"]');
   if (metaDescTag) {
-    metaDescTag.setAttribute("content", post.seo.metaDesc);
+    metaDescTag.setAttribute('content', post.seo.metaDesc);
   } else {
-    metaDescTag = document.createElement("meta");
-    metaDescTag.setAttribute("name", "description");
-    metaDescTag.setAttribute("content", post.seo.metaDesc);
+    metaDescTag = document.createElement('meta');
+    metaDescTag.setAttribute('name', 'description');
+    metaDescTag.setAttribute('content', post.seo.metaDesc);
     document.head.appendChild(metaDescTag);
   }
 
@@ -839,66 +857,86 @@ function loadSinglePost() {
   const canonicalUrl = `https://www.vincapp.com.br/pages/artigo-detalhes.html?slug=${post.slug}`;
   let canonicalTag = document.querySelector('link[rel="canonical"]');
   if (canonicalTag) {
-    canonicalTag.setAttribute("href", canonicalUrl);
+    canonicalTag.setAttribute('href', canonicalUrl);
   } else {
-    canonicalTag = document.createElement("link");
-    canonicalTag.setAttribute("rel", "canonical");
-    canonicalTag.setAttribute("href", canonicalUrl);
+    canonicalTag = document.createElement('link');
+    canonicalTag.setAttribute('rel', 'canonical');
+    canonicalTag.setAttribute('href', canonicalUrl);
     document.head.appendChild(canonicalTag);
   }
 
   // Crawlers de preview (WhatsApp, LinkedIn, Slack) exigem URL absoluta em og:image/twitter:image
-  const absoluteImageUrl = post.featuredImage.replace("../", "https://www.vincapp.com.br/");
+  const absoluteImageUrl = post.featuredImage.replace(
+    '../',
+    'https://www.vincapp.com.br/'
+  );
 
   // Atualizar Open Graph (Facebook, WhatsApp, LinkedIn)
-  updateMetaTag("property", "og:title", post.seo.metaTitle);
-  updateMetaTag("property", "og:description", post.seo.metaDesc);
-  updateMetaTag("property", "og:url", canonicalUrl);
-  updateMetaTag("property", "og:image", absoluteImageUrl);
+  updateMetaTag('property', 'og:title', post.seo.metaTitle);
+  updateMetaTag('property', 'og:description', post.seo.metaDesc);
+  updateMetaTag('property', 'og:url', canonicalUrl);
+  updateMetaTag('property', 'og:image', absoluteImageUrl);
 
   // Atualizar Twitter / X Cards
-  updateMetaTag("name", "twitter:title", post.seo.metaTitle);
-  updateMetaTag("name", "twitter:description", post.seo.metaDesc);
-  updateMetaTag("name", "twitter:image", absoluteImageUrl);
+  updateMetaTag('name', 'twitter:title', post.seo.metaTitle);
+  updateMetaTag('name', 'twitter:description', post.seo.metaDesc);
+  updateMetaTag('name', 'twitter:image', absoluteImageUrl);
 
   // Injetar dados estruturados JSON-LD do Schema.org para indexação do Google
-  const schemaScript = document.createElement("script");
-  schemaScript.type = "application/ld+json";
+  const schemaScript = document.createElement('script');
+  schemaScript.type = 'application/ld+json';
   schemaScript.text = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": post.title,
-    "image": [absoluteImageUrl],
-    "datePublished": parsePublishedAtToISO(post.publishedAt),
-    "author": [{
-      "@type": "Person",
-      "name": post.author.name,
-      "jobTitle": post.author.role
-    }],
-    "publisher": {
-      "@type": "Organization",
-      "name": "Vinc",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.vincapp.com.br/assets/icons/vinc_icon_256px_1.png"
-      }
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    image: [absoluteImageUrl],
+    datePublished: parsePublishedAtToISO(post.publishedAt),
+    author: [
+      {
+        '@type': 'Person',
+        name: post.author.name,
+        jobTitle: post.author.role,
+      },
+    ],
+    publisher: {
+      '@type': 'Organization',
+      name: 'Vinc',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.vincapp.com.br/assets/icons/vinc_icon_256px_1.png',
+      },
     },
-    "description": post.seo.metaDesc,
-    "articleBody": post.content.replace(/<[^>]*>/g, '') // Remove HTML para gerar texto cru para o buscador
+    description: post.seo.metaDesc,
+    articleBody: post.content.replace(/<[^>]*>/g, ''), // Remove HTML para gerar texto cru para o buscador
   });
   document.head.appendChild(schemaScript);
 
   // Injetar Schema.org BreadcrumbList, espelhando a trilha visual (Início > Blog > Categoria)
-  const breadcrumbSchema = document.createElement("script");
-  breadcrumbSchema.type = "application/ld+json";
+  const breadcrumbSchema = document.createElement('script');
+  breadcrumbSchema.type = 'application/ld+json';
   breadcrumbSchema.text = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://www.vincapp.com.br/" },
-      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.vincapp.com.br/pages/blog.html" },
-      { "@type": "ListItem", "position": 3, "name": post.category, "item": canonicalUrl }
-    ]
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Início',
+        item: 'https://www.vincapp.com.br/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://www.vincapp.com.br/pages/blog.html',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.category,
+        item: canonicalUrl,
+      },
+    ],
   });
   document.head.appendChild(breadcrumbSchema);
 
@@ -944,6 +982,12 @@ function loadSinglePost() {
     <article class="post-body" id="post-text-body">
       ${post.content}
     </article>
+
+    <!-- Assinatura de fechamento, única para todos os artigos (antes duplicada em 6 deles) -->
+    <div class="post-signature" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
+      <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--text-primary);">Vinc — confirme antes de confiar.</p>
+      <p style="margin: 0; font-style: italic; color: var(--text-secondary); font-size: 14px;">Desenvolvido com foco total em soberania tecnológica e segurança jurídica.</p>
+    </div>
 
     <!-- Seção de Interação / Feedback (Fase 1) -->
     <section class="post-interaction-box" id="post-feedback-section" aria-labelledby="feedback-section-title">
@@ -1053,26 +1097,28 @@ function loadSinglePost() {
   `;
 
   // 3. Geração Automática do Índice de Conteúdo (Table of Contents - TOC)
-  const postBody = document.getElementById("post-text-body");
+  const postBody = document.getElementById('post-text-body');
   if (postBody) {
-    const headings = postBody.querySelectorAll("h2");
+    const headings = postBody.querySelectorAll('h2');
     if (headings.length > 0) {
-      const tocContainer = document.createElement("div");
-      tocContainer.className = "post-toc";
+      const tocContainer = document.createElement('div');
+      tocContainer.className = 'post-toc';
       tocContainer.innerHTML = `
         <h4 class="toc-title">📍 Índice do Artigo</h4>
         <ul class="toc-list">
-          ${Array.from(headings).map((h, index) => {
-            const headingId = `topico-${index + 1}`;
-            h.id = headingId; // Seta o id dinâmico no elemento H2 do texto
-            return `
+          ${Array.from(headings)
+            .map((h, index) => {
+              const headingId = `topico-${index + 1}`;
+              h.id = headingId; // Seta o id dinâmico no elemento H2 do texto
+              return `
               <li>
                 <a href="#${headingId}" class="toc-link">
                   <span class="toc-bullet">▶</span> ${h.textContent}
                 </a>
               </li>
             `;
-          }).join('')}
+            })
+            .join('')}
         </ul>
       `;
       // Injeta o Índice de Conteúdo logo no topo do texto do artigo para melhorar UX
@@ -1092,51 +1138,58 @@ function loadSinglePost() {
  */
 function initFeedbackSection(post) {
   const postTitle = post.title;
-  const ratingButtons = document.querySelectorAll(".rating-btn");
-  const checkboxes = document.querySelectorAll('.topic-label input[type="checkbox"]');
-  const sendSuggestionBtn = document.getElementById("btn-send-suggestion");
-  const suggestionTextarea = document.getElementById("suggestion-text");
+  const ratingButtons = document.querySelectorAll('.rating-btn');
+  const checkboxes = document.querySelectorAll(
+    '.topic-label input[type="checkbox"]'
+  );
+  const sendSuggestionBtn = document.getElementById('btn-send-suggestion');
+  const suggestionTextarea = document.getElementById('suggestion-text');
 
   // Elementos de mensagem de feedback
-  const ratingFeedbackMsg = document.getElementById("rating-feedback-msg");
-  const topicsFeedbackMsg = document.getElementById("topics-feedback-msg");
-  const suggestionFeedbackMsg = document.getElementById("suggestion-feedback-msg");
+  const ratingFeedbackMsg = document.getElementById('rating-feedback-msg');
+  const topicsFeedbackMsg = document.getElementById('topics-feedback-msg');
+  const suggestionFeedbackMsg = document.getElementById(
+    'suggestion-feedback-msg'
+  );
 
   let selectedRatingLabel = null;
 
   // 1. Avaliação (Etapa 1): só estado visual local por enquanto
   ratingButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener('click', () => {
       ratingButtons.forEach((b) => {
-        b.classList.remove("active");
-        b.setAttribute("aria-checked", "false");
+        b.classList.remove('active');
+        b.setAttribute('aria-checked', 'false');
       });
 
-      btn.classList.add("active");
-      btn.setAttribute("aria-checked", "true");
-      selectedRatingLabel = btn.innerText.trim().replace(/\s+/g, " ");
+      btn.classList.add('active');
+      btn.setAttribute('aria-checked', 'true');
+      selectedRatingLabel = btn.innerText.trim().replace(/\s+/g, ' ');
 
       if (ratingFeedbackMsg) {
-        ratingFeedbackMsg.style.display = "flex";
-        ratingFeedbackMsg.className = "feedback-message info";
-        ratingFeedbackMsg.innerHTML = 'Avaliação registrada. Clique em "Enviar feedback" ao final para confirmar o envio.';
+        ratingFeedbackMsg.style.display = 'flex';
+        ratingFeedbackMsg.className = 'feedback-message info';
+        ratingFeedbackMsg.innerHTML =
+          'Avaliação registrada. Clique em "Enviar feedback" ao final para confirmar o envio.';
       }
     });
   });
 
   // 2. Temas de interesse (Etapa 2): idem, só estado visual local
   checkboxes.forEach((cb) => {
-    cb.addEventListener("change", () => {
-      const parentLabel = cb.closest(".topic-label");
-      parentLabel.classList.toggle("checked", cb.checked);
+    cb.addEventListener('change', () => {
+      const parentLabel = cb.closest('.topic-label');
+      parentLabel.classList.toggle('checked', cb.checked);
 
-      const selectedCount = Array.from(checkboxes).filter((c) => c.checked).length;
+      const selectedCount = Array.from(checkboxes).filter(
+        (c) => c.checked
+      ).length;
       if (topicsFeedbackMsg) {
         if (selectedCount === 0) {
-          topicsFeedbackMsg.style.display = "none";
+          topicsFeedbackMsg.style.display = 'none';
         } else {
-          topicsFeedbackMsg.style.display = "flex";
-          topicsFeedbackMsg.className = "feedback-message info";
+          topicsFeedbackMsg.style.display = 'flex';
+          topicsFeedbackMsg.className = 'feedback-message info';
           topicsFeedbackMsg.innerHTML = `📌 ${selectedCount} tema(s) selecionado(s). Clique em "Enviar feedback" ao final para confirmar o envio.`;
         }
       }
@@ -1145,7 +1198,7 @@ function initFeedbackSection(post) {
 
   // 3. Envio real (Etapa 3): consolida avaliação + temas + comentário e envia via Web3Forms
   if (sendSuggestionBtn && suggestionTextarea) {
-    sendSuggestionBtn.addEventListener("click", async () => {
+    sendSuggestionBtn.addEventListener('click', async () => {
       const text = suggestionTextarea.value.trim();
       const selectedTopics = Array.from(checkboxes)
         .filter((c) => c.checked)
@@ -1153,51 +1206,58 @@ function initFeedbackSection(post) {
 
       if (!selectedRatingLabel && selectedTopics.length === 0 && !text) {
         if (suggestionFeedbackMsg) {
-          suggestionFeedbackMsg.style.display = "flex";
-          suggestionFeedbackMsg.className = "feedback-message error";
-          suggestionFeedbackMsg.innerHTML = "Selecione uma avaliação, um tema de interesse ou escreva algo antes de enviar.";
+          suggestionFeedbackMsg.style.display = 'flex';
+          suggestionFeedbackMsg.className = 'feedback-message error';
+          suggestionFeedbackMsg.innerHTML =
+            'Selecione uma avaliação, um tema de interesse ou escreva algo antes de enviar.';
         }
         return;
       }
 
       sendSuggestionBtn.disabled = true;
       if (suggestionFeedbackMsg) {
-        suggestionFeedbackMsg.style.display = "flex";
-        suggestionFeedbackMsg.className = "feedback-message";
-        suggestionFeedbackMsg.innerHTML = "Enviando...";
+        suggestionFeedbackMsg.style.display = 'flex';
+        suggestionFeedbackMsg.className = 'feedback-message';
+        suggestionFeedbackMsg.innerHTML = 'Enviando...';
       }
 
       try {
-        const response = await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
           },
           body: JSON.stringify({
-            access_key: "933b21fa-2815-45e6-9d9a-7935a7e8a000",
+            access_key: '933b21fa-2815-45e6-9d9a-7935a7e8a000',
             subject: `Feedback do Blog Vinc - Artigo: ${postTitle}`,
             artigo: postTitle,
-            avaliacao: selectedRatingLabel || "Não informada",
-            temas_de_interesse: selectedTopics.length > 0 ? selectedTopics.join(", ") : "Nenhum tema selecionado",
-            sugestao_ou_comentario: text || "Nenhuma sugestão ou comentário enviado",
+            avaliacao: selectedRatingLabel || 'Não informada',
+            temas_de_interesse:
+              selectedTopics.length > 0
+                ? selectedTopics.join(', ')
+                : 'Nenhum tema selecionado',
+            sugestao_ou_comentario:
+              text || 'Nenhuma sugestão ou comentário enviado',
           }),
         });
 
         const result = await response.json();
         if (!response.ok || !result.success) {
-          throw new Error(result.message || "Falha no envio.");
+          throw new Error(result.message || 'Falha no envio.');
         }
 
         if (suggestionFeedbackMsg) {
-          suggestionFeedbackMsg.className = "feedback-message success";
-          suggestionFeedbackMsg.innerHTML = "🎉 Feedback enviado com sucesso. Obrigado pela sua contribuição!";
+          suggestionFeedbackMsg.className = 'feedback-message success';
+          suggestionFeedbackMsg.innerHTML =
+            '🎉 Feedback enviado com sucesso. Obrigado pela sua contribuição!';
         }
-        suggestionTextarea.value = "";
+        suggestionTextarea.value = '';
       } catch (error) {
         if (suggestionFeedbackMsg) {
-          suggestionFeedbackMsg.className = "feedback-message error";
-          suggestionFeedbackMsg.innerHTML = 'Não foi possível enviar seu feedback agora. Tente novamente em instantes ou <a href="mailto:contato@vincapp.com.br">escreva diretamente para nós</a>.';
+          suggestionFeedbackMsg.className = 'feedback-message error';
+          suggestionFeedbackMsg.innerHTML =
+            'Não foi possível enviar seu feedback agora. Tente novamente em instantes ou <a href="mailto:contato@vincapp.com.br">escreva diretamente para nós</a>.';
         }
       } finally {
         sendSuggestionBtn.disabled = false;
@@ -1212,24 +1272,34 @@ function initFeedbackSection(post) {
 // Converte datas no formato exibido "DD Mon YYYY" (ex.: "15 Jul 2026") para
 // ISO 8601, exigido pelo campo datePublished do Schema.org.
 const PT_BR_MONTHS = {
-  jan: "01", fev: "02", mar: "03", abr: "04", mai: "05", jun: "06",
-  jul: "07", ago: "08", set: "09", out: "10", nov: "11", dez: "12"
+  jan: '01',
+  fev: '02',
+  mar: '03',
+  abr: '04',
+  mai: '05',
+  jun: '06',
+  jul: '07',
+  ago: '08',
+  set: '09',
+  out: '10',
+  nov: '11',
+  dez: '12',
 };
 
 function parsePublishedAtToISO(publishedAt) {
-  const [day, month, year] = publishedAt.split(" ");
+  const [day, month, year] = publishedAt.split(' ');
   const monthNumber = PT_BR_MONTHS[month.toLowerCase()];
-  return `${year}-${monthNumber}-${day.padStart(2, "0")}T09:00:00-03:00`;
+  return `${year}-${monthNumber}-${day.padStart(2, '0')}T09:00:00-03:00`;
 }
 
 function updateMetaTag(attribute, value, content) {
   let tag = document.querySelector(`meta[${attribute}="${value}"]`);
   if (tag) {
-    tag.setAttribute("content", content);
+    tag.setAttribute('content', content);
   } else {
-    tag = document.createElement("meta");
+    tag = document.createElement('meta');
     tag.setAttribute(attribute, value);
-    tag.setAttribute("content", content);
+    tag.setAttribute('content', content);
     document.head.appendChild(tag);
   }
 }
@@ -1240,17 +1310,23 @@ function updateMetaTag(attribute, value, content) {
  */
 function renderRelatedPostsMarkup(currentPost) {
   // Busca posts da mesma categoria (excluindo o post ativo)
-  let related = BLOG_POSTS.filter((p) => p.id !== currentPost.id && p.category === currentPost.category);
+  let related = BLOG_POSTS.filter(
+    (p) => p.id !== currentPost.id && p.category === currentPost.category
+  );
 
   // Caso não existam posts suficientes na mesma categoria, preenche com os demais
   if (related.length < 3) {
-    const extra = BLOG_POSTS.filter((p) => p.id !== currentPost.id && p.category !== currentPost.category);
+    const extra = BLOG_POSTS.filter(
+      (p) => p.id !== currentPost.id && p.category !== currentPost.category
+    );
     related = [...related, ...extra].slice(0, 3);
   } else {
     related = related.slice(0, 3);
   }
 
-  return related.map((post) => `
+  return related
+    .map(
+      (post) => `
     <article class="article-card" id="related-card-${post.id}">
       <a href="artigo-detalhes.html?slug=${post.slug}" class="article-img-link" aria-label="Artigo Relacionado: ${post.title}">
         <img src="${post.featuredImage}" alt="Capa: ${post.title}" class="article-img" loading="lazy">
@@ -1268,14 +1344,16 @@ function renderRelatedPostsMarkup(currentPost) {
         <a href="artigo-detalhes.html?slug=${post.slug}" class="btn-secondary btn-small" style="padding: 4px 10px; font-size: 12px; align-self: flex-start; margin-top: auto;" id="btn-read-related-${post.id}">Ler mais</a>
       </div>
     </article>
-  `).join('');
+  `
+    )
+    .join('');
 }
 
 /**
  * Interface limpa amigável exibida caso o artigo não seja localizado
  */
 function renderSinglePostNotFound() {
-  const container = document.getElementById("single-post-container");
+  const container = document.getElementById('single-post-container');
   if (!container) return;
 
   container.innerHTML = `
@@ -1296,18 +1374,18 @@ function renderSinglePostNotFound() {
  * Inicializa os formulários de inscrição da Newsletter (lateral e rodapé)
  */
 function initNewsletter() {
-  const forms = document.querySelectorAll(".newsletter-form");
+  const forms = document.querySelectorAll('.newsletter-form');
 
   forms.forEach((form) => {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener('submit', (e) => {
       const emailInput = form.querySelector('input[name="EMAIL"]');
       const feedback = form.nextElementSibling; // Elemento .newsletter-feedback seguinte
 
       if (!emailInput || !emailInput.value) {
         e.preventDefault();
         if (feedback) {
-          feedback.textContent = "Por favor, digite um e-mail válido.";
-          feedback.className = "newsletter-feedback error";
+          feedback.textContent = 'Por favor, digite um e-mail válido.';
+          feedback.className = 'newsletter-feedback error';
         }
         return;
       }
@@ -1317,16 +1395,17 @@ function initNewsletter() {
       // "mc-newsletter-frame", sem sair da página. O Mailchimp não libera CORS
       // para o navegador ler a resposta, então a confirmação abaixo é otimista.
       if (feedback) {
-        feedback.textContent = "Enviando inscrição...";
-        feedback.className = "newsletter-feedback success";
+        feedback.textContent = 'Enviando inscrição...';
+        feedback.className = 'newsletter-feedback success';
       }
 
       setTimeout(() => {
         if (feedback) {
           // Não temos como confirmar que o Mailchimp aceitou o cadastro (CORS bloqueia a
           // leitura da resposta), então evitamos prometer certeza que não temos.
-          feedback.textContent = "Inscrição enviada! Se não receber nosso e-mail de confirmação em alguns minutos, verifique sua caixa de spam.";
-          feedback.className = "newsletter-feedback success";
+          feedback.textContent =
+            'Inscrição enviada! Se não receber nosso e-mail de confirmação em alguns minutos, verifique sua caixa de spam.';
+          feedback.className = 'newsletter-feedback success';
         }
         form.reset();
       }, 1200);
@@ -1342,18 +1421,26 @@ function initNewsletter() {
  * Alimenta dinamicamente os widgets da Sidebar reutilizando o mesmo banco de dados central.
  */
 function initSidebar() {
-  const popularContainer = document.getElementById("popular-posts-list");
-  const categoriesContainer = document.getElementById("sidebar-categories-list");
-  const tagsContainer = document.getElementById("sidebar-tags-cloud");
+  const popularContainer = document.getElementById('popular-posts-list');
+  const categoriesContainer = document.getElementById(
+    'sidebar-categories-list'
+  );
+  const tagsContainer = document.getElementById('sidebar-tags-cloud');
 
   // 1. Popula a lista de Artigos Recentes, ordenados pela data real de publicação
   // (não temos contagem de leituras real, então "mais lidos" seria uma métrica
   // inventada; recência é o único sinal verdadeiro que o post.publishedAt garante).
   if (popularContainer) {
     const recentPosts = [...BLOG_POSTS]
-      .sort((a, b) => new Date(parsePublishedAtToISO(b.publishedAt)) - new Date(parsePublishedAtToISO(a.publishedAt)))
+      .sort(
+        (a, b) =>
+          new Date(parsePublishedAtToISO(b.publishedAt)) -
+          new Date(parsePublishedAtToISO(a.publishedAt))
+      )
       .slice(0, 4);
-    popularContainer.innerHTML = recentPosts.map((post, idx) => `
+    popularContainer.innerHTML = recentPosts
+      .map(
+        (post, idx) => `
       <li class="popular-item" id="popular-item-${post.id}">
         <span class="popular-number" style="color: ${post.categoryColor}; opacity: 0.4;">0${idx + 1}</span>
         <div class="popular-item-content">
@@ -1361,7 +1448,9 @@ function initSidebar() {
           <span class="popular-item-meta">${post.publishedAt} • ${post.readingTime} min</span>
         </div>
       </li>
-    `).join('');
+    `
+      )
+      .join('');
   }
 
   // 2. Popula e faz a contagem de posts por categoria na barra lateral
@@ -1371,9 +1460,10 @@ function initSidebar() {
       counts[post.category] = (counts[post.category] || 0) + 1;
     });
 
-    categoriesContainer.innerHTML = Object.values(CATEGORIES).map((cat) => {
-      const count = counts[cat.name] || 0;
-      return `
+    categoriesContainer.innerHTML = Object.values(CATEGORIES)
+      .map((cat) => {
+        const count = counts[cat.name] || 0;
+        return `
         <li class="sidebar-cat-item" id="sidebar-cat-item-${cat.slug}">
           <a href="blog.html" class="sidebar-cat-link" data-category="${cat.name}">
             <span style="color: ${cat.color};">${cat.icon}</span> ${cat.name}
@@ -1381,50 +1471,66 @@ function initSidebar() {
           <span class="sidebar-cat-count">${count}</span>
         </li>
       `;
-    }).join('');
+      })
+      .join('');
 
     // Permite que cliques nas categorias da sidebar realizem filtros em tempo real
-    categoriesContainer.querySelectorAll(".sidebar-cat-link").forEach((link) => {
-      link.addEventListener("click", (e) => {
-        const listPostsContainer = document.getElementById("blog-posts-container");
-        if (listPostsContainer) {
-          e.preventDefault();
-          activeCategory = link.getAttribute("data-category");
+    categoriesContainer
+      .querySelectorAll('.sidebar-cat-link')
+      .forEach((link) => {
+        link.addEventListener('click', (e) => {
+          const listPostsContainer = document.getElementById(
+            'blog-posts-container'
+          );
+          if (listPostsContainer) {
+            e.preventDefault();
+            activeCategory = link.getAttribute('data-category');
 
-          // Altera o estado visual correspondente na barra superior de categorias
-          const filterButtons = document.querySelectorAll("#category-filters-wrap .category-btn");
-          filterButtons.forEach((btn) => {
-            if (btn.getAttribute("data-category") === activeCategory) {
-              btn.classList.add("active");
-            } else {
-              btn.classList.remove("active");
-            }
-          });
+            // Altera o estado visual correspondente na barra superior de categorias
+            const filterButtons = document.querySelectorAll(
+              '#category-filters-wrap .category-btn'
+            );
+            filterButtons.forEach((btn) => {
+              if (btn.getAttribute('data-category') === activeCategory) {
+                btn.classList.add('active');
+              } else {
+                btn.classList.remove('active');
+              }
+            });
 
-          renderBlogPosts();
-          listPostsContainer.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          // Se estiver nos detalhes, armazena para carregar filtrado na Home do blog
-          sessionStorage.setItem("active_category_filter", link.getAttribute("data-category"));
-        }
+            renderBlogPosts();
+            listPostsContainer.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            // Se estiver nos detalhes, armazena para carregar filtrado na Home do blog
+            sessionStorage.setItem(
+              'active_category_filter',
+              link.getAttribute('data-category')
+            );
+          }
+        });
       });
-    });
   }
 
-  // 3. Nuvem de Tags Dinâmica
+  // 3. Nuvem de Tags Dinâmica, agregada a partir das tags reais de cada post
   if (tagsContainer) {
-    const tags = ["Pix", "WhatsApp", "Golpe", "Segurança", "Advogado", "LGPD", "Engenharia Social", "Fraude", "Alvará", "Processo Judicial", "Governança", "Zero Trust", "Criptografia"];
-    tagsContainer.innerHTML = tags.map((tag) => `
+    const tags = [...new Set(BLOG_POSTS.flatMap((post) => post.tags))].sort();
+    tagsContainer.innerHTML = tags
+      .map(
+        (tag) => `
       <a href="blog.html" class="tag-badge" data-tag="${tag}">#${tag}</a>
-    `).join('');
+    `
+      )
+      .join('');
 
-    tagsContainer.querySelectorAll(".tag-badge").forEach((badge) => {
-      badge.addEventListener("click", (e) => {
-        const listPostsContainer = document.getElementById("blog-posts-container");
+    tagsContainer.querySelectorAll('.tag-badge').forEach((badge) => {
+      badge.addEventListener('click', (e) => {
+        const listPostsContainer = document.getElementById(
+          'blog-posts-container'
+        );
         if (listPostsContainer) {
           e.preventDefault();
-          const tagValue = badge.getAttribute("data-tag");
-          const searchInput = document.getElementById("blog-search-input");
+          const tagValue = badge.getAttribute('data-tag');
+          const searchInput = document.getElementById('blog-search-input');
           if (searchInput) {
             searchInput.value = tagValue;
             searchQuery = tagValue;
@@ -1432,7 +1538,10 @@ function initSidebar() {
             listPostsContainer.scrollIntoView({ behavior: 'smooth' });
           }
         } else {
-          sessionStorage.setItem("active_tag_search", badge.getAttribute("data-tag"));
+          sessionStorage.setItem(
+            'active_tag_search',
+            badge.getAttribute('data-tag')
+          );
         }
       });
     });
@@ -1442,20 +1551,20 @@ function initSidebar() {
 // --------------------------------------------------------------------------
 // INICIALIZAÇÃO CENTRAL DO BLOG (DOM CONTENT LOADED)
 // --------------------------------------------------------------------------
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Carrega filtros de categoria salvos de outras páginas
-  const savedCategory = sessionStorage.getItem("active_category_filter");
+  const savedCategory = sessionStorage.getItem('active_category_filter');
   if (savedCategory) {
     activeCategory = savedCategory;
-    sessionStorage.removeItem("active_category_filter");
+    sessionStorage.removeItem('active_category_filter');
   }
 
   // Carrega termos de busca de tags salvos de outras páginas
-  const savedTag = sessionStorage.getItem("active_tag_search");
+  const savedTag = sessionStorage.getItem('active_tag_search');
   if (savedTag) {
     searchQuery = savedTag;
-    sessionStorage.removeItem("active_tag_search");
-    const searchInput = document.getElementById("blog-search-input");
+    sessionStorage.removeItem('active_tag_search');
+    const searchInput = document.getElementById('blog-search-input');
     if (searchInput) searchInput.value = savedTag;
   }
 
