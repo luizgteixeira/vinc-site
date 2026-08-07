@@ -128,7 +128,7 @@ const BLOG_POSTS = [
       <div class="post-faq-box" style="margin-top: 30px; padding: 20px; background-color: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);">
         <h3 style="margin-top: 0;">FAQ Rápido sobre o Golpe</h3>
         <p><strong>P: Advogados cobram taxas por Pix para liberar alvarás?</strong><br>R: Não. No Brasil, o recebimento de valores judiciais é feito diretamente na conta do beneficiário ou do advogado com poderes específicos. Quaisquer custas oficiais são emitidas através de guias bancárias dos próprios tribunais.</p>
-        <p><strong>P: Como os criminosos sabem meu nome e meu processo?</strong><br>R: Os andamentos processuais no Brasil são públicos pela Constituição Federal. Isso permite que robôs vasculhem publicações oficiais para extrair nomes e dados que, infelizmente, são cruzados com vazamentos gerais na web para achar seu telefone.</p>
+        <p><strong>P: Como os criminosos sabem meu nome e meu processo?</strong><br>R: Os andamentos processuais no Brasil são públicos pela Constituição Federal. Isso permite que robôs vasculhem publicações oficiais para extrair nomes e dados que, infelizmente, são cruzados com vazamentos gerais na web para achar seu telefone. <a href="artigo-detalhes.html?slug=golpe-falso-advogado-nomes-reais">Veja em detalhes como esse processo funciona</a>.</p>
       </div>
     `,
     seo: {
@@ -214,6 +214,7 @@ const BLOG_POSTS = [
 
       <h2>Um Princípio, Não uma Promessa de Infalibilidade</h2>
       <p>Nenhum sistema é infalível, e não é essa a promessa do Vinc. O que o Zero Trust muda é o ponto de partida: em vez de confiar em quem parece legítimo, o Vinc exige que essa legitimidade esteja registrada e verificada antes de qualquer interação sensível ser levada a sério.</p>
+      <p>Quer ver o panorama completo de como esse princípio protege clientes, advogados e escritórios ao mesmo tempo? Leia <a href="artigo-detalhes.html?slug=vinc-blindando-relacao-advogados-clientes">o guia completo sobre como o Vinc blinda a relação entre advogados e clientes</a>.</p>
     `,
     seo: {
       metaTitle: "Zero Trust na Advocacia: o Princípio do Vinc | Blog",
@@ -313,9 +314,9 @@ const BLOG_POSTS = [
   },
   {
     id: "post-7",
-    title: "Golpe do Falso Advogado: Como Criminosos Usam Nomes Reais para Aplicar Fraudes",
+    title: "Como Golpistas Descobrem Seu Nome e Seu Processo Antes de Aplicar o Golpe do Advogado Falso",
     slug: "golpe-falso-advogado-nomes-reais",
-    excerpt: "Descubra como golpistas cruzam dados públicos reais com perfis falsos no WhatsApp e aprenda por que o Vinc usa o roteamento por vínculo para desarmar essa fraude.",
+    excerpt: "Entenda de onde vêm os dados reais (nome, processo, advogado) que golpistas usam para dar credibilidade ao golpe do falso advogado, e por que isso não é uma falha de segurança sua.",
     category: CATEGORIES.ANATOMIA_GOLPES.name,
     categorySlug: CATEGORIES.ANATOMIA_GOLPES.slug,
     categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
@@ -347,6 +348,7 @@ const BLOG_POSTS = [
 
       <h2>Por Que Essa Abordagem Desarma os Golpistas?</h2>
       <p>Como os criminosos não têm acesso ao painel autenticado do escritório nem ao vínculo formal registrado ali, eles não conseguem se passar pela validação do Vinc — só o profissional realmente vinculado ao caso consegue confirmar uma solicitação.</p>
+      <p>Ter seus dados reais usados contra você não significa que algo vazou especificamente sobre o seu caso — veja em <a href="artigo-detalhes.html?slug=golpe-falso-advogado-whatsapp">nosso guia sobre o mecanismo completo do golpe do falso advogado no WhatsApp</a> os gatilhos psicológicos que os criminosos usam para explorar essa informação e como reagir na prática.</p>
 
       <div class="post-signature" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
         <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--text-primary);">Vinc — confirme antes de confiar.</p>
@@ -354,9 +356,9 @@ const BLOG_POSTS = [
       </div>
     `,
     seo: {
-      metaTitle: "Golpe do Falso Advogado e Uso de Nomes Reais | Blog Vinc",
-      metaDesc: "Descubra como golpistas usam nomes reais de advogados e dados públicos para fraudar clientes, e como o roteamento por vínculo do Vinc impede essa prática.",
-      keywords: "golpe do falso advogado, falsidade ideologica whatsapp, oab falso advogado, seguranca juridica, vinc",
+      metaTitle: "Como Golpistas Descobrem Seus Dados | Blog Vinc",
+      metaDesc: "Entenda de onde vêm os dados reais que golpistas usam no golpe do falso advogado, e por que o roteamento por vínculo do Vinc neutraliza essa tática.",
+      keywords: "como golpistas descobrem dados, diarios oficiais golpe advogado, engenharia social dados publicos, roteamento por vinculo, vinc",
     }
   },
   {
@@ -394,7 +396,8 @@ const BLOG_POSTS = [
       </ul>
 
       <h2>Por que Abandonar Chats Desprotegidos?</h2>
-      <p>Conversar apenas pelo WhatsApp deixa o cliente exposto a táticas de engenharia social de alta precisão. O roteamento por vínculo do Vinc remove o fator humano da checagem: o aplicativo faz a validação técnica de forma invisível, garantindo que você fale apenas com quem realmente tem direito de falar sobre seu processo jurídico.</p>
+      <p>Conversar apenas pelo WhatsApp deixa o cliente exposto a táticas de engenharia social de alta precisão. O roteamento por vínculo do Vinc remove o fator humano da checagem: em vez de você precisar avaliar se uma mensagem "parece" legítima, o sistema confirma se quem está falando realmente tem direito de falar sobre seu processo jurídico.</p>
+      <p>Esse é só um dos pilares do ecossistema Vinc — veja <a href="artigo-detalhes.html?slug=vinc-blindando-relacao-advogados-clientes">o panorama completo de como clientes, advogados e escritórios são protegidos juntos</a>.</p>
 
       <div class="post-signature" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
         <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--text-primary);">Vinc — confirme antes de confiar.</p>
@@ -564,7 +567,7 @@ const BLOG_POSTS = [
       <p>Nesse cenário de vulnerabilidade, o <strong>Vinc</strong> surge como uma camada adicional de segurança para a comunicação entre escritórios e clientes, baseando sua atuação em uma regra de ouro simples: <strong>confirmar antes de confiar</strong>.</p>
 
       <h2>O que é o Vinc?</h2>
-      <p>O Vinc é um ecossistema de prevenção a fraudes projetado especificamente para o ambiente jurídico. Diferente de chats e aplicativos de mensagens comuns que não possuem qualquer tipo de checagem profissional, o Vinc não tenta adivinhar ou presumir se um contato é seguro por fotos ou nomes de perfil. Em vez disso, nossa plataforma valida a existência de um <strong>vínculo real</strong> entre as partes antes de autorizar qualquer interação de segurança.</p>
+      <p>O Vinc é um ecossistema de prevenção a fraudes projetado especificamente para o ambiente jurídico. Diferente de chats e aplicativos de mensagens comuns que não possuem qualquer tipo de checagem profissional, o Vinc não tenta adivinhar ou presumir se um contato é seguro por fotos ou nomes de perfil. Em vez disso, nossa plataforma valida a existência de um <strong>vínculo real</strong> entre as partes antes de autorizar qualquer interação de segurança — o princípio que chamamos de <a href="artigo-detalhes.html?slug=zero-trust-na-advocacia-arquitetura-vinc">Zero Trust</a>.</p>
 
       <div class="post-regra-ouro">
         <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
@@ -581,7 +584,7 @@ const BLOG_POSTS = [
         <li><strong>Alerta:</strong> O Vinc envia um alerta de verificação para o painel do advogado responsável cadastrado.</li>
         <li><strong>Confirmação:</strong> O advogado confirma ou rejeita a autenticidade daquela solicitação, e pode marcar ciência do relato.</li>
       </ul>
-      <p>Esse processo reduz fortemente a eficácia das táticas mais comuns de engenharia social, dificultando que golpistas enganem as vítimas.</p>
+      <p>Esse processo reduz fortemente a eficácia das táticas mais comuns de engenharia social, dificultando que golpistas enganem as vítimas. Para entender por que isso funciona melhor do que simplesmente reconhecer um nome familiar no WhatsApp, veja <a href="artigo-detalhes.html?slug=roteamento-por-vinculo-vs-whatsapp">nosso aprofundamento sobre identidade versus vínculo</a>.</p>
 
       <h2>Benefícios Claros para Toda a Cadeia de Segurança</h2>
       <p>O modelo baseado em relações autenticadas gera valor imediato para todos os envolvidos na prestação de serviços jurídicos:</p>
@@ -684,7 +687,7 @@ function renderBlogPosts() {
     featuredContainer.innerHTML = `
       <article class="featured-card" id="featured-card-item">
         <a href="artigo-detalhes.html?slug=${featuredPost.slug}" class="featured-img-link" aria-label="Ler artigo em destaque: ${featuredPost.title}">
-          <img src="${featuredPost.featuredImage}" alt="Capa: ${featuredPost.title}" class="featured-img" loading="lazy">
+          <img src="${featuredPost.featuredImage}" alt="Capa: ${featuredPost.title}" class="featured-img">
         </a>
         <div class="featured-content">
           <div class="meta-info">
@@ -884,6 +887,20 @@ function loadSinglePost() {
     "articleBody": post.content.replace(/<[^>]*>/g, '') // Remove HTML para gerar texto cru para o buscador
   });
   document.head.appendChild(schemaScript);
+
+  // Injetar Schema.org BreadcrumbList, espelhando a trilha visual (Início > Blog > Categoria)
+  const breadcrumbSchema = document.createElement("script");
+  breadcrumbSchema.type = "application/ld+json";
+  breadcrumbSchema.text = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://www.vincapp.com.br/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.vincapp.com.br/pages/blog.html" },
+      { "@type": "ListItem", "position": 3, "name": post.category, "item": canonicalUrl }
+    ]
+  });
+  document.head.appendChild(breadcrumbSchema);
 
   // 2. Renderizar o layout básico do post
   singlePostContainer.innerHTML = `
