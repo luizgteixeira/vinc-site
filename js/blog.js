@@ -653,6 +653,109 @@ const BLOG_POSTS = [
         'Descubra como o ecossistema do Vinc protege a identidade do escritório de advocacia e o patrimônio dos clientes através da tecnologia de vínculo contratual real.',
     },
   },
+  {
+    id: 'post-13',
+    title: 'Como Verificar se um Advogado é Real na OAB',
+    slug: 'como-verificar-advogado-real-oab',
+    excerpt:
+      'Um nome real não prova que a pessoa do outro lado é quem diz ser. Aprenda a consultar o Cadastro Nacional de Advogados da OAB antes de confiar em qualquer contato.',
+    category: CATEGORIES.ANATOMIA_GOLPES.name,
+    categorySlug: CATEGORIES.ANATOMIA_GOLPES.slug,
+    categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
+    categoryColor: CATEGORIES.ANATOMIA_GOLPES.color,
+    publishedAt: '07 Ago 2026',
+    readingTime: 5,
+    author: AUTHORS.vinc_security,
+    featuredImage: '../assets/images/advogados.jpg',
+    tags: ['Advogado', 'Golpe', 'Segurança'],
+    content: `
+      <p>Você recebe uma mensagem no WhatsApp. O remetente diz ser advogado, cita o número do seu processo, usa termos técnicos que você nem sabia que existiam, e pede uma transferência urgente para "liberar" um valor. Você faz o que qualquer pessoa razoável faria: procura o nome dele no Google. E lá está — perfil no LinkedIn, foto profissional, até uma matéria de jornal local. Parece legítimo.</p>
+      <p>O problema é que "parecer legítimo" e "ser legítimo" são coisas diferentes, e a distância entre as duas é exatamente onde vivem os golpistas.</p>
+
+      <h2>Um Nome Não Prova Nada</h2>
+      <p>Criminosos usam dados reais de advogados que existem de fato — muitas vezes profissionais respeitados, com anos de carreira, que nem sabem que seu nome está sendo usado numa fraude. O golpista não precisa inventar uma pessoa; ele só precisa emprestar a credibilidade de uma que já existe. Por isso pesquisar o nome no Google não resolve o problema: você vai encontrar o advogado real, só que não necessariamente vai estar falando com ele.</p>
+      <p>A boa notícia é que existe uma forma de checar isso que não depende de busca no Google, LinkedIn ou qualquer rede social. É um cadastro público, mantido pela própria entidade que regula a profissão no Brasil.</p>
+
+      <div class="post-regra-ouro">
+        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
+        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
+        <p class="post-regra-ouro-sub">Um nome verdadeiro numa mensagem não prova que ela veio da pessoa que diz ser. Existência e vínculo são coisas diferentes.</p>
+      </div>
+
+      <h2>Quem Decide Quem Pode Advogar no Brasil</h2>
+      <p>A advocacia no Brasil é uma profissão regulamentada. Isso significa que não basta ter um diploma de Direito guardado na gaveta — é preciso estar inscrito na Ordem dos Advogados do Brasil (OAB) para exercer a profissão legalmente, assinar petições, representar clientes em juízo. Essa exigência está na Lei nº 8.906, de 4 de julho de 1994, o Estatuto da Advocacia e da OAB, que também define as regras disciplinares da profissão.</p>
+      <p>Cada advogado inscrito recebe um número de registro vinculado a uma seccional — a unidade estadual da OAB. Você já deve ter visto essa combinação em algum lugar: "OAB/SP 123.456", "OAB/MG 98.765". As duas letras indicam o estado onde o profissional está inscrito; o número é o registro individual dele, único e público.</p>
+      <p>E aqui está o ponto central: como é um registro público, qualquer pessoa pode consultá-lo. Não é um dado sigiloso, não exige login, não exige ser cliente de nada. Basta saber onde procurar.</p>
+
+      <h2>A Ferramenta Oficial (e Por Que Ela é Diferente do Google)</h2>
+      <p>O órgão nacional da OAB mantém uma ferramenta pública de consulta chamada Cadastro Nacional de Advogados, acessível em cna.oab.org.br — também disponível a partir do site institucional oab.org.br, na área de serviços. É lá, e não em redes sociais, que fica o registro oficial de quem está habilitado a advogar no país.</p>
+      <p>A diferença entre essa ferramenta e uma busca no Google é simples: o Google indexa o que existe na internet sobre uma pessoa, verdadeiro ou não. Um perfil falso, uma matéria antiga, um nome homônimo — tudo isso aparece igual. Já o Cadastro Nacional de Advogados indexa uma coisa só: quem está, de fato, inscrito e regular perante a OAB.</p>
+      <p>Normalmente a consulta permite buscar por nome completo ou diretamente pelo número de inscrição combinado com a seccional. O retorno mostra o nome do profissional, a seccional em que está registrado e a situação do registro — se está regular, ou se há alguma restrição.</p>
+
+      <h2>Um Exemplo Para Deixar Isso Concreto</h2>
+      <p>Imagine que você recebe uma mensagem de alguém se identificando como "Dr. Ricardo Almeida, OAB/SP 123.456", cobrando uma taxa para liberar um alvará. Antes de qualquer coisa, faça duas checagens simples.</p>
+      <p>A primeira é conferir se o nome e o número batem no Cadastro Nacional de Advogados. Se o sistema mostrar um "Ricardo Almeida" registrado sob um número completamente diferente, ou numa seccional diferente da que a mensagem menciona, isso já é motivo suficiente para desconfiar.</p>
+      <p>A segunda — e essa é a parte que a maioria das pessoas esquece — é lembrar que, mesmo que o registro esteja correto e a pessoa exista de verdade, isso não prova que foi <em>ela</em> quem te mandou aquela mensagem específica. Advogados reais também têm o nome usado indevidamente por golpistas, com frequência sem nem saber. O cadastro da OAB confirma que a profissão é exercida legalmente por alguém com aquele nome e número. Ele não confirma que o WhatsApp que está te escrevendo pertence a essa pessoa.</p>
+
+      <h2>Por Que Isso Importa Mais do Que Parece</h2>
+      <p>Existe uma diferença entre confirmar uma identidade e confirmar um vínculo. A primeira responde "essa pessoa existe e pode advogar?". A segunda responde "essa pessoa está mesmo cuidando do meu caso?" — e são perguntas diferentes, com respostas em lugares diferentes. Já escrevemos sobre <a href="artigo-detalhes.html?slug=roteamento-por-vinculo-vs-whatsapp">essa distinção entre identidade e vínculo</a> com mais profundidade.</p>
+      <p>O Cadastro Nacional de Advogados resolve a primeira pergunta, e resolve bem. A segunda depende de outra coisa: um canal de comunicação que confirme, de fato, que existe um contrato ativo entre você e aquele profissional específico — não apenas que ele é um advogado de verdade em algum lugar do Brasil. No Vinc, uma solicitação só é tratada como legítima quando existe esse vínculo formal registrado entre cliente, contrato e advogado responsável — a checagem da OAB é o primeiro filtro, não o único.</p>
+    `,
+    seo: {
+      metaTitle: 'Como Verificar se um Advogado é Real na OAB | Blog',
+      metaDesc:
+        'Aprenda a consultar o Cadastro Nacional de Advogados da OAB e confirme se um profissional está mesmo registrado antes de confiar numa mensagem.',
+    },
+  },
+  {
+    id: 'post-14',
+    title: 'Como Funciona de Verdade o Recebimento de Alvarás e Precatórios',
+    slug: 'como-funciona-recebimento-alvaras-precatorios',
+    excerpt:
+      'Entenda como funcionam de verdade o alvará judicial e o precatório — e por que a urgência que golpistas criam não existe em nenhuma etapa real do processo.',
+    category: CATEGORIES.ANATOMIA_GOLPES.name,
+    categorySlug: CATEGORIES.ANATOMIA_GOLPES.slug,
+    categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
+    categoryColor: CATEGORIES.ANATOMIA_GOLPES.color,
+    publishedAt: '08 Ago 2026',
+    readingTime: 6,
+    author: AUTHORS.luiz_gustavo,
+    featuredImage: '../assets/images/vinc_shield.jpg',
+    tags: ['Alvará', 'Processo Judicial', 'Golpe'],
+    content: `
+      <p>Toda vítima do <a href="artigo-detalhes.html?slug=golpe-falso-advogado-whatsapp">golpe do falso advogado</a> ouve praticamente a mesma frase: "seu dinheiro já foi liberado, mas você precisa pagar uma taxa agora, hoje, ou perde o prazo". A urgência é a arma principal do golpista — e ela só funciona porque a maioria das pessoas não faz ideia de como o dinheiro de um processo judicial realmente chega até elas. Sem esse conhecimento, qualquer prazo apertado soa plausível.</p>
+      <p>Então vamos destrinchar o processo real, sem o drama.</p>
+
+      <h2>De Onde Vem Esse Dinheiro, Afinal</h2>
+      <p>Quando alguém ganha uma ação judicial contra o poder público — o INSS, um município, um estado, a União — o pagamento não sai na hora, como uma transferência bancária comum. Existe um rito específico, previsto no artigo 100 da Constituição Federal, porque o dinheiro público não pode simplesmente ser transferido por ordem judicial direta: ele precisa entrar no orçamento e seguir uma fila.</p>
+      <p>Esse mecanismo se chama precatório. Na prática, funciona como uma fila de pagamentos organizada por ordem cronológica: quem entrou primeiro na fila, dentro daquela categoria, é pago primeiro. Os precatórios são incluídos no orçamento do ano seguinte e pagos pelo ente público devedor — e sim, isso significa que o processo inteiro pode levar meses, às vezes bem mais que isso, dependendo do tamanho da fila naquele tribunal.</p>
+
+      <div class="post-regra-ouro">
+        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
+        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
+        <p class="post-regra-ouro-sub">Nenhuma etapa legítima do pagamento de um alvará ou precatório exige que você deposite dinheiro antes de receber o seu.</p>
+      </div>
+
+      <h2>RPV, e Quando é Alvará em Vez de Precatório</h2>
+      <p>Para valores menores, existe um atalho: a Requisição de Pequeno Valor, conhecida como RPV. Ela existe justamente para não obrigar quem tem um crédito pequeno a esperar na mesma fila de valores altos — o pagamento tende a ser mais rápido, sem entrar na ordem cronológica dos precatórios. O limite de valor que separa uma RPV de um precatório varia conforme o ente devedor (União, estado ou município) e a legislação local de cada tribunal, então não existe um número único válido para o Brasil inteiro — vale sempre checar o valor vigente diretamente com o tribunal responsável pelo seu processo.</p>
+      <p>Quando é dinheiro entre partes privadas — não contra o poder público —, o mecanismo é outro: o alvará judicial. É a autorização que o juiz dá para liberar um valor que está depositado numa conta judicial, vinculada ao processo. Também não é instantâneo, mas o rito costuma ser mais direto que o de um precatório contra a Fazenda Pública.</p>
+
+      <h2>O Detalhe Que os Golpistas Exploram</h2>
+      <p>Repare que em nenhum desses processos existe uma etapa em que você precisa pagar algo para "destravar" o próprio dinheiro. O sistema funciona ao contrário: primeiro sai a decisão judicial, depois o valor é depositado ou incluído na fila orçamentária, e só então — quando o dinheiro já está disponível — é que ele é transferido para a conta do beneficiário ou do advogado com poderes específicos para receber.</p>
+      <p>Eventuais custas processuais legítimas — como as de cartório, ou guias tributárias — são emitidas oficialmente pelo próprio tribunal ou órgão competente, através de guia de recolhimento específica, não por cobrança avulsa via Pix pedida numa conversa de WhatsApp. Se alguém está te pedindo para depositar dinheiro numa conta pessoal para "destravar" um valor judicial, o pedido em si já quebra a lógica de como o sistema funciona.</p>
+      <p>É exatamente esse desconhecimento sobre o processo real que dá força ao gatilho de urgência. Quem entende que um alvará ou precatório segue um rito formal, com prazos que não são negociáveis por mensagem de WhatsApp, perde o principal motivo para agir com pressa diante de uma cobrança inesperada.</p>
+
+      <h2>O Que Fazer Quando a Notícia Chega</h2>
+      <p>Se você tem um processo em andamento e recebe uma notícia de que há um valor a receber, o caminho seguro é sempre o mesmo: confirme diretamente com o escritório que representa você, pelos canais que você já conhece — não pelos que a mensagem sugere. Ligue para o número que está no seu contrato, não para o que apareceu na tela agora.</p>
+      <p>E se o contato disser respeito a um valor supostamente liberado, vale lembrar: o andamento processual em si é informação pública no Brasil, o que significa que alguém mal-intencionado pode saber que você tem um alvará ou precatório em curso sem ter nenhuma ligação com o seu processo. Saber que existe um valor a receber não é a mesma coisa que ter autorização para tratar dele.</p>
+      <p>No fim, o antídoto contra esse tipo de golpe não é desconfiar de tudo o tempo inteiro — é saber, com clareza, como o processo de verdade funciona. Quando você entende o rito, a pressa artificial que o golpista tenta criar simplesmente deixa de fazer sentido.</p>
+    `,
+    seo: {
+      metaTitle: 'Como Funcionam Alvarás e Precatórios | Blog Vinc',
+      metaDesc:
+        'Entenda o rito real de pagamento de alvarás e precatórios judiciais e por que a urgência usada em golpes não bate com como o sistema funciona.',
+    },
+  },
 ];
 
 // --------------------------------------------------------------------------
