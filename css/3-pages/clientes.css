@@ -333,5 +333,20 @@
   .practice-image-wrapper {
     max-width: 240px;
   }
+
+  /* .why-vinc-grid e .tech-favor-grid nunca tinham recebido essa mesma
+     correção: sem isso, o grid de 2 colunas espreme o texto numa coluna
+     estreitíssima (quebrando palavra por linha) e a imagem fica flutuando
+     ao lado em vez de empilhar abaixo do texto. */
+  .why-vinc-grid,
+  .tech-favor-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .why-vinc-section .image-card,
+  .tech-favor-section .image-card {
+    order: -1;
+  }
 }
 

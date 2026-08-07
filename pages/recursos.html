@@ -110,7 +110,7 @@
         <div class="feature-header">
           <div class="feature-icon">🔍</div>
           <h2>Validação instantânea em duas vias</h2>
-          <p>Sempre que alguém entrar em contato se identificando como seu escritório, o <span class="vinc-brand">Vinc</span> valida a origem real desse remetente em milissegundos.</p>
+          <p>Sempre que alguém entrar em contato se identificando como seu escritório, o <span class="vinc-brand">Vinc</span> verifica se esse remetente está de fato vinculado ao seu contrato.</p>
         </div>
 
         <div class="feature-grid">
@@ -138,15 +138,15 @@
       <div class="container">
         <div class="feature-header">
           <div class="feature-icon">📄</div>
-          <h2>Verificação Criptográfica de Boletos</h2>
-          <p>Evite o golpe do boleto falso. Antes de pagar qualquer guia ou custa processual, valide a autenticidade com o scanner de segurança do <span class="vinc-brand">Vinc</span>.</p>
+          <h2>Verificação de Boletos</h2>
+          <p>Evite o golpe do boleto falso. Antes de pagar qualquer guia ou custa processual, confira os dados de pagamento pelo <span class="vinc-brand">Vinc</span>.</p>
         </div>
 
         <div class="feature-grid">
           <div class="feature-card card">
             <div class="card-icon" style="font-size: 32px;">🧾</div>
             <h3>Código de Barras Seguro</h3>
-            <p>Validamos os dígitos diretamente com o banco emissor e o CNPJ registrado oficial do escritório.</p>
+            <p>Conferimos os dados de pagamento com o CNPJ registrado oficial do escritório no seu vínculo.</p>
           </div>
           <div class="feature-card card">
             <div class="card-icon" style="font-size: 32px;">⚡</div>
@@ -169,8 +169,8 @@
           <div class="connection-text">
             <span class="tag" style="margin-bottom: 12px; display: inline-block;">Sincronização em Tempo Real</span>
             <h2>O elo direto e seguro com seu escritório</h2>
-            <p>Sempre que o escritório de advocacia emite uma nova comunicação, atualiza um status processual ou envia uma guia de pagamento, essas informações são instantaneamente criptografadas e disponibilizadas no seu aplicativo <span class="vinc-brand">Vinc</span>.</p>
-            <p>Esse canal exclusivo e seguro elimina intermediários vulneráveis a fraudes, como e-mails clonados ou contatos falsos de aplicativos de mensagens, garantindo que você tenha em mãos apenas informações validadas diretamente pela sua equipe jurídica.</p>
+            <p>Sempre que o escritório de advocacia emite uma nova comunicação, atualiza um status processual ou envia uma guia de pagamento, essas informações ficam disponíveis no seu aplicativo <span class="vinc-brand">Vinc</span>, vinculadas ao seu contrato.</p>
+            <p>Esse canal reduz a dependência de intermediários vulneráveis a fraudes, como e-mails clonados ou contatos falsos de aplicativos de mensagens, ajudando você a distinguir informações validadas pela sua equipe jurídica.</p>
           </div>
           <div class="connection-image-container">
             <div class="connection-image-card">
@@ -186,11 +186,104 @@
       </div>
     </section>
 
-    <!-- Seção Infográfico -->
+    <!-- Seção Infográfico (nativa em HTML/CSS, não uma imagem) -->
     <section class="infographic-section" aria-labelledby="infografico-title">
       <div class="container">
-        <h2 id="infografico-title" style="margin-bottom: 40px;">Círculo Completo de Segurança</h2>
-        <img src="../assets/images/infografico.jpg" alt="Infográfico explicativo da arquitetura de segurança Vinc" class="infographic-image" width="900" height="450" decoding="async">
+        <div class="infografico-header">
+          <h2 id="infografico-title">Círculo Completo de Segurança</h2>
+          <p>A plataforma antifraude que cria um canal oficial para validar contatos jurídicos, reduzindo o risco de golpes por contatos falsos.</p>
+        </div>
+
+        <div class="infografico-grid">
+          <!-- Coluna: Como Protegemos Você -->
+          <div class="infografico-column">
+            <h3>Como Protegemos Você</h3>
+            <div class="infografico-items">
+              <div class="infografico-item">
+                <div class="infografico-item-icon" aria-hidden="true">🚨</div>
+                <div>
+                  <h4>Contatos Suspeitos & Golpes</h4>
+                  <p>Mensagens via WhatsApp ou ligações se passando pelo seu escritório.</p>
+                </div>
+              </div>
+              <div class="infografico-item">
+                <div class="infografico-item-icon" aria-hidden="true">🛡️</div>
+                <div>
+                  <h4>Proteção contra o "Golpe do Falso Advogado"</h4>
+                  <p>O cliente confirma no app se a abordagem (pedido de Pix ou documentos) é legítima.</p>
+                </div>
+              </div>
+              <div class="infografico-item">
+                <div class="infografico-item-icon" aria-hidden="true">🔗</div>
+                <div>
+                  <h4>Validação por Vínculo Real</h4>
+                  <p>A verificação não depende do nome que o suspeito informa, mas sim do contrato registrado.</p>
+                </div>
+              </div>
+              <div class="infografico-item">
+                <div class="infografico-item-icon" aria-hidden="true">🔒</div>
+                <div>
+                  <h4>Ambiente Restrito por Convite</h4>
+                  <p>Apenas pessoas convidadas e vinculadas a casos reais podem interagir no sistema.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coluna: Ciclo de Confiança + Permissões -->
+          <div class="infografico-column">
+            <h3>Como o Ciclo de Confiança Funciona</h3>
+            <div class="infografico-steps">
+              <div class="infografico-step">
+                <span class="infografico-step-number">1</span>
+                <div>
+                  <h4>O Cliente Inicia a Verificação</h4>
+                  <p>Ao receber um contato suspeito, o cliente solicita a validação pelo app.</p>
+                </div>
+              </div>
+              <div class="infografico-step">
+                <span class="infografico-step-number">2</span>
+                <div>
+                  <h4>O Advogado Responde</h4>
+                  <p>O profissional responsável pelo caso recebe um alerta e confirma ou rejeita a abordagem.</p>
+                </div>
+              </div>
+              <div class="infografico-step">
+                <span class="infografico-step-number">3</span>
+                <div>
+                  <h4>Transparência no Acompanhamento</h4>
+                  <p>Clientes e advogados acompanham o status e recebem notificações sobre cada relato.</p>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="infografico-subheading">Permissões de Ação por Perfil</h3>
+            <div class="infografico-table-wrap">
+              <table class="infografico-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Perfil</th>
+                    <th scope="col">O que pode fazer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Cliente</th>
+                    <td>Inicia verificações, registra relatos de suspeita e consulta seus contratos.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Advogado</th>
+                    <td>Valida solicitações de clientes e marca ciência em relatos de tentativas de golpe.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Escritório</th>
+                    <td>Gerencia convites, cria contratos e acompanha o registro de segurança.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -199,7 +292,7 @@
       <div class="container">
         <div class="section-header">
           <h2 id="dash-title">Painel administrativo do escritório</h2>
-          <p>O <span class="vinc-brand">Vinc</span> oferece uma plataforma robusta baseada na web para controle absoluto de acessos, convites e acompanhamento de segurança.</p>
+          <p>O <span class="vinc-brand">Vinc</span> oferece uma plataforma baseada na web para gerenciar acessos, convites e acompanhamento de segurança.</p>
         </div>
 
         <div class="dashboard-cards-grid">
@@ -213,7 +306,7 @@
               </svg>
               Convites
             </h4>
-            <p>Geração e gestão de convites temporários criptografados para garantir onboarding seguro de novos clientes e profissionais de equipe.</p>
+            <p>Geração e gestão de convites temporários para onboarding de novos clientes e profissionais de equipe.</p>
           </div>
 
           <div class="dash-item-card">

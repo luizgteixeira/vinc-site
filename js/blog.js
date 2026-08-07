@@ -19,7 +19,7 @@
 const AUTHORS = {
   luiz_gustavo: {
     name: 'Luiz Gustavo',
-    avatarUrl: '../assets/icons/vinc_icon_256px_1.png',
+    avatarUrl: '../assets/images/luiz-gustavo-avatar.jpg',
     role: 'Desenvolvedor Web e Mobile',
     bio: 'Co-fundador do Vinc, desenvolvedor responsável por construir a plataforma que conecta advogados e clientes com segurança.',
   },
