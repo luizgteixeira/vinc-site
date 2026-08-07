@@ -36,3 +36,20 @@ textarea.form-control {
   min-height: 120px;
   resize: vertical;
 }
+
+.form-privacy-note {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 4px 0 16px 0;
+}
+
+.form-privacy-note a {
+  color: var(--blue);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.form-privacy-note a:hover {
+  text-decoration: underline;
+}
