@@ -6,7 +6,7 @@ O **Vinc** é um website institucional e informativo, acompanhado de um completo
 
 <div align="center">
   <img src="assets/icons/vinc_icon_256px_1.png" alt="Vinc Logo" width="128" height="128" />
-  <p><em>A vitrine digital e central de educação preventiva da maior plataforma de blindagem contra engenharia social jurídica do país.</em></p>
+  <p><em>A vitrine digital e central de educação preventiva do Vinc, plataforma de blindagem contra engenharia social jurídica.</em></p>
 </div>
 
 <div align="center">
@@ -24,8 +24,10 @@ O **Vinc** é um website institucional e informativo, acompanhado de um completo
 
 O site do **Vinc** serve como o ponto de contato primário entre escritórios de advocacia, clientes e a segurança jurídica digital. No cenário atual, criminosos virtuais utilizam informações públicas de diários oficiais para ludibriar clientes que possuem processos na Justiça. O site do Vinc combate essa engenharia social fornecendo:
 
-1.  **Páginas Institucionais:** Explicando de forma clara, técnica e transparente como funciona a barreira lógica e a validação criptográfica do sistema Vinc.
+1.  **Páginas Institucionais:** Explicando de forma clara e transparente a proposta do Vinc — validar o vínculo real entre cliente, contrato e advogado antes de qualquer interação sensível ser tratada como legítima.
 2.  **Educação Antifraude (Blog):** Um hub de artigos práticos e dinâmicos para desarmar táticas de falsificação de identidade (WhatsApp), boletos falsificados e desvios de Pix.
+
+> ⚠️ **Nota de precisão de conteúdo:** o texto institucional e o do blog passaram por uma revisão para remover alegações técnicas específicas que não haviam sido confirmadas (padrões de criptografia, certificações, integrações com cadastros externos). Prefira sempre a linguagem já revisada — "vínculo real registrado no painel", não "validação criptográfica" — ao escrever conteúdo novo.
 
 ---
 
@@ -47,14 +49,16 @@ O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build s
 ├── index.html                        # Página inicial (Landing Page) institucional do Vinc
 │
 ├── pages/                            # Centro de páginas internas do ecossistema Vinc
-│   ├── como-funciona.html            # Arquitetura Zero Trust, segurança multifator e fluxo operacional
+│   ├── como-funciona.html            # Visão geral do fluxo operacional do Vinc
 │   ├── advogados.html                # Soluções direcionadas para advogados autônomos e pequenas bancas
 │   ├── escritorios.html              # Governança de marca e proteção para grandes escritórios
 │   ├── clientes.html                 # Guia prático de usabilidade e blindagem para o cliente final
-│   ├── recursos.html                 # Detalhes técnicos sobre o scanner de boletos e autenticador de links
-│   ├── seguranca.html                # Padrões criptográficos profundos e conformidade com a LGPD
-│   ├── faq.html                      # Central de Dúvidas Frequentes estruturada com accordions interativos
-│   ├── contato.html                  # Canais oficiais, checklist antifraude e solicitação de contato
+│   ├── recursos.html                 # Funcionalidades da plataforma (validação em duas vias, verificação de boletos)
+│   ├── seguranca.html                # Pilares de segurança e conformidade com a LGPD
+│   ├── faq.html                      # Central de Dúvidas Frequentes (com Schema.org FAQPage)
+│   ├── contato.html                  # Canais oficiais, checklist antifraude e solicitação de chave de ativação
+│   ├── privacidade.html              # Política de Privacidade (LGPD) — bases legais, operadores terceiros, direitos do titular
+│   ├── obrigado.html                 # Confirmação pós-envio do formulário de contato (noindex)
 │   ├── blog.html                     # Portal do Centro de Conhecimento (listagem de artigos)
 │   └── artigo-detalhes.html          # Template de leitura dinâmica para os artigos do blog
 │
@@ -65,7 +69,8 @@ O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build s
 │
 ├── js/                                 # Motores funcionais de interatividade do site
 │   ├── script.js                       # Navegação, menu mobile, dropdowns e accordions (FAQ/Contato)
-│   └── blog.js                         # CMS do Blog client-side (posts, filtros, SEO dinâmico, JSON-LD, TOC)
+│   ├── contato.js                      # Envio do formulário de solicitação de chave (Web3Forms)
+│   └── blog.js                         # CMS do Blog client-side (posts, filtros, SEO dinâmico, JSON-LD, busca)
 │
 ├── assets/                             # Biblioteca de mídias e recursos de marca do Vinc
 │   ├── fonts/                          # Fontes locais (Plus Jakarta Sans)
@@ -80,21 +85,24 @@ O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build s
 
 ## ✍️ Centro de Conhecimento (Blog Dinâmico)
 
-O blog do Vinc é controlado por um sistema de gerenciamento client-side em JavaScript (`js/blog.js`), que orquestra as seguintes **6 categorias editoriais**:
+O blog do Vinc é controlado por um sistema de gerenciamento client-side em JavaScript (`js/blog.js`), organizado em **6 categorias editoriais** (5 delas com artigos publicados até o momento):
 
-1.  **🚨 Anatomia de Golpes e Alertas**: Explica detalhadamente as fraudes mais comuns (falso advogado, Pix de alvará, e-mails falsificados).
-2.  **🛡️ Gestão de Reputação para Advogados**: Mostra como escritórios de advocacia podem blindar suas marcas contra o uso fraudulento de seus nomes.
-3.  **⚙️ Tecnologia e Soberania de Dados**: Apresenta conceitos de cibersegurança (tokens JWT, criptografia simétrica) de forma acessível.
-4.  **📖 Guia de Funcionalidades e Onboarding**: Tutoriais passo a passo de como parear clientes e usar as chaves de segurança.
-5.  **🔒 Cibersegurança e Compliance (LGPD)**: Governança de privacidade, auditoria eletrônica de dados e boas práticas legais digitais.
-6.  **🤝 Casos de Sucesso e Segurança Jurídica**: Estudos de caso baseados em simulações realistas e anonimizadas de golpes desarmados com sucesso.
+1.  **🚨 Anatomia de Golpes e Alertas**: As fraudes mais comuns (falso advogado no WhatsApp, uso de dados públicos reais, urgência artificial em torno de alvarás e precatórios).
+2.  **🛡️ Gestão de Reputação para Advogados**: Como escritórios de advocacia podem proteger suas marcas contra o uso fraudulento de seus nomes.
+3.  **⚙️ Tecnologia e Soberania de Dados**: O princípio Zero Trust e por que validar vínculo (cliente-contrato-advogado) é mais seguro que confiar num nome familiar no WhatsApp.
+4.  **📖 Guia de Funcionalidades e Onboarding**: Passo a passo de como ativar o canal, convidar clientes e usar o painel administrativo.
+5.  **🔒 Cibersegurança e Compliance (LGPD)**: Postura preventiva de privacidade e boas práticas alinhadas à LGPD.
+6.  **🤝 Casos de Sucesso e Segurança Jurídica**: categoria reservada para estudos de caso; ainda sem artigos publicados.
 
 ### ⚙️ Recursos Tecnológicos Integrados no Blog:
 -   **Índice de Conteúdo Automático (TOC)**: Geração e inserção em tempo real de uma lista de tópicos baseada nas tags `H2` de cada artigo, com links de rolagem suave.
--   **SEO Dinâmico**: Injeção programática de metadados, títulos, tags Open Graph para redes sociais e **dados estruturados em JSON-LD** (*BlogPosting*) para indexação prioritária em motores de busca (como o Google).
+-   **Tempo de Leitura Calculado**: Estimado a partir da contagem real de palavras de cada artigo (200 palavras/min), não um valor fixo por post — nunca fica desatualizado se o conteúdo for editado.
+-   **SEO Dinâmico**: Injeção programática de metadados, títulos, tags Open Graph e **dados estruturados em JSON-LD** — `BlogPosting` em todo artigo, `BreadcrumbList` espelhando a navegação visual, `FAQPage` nos artigos que têm um bloco de perguntas frequentes no conteúdo, e `WebSite`/`SearchAction` em `index.html` habilitando a caixa de busca do Google.
+-   **Busca Real via URL**: `blog.html?q=termo` já carrega com o filtro aplicado, e a URL é sincronizada enquanto o usuário digita — é o que sustenta o `SearchAction` acima.
 -   **Navegação Semântica (Breadcrumbs)**: Facilitando a acessibilidade para leitores de tela e melhorando o rastreamento hierárquico do site.
--   **Malha de Links Relacionados**: Exibição dinâmica de artigos complementares no final de cada leitura, evitando páginas órfãs e aumentando o tempo de permanência do usuário no site.
--   **Newsletter Ativa via Mailto**: Formulário integrado que valida a entrada do usuário e gera dinamicamente um e-mail formatado de inscrição enviado para `contato@luizgustavodev.com`.
+-   **Malha de Links Relacionados**: Artigos complementares ao final de cada leitura e links cruzados entre posts de temas próximos, evitando páginas órfãs e canibalização de palavra-chave.
+-   **Newsletter via Mailchimp**: Formulário integrado (barra lateral do blog e páginas de artigo) que envia a inscrição para o Mailchimp através de um iframe oculto, sem sair da página.
+-   **Feedback de Artigo**: Avaliação, temas de interesse e comentário livre ao final de cada artigo, enviados via Web3Forms.
 
 ---
 
@@ -128,14 +136,22 @@ O site do Vinc foi minuciosamente revisado para garantir a melhor experiência e
 
 ---
 
+## 🔐 Privacidade e LGPD
+
+O site publica dados pessoais tratados de forma transparente em `pages/privacidade.html`: quais dados são coletados (formulário de solicitação de chave, newsletter, feedback de artigo), a base legal de cada tratamento, os operadores terceiros envolvidos (Web3Forms e Mailchimp, ambos com transferência internacional declarada) e os direitos do titular. O Vinc atua hoje como pessoa física (sem CNPJ constituído), identificação refletida na própria política.
+
+> A revisão jurídica formal dessa política por um advogado ainda está pendente — trate o texto como um rascunho tecnicamente fundamentado, não como parecer jurídico validado.
+
+---
+
 ## 👤 Autor
 
-Criado e mantido com rigor técnico por **Luiz Gustavo**.
+Criado e mantido por **Luiz Gustavo**, desenvolvedor web e mobile — idealizador e único responsável pelo projeto Vinc até o momento.
 
 -   **Website do Autor**: [luizgustavodev.com](https://luizgustavodev.com)
--   **Website Oficial do Vinc**: [Vinc](https://ais-pre-vxglezchibg6wbuunkpezb-350713325872.us-west2.run.app)
+-   **Website Oficial do Vinc**: [vincapp.com.br](https://www.vincapp.com.br)
 -   **GitHub**: [@luizgteixeira](https://github.com/luizgteixeira)
--   **E-mail de Contato**: [contato@luizgustavodev.com](mailto:contato@luizgustavodev.com)
+-   **E-mail de Contato**: [contato@vincapp.com.br](mailto:contato@vincapp.com.br)
 
 ---
 *Vinc. Segurança Digital Jurídica © 2026. Todos os direitos reservados.*
