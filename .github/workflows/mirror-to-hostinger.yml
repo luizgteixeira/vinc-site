@@ -13,19 +13,25 @@ jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout completo (todo o histórico, necessário para espelhar)
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Configurar SSH
+      - name: Carregar chave SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.HOSTINGER_MIRROR_DEPLOY_KEY }}
+
+      - name: Confiar no host do GitHub
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.HOSTINGER_MIRROR_DEPLOY_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-      - name: Espelhar para vinc-site-hostinger
+      - name: Espelhar para vinc-site-hostinger (sem .github, que é só deste repositório)
         run: |
+          rm -rf .github
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Mirror de vinc-site@${GITHUB_SHA}" --allow-empty
           git remote add hostinger git@github.com:luizgteixeira/vinc-site-hostinger.git
-          git push --force hostinger main:main
+          git push --force hostinger HEAD:main
