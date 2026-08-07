@@ -1006,7 +1006,8 @@ function loadSinglePost() {
         <div class="suggestions-box">
           <label for="suggestion-text" class="interaction-subheading" style="font-size: 1.05rem; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; display: block;">Sugestões ou Comentários (Opcional)</label>
           <textarea id="suggestion-text" class="suggestions-textarea" placeholder="Conte para nós suas sugestões de temas, comentários sobre o blog (ex: frequência de posts) ou feedbacks gerais." aria-label="Sua sugestão de temas ou comentários para o blog"></textarea>
-          <button type="button" class="btn-primary btn-submit-suggestion" id="btn-send-suggestion" style="margin-top: 12px;">Enviar sugestão</button>
+          <p class="form-privacy-note">Este botão envia também a avaliação e os temas selecionados acima, se houver. Ao enviar, você concorda com nossa <a href="privacidade.html">Política de Privacidade</a>.</p>
+          <button type="button" class="btn-primary btn-submit-suggestion" id="btn-send-suggestion">Enviar feedback</button>
           <div id="suggestion-feedback-msg" class="feedback-message" style="display: none;" aria-live="polite"></div>
         </div>
       </form>
@@ -1064,11 +1065,12 @@ function loadSinglePost() {
 }
 
 /**
- * Inicializa a seção de feedback interativo do artigo (Fase 1)
- * Prepara a estrutura com IDs consistentes e separação de responsabilidades para futura integração com backend do Vinc.
+ * Inicializa a seção de feedback interativo do artigo
+ * Avaliação e temas só marcam estado local (feedback visual imediato); o envio
+ * real para o Vinc acontece uma única vez, no clique de "Enviar feedback",
+ * via Web3Forms (mesmo serviço já usado no formulário de contato).
  */
 function initFeedbackSection(post) {
-  const postId = post.id;
   const postTitle = post.title;
   const ratingButtons = document.querySelectorAll(".rating-btn");
   const checkboxes = document.querySelectorAll('.topic-label input[type="checkbox"]');
@@ -1080,123 +1082,106 @@ function initFeedbackSection(post) {
   const topicsFeedbackMsg = document.getElementById("topics-feedback-msg");
   const suggestionFeedbackMsg = document.getElementById("suggestion-feedback-msg");
 
-  // 1. Lógica da Avaliação (Etapa 1)
+  let selectedRatingLabel = null;
+
+  // 1. Avaliação (Etapa 1): só estado visual local por enquanto
   ratingButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      // Remove classe ativa de todos e desmarca aria-checked
       ratingButtons.forEach((b) => {
         b.classList.remove("active");
         b.setAttribute("aria-checked", "false");
       });
 
-      // Ativa o botão selecionado
       btn.classList.add("active");
       btn.setAttribute("aria-checked", "true");
+      selectedRatingLabel = btn.innerText.trim().replace(/\s+/g, " ");
 
-      const ratingValue = btn.getAttribute("data-rating");
-
-      // PONTO DE INTEGRAÇÃO FUTURA COM BACKEND:
-      // POST /blog/articles/{postId}/rating => body: { rating: ratingValue }
-      console.log(`[Vinc API - Future Rating Integration] Enviar avaliação do post ${postId}: ${ratingValue}`);
-
-      // Exibir feedback visual elegante
       if (ratingFeedbackMsg) {
         ratingFeedbackMsg.style.display = "flex";
-        ratingFeedbackMsg.className = "feedback-message success";
-        ratingFeedbackMsg.innerHTML = "✨ Sua opinião nos ajuda a produzir conteúdos melhores. Obrigado pelo seu feedback!";
+        ratingFeedbackMsg.className = "feedback-message info";
+        ratingFeedbackMsg.innerHTML = 'Avaliação registrada. Clique em "Enviar feedback" ao final para confirmar o envio.';
       }
     });
   });
 
-  // 2. Lógica de Interesse em Novos Temas (Etapa 2)
+  // 2. Temas de interesse (Etapa 2): idem, só estado visual local
   checkboxes.forEach((cb) => {
     cb.addEventListener("change", () => {
       const parentLabel = cb.closest(".topic-label");
-      if (cb.checked) {
-        parentLabel.classList.add("checked");
-      } else {
-        parentLabel.classList.remove("checked");
-      }
+      parentLabel.classList.toggle("checked", cb.checked);
 
-      // Obtém todos os temas marcados
-      const selectedTopics = Array.from(checkboxes)
-        .filter(c => c.checked)
-        .map(c => c.value);
-
-      // PONTO DE INTEGRAÇÃO FUTURA COM BACKEND:
-      // POST /blog/articles/{postId}/topics => body: { topics: selectedTopics }
-      console.log(`[Vinc API - Future Topics Integration] Enviar temas de interesse para o post ${postId}:`, selectedTopics);
-
-      // Exibir feedback visual discreto
+      const selectedCount = Array.from(checkboxes).filter((c) => c.checked).length;
       if (topicsFeedbackMsg) {
-        topicsFeedbackMsg.style.display = "flex";
-        topicsFeedbackMsg.className = "feedback-message info";
-        topicsFeedbackMsg.innerHTML = `📌 Preferências de temas atualizadas com sucesso! (${selectedTopics.length} selecionado(s))`;
-        if (selectedTopics.length === 0) {
+        if (selectedCount === 0) {
           topicsFeedbackMsg.style.display = "none";
+        } else {
+          topicsFeedbackMsg.style.display = "flex";
+          topicsFeedbackMsg.className = "feedback-message info";
+          topicsFeedbackMsg.innerHTML = `📌 ${selectedCount} tema(s) selecionado(s). Clique em "Enviar feedback" ao final para confirmar o envio.`;
         }
       }
     });
   });
 
-  // 3. Lógica de Sugestão de Temas (Etapa 3)
+  // 3. Envio real (Etapa 3): consolida avaliação + temas + comentário e envia via Web3Forms
   if (sendSuggestionBtn && suggestionTextarea) {
-    sendSuggestionBtn.addEventListener("click", () => {
+    sendSuggestionBtn.addEventListener("click", async () => {
       const text = suggestionTextarea.value.trim();
-      const textToSend = text || "Nenhuma sugestão ou comentário enviado";
-
-      // PONTO DE INTEGRAÇÃO FUTURA COM BACKEND:
-      // POST /blog/articles/{postId}/suggestions => body: { suggestion: textToSend }
-      console.log(`[Vinc API - Future Suggestion Integration] Enviar sugestão para o post ${postId}: ${textToSend}`);
-
-      // Obter avaliação selecionada no momento
-      const activeRatingBtn = document.querySelector(".rating-btn.active");
-      const activeRatingLabel = activeRatingBtn ? activeRatingBtn.innerText.trim().replace(/\s+/g, " ") : "Nenhuma avaliação selecionada";
-
-      // Obter temas de interesse selecionados
       const selectedTopics = Array.from(checkboxes)
-        .filter(c => c.checked)
-        .map(c => c.value);
-      const topicsText = selectedTopics.length > 0 ? selectedTopics.join(", ") : "Nenhum tema selecionado";
+        .filter((c) => c.checked)
+        .map((c) => c.value);
 
-      // Formatar corpo do e-mail com as respostas consolidadas
-      const subject = encodeURIComponent(`Feedback do Blog Vinc - Artigo: ${postTitle}`);
-      const body = encodeURIComponent(
-        `Olá Luiz Gustavo,\n\n` +
-        `Seguem as respostas coletadas na seção de feedback e interação do Blog do Vinc:\n\n` +
-        `-----------------------------------------\n` +
-        `Artigo Lido:\n` +
-        `   => ${postTitle} (ID: ${postId})\n\n` +
-        `1. Avaliação do Artigo:\n` +
-        `   => ${activeRatingLabel}\n\n` +
-        `2. Gostaria de ler mais sobre:\n` +
-        `   => ${topicsText}\n\n` +
-        `3. Sugestão ou Comentários:\n` +
-        `   => ${textToSend}\n` +
-        `-----------------------------------------\n\n` +
-        `Enviado a partir do sistema de feedback interativo do Blog Vinc.`
-      );
-
-      // Dispara o envio de e-mail via mailto
-      const mailtoUrl = `mailto:contato@luizgustavodev.com?subject=${subject}&body=${body}`;
-
-      // Abre o cliente de e-mail do usuário de maneira segura
-      const mailLink = document.createElement("a");
-      mailLink.href = mailtoUrl;
-      mailLink.target = "_blank";
-      mailLink.click();
-
-      // Exibir feedback visual de sucesso
-      if (suggestionFeedbackMsg) {
-        suggestionFeedbackMsg.style.display = "flex";
-        suggestionFeedbackMsg.className = "feedback-message success";
-        suggestionFeedbackMsg.style.borderLeft = "3px solid var(--verified-green)";
-        suggestionFeedbackMsg.style.color = "var(--verified-green)";
-        suggestionFeedbackMsg.innerHTML = "🎉 Sugestão enviada com sucesso. Obrigado pela sua contribuição!";
+      if (!selectedRatingLabel && selectedTopics.length === 0 && !text) {
+        if (suggestionFeedbackMsg) {
+          suggestionFeedbackMsg.style.display = "flex";
+          suggestionFeedbackMsg.className = "feedback-message error";
+          suggestionFeedbackMsg.innerHTML = "Selecione uma avaliação, um tema de interesse ou escreva algo antes de enviar.";
+        }
+        return;
       }
 
-      // Limpa o campo
-      suggestionTextarea.value = "";
+      sendSuggestionBtn.disabled = true;
+      if (suggestionFeedbackMsg) {
+        suggestionFeedbackMsg.style.display = "flex";
+        suggestionFeedbackMsg.className = "feedback-message";
+        suggestionFeedbackMsg.innerHTML = "Enviando...";
+      }
+
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: "933b21fa-2815-45e6-9d9a-7935a7e8a000",
+            subject: `Feedback do Blog Vinc - Artigo: ${postTitle}`,
+            artigo: postTitle,
+            avaliacao: selectedRatingLabel || "Não informada",
+            temas_de_interesse: selectedTopics.length > 0 ? selectedTopics.join(", ") : "Nenhum tema selecionado",
+            sugestao_ou_comentario: text || "Nenhuma sugestão ou comentário enviado",
+          }),
+        });
+
+        const result = await response.json();
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || "Falha no envio.");
+        }
+
+        if (suggestionFeedbackMsg) {
+          suggestionFeedbackMsg.className = "feedback-message success";
+          suggestionFeedbackMsg.innerHTML = "🎉 Feedback enviado com sucesso. Obrigado pela sua contribuição!";
+        }
+        suggestionTextarea.value = "";
+      } catch (error) {
+        if (suggestionFeedbackMsg) {
+          suggestionFeedbackMsg.className = "feedback-message error";
+          suggestionFeedbackMsg.innerHTML = 'Não foi possível enviar seu feedback agora. Tente novamente em instantes ou <a href="mailto:contato@vincapp.com.br">escreva diretamente para nós</a>.';
+        }
+      } finally {
+        sendSuggestionBtn.disabled = false;
+      }
     });
   }
 }
@@ -1339,10 +1324,14 @@ function initSidebar() {
   const categoriesContainer = document.getElementById("sidebar-categories-list");
   const tagsContainer = document.getElementById("sidebar-tags-cloud");
 
-  // 1. Popula a lista de Artigos Populares (ordenados de forma simulada)
+  // 1. Popula a lista de Artigos Recentes, ordenados pela data real de publicação
+  // (não temos contagem de leituras real, então "mais lidos" seria uma métrica
+  // inventada; recência é o único sinal verdadeiro que o post.publishedAt garante).
   if (popularContainer) {
-    const popularPosts = [...BLOG_POSTS].slice(0, 4);
-    popularContainer.innerHTML = popularPosts.map((post, idx) => `
+    const recentPosts = [...BLOG_POSTS]
+      .sort((a, b) => new Date(parsePublishedAtToISO(b.publishedAt)) - new Date(parsePublishedAtToISO(a.publishedAt)))
+      .slice(0, 4);
+    popularContainer.innerHTML = recentPosts.map((post, idx) => `
       <li class="popular-item" id="popular-item-${post.id}">
         <span class="popular-number" style="color: ${post.categoryColor}; opacity: 0.4;">0${idx + 1}</span>
         <div class="popular-item-content">
