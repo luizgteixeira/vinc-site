@@ -1,0 +1,31 @@
+name: Espelhar main para vinc-site-hostinger
+
+# O Hostinger publica o site direto do repositório vinc-site-hostinger.
+# Este workflow mantém a branch main desse repositório sempre idêntica
+# à main deste (vinc-site), toda vez que houver um push aqui.
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout completo (todo o histórico, necessário para espelhar)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurar SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.HOSTINGER_MIRROR_DEPLOY_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Espelhar para vinc-site-hostinger
+        run: |
+          git remote add hostinger git@github.com:luizgteixeira/vinc-site-hostinger.git
+          git push --force hostinger main:main
