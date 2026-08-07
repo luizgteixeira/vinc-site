@@ -20,14 +20,8 @@ const AUTHORS = {
   luiz_gustavo: {
     name: 'Luiz Gustavo',
     avatarUrl: '../assets/icons/vinc_icon_256px_1.png',
-    role: 'Especialista em Segurança Digital & Dev Sênior',
-    bio: 'Co-fundador do Vinc, desenvolvedor e entusiasta de segurança da informação, dedicado a criar pontes seguras na comunicação jurídica nacional.',
-  },
-  vinc_security: {
-    name: 'Vinc Security Team',
-    avatarUrl: '../assets/icons/vinc_icon_256px_1.png',
-    role: 'Time de Inteligência Antifraude',
-    bio: 'Equipe técnica de analistas de segurança do Vinc, focada no monitoramento constante de novas ameaças, engenharia social e vazamento de dados judiciais.',
+    role: 'Desenvolvedor Web e Mobile',
+    bio: 'Co-fundador do Vinc, desenvolvedor responsável por construir a plataforma que conecta advogados e clientes com segurança.',
   },
 };
 
@@ -101,7 +95,7 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
     categoryColor: CATEGORIES.ANATOMIA_GOLPES.color,
     publishedAt: '15 Jul 2026',
-    author: AUTHORS.vinc_security,
+    author: AUTHORS.luiz_gustavo,
     featuredImage: '../assets/images/celular-escritorio.jpg',
     tags: ['Golpe', 'WhatsApp', 'Engenharia Social', 'Pix', 'Alvará'],
     // Espelha o conteúdo do .post-faq-box abaixo, em texto plano, para o Schema.org FAQPage
@@ -308,7 +302,7 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.icon,
     categoryColor: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.color,
     publishedAt: '05 Jul 2026',
-    author: AUTHORS.vinc_security,
+    author: AUTHORS.luiz_gustavo,
     featuredImage: '../assets/images/seguranca.jpg',
     tags: ['LGPD', 'Governança', 'Segurança'],
     content: `
@@ -352,7 +346,7 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
     categoryColor: CATEGORIES.ANATOMIA_GOLPES.color,
     publishedAt: '16 Jul 2026',
-    author: AUTHORS.vinc_security,
+    author: AUTHORS.luiz_gustavo,
     featuredImage: '../assets/images/celular-escritorio.jpg',
     tags: ['Golpe', 'Engenharia Social', 'Processo Judicial', 'WhatsApp'],
     content: `
@@ -444,7 +438,7 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.icon,
     categoryColor: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.color,
     publishedAt: '16 Jul 2026',
-    author: AUTHORS.vinc_security,
+    author: AUTHORS.luiz_gustavo,
     featuredImage: '../assets/images/seguranca.jpg',
     tags: ['LGPD', 'Segurança'],
     content: `
@@ -653,7 +647,7 @@ const BLOG_POSTS = [
     categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
     categoryColor: CATEGORIES.ANATOMIA_GOLPES.color,
     publishedAt: '07 Ago 2026',
-    author: AUTHORS.vinc_security,
+    author: AUTHORS.luiz_gustavo,
     featuredImage: '../assets/images/advogados.jpg',
     tags: ['Advogado', 'Golpe', 'Segurança'],
     content: `
