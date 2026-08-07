@@ -1323,7 +1323,9 @@ function initNewsletter() {
 
       setTimeout(() => {
         if (feedback) {
-          feedback.textContent = "Inscrição enviada! Você já faz parte da nossa lista de segurança.";
+          // Não temos como confirmar que o Mailchimp aceitou o cadastro (CORS bloqueia a
+          // leitura da resposta), então evitamos prometer certeza que não temos.
+          feedback.textContent = "Inscrição enviada! Se não receber nosso e-mail de confirmação em alguns minutos, verifique sua caixa de spam.";
           feedback.className = "newsletter-feedback success";
         }
         form.reset();
