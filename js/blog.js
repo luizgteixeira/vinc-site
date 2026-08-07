@@ -105,6 +105,19 @@ const BLOG_POSTS = [
     author: AUTHORS.vinc_security,
     featuredImage: '../assets/images/celular-escritorio.jpg',
     tags: ['Golpe', 'WhatsApp', 'Engenharia Social', 'Pix', 'Alvará'],
+    // Espelha o conteúdo do .post-faq-box abaixo, em texto plano, para o Schema.org FAQPage
+    faq: [
+      {
+        question: 'Advogados cobram taxas por Pix para liberar alvarás?',
+        answer:
+          'Não. No Brasil, o recebimento de valores judiciais é feito diretamente na conta do beneficiário ou do advogado com poderes específicos. Quaisquer custas oficiais são emitidas através de guias bancárias dos próprios tribunais.',
+      },
+      {
+        question: 'Como os criminosos sabem meu nome e meu processo?',
+        answer:
+          'Os andamentos processuais no Brasil são públicos pela Constituição Federal. Isso permite que robôs vasculhem publicações oficiais para extrair nomes e dados que, infelizmente, são cruzados com vazamentos gerais na web para achar seu telefone.',
+      },
+    ],
     content: `
       <p>Nos últimos meses, houve um crescimento vertiginoso em golpes virtuais direcionados a clientes que possuem processos na Justiça brasileira. O mais recorrente deles é o chamado <strong>Golpe do Falso Advogado</strong>, aplicado principalmente através de aplicativos de mensagens como o WhatsApp. Para combater esse mal, a filosofia do Vinc é direta e imutável: <strong>Confirme antes de confiar</strong>.</p>
 
@@ -802,6 +815,16 @@ function initBlogControls() {
     searchInput.addEventListener('input', (e) => {
       searchQuery = e.target.value.trim();
       renderBlogPosts();
+
+      // Mantém a URL sincronizada com a busca, para o resultado ser
+      // compartilhável/favoritável (e para o link do SearchAction funcionar de fato)
+      const url = new URL(window.location.href);
+      if (searchQuery) {
+        url.searchParams.set('q', searchQuery);
+      } else {
+        url.searchParams.delete('q');
+      }
+      history.replaceState(null, '', url);
     });
   }
 }
@@ -939,6 +962,25 @@ function loadSinglePost() {
     ],
   });
   document.head.appendChild(breadcrumbSchema);
+
+  // Injetar Schema.org FAQPage apenas nos posts que têm um bloco de FAQ real no conteúdo
+  if (post.faq && post.faq.length > 0) {
+    const faqSchema = document.createElement('script');
+    faqSchema.type = 'application/ld+json';
+    faqSchema.text = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: post.faq.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer,
+        },
+      })),
+    });
+    document.head.appendChild(faqSchema);
+  }
 
   // 2. Renderizar o layout básico do post
   singlePostContainer.innerHTML = `
@@ -1566,6 +1608,15 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStorage.removeItem('active_tag_search');
     const searchInput = document.getElementById('blog-search-input');
     if (searchInput) searchInput.value = savedTag;
+  }
+
+  // Lê o parâmetro ?q= da URL (suporta o SearchAction do WebSite schema e
+  // permite compartilhar/favoritar um link de busca já filtrado)
+  const urlSearchQuery = new URLSearchParams(window.location.search).get('q');
+  if (urlSearchQuery) {
+    searchQuery = urlSearchQuery;
+    const searchInput = document.getElementById('blog-search-input');
+    if (searchInput) searchInput.value = urlSearchQuery;
   }
 
   // Aciona a renderização de componentes e lógica
