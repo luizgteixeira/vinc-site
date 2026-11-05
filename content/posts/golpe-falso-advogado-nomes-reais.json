@@ -1,0 +1,21 @@
+{
+  "id": "post-7",
+  "title": "Como Golpistas Descobrem Seu Nome e Seu Processo Antes de Aplicar o Golpe do Advogado Falso",
+  "slug": "golpe-falso-advogado-nomes-reais",
+  "excerpt": "Entenda de onde vêm os dados reais (nome, processo, advogado) que golpistas usam para dar credibilidade ao golpe do falso advogado, e por que isso não é uma falha de segurança sua.",
+  "categoryKey": "ANATOMIA_GOLPES",
+  "publishedAt": "16 Jul 2026",
+  "authorKey": "luiz_gustavo",
+  "featuredImage": "../assets/images/celular-escritorio.jpg",
+  "tags": [
+    "Golpe",
+    "Engenharia Social",
+    "Processo Judicial",
+    "WhatsApp"
+  ],
+  "content": "\n      <p>O <strong>Golpe do Falso Advogado</strong> é uma das ameaças que mais crescem no Brasil. O que torna essa fraude extremamente perigosa é que os golpistas não inventam personagens: eles usam nomes reais de advogados atuantes e dados verdadeiros de processos públicos para enganar os clientes.</p>\n\n      <h2>A Engenharia Social por Trás do Nome Real</h2>\n      <p>Criminosos monitoram os diários oficiais e plataformas de consulta processual. Ao identificar uma decisão favorável, como a expedição de um alvará ou precatório, eles buscam o nome do advogado responsável e o do cliente. Com ferramentas de enriquecimento de dados, localizam o WhatsApp do cliente e entram em contato se passando pelo profissional real.</p>\n      <p>Eles copiam fotos de perfil, logotipos do escritório e até termos técnicos da petição para construir uma imagem de autoridade. O cliente, ao pesquisar o nome do advogado na internet, encontra o registro legítimo e acaba caindo na armadilha.</p>\n\n      <div class=\"post-regra-ouro\">\n        <span class=\"post-regra-ouro-label\">Regra de Ouro do Vinc</span>\n        <p class=\"post-regra-ouro-text\">Confirme antes de confiar.</p>\n        <p class=\"post-regra-ouro-sub\">O sistema Vinc não confia apenas no nome ou na foto de quem está enviando a mensagem. A confiança é validada por meio do vínculo real de contrato registrado no painel do escritório.</p>\n      </div>\n\n      <h2>Como o Vinc Protege: Roteamento por Vínculo</h2>\n      <p>No Vinc, a segurança é baseada na verificação de um relacionamento ativo e formal:</p>\n      <ul>\n        <li><strong>Validação de Contrato Real:</strong> A plataforma vincula o <strong>Cliente</strong> diretamente ao seu <strong>Contrato</strong> e ao seu <strong>Advogado Responsável</strong> dentro do nosso sistema fechado.</li>\n        <li><strong>Canais Blindados de Envio:</strong> Qualquer solicitação de pagamento ou atualização processual precisa partir do painel autenticado do escritório.</li>\n        <li><strong>Zero Confiança em Nomes:</strong> Se uma mensagem chegar ao seu WhatsApp alegando ser do seu advogado, mas não estiver validada na plataforma Vinc, ela é considerada nula e insegura.</li>\n      </ul>\n\n      <h2>Por Que Essa Abordagem Desarma os Golpistas?</h2>\n      <p>Como os criminosos não têm acesso ao painel autenticado do escritório nem ao vínculo formal registrado ali, eles não conseguem se passar pela validação do Vinc — só o profissional realmente vinculado ao caso consegue confirmar uma solicitação.</p>\n      <p>Ter seus dados reais usados contra você não significa que algo vazou especificamente sobre o seu caso — veja em <a href=\"artigo-detalhes.html?slug=golpe-falso-advogado-whatsapp\">nosso guia sobre o mecanismo completo do golpe do falso advogado no WhatsApp</a> os gatilhos psicológicos que os criminosos usam para explorar essa informação e como reagir na prática.</p>\n    ",
+  "seo": {
+    "metaTitle": "Como Golpistas Descobrem Seus Dados | Blog Vinc",
+    "metaDesc": "Entenda de onde vêm os dados reais que golpistas usam no golpe do falso advogado, e por que o roteamento por vínculo do Vinc neutraliza essa tática."
+  }
+}

@@ -3,8 +3,10 @@
  * JS: SISTEMA DE BLOG DO VINC (CENTRO DE CONHECIMENTO ANTIFRAUDE)
  * ==========================================================================
  * Este script gerencia toda a lógica de funcionamento do blog do Vinc.
- * Ele controla:
- * 1. Base de dados de artigos (simulação de CMS/Prisma) adaptada às 6 novas categorias editoriais.
+ * Os artigos em si NÃO ficam neste arquivo — cada um é um JSON em
+ * content/posts/<slug>.json, listado em content/posts/index.json.
+ * Este script controla:
+ * 1. Carregamento assíncrono dos artigos (fetch) e montagem do catálogo em memória.
  * 2. Listagem de posts, destaque dinâmico e filtragem inteligente (busca + categorias).
  * 3. Detalhamento de artigos com SEO dinâmico, meta tags e dados estruturados (JSON-LD).
  * 4. Geração automática e dinâmica do Índice de Conteúdo (Table of Contents) baseado em tags H2.
@@ -80,664 +82,58 @@ const CATEGORIES = {
 };
 
 // --------------------------------------------------------------------------
-// BANCO DE DADOS DE ARTIGOS (Fleshed-out, informativo, sem linguagem alarmista)
+// BANCO DE DADOS DE ARTIGOS
 // --------------------------------------------------------------------------
-const BLOG_POSTS = [
-  {
-    id: 'post-1',
-    title:
-      'O Golpe do Falso Advogado no WhatsApp: Como Criminosos Exploram a Ansiedade Processual',
-    slug: 'golpe-falso-advogado-whatsapp',
-    excerpt:
-      'Entenda detalhadamente a engenharia social por trás do golpe do falso advogado no WhatsApp e aprenda a identificar os gatilhos psicológicos usados por quadrilhas.',
-    category: CATEGORIES.ANATOMIA_GOLPES.name,
-    categorySlug: CATEGORIES.ANATOMIA_GOLPES.slug,
-    categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
-    categoryColor: CATEGORIES.ANATOMIA_GOLPES.color,
-    publishedAt: '15 Jul 2026',
-    author: AUTHORS.luiz_gustavo,
-    featuredImage: '../assets/images/celular-escritorio.jpg',
-    tags: ['Golpe', 'WhatsApp', 'Engenharia Social', 'Pix', 'Alvará'],
-    // Espelha o conteúdo do .post-faq-box abaixo, em texto plano, para o Schema.org FAQPage
-    faq: [
-      {
-        question: 'Advogados cobram taxas por Pix para liberar alvarás?',
-        answer:
-          'Não. No Brasil, o recebimento de valores judiciais é feito diretamente na conta do beneficiário ou do advogado com poderes específicos. Quaisquer custas oficiais são emitidas através de guias bancárias dos próprios tribunais.',
-      },
-      {
-        question: 'Como os criminosos sabem meu nome e meu processo?',
-        answer:
-          'Os andamentos processuais no Brasil são públicos pela Constituição Federal. Isso permite que robôs vasculhem publicações oficiais para extrair nomes e dados que, infelizmente, são cruzados com vazamentos gerais na web para achar seu telefone.',
-      },
-    ],
-    content: `
-      <p>Nos últimos meses, houve um crescimento vertiginoso em golpes virtuais direcionados a clientes que possuem processos na Justiça brasileira. O mais recorrente deles é o chamado <strong>Golpe do Falso Advogado</strong>, aplicado principalmente através de aplicativos de mensagens como o WhatsApp. Para combater esse mal, a filosofia do Vinc é direta e imutável: <strong>Confirme antes de confiar</strong>.</p>
+// Cada artigo vive em seu próprio arquivo JSON dentro de content/posts/,
+// listado em content/posts/index.json. Para publicar um artigo novo:
+// 1. Crie content/posts/<slug>.json (copie um existente como modelo).
+// 2. Adicione o slug em content/posts/index.json.
+// Nenhum código precisa ser alterado para isso.
+let BLOG_POSTS = [];
 
-      <h2>Como Funciona a Mecânica do Golpe?</h2>
-      <p>O golpe não se baseia em uma quebra de segurança de servidores bancários ou criptografia de sistemas. É uma fraude baseada puramente na <strong>engenharia social</strong>. Os criminosos acessam diários oficiais públicos, coletam nomes de clientes que têm direito a receber algum dinheiro (alvarás expedidos, precatórios, revisões salariais) e localizam o contato de telefone desses clientes na internet. Em seguida, criam um perfil de WhatsApp idêntico ao do advogado ou escritório do cliente, copiando fotos, logotipos oficiais e descrições institucionais legítimas.</p>
+/**
+ * Resolve categoryKey/authorKey (referências leves salvas no JSON) nos
+ * objetos completos de CATEGORIES/AUTHORS, no mesmo formato que o resto
+ * do blog.js sempre esperou (post.category, post.author.name, etc.).
+ */
+function normalizePost(raw) {
+  const category = CATEGORIES[raw.categoryKey];
+  const author = AUTHORS[raw.authorKey];
 
-      <div class="post-regra-ouro">
-        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
-        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
-        <p class="post-regra-ouro-sub">O fato de uma pessoa conhecer o número do seu processo ou citar termos jurídicos complexos não valida sua identidade. Exija sempre validação multifator.</p>
-      </div>
+  return {
+    ...raw,
+    category: category.name,
+    categorySlug: category.slug,
+    categoryIcon: category.icon,
+    categoryColor: category.color,
+    author,
+  };
+}
 
-      <h2>Os Principais Gatilhos Usados por Criminosos</h2>
-      <p>Estelionatários dependem de reações precipitadas das vítimas. Para isso, aplicam táticas refinadas:</p>
-      <ul>
-        <li><strong>Gatilho de Urgência Extrema:</strong> O golpista afirma que os valores do alvará estão liberados, mas que o lote expira no mesmo dia. Isso impede a vítima de pensar ou de ligar para o escritório de forma calma.</li>
-        <li><strong>Falsa Autoridade:</strong> Utilização de termos complexos, fotos de tribunais ou logotipos da OAB para convencer a vítima de que se trata de uma comunicação solene.</li>
-        <li><strong>Custas Antecipadas:</strong> A mentira de que, para liberar a quantia total, o cliente precisa depositar um valor correspondente a taxas de cartório, guias tributárias (como DARF ou ITCD) ou taxas fictícias via Pix.</li>
-      </ul>
+/**
+ * Busca o índice de artigos e cada JSON individual em content/posts/.
+ * Precisa ser servido via HTTP (não funciona abrindo o HTML direto com
+ * file://) — ver instruções de execução local no README.
+ */
+async function loadBlogPosts() {
+  const indexResponse = await fetch('../content/posts/index.json');
+  if (!indexResponse.ok) {
+    throw new Error('Não foi possível carregar content/posts/index.json');
+  }
+  const slugs = await indexResponse.json();
 
-      <h2>Ações Práticas para se Proteger</h2>
-      <p>Caso receba qualquer solicitação financeira repentina, siga estas recomendações fundamentais:</p>
-      <ol>
-        <li><strong>Não faça pagamentos imediatos:</strong> Advogados idôneos não cobram Pix ou transferências para liberar alvarás judiciais.</li>
-        <li><strong>Não retorne o contato pelo mesmo número:</strong> Se um perfil novo te mandar mensagem dizendo ser do seu advogado, não faça perguntas ou ligações por ele. Procure os canais oficiais estabelecidos na sua procuração original.</li>
-        <li><strong>Utilize os Canais Vinculados ao Vinc:</strong> Escritórios credenciados ao Vinc atendem clientes através do painel oficial da plataforma. Qualquer mensagem fora dele deve ser considerada altamente suspeita.</li>
-      </ol>
+  const posts = await Promise.all(
+    slugs.map(async (slug) => {
+      const response = await fetch(`../content/posts/${slug}.json`);
+      if (!response.ok) {
+        throw new Error(`Não foi possível carregar o artigo "${slug}"`);
+      }
+      return normalizePost(await response.json());
+    })
+  );
 
-      <div class="post-faq-box" style="margin-top: 30px; padding: 20px; background-color: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);">
-        <h3 style="margin-top: 0;">FAQ Rápido sobre o Golpe</h3>
-        <p><strong>P: Advogados cobram taxas por Pix para liberar alvarás?</strong><br>R: Não. No Brasil, o recebimento de valores judiciais é feito diretamente na conta do beneficiário ou do advogado com poderes específicos. Quaisquer custas oficiais são emitidas através de guias bancárias dos próprios tribunais.</p>
-        <p><strong>P: Como os criminosos sabem meu nome e meu processo?</strong><br>R: Os andamentos processuais no Brasil são públicos pela Constituição Federal. Isso permite que robôs vasculhem publicações oficiais para extrair nomes e dados que, infelizmente, são cruzados com vazamentos gerais na web para achar seu telefone. <a href="artigo-detalhes.html?slug=golpe-falso-advogado-nomes-reais">Veja em detalhes como esse processo funciona</a>.</p>
-      </div>
-    `,
-    seo: {
-      metaTitle: 'O Golpe do Falso Advogado no WhatsApp | Blog Vinc',
-      metaDesc:
-        'Descubra como funciona o golpe do falso advogado no WhatsApp. Entenda a engenharia social e aprenda a se blindar com as dicas práticas do Vinc.',
-    },
-  },
-  {
-    id: 'post-2',
-    title:
-      'Blindagem de Marca Jurídica: Como Proteger a Reputação do Seu Escritório Contra Golpes Digitais',
-    slug: 'blindagem-de-marca-juridica-protecao-reputacao',
-    excerpt:
-      'A reputação de um escritório é seu maior patrimônio. Veja como a falsidade ideológica pode prejudicar sua banca e como adotar uma postura proativa.',
-    category: CATEGORIES.GESTAO_REPUTACAO.name,
-    categorySlug: CATEGORIES.GESTAO_REPUTACAO.slug,
-    categoryIcon: CATEGORIES.GESTAO_REPUTACAO.icon,
-    categoryColor: CATEGORIES.GESTAO_REPUTACAO.color,
-    publishedAt: '12 Jul 2026',
-    author: AUTHORS.luiz_gustavo,
-    featuredImage: '../assets/images/escritorios1.jpg',
-    tags: ['Golpe', 'Advogado', 'Governança'],
-    content: `
-      <p>Levar décadas para estruturar uma carreira de sucesso e assistir a uma crise de confiança acontecer em minutos por culpa de golpistas que se passam por seus profissionais. Esse tem sido o maior temor de gestores e sócios de bancas jurídicas em todo o país. Proteger sua marca jurídica é proteger a estabilidade do seu negócio.</p>
-
-      <h2>A Responsabilidade das Bancas de Advocacia</h2>
-      <p>Embora a fraude seja praticada por criminosos externos, os tribunais já têm julgado que escritórios de advocacia possuem o dever de zelar pela confidencialidade dos dados de seus processos e, principalmente, por canais de comunicação seguros com seus clientes. A ausência de alertas claros ou canais verificados pode gerar prejuízos financeiros e também abalos éticos imensuráveis à imagem corporativa do escritório.</p>
-
-      <div class="post-regra-ouro">
-        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
-        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
-        <p class="post-regra-ouro-sub">Implementar um canal antifraude oficial como o Vinc não é apenas tecnologia, é um ato de governança, responsabilidade social e valorização da carteira de clientes.</p>
-      </div>
-
-      <h2>3 Passos Práticos para a Gestão de Reputação</h2>
-      <p>Para evitar que a marca do seu escritório seja usada em golpes virtuais de clonagem, adote medidas robustas:</p>
-      <ul>
-        <li><strong>Políticas de Zero Confiança (Zero Trust):</strong> Oriente formalmente seus clientes desde a assinatura do contrato que toda cobrança financeira de custas ou atualizações críticas de alvará serão realizadas por canais autenticados e específicos, e que o escritório nunca solicita transações urgentes sem agendamento prévio.</li>
-        <li><strong>Educação Ativa do Cliente:</strong> Envie materiais informativos periódicos. Utilize e-mails, cartilhas de segurança e alertas nas redes sociais para reiterar as diretrizes de segurança da banca.</li>
-        <li><strong>Uso de Certificação e Plataformas Verificadas:</strong> Assim como bancos e grandes empresas utilizam sistemas dedicados para validação, escritórios modernos utilizam o Vinc como o canal imutável e oficial de comunicação, eliminando a margem de erro provocada pelo WhatsApp desprotegido.</li>
-      </ul>
-
-      <h2>A Tecnologia como Diferencial Competitivo</h2>
-      <p>Em um mercado competitivo, a segurança digital tornou-se um dos maiores diferenciais de valor de uma banca de advocacia. Oferecer aos clientes a paz de espírito de que sua comunicação é totalmente blindada gera fidelização, fortalece a reputação e demonstra compromisso com a excelência técnica e com a LGPD.</p>
-    `,
-    seo: {
-      metaTitle: 'Proteção de Marca e Reputação Jurídica | Vinc',
-      metaDesc:
-        'Descubra como blindar a reputação do seu escritório de advocacia contra golpes de falsidade ideológica e golpes de engenharia social no WhatsApp.',
-    },
-  },
-  {
-    id: 'post-3',
-    title:
-      "Zero Trust na Advocacia: Por Que 'Confiar' Nunca Deveria Ser o Padrão",
-    slug: 'zero-trust-na-advocacia-arquitetura-vinc',
-    excerpt:
-      'Entenda o princípio de segurança Zero Trust e por que o Vinc valida o vínculo real entre cliente, contrato e advogado antes de qualquer interação sensível.',
-    category: CATEGORIES.TECNOLOGIA_DADOS.name,
-    categorySlug: CATEGORIES.TECNOLOGIA_DADOS.slug,
-    categoryIcon: CATEGORIES.TECNOLOGIA_DADOS.icon,
-    categoryColor: CATEGORIES.TECNOLOGIA_DADOS.color,
-    publishedAt: '10 Jul 2026',
-    author: AUTHORS.luiz_gustavo,
-    featuredImage: '../assets/images/vinc_infrastructure.jpg',
-    tags: ['Zero Trust', 'Segurança', 'Vínculo'],
-    content: `
-      <p>Muitas soluções de segurança tentam mitigar as fraudes criando listas negras de spammers ou tentando adivinhar se um número de WhatsApp é falso usando heurísticas simples. Essa abordagem tem um problema estrutural: parte do princípio de que dá para confiar em algo até prova em contrário. O Vinc segue o caminho oposto, alinhado ao paradigma de <strong>Zero Trust</strong> (Nunca Confiar, Sempre Verificar).</p>
-
-      <h2>O que é o Paradigma Zero Trust?</h2>
-      <p>No conceito tradicional de segurança, uma rede ou canal (como o WhatsApp) é considerado confiável após uma verificação inicial básica. No Zero Trust, partimos do princípio oposto: <strong>qualquer requisição, mensagem ou contato externo é considerado potencialmente falso ou comprometido</strong>, não importando se possui uma foto de perfil correta ou se tem acesso a dados reais do processo judicial. A identidade de quem envia uma mensagem não deve ser aceita de olho — ela precisa ser confrontada com um vínculo formal já registrado.</p>
-
-      <div class="post-regra-ouro">
-        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
-        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
-        <p class="post-regra-ouro-sub">Uma foto de perfil correta ou um nome familiar nunca são prova de identidade. No Vinc, a confiança é construída a partir de um vínculo real e verificado entre cliente, contrato e advogado — não da aparência de quem está do outro lado da tela.</p>
-      </div>
-
-      <h2>Como o Vinc Aplica Esse Princípio na Prática</h2>
-      <p>Aplicar Zero Trust, na prática, significa que nenhuma comunicação é aceita só porque "parece" vir do escritório certo:</p>
-      <ul>
-        <li><strong>Vínculo Registrado como Base da Confiança:</strong> Cliente, contrato e advogado responsável ficam associados dentro do painel administrativo do escritório. Uma solicitação só é considerada legítima se essa associação já existir.</li>
-        <li><strong>Verificação Antes da Liberação:</strong> A entrada de um novo escritório na plataforma passa por análise da nossa equipe antes da liberação da chave de ativação — não existe cadastro automático e aberto.</li>
-        <li><strong>Escritório Ciente como Registro de Acompanhamento:</strong> Quando um cliente reporta um contato suspeito, o escritório marca ciência no painel, deixando registrado que o alerta foi visto e está sendo tratado.</li>
-      </ul>
-
-      <h2>Um Princípio, Não uma Promessa de Infalibilidade</h2>
-      <p>Nenhum sistema é infalível, e não é essa a promessa do Vinc. O que o Zero Trust muda é o ponto de partida: em vez de confiar em quem parece legítimo, o Vinc exige que essa legitimidade esteja registrada e verificada antes de qualquer interação sensível ser levada a sério.</p>
-      <p>Quer ver o panorama completo de como esse princípio protege clientes, advogados e escritórios ao mesmo tempo? Leia <a href="artigo-detalhes.html?slug=vinc-blindando-relacao-advogados-clientes">o guia completo sobre como o Vinc blinda a relação entre advogados e clientes</a>.</p>
-    `,
-    seo: {
-      metaTitle: 'Zero Trust na Advocacia: o Princípio do Vinc | Blog',
-      metaDesc:
-        'Entenda o princípio de segurança Zero Trust e por que o Vinc valida o vínculo real entre cliente, contrato e advogado antes de qualquer interação.',
-    },
-  },
-  {
-    id: 'post-4',
-    title:
-      'Guia de Onboarding Vinc: Como Ativar Seu Canal Oficial de Comunicação Segura',
-    slug: 'guia-onboarding-vinc-como-ativar-canal-seguro',
-    excerpt:
-      'Aprenda passo a passo a configurar e ativar o Vinc no seu escritório de advocacia. Um tutorial completo para advogados e clientes darem os primeiros passos.',
-    category: CATEGORIES.GUIA_FUNCIONALIDADES.name,
-    categorySlug: CATEGORIES.GUIA_FUNCIONALIDADES.slug,
-    categoryIcon: CATEGORIES.GUIA_FUNCIONALIDADES.icon,
-    categoryColor: CATEGORIES.GUIA_FUNCIONALIDADES.color,
-    publishedAt: '08 Jul 2026',
-    author: AUTHORS.luiz_gustavo,
-    featuredImage: '../assets/images/vinc_shield_client.jpg',
-    tags: ['Advogado', 'Segurança', 'Escritório Ciente'],
-    content: `
-      <p>Começar a utilizar a plataforma de blindagem digital do Vinc é um processo simples, rápido e estruturado para que sua banca jurídica decole com total segurança jurídica em poucos minutos. Siga este guia prático de onboarding para registrar seu escritório, convidar seus profissionais e cadastrar seus primeiros clientes.</p>
-
-      <h2>Passo 1: Solicitação e Ativação da Chave Corporativa</h2>
-      <p>O processo começa com a validação da sociedade de advogados ou profissional autônomo. Acesse a página de contato e solicite sua <strong>Chave de Ativação do Vinc</strong>. Nosso time de auditoria verificará o registro profissional na OAB de sua seccional correspondente. Uma vez homologado, você receberá por e-mail suas credenciais de administrador da plataforma.</p>
-
-      <div class="post-regra-ouro">
-        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
-        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
-        <p class="post-regra-ouro-sub">A segurança de ponta a ponta exige controle estrito de acessos. Cada chave gerada é exclusiva para o CNPJ ou CPF do advogado devidamente registrado.</p>
-      </div>
-
-      <h2>Passo 2: Configurando seu Painel de Gestão (Escritório Ciente)</h2>
-      <p>Ao logar no painel administrativo do Vinc, configure o perfil institucional da sua marca:</p>
-      <ul>
-        <li><strong>Cadastre os Contatos Oficiais:</strong> Registre todos os números de telefone corporativos e contas oficiais que sua equipe utiliza. Isso cria o banco de dados oficial contra o qual o sistema fará a checagem dupla de segurança.</li>
-        <li><strong>Habilite seus Advogados:</strong> Adicione os profissionais e assistentes autorizados a emitirem ordens de verificação ou envio de boletos. Cada usuário terá permissões restritas e rastreáveis.</li>
-      </ul>
-
-      <h2>Passo 3: Convidando e Conectando Seus Clientes</h2>
-      <p>A segurança é uma via de mão dupla. Para conectar um cliente ao seu canal seguro, o fluxo estruturado segue três etapas rápidas:</p>
-      <ol>
-        <li><strong>Envio do Convite Único:</strong> O escritório cadastra o e-mail ou CPF do cliente no painel do Vinc e envia um link único de convite e boas-vindas.</li>
-        <li><strong>Instalação/Acesso do Cliente:</strong> O cliente acessa o painel do Vinc no celular ou navegador de forma leve, sem necessidade de downloads complicados.</li>
-        <li><strong>Pareamento Seguro:</strong> O sistema realiza o vínculo oficial: <em>Cliente ➔ Contrato de Prestação de Serviços ➔ Advogados Associados</em>. A partir desse instante, qualquer comunicação suspeita fora da árvore de vinculação do Vinc acenderá o sinal de alerta no celular do cliente.</li>
-      </ol>
-
-      <p>Pronto! O canal de comunicação do seu escritório está ativado e totalmente protegido contra golpes digitais.</p>
-    `,
-    seo: {
-      metaTitle: 'Guia de Onboarding e Ativação do Vinc | Blog',
-      metaDesc:
-        'Siga o passo a passo de configuração e onboarding da plataforma Vinc. Saiba como ativar chaves, registrar advogados e proteger seus clientes de forma simples.',
-    },
-  },
-  {
-    id: 'post-5',
-    title:
-      'Privacidade e Conformidade: Como o Vinc Auxilia Escritórios de Advocacia a Atender à LGPD',
-    slug: 'privacidade-conformidade-lgpd-vinc-advocacia',
-    excerpt:
-      'Entenda a relação profunda entre segurança da informação jurídica, Lei Geral de Proteção de Dados (LGPD) e o ecossistema tecnológico do Vinc.',
-    category: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.name,
-    categorySlug: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.slug,
-    categoryIcon: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.icon,
-    categoryColor: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.color,
-    publishedAt: '05 Jul 2026',
-    author: AUTHORS.luiz_gustavo,
-    featuredImage: '../assets/images/seguranca.jpg',
-    tags: ['LGPD', 'Governança', 'Segurança'],
-    content: `
-      <p>Escritórios de advocacia gerenciam dados pessoais altamente sensíveis: prontuários médicos, contratos comerciais, folhas de pagamento, acordos de divórcio e informações processuais protegidas por segredo de justiça. Sob as regras rígidas da <strong>Lei Geral de Proteção de Dados (LGPD)</strong>, as bancas jurídicas têm o dever legal de implementar medidas robustas de governança contra vazamentos e acessos não autorizados.</p>
-
-      <h2>O Papel do Vinc no Escudo da Privacidade</h2>
-      <p>O Vinc atua como um parceiro estratégico para o encarregado de dados (DPO) e para os sócios do escritório. Em vez de transmitir guias, dados bancários de clientes ou cópias de certidões por canais abertos e vulneráveis de e-mail e chats de redes sociais, o Vinc estabelece um canal próprio, com acesso restrito aos profissionais formalmente vinculados a cada caso.</p>
-
-      <div class="post-regra-ouro">
-        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
-        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
-        <p class="post-regra-ouro-sub">A conformidade com a LGPD exige que a segurança da informação seja aplicada desde o desenho do sistema (Privacy by Design). No Vinc, esse é o nosso core business.</p>
-      </div>
-
-      <h2>Como o Vinc Auxilia na Conformidade Legal?</h2>
-      <p>Nosso ecossistema segue boas práticas de segurança da informação e privacidade, aplicadas ao vínculo entre cliente, contrato e advogado:</p>
-      <ul>
-        <li><strong>Acesso Restrito ao Vínculo:</strong> Só profissionais formalmente vinculados ao contrato de um cliente têm acesso às informações daquele caso no painel administrativo.</li>
-        <li><strong>Notificações Sem Dados Sensíveis:</strong> O envio de solicitações críticas de verificação é feito através de alertas genéricos que não expõem dados sensíveis na tela de bloqueio do celular, prevenindo a engenharia social visual.</li>
-        <li><strong>Registro de Acompanhamento:</strong> Ações como a marcação de ciência de um relato ficam registradas e visíveis para o escritório, criando um histórico de que o alerta foi visto e tratado.</li>
-      </ul>
-
-      <h2>Postura Preventiva Perante a ANPD</h2>
-      <p>Nos termos do art. 52 da LGPD, a adoção reiterada de mecanismos e processos internos capazes de minimizar danos é um dos critérios que a Autoridade Nacional de Proteção de Dados (ANPD) pode considerar ao avaliar a gravidade de uma infração. Adotar um canal estruturado como o Vinc, em vez de e-mails e chats abertos, é parte de uma postura preventiva nesse sentido — o que não substitui, evidentemente, uma política de privacidade e um programa de governança de dados completos no escritório.</p>
-    `,
-    seo: {
-      metaTitle: 'Conformidade LGPD para Escritórios de Advocacia | Vinc',
-      metaDesc:
-        'Descubra como o Vinc auxilia escritórios a adotar uma postura preventiva em conformidade com a LGPD, restringindo o acesso a dados por vínculo real.',
-    },
-  },
-  {
-    id: 'post-7',
-    title:
-      'Como Golpistas Descobrem Seu Nome e Seu Processo Antes de Aplicar o Golpe do Advogado Falso',
-    slug: 'golpe-falso-advogado-nomes-reais',
-    excerpt:
-      'Entenda de onde vêm os dados reais (nome, processo, advogado) que golpistas usam para dar credibilidade ao golpe do falso advogado, e por que isso não é uma falha de segurança sua.',
-    category: CATEGORIES.ANATOMIA_GOLPES.name,
-    categorySlug: CATEGORIES.ANATOMIA_GOLPES.slug,
-    categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
-    categoryColor: CATEGORIES.ANATOMIA_GOLPES.color,
-    publishedAt: '16 Jul 2026',
-    author: AUTHORS.luiz_gustavo,
-    featuredImage: '../assets/images/celular-escritorio.jpg',
-    tags: ['Golpe', 'Engenharia Social', 'Processo Judicial', 'WhatsApp'],
-    content: `
-      <p>O <strong>Golpe do Falso Advogado</strong> é uma das ameaças que mais crescem no Brasil. O que torna essa fraude extremamente perigosa é que os golpistas não inventam personagens: eles usam nomes reais de advogados atuantes e dados verdadeiros de processos públicos para enganar os clientes.</p>
-
-      <h2>A Engenharia Social por Trás do Nome Real</h2>
-      <p>Criminosos monitoram os diários oficiais e plataformas de consulta processual. Ao identificar uma decisão favorável, como a expedição de um alvará ou precatório, eles buscam o nome do advogado responsável e o do cliente. Com ferramentas de enriquecimento de dados, localizam o WhatsApp do cliente e entram em contato se passando pelo profissional real.</p>
-      <p>Eles copiam fotos de perfil, logotipos do escritório e até termos técnicos da petição para construir uma imagem de autoridade. O cliente, ao pesquisar o nome do advogado na internet, encontra o registro legítimo e acaba caindo na armadilha.</p>
-
-      <div class="post-regra-ouro">
-        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
-        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
-        <p class="post-regra-ouro-sub">O sistema Vinc não confia apenas no nome ou na foto de quem está enviando a mensagem. A confiança é validada por meio do vínculo real de contrato registrado no painel do escritório.</p>
-      </div>
-
-      <h2>Como o Vinc Protege: Roteamento por Vínculo</h2>
-      <p>No Vinc, a segurança é baseada na verificação de um relacionamento ativo e formal:</p>
-      <ul>
-        <li><strong>Validação de Contrato Real:</strong> A plataforma vincula o <strong>Cliente</strong> diretamente ao seu <strong>Contrato</strong> e ao seu <strong>Advogado Responsável</strong> dentro do nosso sistema fechado.</li>
-        <li><strong>Canais Blindados de Envio:</strong> Qualquer solicitação de pagamento ou atualização processual precisa partir do painel autenticado do escritório.</li>
-        <li><strong>Zero Confiança em Nomes:</strong> Se uma mensagem chegar ao seu WhatsApp alegando ser do seu advogado, mas não estiver validada na plataforma Vinc, ela é considerada nula e insegura.</li>
-      </ul>
-
-      <h2>Por Que Essa Abordagem Desarma os Golpistas?</h2>
-      <p>Como os criminosos não têm acesso ao painel autenticado do escritório nem ao vínculo formal registrado ali, eles não conseguem se passar pela validação do Vinc — só o profissional realmente vinculado ao caso consegue confirmar uma solicitação.</p>
-      <p>Ter seus dados reais usados contra você não significa que algo vazou especificamente sobre o seu caso — veja em <a href="artigo-detalhes.html?slug=golpe-falso-advogado-whatsapp">nosso guia sobre o mecanismo completo do golpe do falso advogado no WhatsApp</a> os gatilhos psicológicos que os criminosos usam para explorar essa informação e como reagir na prática.</p>
-    `,
-    seo: {
-      metaTitle: 'Como Golpistas Descobrem Seus Dados | Blog Vinc',
-      metaDesc:
-        'Entenda de onde vêm os dados reais que golpistas usam no golpe do falso advogado, e por que o roteamento por vínculo do Vinc neutraliza essa tática.',
-    },
-  },
-  {
-    id: 'post-8',
-    title:
-      'Por que o Roteamento por Vínculo é Mais Seguro que Conversar Apenas pelo WhatsApp?',
-    slug: 'roteamento-por-vinculo-vs-whatsapp',
-    excerpt:
-      'Entenda a diferença crucial entre reconhecer um nome na tela e validar um relacionamento jurídico real registrado no painel do escritório.',
-    category: CATEGORIES.TECNOLOGIA_DADOS.name,
-    categorySlug: CATEGORIES.TECNOLOGIA_DADOS.slug,
-    categoryIcon: CATEGORIES.TECNOLOGIA_DADOS.icon,
-    categoryColor: CATEGORIES.TECNOLOGIA_DADOS.color,
-    publishedAt: '16 Jul 2026',
-    author: AUTHORS.luiz_gustavo,
-    featuredImage: '../assets/images/vinc_infrastructure.jpg',
-    tags: ['WhatsApp', 'Vínculo', 'Segurança'],
-    content: `
-      <p>O WhatsApp tornou-se a ferramenta de comunicação mais popular do país, mas sua flexibilidade também o transformou no canal favorito de estelionatários. Para combater fraudes, precisamos entender um conceito de segurança digital fundamental: a diferença entre <strong>identidade</strong> e <strong>vínculo</strong>.</p>
-
-      <h2>Identidade versus Vínculo</h2>
-      <p>No WhatsApp desprotegido, qualquer pessoa pode adotar a identidade que desejar. Um golpista compra um chip novo, baixa uma foto pública, digita o nome de um advogado renomado no perfil e pronto: ele "é" o advogado para qualquer leigo. Isso acontece porque o aplicativo apenas valida que aquele número de telefone está ativo, mas não verifica a legitimidade da profissão ou a relação com o cliente.</p>
-      <p>O <strong>Roteamento por Vínculo do Vinc</strong> resolve esse problema. Em vez de simplesmente tentar confirmar quem é a pessoa do outro lado, o sistema verifica se existe um relacionamento contratual ativo e legítimo — já registrado no painel do escritório — entre aquele emissor específico e o destinatário.</p>
-
-      <div class="post-regra-ouro">
-        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
-        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
-        <p class="post-regra-ouro-sub">Não basta confirmar se o nome está correto. É necessário validar se a mensagem foi enviada de dentro do canal verificado e atrelada ao seu contrato de prestação de serviços.</p>
-      </div>
-
-      <h2>O Vínculo Registrado como Central da Validação</h2>
-      <p>No modelo do Vinc, as decisões não dependem do que aparece na tela do celular do cliente ou na rede do WhatsApp, e sim do que está formalmente registrado no painel administrativo do escritório:</p>
-      <ul>
-        <li><strong>Confirmação Baseada em Contratos:</strong> O sistema checa se o advogado emissor está de fato autorizado pela sociedade contratada para tratar com o cliente em questão.</li>
-        <li><strong>Fonte Única de Verificação:</strong> A validação parte sempre do vínculo registrado pelo escritório, não de informações soltas que poderiam estar desatualizadas ou terem sido forjadas fora da plataforma.</li>
-        <li><strong>Acesso Restrito:</strong> Informações do caso ficam disponíveis apenas a quem está formalmente vinculado a ele no painel, e não apenas a quem consegue enviar uma mensagem convincente.</li>
-      </ul>
-
-      <h2>Por que Abandonar Chats Desprotegidos?</h2>
-      <p>Conversar apenas pelo WhatsApp deixa o cliente exposto a táticas de engenharia social de alta precisão. O roteamento por vínculo do Vinc remove o fator humano da checagem: em vez de você precisar avaliar se uma mensagem "parece" legítima, o sistema confirma se quem está falando realmente tem direito de falar sobre seu processo jurídico.</p>
-      <p>Esse é só um dos pilares do ecossistema Vinc — veja <a href="artigo-detalhes.html?slug=vinc-blindando-relacao-advogados-clientes">o panorama completo de como clientes, advogados e escritórios são protegidos juntos</a>.</p>
-    `,
-    seo: {
-      metaTitle: 'Roteamento por Vínculo vs WhatsApp na Advocacia | Blog Vinc',
-      metaDesc:
-        'Descubra por que a validação de vínculos registrados no painel do escritório é superior a apenas reconhecer um nome em um chat aberto do WhatsApp.',
-    },
-  },
-  {
-    id: 'post-9',
-    title:
-      'Privacidade e LGPD: Por que as Notificações do Vinc Não Mostram Informações Sensíveis?',
-    slug: 'privacidade-lgpd-notificacoes-vinc',
-    excerpt:
-      'Descubra como o design inteligente e as notificações genéricas protegem suas informações e evitam a engenharia social visual de acordo com a LGPD.',
-    category: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.name,
-    categorySlug: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.slug,
-    categoryIcon: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.icon,
-    categoryColor: CATEGORIES.CIBERSEGURANCA_COMPLIANCE.color,
-    publishedAt: '16 Jul 2026',
-    author: AUTHORS.luiz_gustavo,
-    featuredImage: '../assets/images/seguranca.jpg',
-    tags: ['LGPD', 'Segurança'],
-    content: `
-      <p>Muitas pessoas estão acostumadas a ler o conteúdo completo de mensagens diretamente na tela bloqueada do celular. Embora prático, esse hábito representa um risco severo de segurança e privacidade, violando as diretrizes básicas da <strong>Lei Geral de Proteção de Dados (LGPD)</strong>. É por isso que as notificações do Vinc são desenhadas de forma diferente.</p>
-
-      <h2>O Conceito de Notificações Genéricas</h2>
-      <p>Quando o seu escritório de advocacia te envia um aviso ou um boleto importante, a notificação do Vinc que aparece na sua tela diz apenas algo como: <em>"Nova atualização de segurança pendente. Toque para verificar."</em></p>
-      <p>Nós ocultamos intencionalmente o nome do advogado, o número do processo, valores financeiros ou detalhes do assunto. Essa abordagem simples e direta cumpre objetivos estratégicos:</p>
-      <ul>
-        <li><strong>Proteção da Tela Bloqueada:</strong> Impede que pessoas ao seu redor (em transporte público, reuniões ou em casa) visualizem dados particulares e sigilosos do seu processo jurídico.</li>
-        <li><strong>Prevenção Contra Engenharia Social Visual:</strong> Evita que golpistas ou pessoas mal-intencionadas utilizem as informações que aparecem na tela do seu celular para criar novas abordagens de fraude.</li>
-        <li><strong>Minimização de Dados:</strong> O Vinc segue o princípio de exibir apenas o estritamente necessário no ambiente externo, deixando as informações ricas protegidas atrás de autenticação por senha dentro do aplicativo.</li>
-      </ul>
-
-      <div class="post-regra-ouro">
-        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
-        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
-        <p class="post-regra-ouro-sub">A privacidade de dados deve ser garantida em todas as esferas. O sigilo do seu processo começa no momento em que a tela do seu celular acende.</p>
-      </div>
-
-      <h2>Alinhamento com a LGPD e Segurança Corporativa</h2>
-      <p>Para escritórios de advocacia, enviar informações de processos por notificações abertas pode ser interpretado como negligência em caso de auditorias de privacidade. O design seguro do Vinc auxilia as bancas de advocacia a estarem em total conformidade legal, oferecendo uma experiência de <em>Privacy by Design</em> (privacidade desde a concepção) para seus clientes finais.</p>
-      <p>Para ler os detalhes, o usuário deve destravar o aparelho e acessar a plataforma autenticada. Segurança e privacidade andam de mãos dadas.</p>
-    `,
-    seo: {
-      metaTitle: 'Notificações do Vinc e Conformidade LGPD | Blog Vinc',
-      metaDesc:
-        'Descubra como as notificações genéricas do Vinc protegem seus dados confidenciais de acordo com a LGPD, impedindo que bisbilhoteiros vejam dados processuais.',
-    },
-  },
-  {
-    id: 'post-10',
-    title: '"Escritório Ciente": O Que Significa Marcar Ciência de um Relato?',
-    slug: 'escritorio-ciente-marcar-ciencia-relato',
-    excerpt:
-      'Esclareça o funcionamento e os limites do botão de ciência no painel do Vinc, garantindo total transparência e alinhamento entre clientes e advogados.',
-    category: CATEGORIES.GUIA_FUNCIONALIDADES.name,
-    categorySlug: CATEGORIES.GUIA_FUNCIONALIDADES.slug,
-    categoryIcon: CATEGORIES.GUIA_FUNCIONALIDADES.icon,
-    categoryColor: CATEGORIES.GUIA_FUNCIONALIDADES.color,
-    publishedAt: '16 Jul 2026',
-    author: AUTHORS.luiz_gustavo,
-    featuredImage: '../assets/images/vinc_shield_client.jpg',
-    tags: ['Escritório Ciente', 'Advogado', 'Governança'],
-    content: `
-      <p>A transparência é a chave para uma comunicação jurídica eficiente. No ecossistema do Vinc, quando um cliente identifica uma atividade suspeita ou um contato estranho e envia um aviso, o escritório de advocacia pode marcar aquele relato como <strong>\"Escritório Ciente\"</strong>. Mas você sabe exatamente o que esse botão significa e quais são as suas responsabilidades?</p>
-
-      <h2>O Fluxo do Relato e Acompanhamento</h2>
-      <p>Quando você recebe um contato suspeito no WhatsApp alegando ser do seu escritório e o reporta na plataforma Vinc, um alerta é gerado em tempo real no painel administrativo dos seus advogados. Ao visualizar a notificação, analisar o caso e tomar as providências internas cabíveis, o advogado clica no botão para sinalizar que o escritório está ciente da ocorrência.</p>
-      <p>Isso garante que o cliente receba uma confirmação imediata de que seu alerta foi recebido e está sob verificação, fortalecendo o canal de comunicação direto e a relação de parceria contra os criminosos.</p>
-
-      <div class="post-regra-ouro">
-        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
-        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
-        <p class="post-regra-ouro-sub">A ciência mútua é o primeiro passo para conter golpes. O cliente avisa, o escritório avalia e o sistema documenta a interação com total segurança digital.</p>
-      </div>
-
-      <h2>O que \"Ciência\" NÃO Significa</h2>
-      <p>Para evitar mal-entendidos e garantir a segurança jurídica, é fundamental esclarecer os limites dessa funcionalidade:</p>
-      <ul>
-        <li><strong>Não é uma decisão jurídica:</strong> Marcar ciência indica apenas o recebimento técnico do relato de segurança, e não uma orientação processual ou análise do mérito da causa.</li>
-        <li><strong>Não confirma a identidade do suspeito:</strong> O selo de ciente apenas acusa que o escritório tomou conhecimento de que alguém tentou se passar por eles, mas não realiza investigações policiais automáticas sobre o autor da fraude.</li>
-        <li><strong>Não encerra o caso:</strong> É apenas um marcador de progresso. O processo de investigação de um crime cibernético e o envio de boletins de ocorrência continuam seguindo os rituais tradicionais de segurança e assessoria jurídica.</li>
-      </ul>
-      <p>Em resumo, o status \"Escritório Ciente\" serve para aproximar o cliente de sua equipe jurídica, eliminando o silêncio que costuma gerar ansiedade e permitindo respostas ágeis em momentos críticos.</p>
-    `,
-    seo: {
-      metaTitle: 'Entenda o Status de Escritório Ciente | Blog Vinc',
-      metaDesc:
-        'Descubra como o status de Escritório Ciente melhora o acompanhamento de relatos suspeitos e de segurança, fortalecendo a relação entre cliente e escritório.',
-    },
-  },
-  {
-    id: 'post-11',
-    title: 'Por que o Vinc Não Possui Cadastro Público?',
-    slug: 'por-que-vinc-nao-possui-cadastro-publico',
-    excerpt:
-      'Descubra por que a entrada na plataforma ocorre apenas por meio de convites e chaves de ativação exclusivas, blindando a reputação dos escritórios parceiros.',
-    category: CATEGORIES.GESTAO_REPUTACAO.name,
-    categorySlug: CATEGORIES.GESTAO_REPUTACAO.slug,
-    categoryIcon: CATEGORIES.GESTAO_REPUTACAO.icon,
-    categoryColor: CATEGORIES.GESTAO_REPUTACAO.color,
-    publishedAt: '16 Jul 2026',
-    author: AUTHORS.luiz_gustavo,
-    featuredImage: '../assets/images/vinc_advocacy_shield.jpg',
-    tags: ['Segurança', 'Advogado', 'Governança'],
-    content: `
-      <p>Ao navegar pelo site do Vinc, você deve ter percebido que não existe um botão de \"Criar Conta Grátis\" ou \"Cadastre-se\" aberto ao público geral. Essa decisão arquitetônica não é um capricho de design, mas sim um pilar de segurança digital essencial para manter a integridade da nossa plataforma.</p>
-
-      <h2>Proteção Contra Perfis Falsos e Engenharia Social</h2>
-      <p>Plataformas com cadastro público e aberto sofrem constantemente com a criação de perfis falsos. Criminosos poderiam facilmente criar uma conta se passando por um advogado legítimo ou criar uma sociedade de advogados fantasma para aplicar golpes de dentro do próprio sistema, gerando falsos selos de verificação.</p>
-      <p>Para reduzir essa vulnerabilidade, o Vinc adota uma política de <strong>entrada restrita por convites e chaves de ativação exclusivas</strong>.</p>
-
-      <div class="post-regra-ouro">
-        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
-        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
-        <p class="post-regra-ouro-sub">A segurança de um ecossistema fechado reside na qualidade e veracidade de seus membros. Cada usuário da nossa rede passa por uma rigorosa validação prévia.</p>
-      </div>
-
-      <h2>Como Funciona o Fluxo de Homologação</h2>
-      <p>Para que um escritório ou advogado autônomo ingresse na plataforma, a jornada segue um protocolo minucioso:</p>
-      <ol>
-        <li><strong>Solicitação de Chave de Ativação:</strong> O advogado preenche o formulário oficial de contato fornecendo seus dados institucionais e registro na OAB.</li>
-        <li><strong>Auditoria Manual:</strong> Nossa equipe analisa manualmente as credenciais e os dados institucionais informados antes de aprovar o acesso.</li>
-        <li><strong>Emissão da Chave Única:</strong> Após a homologação, o escritório recebe uma chave de ativação única para acessar seu painel.</li>
-      </ol>
-      <p>Esse modelo de acesso restrito dificulta fraudes na origem e reduz o risco de que perfis falsos se façam passar por escritórios credenciados dentro da plataforma.</p>
-    `,
-    seo: {
-      metaTitle: 'Por Que o Vinc Não Tem Cadastro Aberto | Blog Vinc',
-      metaDesc:
-        'Entenda por que o Vinc é um ecossistema fechado e acessível somente por meio de chaves de ativação homologadas e convites exclusivos.',
-    },
-  },
-  {
-    id: 'post-12',
-    title:
-      'Vinc: Blindando a Relação entre Advogados e Clientes contra Fraudes',
-    slug: 'vinc-blindando-relacao-advogados-clientes',
-    excerpt:
-      'No cenário jurídico atual, entenda como o ecossistema do Vinc protege a identidade do escritório e o patrimônio dos clientes através de relações de vínculos autenticados.',
-    category: CATEGORIES.GESTAO_REPUTACAO.name,
-    categorySlug: CATEGORIES.GESTAO_REPUTACAO.slug,
-    categoryIcon: CATEGORIES.GESTAO_REPUTACAO.icon,
-    categoryColor: CATEGORIES.GESTAO_REPUTACAO.color,
-    publishedAt: '16 Jul 2026',
-    author: AUTHORS.luiz_gustavo,
-    featuredImage: '../assets/images/vinc_dashboard_mock.jpg',
-    tags: ['Golpe', 'Advogado', 'Fraude', 'Segurança', 'Vínculo'],
-    content: `
-      <p>No cenário jurídico atual, a reputação e a marca de um escritório de advocacia são seus ativos mais preciosos. Contudo, essa credibilidade conquistada com anos de dedicação também se tornou o alvo principal de quadrilhas especializadas. Criminosos se apropriam de nomes de advogados reais e usam dados de processos públicos para enganar clientes em tentativas de golpes sofisticados.</p>
-
-      <p>Nesse cenário de vulnerabilidade, o <strong>Vinc</strong> surge como uma camada adicional de segurança para a comunicação entre escritórios e clientes, baseando sua atuação em uma regra de ouro simples: <strong>confirmar antes de confiar</strong>.</p>
-
-      <h2>O que é o Vinc?</h2>
-      <p>O Vinc é um ecossistema de prevenção a fraudes projetado especificamente para o ambiente jurídico. Diferente de chats e aplicativos de mensagens comuns que não possuem qualquer tipo de checagem profissional, o Vinc não tenta adivinhar ou presumir se um contato é seguro por fotos ou nomes de perfil. Em vez disso, nossa plataforma valida a existência de um <strong>vínculo real</strong> entre as partes antes de autorizar qualquer interação de segurança — o princípio que chamamos de <a href="artigo-detalhes.html?slug=zero-trust-na-advocacia-arquitetura-vinc">Zero Trust</a>.</p>
-
-      <div class="post-regra-ouro">
-        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
-        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
-        <p class="post-regra-ouro-sub">A segurança não deve depender da intuição humana. Toda comunicação sensível precisa ser validada por uma infraestrutura dedicada a confirmar vínculos contratuais reais.</p>
-      </div>
-
-      <h2>O Roteamento por Vínculo Real</h2>
-      <p>O coração do Vinc é o seu sistema de roteamento por vínculo. Quando um cliente final recebe uma abordagem duvidosa no dia a dia — como um pedido urgente de transferência via PIX, solicitações de documentos confidenciais ou comunicados sobre andamento processual —, ele registra essa interação no aplicativo Vinc.</p>
-      <p>A partir daí, o processo de verificação segue estas etapas:</p>
-      <ul>
-        <li><strong>Isolamento do Nome:</strong> O sistema desconsidera o nome informado pelo contato suspeito, usando-o apenas como contexto complementar de análise.</li>
-        <li><strong>Identificação de Vínculo:</strong> O sistema verifica, na base de dados do escritório, quais profissionais realmente possuem vínculo contratual legítimo e autorizado com aquele cliente específico.</li>
-        <li><strong>Alerta:</strong> O Vinc envia um alerta de verificação para o painel do advogado responsável cadastrado.</li>
-        <li><strong>Confirmação:</strong> O advogado confirma ou rejeita a autenticidade daquela solicitação, e pode marcar ciência do relato.</li>
-      </ul>
-      <p>Esse processo reduz fortemente a eficácia das táticas mais comuns de engenharia social, dificultando que golpistas enganem as vítimas. Para entender por que isso funciona melhor do que simplesmente reconhecer um nome familiar no WhatsApp, veja <a href="artigo-detalhes.html?slug=roteamento-por-vinculo-vs-whatsapp">nosso aprofundamento sobre identidade versus vínculo</a>.</p>
-
-      <h2>Benefícios Claros para Toda a Cadeia de Segurança</h2>
-      <p>O modelo baseado em relações autenticadas gera valor imediato para todos os envolvidos na prestação de serviços jurídicos:</p>
-
-      <h3>1. Tranquilidade e Autonomia para Clientes</h3>
-      <ul>
-        <li><strong>Fim da Incerteza:</strong> Alívio imediato e tranquilidade ao receber qualquer tipo de solicitação ou cobrança.</li>
-        <li><strong>Transparência:</strong> Acompanhamento do status de validação das suas interações de segurança.</li>
-        <li><strong>Histórico Seguro:</strong> Acesso fácil ao registro de todas as consultas e confirmações realizadas ao longo do contrato.</li>
-      </ul>
-
-      <h3>2. Proteção de Identidade para Advogados</h3>
-      <ul>
-        <li><strong>Blindagem de Nome:</strong> Proteção ativa da identidade profissional e do registro na OAB de usos indevidos.</li>
-        <li><strong>Alertas de Segurança:</strong> Notificações rápidas e seguras sobre contatos suspeitos realizados em nome do profissional.</li>
-        <li><strong>Validação Ágil:</strong> Ferramentas fáceis que permitem responder às dúvidas de segurança dos clientes sem interromper a rotina de trabalho.</li>
-      </ul>
-
-      <h3>3. Governança e Controle para Escritórios</h3>
-      <ul>
-        <li><strong>Acesso Homologado:</strong> Cadastro estritamente fechado, sem permissão para entrada pública, mitigando a criação de contas ou identidades falsas na rede.</li>
-        <li><strong>Gestão Centralizada:</strong> Painel de controle completo para administração de contratos de clientes, chaves de ativação e usuários autorizados da equipe.</li>
-        <li><strong>Soberania Tecnológica:</strong> Controle direto sobre os canais oficiais de comunicação, protegendo a reputação institucional do escritório.</li>
-      </ul>
-
-      <h2>A Decisão Fica no Painel, Não no Celular</h2>
-      <p>As decisões de validação do Vinc não dependem apenas do que está instalado no celular do cliente: elas partem do que está formalmente registrado pelo escritório no painel administrativo. Isso significa que a checagem de vínculo é sempre feita a partir de um registro oficial, e não de informações soltas que poderiam estar desatualizadas.</p>
-
-      <h2>Conclusão</h2>
-      <p>À medida que as tentativas de fraudes evoluem e se tornam mais convincentes, as barreiras de proteção precisam acompanhar essa evolução. O Vinc muda o ponto de partida da checagem de identidade: em vez de confiar em quem parece legítimo, valida se existe um relacionamento real e registrado.</p>
-      <p>Mais do que simplesmente confirmar quem está falando, o Vinc certifica que aquela pessoa possui o direito e o vínculo real para falar com você.</p>
-
-      <div class="post-cta-box" style="margin-top: 40px; padding: 24px; background-color: var(--ice-blue); border-left: 4px solid var(--blue); border-radius: 0 var(--radius-md) var(--radius-md) 0;">
-        <h3 style="margin-top: 0; margin-bottom: 12px; color: var(--blue); font-size: 18px; font-weight: bold;">Quer conhecer uma nova forma de proteger clientes e escritórios?</h3>
-        <p style="margin-bottom: 20px; color: var(--text-primary); font-size: 15px; line-height: 1.6;">Conheça o Vinc e descubra como um ecossistema baseado em vínculos reais pode reduzir drasticamente tentativas de fraudes e elevar a confiança mútua na comunicação jurídica.</p>
-        <a href="contato.html" class="btn-primary" style="display: inline-block; text-decoration: none; font-size: 14px; padding: 10px 20px;">Solicitar chave de ativação</a>
-      </div>
-    `,
-    seo: {
-      metaTitle: 'Vinc: Blindando a Relação Advogado-Cliente | Blog',
-      metaDesc:
-        'Descubra como o ecossistema do Vinc protege a identidade do escritório de advocacia e o patrimônio dos clientes através da tecnologia de vínculo contratual real.',
-    },
-  },
-  {
-    id: 'post-13',
-    title: 'Como Verificar se um Advogado é Real na OAB',
-    slug: 'como-verificar-advogado-real-oab',
-    excerpt:
-      'Um nome real não prova que a pessoa do outro lado é quem diz ser. Aprenda a consultar o Cadastro Nacional de Advogados da OAB antes de confiar em qualquer contato.',
-    category: CATEGORIES.ANATOMIA_GOLPES.name,
-    categorySlug: CATEGORIES.ANATOMIA_GOLPES.slug,
-    categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
-    categoryColor: CATEGORIES.ANATOMIA_GOLPES.color,
-    publishedAt: '07 Ago 2026',
-    author: AUTHORS.luiz_gustavo,
-    featuredImage: '../assets/images/advogados.jpg',
-    tags: ['Advogado', 'Golpe', 'Segurança'],
-    content: `
-      <p>Você recebe uma mensagem no WhatsApp. O remetente diz ser advogado, cita o número do seu processo, usa termos técnicos que você nem sabia que existiam, e pede uma transferência urgente para "liberar" um valor. Você faz o que qualquer pessoa razoável faria: procura o nome dele no Google. E lá está — perfil no LinkedIn, foto profissional, até uma matéria de jornal local. Parece legítimo.</p>
-      <p>O problema é que "parecer legítimo" e "ser legítimo" são coisas diferentes, e a distância entre as duas é exatamente onde vivem os golpistas.</p>
-
-      <h2>Um Nome Não Prova Nada</h2>
-      <p>Criminosos usam dados reais de advogados que existem de fato — muitas vezes profissionais respeitados, com anos de carreira, que nem sabem que seu nome está sendo usado numa fraude. O golpista não precisa inventar uma pessoa; ele só precisa emprestar a credibilidade de uma que já existe. Por isso pesquisar o nome no Google não resolve o problema: você vai encontrar o advogado real, só que não necessariamente vai estar falando com ele.</p>
-      <p>A boa notícia é que existe uma forma de checar isso que não depende de busca no Google, LinkedIn ou qualquer rede social. É um cadastro público, mantido pela própria entidade que regula a profissão no Brasil.</p>
-
-      <div class="post-regra-ouro">
-        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
-        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
-        <p class="post-regra-ouro-sub">Um nome verdadeiro numa mensagem não prova que ela veio da pessoa que diz ser. Existência e vínculo são coisas diferentes.</p>
-      </div>
-
-      <h2>Quem Decide Quem Pode Advogar no Brasil</h2>
-      <p>A advocacia no Brasil é uma profissão regulamentada. Isso significa que não basta ter um diploma de Direito guardado na gaveta — é preciso estar inscrito na Ordem dos Advogados do Brasil (OAB) para exercer a profissão legalmente, assinar petições, representar clientes em juízo. Essa exigência está na Lei nº 8.906, de 4 de julho de 1994, o Estatuto da Advocacia e da OAB, que também define as regras disciplinares da profissão.</p>
-      <p>Cada advogado inscrito recebe um número de registro vinculado a uma seccional — a unidade estadual da OAB. Você já deve ter visto essa combinação em algum lugar: "OAB/SP 123.456", "OAB/MG 98.765". As duas letras indicam o estado onde o profissional está inscrito; o número é o registro individual dele, único e público.</p>
-      <p>E aqui está o ponto central: como é um registro público, qualquer pessoa pode consultá-lo. Não é um dado sigiloso, não exige login, não exige ser cliente de nada. Basta saber onde procurar.</p>
-
-      <h2>A Ferramenta Oficial (e Por Que Ela é Diferente do Google)</h2>
-      <p>O órgão nacional da OAB mantém uma ferramenta pública de consulta chamada Cadastro Nacional de Advogados, acessível em cna.oab.org.br — também disponível a partir do site institucional oab.org.br, na área de serviços. É lá, e não em redes sociais, que fica o registro oficial de quem está habilitado a advogar no país.</p>
-      <p>A diferença entre essa ferramenta e uma busca no Google é simples: o Google indexa o que existe na internet sobre uma pessoa, verdadeiro ou não. Um perfil falso, uma matéria antiga, um nome homônimo — tudo isso aparece igual. Já o Cadastro Nacional de Advogados indexa uma coisa só: quem está, de fato, inscrito e regular perante a OAB.</p>
-      <p>Normalmente a consulta permite buscar por nome completo ou diretamente pelo número de inscrição combinado com a seccional. O retorno mostra o nome do profissional, a seccional em que está registrado e a situação do registro — se está regular, ou se há alguma restrição.</p>
-
-      <h2>Um Exemplo Para Deixar Isso Concreto</h2>
-      <p>Imagine que você recebe uma mensagem de alguém se identificando como "Dr. Ricardo Almeida, OAB/SP 123.456", cobrando uma taxa para liberar um alvará. Antes de qualquer coisa, faça duas checagens simples.</p>
-      <p>A primeira é conferir se o nome e o número batem no Cadastro Nacional de Advogados. Se o sistema mostrar um "Ricardo Almeida" registrado sob um número completamente diferente, ou numa seccional diferente da que a mensagem menciona, isso já é motivo suficiente para desconfiar.</p>
-      <p>A segunda — e essa é a parte que a maioria das pessoas esquece — é lembrar que, mesmo que o registro esteja correto e a pessoa exista de verdade, isso não prova que foi <em>ela</em> quem te mandou aquela mensagem específica. Advogados reais também têm o nome usado indevidamente por golpistas, com frequência sem nem saber. O cadastro da OAB confirma que a profissão é exercida legalmente por alguém com aquele nome e número. Ele não confirma que o WhatsApp que está te escrevendo pertence a essa pessoa.</p>
-
-      <h2>Por Que Isso Importa Mais do Que Parece</h2>
-      <p>Existe uma diferença entre confirmar uma identidade e confirmar um vínculo. A primeira responde "essa pessoa existe e pode advogar?". A segunda responde "essa pessoa está mesmo cuidando do meu caso?" — e são perguntas diferentes, com respostas em lugares diferentes. Já escrevemos sobre <a href="artigo-detalhes.html?slug=roteamento-por-vinculo-vs-whatsapp">essa distinção entre identidade e vínculo</a> com mais profundidade.</p>
-      <p>O Cadastro Nacional de Advogados resolve a primeira pergunta, e resolve bem. A segunda depende de outra coisa: um canal de comunicação que confirme, de fato, que existe um contrato ativo entre você e aquele profissional específico — não apenas que ele é um advogado de verdade em algum lugar do Brasil. No Vinc, uma solicitação só é tratada como legítima quando existe esse vínculo formal registrado entre cliente, contrato e advogado responsável — a checagem da OAB é o primeiro filtro, não o único.</p>
-    `,
-    seo: {
-      metaTitle: 'Como Verificar se um Advogado é Real na OAB | Blog',
-      metaDesc:
-        'Aprenda a consultar o Cadastro Nacional de Advogados da OAB e confirme se um profissional está mesmo registrado antes de confiar numa mensagem.',
-    },
-  },
-  {
-    id: 'post-14',
-    title: 'Como Funciona de Verdade o Recebimento de Alvarás e Precatórios',
-    slug: 'como-funciona-recebimento-alvaras-precatorios',
-    excerpt:
-      'Entenda como funcionam de verdade o alvará judicial e o precatório — e por que a urgência que golpistas criam não existe em nenhuma etapa real do processo.',
-    category: CATEGORIES.ANATOMIA_GOLPES.name,
-    categorySlug: CATEGORIES.ANATOMIA_GOLPES.slug,
-    categoryIcon: CATEGORIES.ANATOMIA_GOLPES.icon,
-    categoryColor: CATEGORIES.ANATOMIA_GOLPES.color,
-    publishedAt: '08 Ago 2026',
-    author: AUTHORS.luiz_gustavo,
-    featuredImage: '../assets/images/vinc_shield.jpg',
-    tags: ['Alvará', 'Processo Judicial', 'Golpe'],
-    content: `
-      <p>Toda vítima do <a href="artigo-detalhes.html?slug=golpe-falso-advogado-whatsapp">golpe do falso advogado</a> ouve praticamente a mesma frase: "seu dinheiro já foi liberado, mas você precisa pagar uma taxa agora, hoje, ou perde o prazo". A urgência é a arma principal do golpista — e ela só funciona porque a maioria das pessoas não faz ideia de como o dinheiro de um processo judicial realmente chega até elas. Sem esse conhecimento, qualquer prazo apertado soa plausível.</p>
-      <p>Então vamos destrinchar o processo real, sem o drama.</p>
-
-      <h2>De Onde Vem Esse Dinheiro, Afinal</h2>
-      <p>Quando alguém ganha uma ação judicial contra o poder público — o INSS, um município, um estado, a União — o pagamento não sai na hora, como uma transferência bancária comum. Existe um rito específico, previsto no artigo 100 da Constituição Federal, porque o dinheiro público não pode simplesmente ser transferido por ordem judicial direta: ele precisa entrar no orçamento e seguir uma fila.</p>
-      <p>Esse mecanismo se chama precatório. Na prática, funciona como uma fila de pagamentos organizada por ordem cronológica: quem entrou primeiro na fila, dentro daquela categoria, é pago primeiro. Os precatórios são incluídos no orçamento do ano seguinte e pagos pelo ente público devedor — e sim, isso significa que o processo inteiro pode levar meses, às vezes bem mais que isso, dependendo do tamanho da fila naquele tribunal.</p>
-
-      <div class="post-regra-ouro">
-        <span class="post-regra-ouro-label">Regra de Ouro do Vinc</span>
-        <p class="post-regra-ouro-text">Confirme antes de confiar.</p>
-        <p class="post-regra-ouro-sub">Nenhuma etapa legítima do pagamento de um alvará ou precatório exige que você deposite dinheiro antes de receber o seu.</p>
-      </div>
-
-      <h2>RPV, e Quando é Alvará em Vez de Precatório</h2>
-      <p>Para valores menores, existe um atalho: a Requisição de Pequeno Valor, conhecida como RPV. Ela existe justamente para não obrigar quem tem um crédito pequeno a esperar na mesma fila de valores altos — o pagamento tende a ser mais rápido, sem entrar na ordem cronológica dos precatórios. O limite de valor que separa uma RPV de um precatório varia conforme o ente devedor (União, estado ou município) e a legislação local de cada tribunal, então não existe um número único válido para o Brasil inteiro — vale sempre checar o valor vigente diretamente com o tribunal responsável pelo seu processo.</p>
-      <p>Quando é dinheiro entre partes privadas — não contra o poder público —, o mecanismo é outro: o alvará judicial. É a autorização que o juiz dá para liberar um valor que está depositado numa conta judicial, vinculada ao processo. Também não é instantâneo, mas o rito costuma ser mais direto que o de um precatório contra a Fazenda Pública.</p>
-
-      <h2>O Detalhe Que os Golpistas Exploram</h2>
-      <p>Repare que em nenhum desses processos existe uma etapa em que você precisa pagar algo para "destravar" o próprio dinheiro. O sistema funciona ao contrário: primeiro sai a decisão judicial, depois o valor é depositado ou incluído na fila orçamentária, e só então — quando o dinheiro já está disponível — é que ele é transferido para a conta do beneficiário ou do advogado com poderes específicos para receber.</p>
-      <p>Eventuais custas processuais legítimas — como as de cartório, ou guias tributárias — são emitidas oficialmente pelo próprio tribunal ou órgão competente, através de guia de recolhimento específica, não por cobrança avulsa via Pix pedida numa conversa de WhatsApp. Se alguém está te pedindo para depositar dinheiro numa conta pessoal para "destravar" um valor judicial, o pedido em si já quebra a lógica de como o sistema funciona.</p>
-      <p>É exatamente esse desconhecimento sobre o processo real que dá força ao gatilho de urgência. Quem entende que um alvará ou precatório segue um rito formal, com prazos que não são negociáveis por mensagem de WhatsApp, perde o principal motivo para agir com pressa diante de uma cobrança inesperada.</p>
-
-      <h2>O Que Fazer Quando a Notícia Chega</h2>
-      <p>Se você tem um processo em andamento e recebe uma notícia de que há um valor a receber, o caminho seguro é sempre o mesmo: confirme diretamente com o escritório que representa você, pelos canais que você já conhece — não pelos que a mensagem sugere. Ligue para o número que está no seu contrato, não para o que apareceu na tela agora.</p>
-      <p>E se o contato disser respeito a um valor supostamente liberado, vale lembrar: o andamento processual em si é informação pública no Brasil, o que significa que alguém mal-intencionado pode saber que você tem um alvará ou precatório em curso sem ter nenhuma ligação com o seu processo. Saber que existe um valor a receber não é a mesma coisa que ter autorização para tratar dele.</p>
-      <p>No fim, o antídoto contra esse tipo de golpe não é desconfiar de tudo o tempo inteiro — é saber, com clareza, como o processo de verdade funciona. Quando você entende o rito, a pressa artificial que o golpista tenta criar simplesmente deixa de fazer sentido.</p>
-    `,
-    seo: {
-      metaTitle: 'Como Funcionam Alvarás e Precatórios | Blog Vinc',
-      metaDesc:
-        'Entenda o rito real de pagamento de alvarás e precatórios judiciais e por que a urgência usada em golpes não bate com como o sistema funciona.',
-    },
-  },
-];
+  BLOG_POSTS = posts;
+}
 
 // --------------------------------------------------------------------------
 // LÓGICA DE GERENCIAMENTO DE ESTADO E RENDERIZAÇÃO DO BLOG (LISTAGEM)
@@ -1700,7 +1096,7 @@ function initSidebar() {
 // --------------------------------------------------------------------------
 // INICIALIZAÇÃO CENTRAL DO BLOG (DOM CONTENT LOADED)
 // --------------------------------------------------------------------------
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   // Carrega filtros de categoria salvos de outras páginas
   const savedCategory = sessionStorage.getItem('active_category_filter');
   if (savedCategory) {
@@ -1724,6 +1120,19 @@ document.addEventListener('DOMContentLoaded', () => {
     searchQuery = urlSearchQuery;
     const searchInput = document.getElementById('blog-search-input');
     if (searchInput) searchInput.value = urlSearchQuery;
+  }
+
+  try {
+    await loadBlogPosts();
+  } catch (error) {
+    console.error('Falha ao carregar os artigos do blog:', error);
+    const message =
+      '<div class="empty-state"><div class="empty-state-icon">⚠️</div><h3>Não foi possível carregar os artigos</h3><p>Isso costuma acontecer quando a página é aberta direto do arquivo (file://) em vez de um servidor local. Veja as instruções de execução no README.</p></div>';
+    const listContainer = document.getElementById('blog-posts-container');
+    if (listContainer) listContainer.innerHTML = message;
+    const singleContainer = document.getElementById('single-post-container');
+    if (singleContainer) singleContainer.innerHTML = message;
+    return;
   }
 
   // Aciona a renderização de componentes e lógica

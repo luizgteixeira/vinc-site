@@ -1,0 +1,32 @@
+{
+  "id": "post-1",
+  "title": "O Golpe do Falso Advogado no WhatsApp: Como Criminosos Exploram a Ansiedade Processual",
+  "slug": "golpe-falso-advogado-whatsapp",
+  "excerpt": "Entenda detalhadamente a engenharia social por trás do golpe do falso advogado no WhatsApp e aprenda a identificar os gatilhos psicológicos usados por quadrilhas.",
+  "categoryKey": "ANATOMIA_GOLPES",
+  "publishedAt": "15 Jul 2026",
+  "authorKey": "luiz_gustavo",
+  "featuredImage": "../assets/images/celular-escritorio.jpg",
+  "tags": [
+    "Golpe",
+    "WhatsApp",
+    "Engenharia Social",
+    "Pix",
+    "Alvará"
+  ],
+  "faq": [
+    {
+      "question": "Advogados cobram taxas por Pix para liberar alvarás?",
+      "answer": "Não. No Brasil, o recebimento de valores judiciais é feito diretamente na conta do beneficiário ou do advogado com poderes específicos. Quaisquer custas oficiais são emitidas através de guias bancárias dos próprios tribunais."
+    },
+    {
+      "question": "Como os criminosos sabem meu nome e meu processo?",
+      "answer": "Os andamentos processuais no Brasil são públicos pela Constituição Federal. Isso permite que robôs vasculhem publicações oficiais para extrair nomes e dados que, infelizmente, são cruzados com vazamentos gerais na web para achar seu telefone."
+    }
+  ],
+  "content": "\n      <p>Nos últimos meses, houve um crescimento vertiginoso em golpes virtuais direcionados a clientes que possuem processos na Justiça brasileira. O mais recorrente deles é o chamado <strong>Golpe do Falso Advogado</strong>, aplicado principalmente através de aplicativos de mensagens como o WhatsApp. Para combater esse mal, a filosofia do Vinc é direta e imutável: <strong>Confirme antes de confiar</strong>.</p>\n\n      <h2>Como Funciona a Mecânica do Golpe?</h2>\n      <p>O golpe não se baseia em uma quebra de segurança de servidores bancários ou criptografia de sistemas. É uma fraude baseada puramente na <strong>engenharia social</strong>. Os criminosos acessam diários oficiais públicos, coletam nomes de clientes que têm direito a receber algum dinheiro (alvarás expedidos, precatórios, revisões salariais) e localizam o contato de telefone desses clientes na internet. Em seguida, criam um perfil de WhatsApp idêntico ao do advogado ou escritório do cliente, copiando fotos, logotipos oficiais e descrições institucionais legítimas.</p>\n\n      <div class=\"post-regra-ouro\">\n        <span class=\"post-regra-ouro-label\">Regra de Ouro do Vinc</span>\n        <p class=\"post-regra-ouro-text\">Confirme antes de confiar.</p>\n        <p class=\"post-regra-ouro-sub\">O fato de uma pessoa conhecer o número do seu processo ou citar termos jurídicos complexos não valida sua identidade. Exija sempre validação multifator.</p>\n      </div>\n\n      <h2>Os Principais Gatilhos Usados por Criminosos</h2>\n      <p>Estelionatários dependem de reações precipitadas das vítimas. Para isso, aplicam táticas refinadas:</p>\n      <ul>\n        <li><strong>Gatilho de Urgência Extrema:</strong> O golpista afirma que os valores do alvará estão liberados, mas que o lote expira no mesmo dia. Isso impede a vítima de pensar ou de ligar para o escritório de forma calma.</li>\n        <li><strong>Falsa Autoridade:</strong> Utilização de termos complexos, fotos de tribunais ou logotipos da OAB para convencer a vítima de que se trata de uma comunicação solene.</li>\n        <li><strong>Custas Antecipadas:</strong> A mentira de que, para liberar a quantia total, o cliente precisa depositar um valor correspondente a taxas de cartório, guias tributárias (como DARF ou ITCD) ou taxas fictícias via Pix.</li>\n      </ul>\n\n      <h2>Ações Práticas para se Proteger</h2>\n      <p>Caso receba qualquer solicitação financeira repentina, siga estas recomendações fundamentais:</p>\n      <ol>\n        <li><strong>Não faça pagamentos imediatos:</strong> Advogados idôneos não cobram Pix ou transferências para liberar alvarás judiciais.</li>\n        <li><strong>Não retorne o contato pelo mesmo número:</strong> Se um perfil novo te mandar mensagem dizendo ser do seu advogado, não faça perguntas ou ligações por ele. Procure os canais oficiais estabelecidos na sua procuração original.</li>\n        <li><strong>Utilize os Canais Vinculados ao Vinc:</strong> Escritórios credenciados ao Vinc atendem clientes através do painel oficial da plataforma. Qualquer mensagem fora dele deve ser considerada altamente suspeita.</li>\n      </ol>\n\n      <div class=\"post-faq-box\" style=\"margin-top: 30px; padding: 20px; background-color: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);\">\n        <h3 style=\"margin-top: 0;\">FAQ Rápido sobre o Golpe</h3>\n        <p><strong>P: Advogados cobram taxas por Pix para liberar alvarás?</strong><br>R: Não. No Brasil, o recebimento de valores judiciais é feito diretamente na conta do beneficiário ou do advogado com poderes específicos. Quaisquer custas oficiais são emitidas através de guias bancárias dos próprios tribunais.</p>\n        <p><strong>P: Como os criminosos sabem meu nome e meu processo?</strong><br>R: Os andamentos processuais no Brasil são públicos pela Constituição Federal. Isso permite que robôs vasculhem publicações oficiais para extrair nomes e dados que, infelizmente, são cruzados com vazamentos gerais na web para achar seu telefone. <a href=\"artigo-detalhes.html?slug=golpe-falso-advogado-nomes-reais\">Veja em detalhes como esse processo funciona</a>.</p>\n      </div>\n    ",
+  "seo": {
+    "metaTitle": "O Golpe do Falso Advogado no WhatsApp | Blog Vinc",
+    "metaDesc": "Descubra como funciona o golpe do falso advogado no WhatsApp. Entenda a engenharia social e aprenda a se blindar com as dicas práticas do Vinc."
+  }
+}

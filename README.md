@@ -70,7 +70,12 @@ O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build s
 ├── js/                                 # Motores funcionais de interatividade do site
 │   ├── script.js                       # Navegação, menu mobile, dropdowns e accordions (FAQ/Contato)
 │   ├── contato.js                      # Envio do formulário de solicitação de chave (Web3Forms)
-│   └── blog.js                         # CMS do Blog client-side (posts, filtros, SEO dinâmico, JSON-LD, busca)
+│   └── blog.js                         # Motor do Blog client-side (busca os artigos via fetch, filtros, SEO dinâmico, JSON-LD, busca)
+│
+├── content/
+│   └── posts/                          # Um arquivo JSON por artigo do blog (ver seção "Centro de Conhecimento")
+│       ├── index.json                  # Lista os slugs dos artigos publicados, na ordem em que devem ser carregados
+│       └── <slug>.json                 # Dados e conteúdo HTML de cada artigo
 │
 ├── assets/                             # Biblioteca de mídias e recursos de marca do Vinc
 │   ├── fonts/                          # Fontes locais (Plus Jakarta Sans)
@@ -85,7 +90,7 @@ O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build s
 
 ## ✍️ Centro de Conhecimento (Blog Dinâmico)
 
-O blog do Vinc é controlado por um sistema de gerenciamento client-side em JavaScript (`js/blog.js`), organizado em **6 categorias editoriais** (5 delas com artigos publicados até o momento):
+O blog do Vinc é controlado por um motor client-side (`js/blog.js`) que busca os artigos em `content/posts/*.json` via `fetch()`, organizado em **6 categorias editoriais** (5 delas com artigos publicados até o momento):
 
 1.  **🚨 Anatomia de Golpes e Alertas**: As fraudes mais comuns (falso advogado no WhatsApp, uso de dados públicos reais, urgência artificial em torno de alvarás e precatórios).
 2.  **🛡️ Gestão de Reputação para Advogados**: Como escritórios de advocacia podem proteger suas marcas contra o uso fraudulento de seus nomes.
@@ -104,6 +109,16 @@ O blog do Vinc é controlado por um sistema de gerenciamento client-side em Java
 -   **Newsletter via Mailchimp**: Formulário integrado (barra lateral do blog e páginas de artigo) que envia a inscrição para o Mailchimp através de um iframe oculto, sem sair da página.
 -   **Feedback de Artigo**: Avaliação, temas de interesse e comentário livre ao final de cada artigo, enviados via Web3Forms.
 
+### ✏️ Como Publicar um Novo Artigo
+
+Nenhum código precisa ser alterado para adicionar um artigo novo:
+
+1.  Crie `content/posts/<slug-do-artigo>.json` usando um artigo existente como modelo. Campos esperados: `id`, `title`, `slug`, `excerpt`, `categoryKey` (uma das chaves de `CATEGORIES` em `js/blog.js`, ex.: `ANATOMIA_GOLPES`), `publishedAt`, `authorKey` (chave de `AUTHORS` em `js/blog.js`), `featuredImage`, `tags`, `faq` (opcional) e `content` (HTML do corpo do artigo), além do bloco `seo` (`metaTitle`, `metaDesc`).
+2.  Adicione o slug em `content/posts/index.json`.
+3.  Adicione a URL do artigo em `sitemap.xml`, se for ficar indexado.
+
+A ordem de exibição (mais recente primeiro) é calculada automaticamente a partir de `publishedAt` — a ordem dentro de `index.json` não importa.
+
 ---
 
 ## 🛠️ Como Visualizar e Executar o Site
@@ -111,10 +126,10 @@ O blog do Vinc é controlado por um sistema de gerenciamento client-side em Java
 Como o site é construído em HTML5, CSS3 e JavaScript estáticos — sem build step, sem framework e sem dependências —, ele roda diretamente nos navegadores de forma leve e rápida.
 
 ### Execução Simples
-Basta abrir o arquivo `index.html` (na raiz do projeto) em qualquer navegador web de sua preferência.
+Basta abrir o arquivo `index.html` (na raiz do projeto) em qualquer navegador web de sua preferência. As páginas institucionais funcionam normalmente assim.
 
-### Execução via Servidor Local (recomendado)
-Alguns recursos (como o roteamento de artigos do blog via `?slug=`) funcionam melhor servidos por HTTP em vez de `file://`. Qualquer servidor estático simples resolve:
+### Execução via Servidor Local (obrigatória para o Blog)
+O Blog (`pages/blog.html` e `pages/artigo-detalhes.html`) busca os artigos dinamicamente em `content/posts/*.json` via `fetch()`. Navegadores bloqueiam esse tipo de requisição quando a página é aberta direto do disco (`file://`) — por isso essas duas páginas **precisam** ser servidas por HTTP. Qualquer servidor estático simples resolve:
 
 ```bash
 # Com Python 3

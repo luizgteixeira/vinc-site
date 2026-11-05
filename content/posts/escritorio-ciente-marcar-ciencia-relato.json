@@ -1,0 +1,20 @@
+{
+  "id": "post-10",
+  "title": "\"Escritório Ciente\": O Que Significa Marcar Ciência de um Relato?",
+  "slug": "escritorio-ciente-marcar-ciencia-relato",
+  "excerpt": "Esclareça o funcionamento e os limites do botão de ciência no painel do Vinc, garantindo total transparência e alinhamento entre clientes e advogados.",
+  "categoryKey": "GUIA_FUNCIONALIDADES",
+  "publishedAt": "16 Jul 2026",
+  "authorKey": "luiz_gustavo",
+  "featuredImage": "../assets/images/vinc_shield_client.jpg",
+  "tags": [
+    "Escritório Ciente",
+    "Advogado",
+    "Governança"
+  ],
+  "content": "\n      <p>A transparência é a chave para uma comunicação jurídica eficiente. No ecossistema do Vinc, quando um cliente identifica uma atividade suspeita ou um contato estranho e envia um aviso, o escritório de advocacia pode marcar aquele relato como <strong>\"Escritório Ciente\"</strong>. Mas você sabe exatamente o que esse botão significa e quais são as suas responsabilidades?</p>\n\n      <h2>O Fluxo do Relato e Acompanhamento</h2>\n      <p>Quando você recebe um contato suspeito no WhatsApp alegando ser do seu escritório e o reporta na plataforma Vinc, um alerta é gerado em tempo real no painel administrativo dos seus advogados. Ao visualizar a notificação, analisar o caso e tomar as providências internas cabíveis, o advogado clica no botão para sinalizar que o escritório está ciente da ocorrência.</p>\n      <p>Isso garante que o cliente receba uma confirmação imediata de que seu alerta foi recebido e está sob verificação, fortalecendo o canal de comunicação direto e a relação de parceria contra os criminosos.</p>\n\n      <div class=\"post-regra-ouro\">\n        <span class=\"post-regra-ouro-label\">Regra de Ouro do Vinc</span>\n        <p class=\"post-regra-ouro-text\">Confirme antes de confiar.</p>\n        <p class=\"post-regra-ouro-sub\">A ciência mútua é o primeiro passo para conter golpes. O cliente avisa, o escritório avalia e o sistema documenta a interação com total segurança digital.</p>\n      </div>\n\n      <h2>O que \"Ciência\" NÃO Significa</h2>\n      <p>Para evitar mal-entendidos e garantir a segurança jurídica, é fundamental esclarecer os limites dessa funcionalidade:</p>\n      <ul>\n        <li><strong>Não é uma decisão jurídica:</strong> Marcar ciência indica apenas o recebimento técnico do relato de segurança, e não uma orientação processual ou análise do mérito da causa.</li>\n        <li><strong>Não confirma a identidade do suspeito:</strong> O selo de ciente apenas acusa que o escritório tomou conhecimento de que alguém tentou se passar por eles, mas não realiza investigações policiais automáticas sobre o autor da fraude.</li>\n        <li><strong>Não encerra o caso:</strong> É apenas um marcador de progresso. O processo de investigação de um crime cibernético e o envio de boletins de ocorrência continuam seguindo os rituais tradicionais de segurança e assessoria jurídica.</li>\n      </ul>\n      <p>Em resumo, o status \"Escritório Ciente\" serve para aproximar o cliente de sua equipe jurídica, eliminando o silêncio que costuma gerar ansiedade e permitindo respostas ágeis em momentos críticos.</p>\n    ",
+  "seo": {
+    "metaTitle": "Entenda o Status de Escritório Ciente | Blog Vinc",
+    "metaDesc": "Descubra como o status de Escritório Ciente melhora o acompanhamento de relatos suspeitos e de segurança, fortalecendo a relação entre cliente e escritório."
+  }
+}

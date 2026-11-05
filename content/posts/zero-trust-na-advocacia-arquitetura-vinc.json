@@ -1,0 +1,20 @@
+{
+  "id": "post-3",
+  "title": "Zero Trust na Advocacia: Por Que 'Confiar' Nunca Deveria Ser o Padrão",
+  "slug": "zero-trust-na-advocacia-arquitetura-vinc",
+  "excerpt": "Entenda o princípio de segurança Zero Trust e por que o Vinc valida o vínculo real entre cliente, contrato e advogado antes de qualquer interação sensível.",
+  "categoryKey": "TECNOLOGIA_DADOS",
+  "publishedAt": "10 Jul 2026",
+  "authorKey": "luiz_gustavo",
+  "featuredImage": "../assets/images/vinc_infrastructure.jpg",
+  "tags": [
+    "Zero Trust",
+    "Segurança",
+    "Vínculo"
+  ],
+  "content": "\n      <p>Muitas soluções de segurança tentam mitigar as fraudes criando listas negras de spammers ou tentando adivinhar se um número de WhatsApp é falso usando heurísticas simples. Essa abordagem tem um problema estrutural: parte do princípio de que dá para confiar em algo até prova em contrário. O Vinc segue o caminho oposto, alinhado ao paradigma de <strong>Zero Trust</strong> (Nunca Confiar, Sempre Verificar).</p>\n\n      <h2>O que é o Paradigma Zero Trust?</h2>\n      <p>No conceito tradicional de segurança, uma rede ou canal (como o WhatsApp) é considerado confiável após uma verificação inicial básica. No Zero Trust, partimos do princípio oposto: <strong>qualquer requisição, mensagem ou contato externo é considerado potencialmente falso ou comprometido</strong>, não importando se possui uma foto de perfil correta ou se tem acesso a dados reais do processo judicial. A identidade de quem envia uma mensagem não deve ser aceita de olho — ela precisa ser confrontada com um vínculo formal já registrado.</p>\n\n      <div class=\"post-regra-ouro\">\n        <span class=\"post-regra-ouro-label\">Regra de Ouro do Vinc</span>\n        <p class=\"post-regra-ouro-text\">Confirme antes de confiar.</p>\n        <p class=\"post-regra-ouro-sub\">Uma foto de perfil correta ou um nome familiar nunca são prova de identidade. No Vinc, a confiança é construída a partir de um vínculo real e verificado entre cliente, contrato e advogado — não da aparência de quem está do outro lado da tela.</p>\n      </div>\n\n      <h2>Como o Vinc Aplica Esse Princípio na Prática</h2>\n      <p>Aplicar Zero Trust, na prática, significa que nenhuma comunicação é aceita só porque \"parece\" vir do escritório certo:</p>\n      <ul>\n        <li><strong>Vínculo Registrado como Base da Confiança:</strong> Cliente, contrato e advogado responsável ficam associados dentro do painel administrativo do escritório. Uma solicitação só é considerada legítima se essa associação já existir.</li>\n        <li><strong>Verificação Antes da Liberação:</strong> A entrada de um novo escritório na plataforma passa por análise da nossa equipe antes da liberação da chave de ativação — não existe cadastro automático e aberto.</li>\n        <li><strong>Escritório Ciente como Registro de Acompanhamento:</strong> Quando um cliente reporta um contato suspeito, o escritório marca ciência no painel, deixando registrado que o alerta foi visto e está sendo tratado.</li>\n      </ul>\n\n      <h2>Um Princípio, Não uma Promessa de Infalibilidade</h2>\n      <p>Nenhum sistema é infalível, e não é essa a promessa do Vinc. O que o Zero Trust muda é o ponto de partida: em vez de confiar em quem parece legítimo, o Vinc exige que essa legitimidade esteja registrada e verificada antes de qualquer interação sensível ser levada a sério.</p>\n      <p>Quer ver o panorama completo de como esse princípio protege clientes, advogados e escritórios ao mesmo tempo? Leia <a href=\"artigo-detalhes.html?slug=vinc-blindando-relacao-advogados-clientes\">o guia completo sobre como o Vinc blinda a relação entre advogados e clientes</a>.</p>\n    ",
+  "seo": {
+    "metaTitle": "Zero Trust na Advocacia: o Princípio do Vinc | Blog",
+    "metaDesc": "Entenda o princípio de segurança Zero Trust e por que o Vinc valida o vínculo real entre cliente, contrato e advogado antes de qualquer interação."
+  }
+}

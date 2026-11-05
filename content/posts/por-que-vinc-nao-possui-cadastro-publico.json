@@ -1,0 +1,20 @@
+{
+  "id": "post-11",
+  "title": "Por que o Vinc Não Possui Cadastro Público?",
+  "slug": "por-que-vinc-nao-possui-cadastro-publico",
+  "excerpt": "Descubra por que a entrada na plataforma ocorre apenas por meio de convites e chaves de ativação exclusivas, blindando a reputação dos escritórios parceiros.",
+  "categoryKey": "GESTAO_REPUTACAO",
+  "publishedAt": "16 Jul 2026",
+  "authorKey": "luiz_gustavo",
+  "featuredImage": "../assets/images/vinc_advocacy_shield.jpg",
+  "tags": [
+    "Segurança",
+    "Advogado",
+    "Governança"
+  ],
+  "content": "\n      <p>Ao navegar pelo site do Vinc, você deve ter percebido que não existe um botão de \"Criar Conta Grátis\" ou \"Cadastre-se\" aberto ao público geral. Essa decisão arquitetônica não é um capricho de design, mas sim um pilar de segurança digital essencial para manter a integridade da nossa plataforma.</p>\n\n      <h2>Proteção Contra Perfis Falsos e Engenharia Social</h2>\n      <p>Plataformas com cadastro público e aberto sofrem constantemente com a criação de perfis falsos. Criminosos poderiam facilmente criar uma conta se passando por um advogado legítimo ou criar uma sociedade de advogados fantasma para aplicar golpes de dentro do próprio sistema, gerando falsos selos de verificação.</p>\n      <p>Para reduzir essa vulnerabilidade, o Vinc adota uma política de <strong>entrada restrita por convites e chaves de ativação exclusivas</strong>.</p>\n\n      <div class=\"post-regra-ouro\">\n        <span class=\"post-regra-ouro-label\">Regra de Ouro do Vinc</span>\n        <p class=\"post-regra-ouro-text\">Confirme antes de confiar.</p>\n        <p class=\"post-regra-ouro-sub\">A segurança de um ecossistema fechado reside na qualidade e veracidade de seus membros. Cada usuário da nossa rede passa por uma rigorosa validação prévia.</p>\n      </div>\n\n      <h2>Como Funciona o Fluxo de Homologação</h2>\n      <p>Para que um escritório ou advogado autônomo ingresse na plataforma, a jornada segue um protocolo minucioso:</p>\n      <ol>\n        <li><strong>Solicitação de Chave de Ativação:</strong> O advogado preenche o formulário oficial de contato fornecendo seus dados institucionais e registro na OAB.</li>\n        <li><strong>Auditoria Manual:</strong> Nossa equipe analisa manualmente as credenciais e os dados institucionais informados antes de aprovar o acesso.</li>\n        <li><strong>Emissão da Chave Única:</strong> Após a homologação, o escritório recebe uma chave de ativação única para acessar seu painel.</li>\n      </ol>\n      <p>Esse modelo de acesso restrito dificulta fraudes na origem e reduz o risco de que perfis falsos se façam passar por escritórios credenciados dentro da plataforma.</p>\n    ",
+  "seo": {
+    "metaTitle": "Por Que o Vinc Não Tem Cadastro Aberto | Blog Vinc",
+    "metaDesc": "Entenda por que o Vinc é um ecossistema fechado e acessível somente por meio de chaves de ativação homologadas e convites exclusivos."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "post-5",
+  "title": "Privacidade e Conformidade: Como o Vinc Auxilia Escritórios de Advocacia a Atender à LGPD",
+  "slug": "privacidade-conformidade-lgpd-vinc-advocacia",
+  "excerpt": "Entenda a relação profunda entre segurança da informação jurídica, Lei Geral de Proteção de Dados (LGPD) e o ecossistema tecnológico do Vinc.",
+  "categoryKey": "CIBERSEGURANCA_COMPLIANCE",
+  "publishedAt": "05 Jul 2026",
+  "authorKey": "luiz_gustavo",
+  "featuredImage": "../assets/images/seguranca.jpg",
+  "tags": [
+    "LGPD",
+    "Governança",
+    "Segurança"
+  ],
+  "content": "\n      <p>Escritórios de advocacia gerenciam dados pessoais altamente sensíveis: prontuários médicos, contratos comerciais, folhas de pagamento, acordos de divórcio e informações processuais protegidas por segredo de justiça. Sob as regras rígidas da <strong>Lei Geral de Proteção de Dados (LGPD)</strong>, as bancas jurídicas têm o dever legal de implementar medidas robustas de governança contra vazamentos e acessos não autorizados.</p>\n\n      <h2>O Papel do Vinc no Escudo da Privacidade</h2>\n      <p>O Vinc atua como um parceiro estratégico para o encarregado de dados (DPO) e para os sócios do escritório. Em vez de transmitir guias, dados bancários de clientes ou cópias de certidões por canais abertos e vulneráveis de e-mail e chats de redes sociais, o Vinc estabelece um canal próprio, com acesso restrito aos profissionais formalmente vinculados a cada caso.</p>\n\n      <div class=\"post-regra-ouro\">\n        <span class=\"post-regra-ouro-label\">Regra de Ouro do Vinc</span>\n        <p class=\"post-regra-ouro-text\">Confirme antes de confiar.</p>\n        <p class=\"post-regra-ouro-sub\">A conformidade com a LGPD exige que a segurança da informação seja aplicada desde o desenho do sistema (Privacy by Design). No Vinc, esse é o nosso core business.</p>\n      </div>\n\n      <h2>Como o Vinc Auxilia na Conformidade Legal?</h2>\n      <p>Nosso ecossistema segue boas práticas de segurança da informação e privacidade, aplicadas ao vínculo entre cliente, contrato e advogado:</p>\n      <ul>\n        <li><strong>Acesso Restrito ao Vínculo:</strong> Só profissionais formalmente vinculados ao contrato de um cliente têm acesso às informações daquele caso no painel administrativo.</li>\n        <li><strong>Notificações Sem Dados Sensíveis:</strong> O envio de solicitações críticas de verificação é feito através de alertas genéricos que não expõem dados sensíveis na tela de bloqueio do celular, prevenindo a engenharia social visual.</li>\n        <li><strong>Registro de Acompanhamento:</strong> Ações como a marcação de ciência de um relato ficam registradas e visíveis para o escritório, criando um histórico de que o alerta foi visto e tratado.</li>\n      </ul>\n\n      <h2>Postura Preventiva Perante a ANPD</h2>\n      <p>Nos termos do art. 52 da LGPD, a adoção reiterada de mecanismos e processos internos capazes de minimizar danos é um dos critérios que a Autoridade Nacional de Proteção de Dados (ANPD) pode considerar ao avaliar a gravidade de uma infração. Adotar um canal estruturado como o Vinc, em vez de e-mails e chats abertos, é parte de uma postura preventiva nesse sentido — o que não substitui, evidentemente, uma política de privacidade e um programa de governança de dados completos no escritório.</p>\n    ",
+  "seo": {
+    "metaTitle": "Conformidade LGPD para Escritórios de Advocacia | Vinc",
+    "metaDesc": "Descubra como o Vinc auxilia escritórios a adotar uma postura preventiva em conformidade com a LGPD, restringindo o acesso a dados por vínculo real."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "post-9",
+  "title": "Privacidade e LGPD: Por que as Notificações do Vinc Não Mostram Informações Sensíveis?",
+  "slug": "privacidade-lgpd-notificacoes-vinc",
+  "excerpt": "Descubra como o design inteligente e as notificações genéricas protegem suas informações e evitam a engenharia social visual de acordo com a LGPD.",
+  "categoryKey": "CIBERSEGURANCA_COMPLIANCE",
+  "publishedAt": "16 Jul 2026",
+  "authorKey": "luiz_gustavo",
+  "featuredImage": "../assets/images/seguranca.jpg",
+  "tags": [
+    "LGPD",
+    "Segurança"
+  ],
+  "content": "\n      <p>Muitas pessoas estão acostumadas a ler o conteúdo completo de mensagens diretamente na tela bloqueada do celular. Embora prático, esse hábito representa um risco severo de segurança e privacidade, violando as diretrizes básicas da <strong>Lei Geral de Proteção de Dados (LGPD)</strong>. É por isso que as notificações do Vinc são desenhadas de forma diferente.</p>\n\n      <h2>O Conceito de Notificações Genéricas</h2>\n      <p>Quando o seu escritório de advocacia te envia um aviso ou um boleto importante, a notificação do Vinc que aparece na sua tela diz apenas algo como: <em>\"Nova atualização de segurança pendente. Toque para verificar.\"</em></p>\n      <p>Nós ocultamos intencionalmente o nome do advogado, o número do processo, valores financeiros ou detalhes do assunto. Essa abordagem simples e direta cumpre objetivos estratégicos:</p>\n      <ul>\n        <li><strong>Proteção da Tela Bloqueada:</strong> Impede que pessoas ao seu redor (em transporte público, reuniões ou em casa) visualizem dados particulares e sigilosos do seu processo jurídico.</li>\n        <li><strong>Prevenção Contra Engenharia Social Visual:</strong> Evita que golpistas ou pessoas mal-intencionadas utilizem as informações que aparecem na tela do seu celular para criar novas abordagens de fraude.</li>\n        <li><strong>Minimização de Dados:</strong> O Vinc segue o princípio de exibir apenas o estritamente necessário no ambiente externo, deixando as informações ricas protegidas atrás de autenticação por senha dentro do aplicativo.</li>\n      </ul>\n\n      <div class=\"post-regra-ouro\">\n        <span class=\"post-regra-ouro-label\">Regra de Ouro do Vinc</span>\n        <p class=\"post-regra-ouro-text\">Confirme antes de confiar.</p>\n        <p class=\"post-regra-ouro-sub\">A privacidade de dados deve ser garantida em todas as esferas. O sigilo do seu processo começa no momento em que a tela do seu celular acende.</p>\n      </div>\n\n      <h2>Alinhamento com a LGPD e Segurança Corporativa</h2>\n      <p>Para escritórios de advocacia, enviar informações de processos por notificações abertas pode ser interpretado como negligência em caso de auditorias de privacidade. O design seguro do Vinc auxilia as bancas de advocacia a estarem em total conformidade legal, oferecendo uma experiência de <em>Privacy by Design</em> (privacidade desde a concepção) para seus clientes finais.</p>\n      <p>Para ler os detalhes, o usuário deve destravar o aparelho e acessar a plataforma autenticada. Segurança e privacidade andam de mãos dadas.</p>\n    ",
+  "seo": {
+    "metaTitle": "Notificações do Vinc e Conformidade LGPD | Blog Vinc",
+    "metaDesc": "Descubra como as notificações genéricas do Vinc protegem seus dados confidenciais de acordo com a LGPD, impedindo que bisbilhoteiros vejam dados processuais."
+  }
+}
