@@ -43,7 +43,7 @@ A interface do site baseia-se no **minimalismo suíço moderno**, projetado com 
 
 ## 📁 Estrutura Completa do Projeto
 
-O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build step, sem framework e sem dependências de Node.js):
+O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem framework e sem dependências de npm). Não há build para desenvolver: abra um servidor estático e edite. No **deploy**, o GitHub Actions gera as páginas estáticas dos artigos, o pacote `content/posts.json` e o `sitemap.xml` (scripts em Node e Python, só com a biblioteca padrão):
 
 ```text
 ├── index.html                        # Página inicial (Landing Page) institucional do Vinc
@@ -60,7 +60,7 @@ O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build s
 │   ├── privacidade.html              # Política de Privacidade (LGPD) — bases legais, operadores terceiros, direitos do titular
 │   ├── obrigado.html                 # Confirmação pós-envio do formulário de contato (noindex; fora do sitemap)
 │   ├── blog.html                     # Portal do Centro de Conhecimento (listagem de artigos)
-│   └── artigo-detalhes.html          # Template de leitura dinâmica para os artigos do blog
+│   └── artigo-detalhes.html          # Template do artigo (noindex): usado em dev local e como base das páginas estáticas blog/<slug>.html
 │
 ├── css/                               # Arquitetura modular de estilos CSS (ITCSS-like)
 │   ├── 1-settings/                    # Variáveis globais de design, reset e fontes tipográficas
@@ -70,6 +70,7 @@ O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build s
 ├── js/                                 # Motores funcionais de interatividade do site
 │   ├── script.js                       # Navegação, menu mobile, dropdowns e accordions (FAQ/Contato)
 │   ├── contato.js                      # Envio do formulário de solicitação de chave (Web3Forms); em caso de sucesso, redireciona para obrigado.html
+│   ├── blog-shared.js                  # Sem DOM: autores, categorias e funções que montam o HTML do artigo/sidebar/JSON-LD (usado no navegador e no Node)
 │   └── blog.js                         # Motor do Blog client-side (busca os artigos via fetch, filtros, SEO dinâmico, JSON-LD, busca)
 │
 ├── content/
@@ -83,9 +84,12 @@ O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build s
 │   └── images/                         # Ilustrações, banners de suporte, mockups de painéis e infográficos
 │
 ├── scripts/
+│   ├── build-articles.mjs              # Gera blog/<slug>.html (página estática de cada artigo: metas, JSON-LD, h1, corpo, sidebar); roda no deploy
 │   ├── build-posts.py                  # Gera content/posts.json (pacote único dos artigos) e valida os JSON; roda no deploy
 │   └── build-sitemap.py                # Gera sitemap.xml (canonicals das páginas + artigos, lastmod só onde é confiável); roda no deploy
 │
+├── blog/                               # (gerado no deploy; não versionado) Uma página estática por artigo: blog/<slug>.html
+├── package.json                        # Só declara "type": "module" para o Node executar js/blog-shared.js e scripts/*.mjs; sem dependências
 ├── robots.txt                          # Diretivas para motores de busca
 ├── sitemap.xml                         # (gerado no deploy; não versionado) Mapa do site: páginas indexáveis + artigos
 ├── favicon.ico                         # Favicon na raiz (requisitado por padrão por navegadores e robôs)
@@ -108,7 +112,8 @@ O blog do Vinc é controlado por um motor client-side (`js/blog.js`) que busca o
 ### ⚙️ Recursos Tecnológicos Integrados no Blog:
 -   **Índice de Conteúdo Automático (TOC)**: Geração e inserção em tempo real de uma lista de tópicos baseada nas tags `H2` de cada artigo, com links de rolagem suave.
 -   **Tempo de Leitura Calculado**: Estimado a partir da contagem real de palavras de cada artigo (200 palavras/min), não um valor fixo por post — nunca fica desatualizado se o conteúdo for editado.
--   **SEO Dinâmico**: Injeção programática de metadados, títulos, tags Open Graph e **dados estruturados em JSON-LD** — `BlogPosting` em todo artigo, `BreadcrumbList` espelhando a navegação visual, `FAQPage` nos artigos que têm um bloco de perguntas frequentes no conteúdo, e `WebSite`/`SearchAction` em `index.html` habilitando a caixa de busca do Google.
+-   **Páginas estáticas por artigo**: no deploy, `scripts/build-articles.mjs` gera `blog/<slug>.html` com título, descrição, canonical, Open Graph, JSON-LD, `<h1>`, corpo, relacionados e sidebar **já no HTML** — links compartilhados no WhatsApp/LinkedIn mostram o artigo certo e o Google não depende de JavaScript. O código que monta o HTML é o mesmo do navegador (`js/blog-shared.js`), então a página estática e a dinâmica não divergem. O endereço antigo `pages/artigo-detalhes.html?slug=…` redireciona (301 no `.htaccess`, com redirecionamento em JS como reserva).
+-   **SEO Dinâmico** (dev local e fallback): Injeção programática de metadados, títulos, tags Open Graph e **dados estruturados em JSON-LD** — `BlogPosting` em todo artigo, `BreadcrumbList` espelhando a navegação visual, `FAQPage` nos artigos que têm um bloco de perguntas frequentes no conteúdo, e `WebSite`/`SearchAction` em `index.html` habilitando a caixa de busca do Google.
 -   **Busca Real via URL**: `blog.html?q=termo` já carrega com o filtro aplicado, e a URL é sincronizada enquanto o usuário digita — é o que sustenta o `SearchAction` acima.
 -   **Navegação Semântica (Breadcrumbs)**: Facilitando a acessibilidade para leitores de tela e melhorando o rastreamento hierárquico do site.
 -   **Malha de Links Relacionados**: Artigos complementares ao final de cada leitura e links cruzados entre posts de temas próximos, evitando páginas órfãs e canibalização de palavra-chave.
@@ -121,7 +126,8 @@ Nenhum código precisa ser alterado para adicionar um artigo novo:
 
 1.  Crie `content/posts/<slug-do-artigo>.json` usando um artigo existente como modelo. Campos esperados: `id`, `title`, `slug`, `excerpt`, `categoryKey` (uma das chaves de `CATEGORIES` em `js/blog.js`, ex.: `ANATOMIA_GOLPES`), `publishedAt`, `authorKey` (chave de `AUTHORS` em `js/blog.js`), `featuredImage`, `tags`, `faq` (opcional) e `content` (HTML do corpo do artigo), além do bloco `seo` (`metaTitle`, `metaDesc`).
 2.  Adicione o slug em `content/posts/index.json`.
-3.  Nada a fazer no `sitemap.xml`: ele é gerado no deploy e já inclui todo slug listado em `index.json`.
+3.  Nada a fazer no `sitemap.xml` nem na página do artigo: no deploy são gerados `blog/<slug>.html` e o sitemap com todo slug listado em `index.json`. O `slug` não pode coincidir com o nome de uma página de `pages/` (o build falha se coincidir).
+4.  Para pré-visualizar a página estática localmente: `node scripts/build-articles.mjs` e abra `/blog/<slug>.html` (a pasta `blog/` é ignorada pelo Git).
 
 A ordem de exibição (mais recente primeiro) é calculada automaticamente a partir de `publishedAt` — a ordem dentro de `index.json` não importa.
 

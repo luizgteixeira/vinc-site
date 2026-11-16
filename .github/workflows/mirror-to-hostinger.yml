@@ -16,6 +16,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # A ordem importa: as páginas estáticas (blog/) são geradas primeiro; o pacote de artigos e o
+      # sitemap passam a apontar para elas quando existem.
+      - name: Gerar páginas estáticas dos artigos (blog/<slug>.html)
+        run: |
+          node --version
+          node scripts/build-articles.mjs --rewrite-links
+
       - name: Gerar content/posts.json (pacote único dos artigos do blog)
         run: python3 scripts/build-posts.py
 
@@ -32,13 +39,13 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-      - name: Espelhar para vinc-site-hostinger (sem .github e scripts, que são só deste repositório)
+      - name: Espelhar para vinc-site-hostinger (sem .github, scripts e package.json, que são só deste repositório)
         run: |
-          rm -rf .github scripts
+          rm -rf .github scripts package.json
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git add -f content/posts.json sitemap.xml   # gerados acima; ignorados no .gitignore deste repositório
+          git add -f content/posts.json sitemap.xml blog   # gerados acima; ignorados no .gitignore deste repositório
           git commit -m "Mirror de vinc-site@${GITHUB_SHA}" --allow-empty
           git remote add hostinger git@github.com:luizgteixeira/vinc-site-hostinger.git
           git push --force hostinger HEAD:main

@@ -25,3 +25,17 @@
   #  - frame-src: o iframe oculto que recebe a resposta do Mailchimp.
   Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com https://*.list-manage.com; frame-src https://*.list-manage.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self'"
 </IfModule>
+
+# ==========================================================================
+# Redirecionamentos 301 (precisam de mod_rewrite; o bloco é ignorado sem o módulo)
+# ==========================================================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Endereço antigo dos artigos (pages/artigo-detalhes.html?slug=X) -> página estática /blog/X.html
+  RewriteCond %{QUERY_STRING} ^slug=([a-z0-9-]+)$
+  RewriteRule ^pages/artigo-detalhes\.html$ /blog/%1.html? [R=301,L]
+
+  # /blog e /blog/ (pasta das páginas estáticas dos artigos) -> listagem do blog
+  RewriteRule ^blog/?$ /pages/blog.html [R=301,L]
+</IfModule>

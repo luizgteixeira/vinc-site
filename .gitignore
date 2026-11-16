@@ -4,3 +4,6 @@ content/posts.json
 
 # Gerado a cada deploy por scripts/build-sitemap.py (a partir das páginas e de content/posts/).
 sitemap.xml
+
+# Páginas estáticas dos artigos, geradas a cada deploy por scripts/build-articles.mjs.
+/blog/

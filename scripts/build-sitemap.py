@@ -6,8 +6,10 @@ Regras:
   página, então sitemap e canonical nunca divergem. Páginas com robots "noindex"
   (ex.: obrigado.html) e o template artigo-detalhes.html (sem ?slug= ele não é
   um conteúdo real) ficam de fora automaticamente.
-- Artigos: um <url> por slug de content/posts/index.json, com a mesma URL
-  canônica que js/blog.js usa (pages/artigo-detalhes.html?slug=<slug>).
+- Artigos: um <url> por slug de content/posts/index.json, com a mesma URL canônica
+  da página do artigo: blog/<slug>.html quando a página estática existe (gerada no
+  deploy por scripts/build-articles.mjs) ou, sem ela (dev local), o template
+  pages/artigo-detalhes.html?slug=<slug>.
 - <lastmod> só onde a data é conhecida e confiável: nos artigos, o campo
   opcional "updatedAt" do JSON ou, na falta dele, "publishedAt"; em blog.html,
   a data do artigo mais recente. Páginas institucionais não levam <lastmod>:
@@ -90,7 +92,12 @@ def load_articles():
         modified = parse_pt_date(post["updatedAt"], where) if post.get("updatedAt") else published
         if modified < published:
             fail(f"{where}: 'updatedAt' anterior a 'publishedAt'")
-        articles.append({"slug": slug, "lastmod": modified})
+        articles.append({
+            "slug": slug,
+            "lastmod": modified,
+            # página estática gerada por scripts/build-articles.mjs (blog/<slug>.html), se existir
+            "static": (ROOT / "blog" / f"{slug}.html").exists(),
+        })
     return articles
 
 
@@ -128,7 +135,11 @@ def main() -> None:
     if not template_canonical:
         fail(f"{ARTICLE_TEMPLATE}: sem canonical")
     for article in sorted(articles, key=lambda a: a["lastmod"], reverse=True):
-        entries.append((f"{template_canonical}?slug={quote(article['slug'])}", article["lastmod"]))
+        if article["static"]:
+            loc = f"{site}blog/{quote(article['slug'])}.html"  # mesma URL do canonical da página gerada
+        else:
+            loc = f"{template_canonical}?slug={quote(article['slug'])}"
+        entries.append((loc, article["lastmod"]))
 
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
