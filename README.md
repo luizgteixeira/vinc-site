@@ -83,7 +83,8 @@ O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build s
 │   └── images/                         # Ilustrações, banners de suporte, mockups de painéis e infográficos
 │
 ├── robots.txt                          # Diretivas para motores de busca
-└── sitemap.xml                         # Mapa do site indexável para otimização de SEO
+├── sitemap.xml                         # Mapa do site indexável para otimização de SEO
+└── favicon.ico                         # Favicon na raiz (requisitado por padrão por navegadores e robôs)
 ```
 
 ---
