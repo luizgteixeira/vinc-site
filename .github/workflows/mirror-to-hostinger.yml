@@ -3,6 +3,15 @@ name: Espelhar main para vinc-site-hostinger
 # O Hostinger publica o site direto do repositório vinc-site-hostinger.
 # Este workflow mantém a branch main desse repositório sempre idêntica
 # à main deste (vinc-site), toda vez que houver um push aqui.
+#
+# O `git push --force` abaixo é intencional: o repositório de destino é só um espelho
+# gerado (o conteúdo vem das páginas estáticas e arquivos gerados no próprio job), então
+# o main dele deve ser sempre sobrescrito. Não faça commits direto nele.
+#
+# As Actions estão fixadas por SHA de commit (a tag fica no comentário) para que uma tag
+# movida ou comprometida não altere o deploy, que tem acesso à chave SSH. Para atualizar:
+#   git ls-remote https://github.com/<dono>/<repo> 'refs/tags/<versão>*'
+# e troque o SHA e o comentário.
 on:
   push:
     branches:
@@ -14,10 +23,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      # A ordem importa: as páginas estáticas (blog/) são geradas primeiro; o pacote de artigos e o
+      # sitemap passam a apontar para elas quando existem.
+      - name: Gerar páginas estáticas dos artigos (blog/<slug>.html)
+        run: |
+          node --version
+          node scripts/build-articles.mjs --rewrite-links
+
+      - name: Gerar content/posts.json (pacote único dos artigos do blog)
+        run: python3 scripts/build-posts.py
+
+      - name: Gerar sitemap.xml (páginas + artigos, com lastmod dos artigos)
+        run: python3 scripts/build-sitemap.py
 
       - name: Carregar chave SSH
-        uses: webfactory/ssh-agent@v0.9.0
+        uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387 # v0.9.0
         with:
           ssh-private-key: ${{ secrets.HOSTINGER_MIRROR_DEPLOY_KEY }}
 
@@ -26,12 +48,13 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-      - name: Espelhar para vinc-site-hostinger (sem .github, que é só deste repositório)
+      - name: Espelhar para vinc-site-hostinger (sem .github, scripts e package.json, que são só deste repositório)
         run: |
-          rm -rf .github
+          rm -rf .github scripts package.json
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
+          git add -f content/posts.json sitemap.xml blog   # gerados acima; ignorados no .gitignore deste repositório
           git commit -m "Mirror de vinc-site@${GITHUB_SHA}" --allow-empty
           git remote add hostinger git@github.com:luizgteixeira/vinc-site-hostinger.git
           git push --force hostinger HEAD:main

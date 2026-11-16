@@ -8,6 +8,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const submitButton = document.getElementById('request-form-submit');
   if (!form || !feedback || !submitButton) return;
 
+  // Após o envio com sucesso, o visitante é levado para obrigado.html. O botão fica
+  // desabilitado até a navegação terminar, para evitar um segundo envio.
+  let redirecting = false;
+
+  // Voltar do histórico pode restaurar esta página do cache (bfcache) com o botão
+  // ainda desabilitado e a mensagem antiga: restabelece o estado inicial.
+  window.addEventListener('pageshow', (event) => {
+    if (!event.persisted) return;
+    redirecting = false;
+    submitButton.disabled = false;
+    feedback.textContent = '';
+    feedback.className = 'newsletter-feedback';
+  });
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -37,11 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
       feedback.textContent = 'Solicitação enviada com sucesso! Nossa equipe entrará em contato pelo e-mail informado em breve.';
       feedback.className = 'newsletter-feedback success';
       form.reset();
+      redirecting = true;
+      window.location.assign('obrigado.html');
     } catch (error) {
       feedback.innerHTML = 'Não foi possível enviar sua solicitação agora. Tente novamente em instantes ou <a href="mailto:contato@vincapp.com.br">escreva diretamente para nós</a>.';
       feedback.className = 'newsletter-feedback error';
     } finally {
-      submitButton.disabled = false;
+      if (!redirecting) submitButton.disabled = false;
     }
   });
 });

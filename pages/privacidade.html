@@ -31,10 +31,6 @@
   <link rel="icon" href="../assets/icons/vinc_icon_256px_1.png" type="image/png">
   <link rel="apple-touch-icon" href="../assets/icons/vinc_icon_256px_1.png">
 
-  <!-- Pré-conexões -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <!-- CSS -->
   <link rel="stylesheet" href="../css/1-settings/global.css">
   <link rel="stylesheet" href="../css/1-settings/tipografia.css">
@@ -46,6 +42,8 @@
   <link rel="stylesheet" href="../css/1-settings/responsivo.css">
 </head>
 <body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+
 
   <!-- Cabeçalho -->
   <header class="header">
@@ -58,21 +56,21 @@
       <nav class="menu" id="navigation-menu" aria-label="Menu principal">
         <a href="../index.html">Início</a>
         <div class="menu-item-dropdown">
-          <a href="como-funciona.html" id="como-funciona-toggle" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Como Funciona <span class="arrow"></span></a>
-          <div class="submenu" role="menu" aria-labelledby="como-funciona-toggle">
-            <a href="como-funciona.html" role="menuitem">Visão Geral</a>
-            <a href="faq.html" role="menuitem">FAQ</a>
+          <a href="como-funciona.html" id="como-funciona-toggle" class="dropdown-toggle" aria-expanded="false">Como Funciona <span class="arrow"></span></a>
+          <div class="submenu">
+            <a href="como-funciona.html">Visão Geral</a>
+            <a href="faq.html">FAQ</a>
           </div>
         </div>
         <a href="recursos.html">Recursos</a>
         <a href="seguranca.html">Segurança</a>
         <a href="blog.html">Blog</a>
         <div class="menu-item-dropdown">
-          <a href="#" id="gestao-toggle" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Gestão <span class="arrow"></span></a>
-          <div class="submenu" role="menu" aria-labelledby="gestao-toggle">
-            <a href="advogados.html" role="menuitem">Advogados</a>
-            <a href="clientes.html" role="menuitem">Clientes</a>
-            <a href="escritorios.html" role="menuitem">Escritório</a>
+          <a href="#" id="gestao-toggle" class="dropdown-toggle" aria-expanded="false">Gestão <span class="arrow"></span></a>
+          <div class="submenu">
+            <a href="advogados.html">Advogados</a>
+            <a href="clientes.html">Clientes</a>
+            <a href="escritorios.html">Escritório</a>
           </div>
         </div>
         <a href="contato.html">Contato</a>
@@ -85,13 +83,13 @@
   </header>
 
   <!-- Conteúdo Principal -->
-  <main>
+  <main id="conteudo-principal" tabindex="-1">
     <section class="legal-section" aria-labelledby="privacy-title">
       <div class="container legal-container">
 
         <header class="legal-header">
           <h1 id="privacy-title">Política de Privacidade</h1>
-          <p class="legal-updated">Última atualização: 07 de agosto de 2026 · Vigente para todo o site vincapp.com.br</p>
+          <p class="legal-updated">Última atualização: 16 de novembro de 2026 · Vigente para todo o site vincapp.com.br</p>
           <p class="legal-intro">
             Esta Política de Privacidade explica, em linguagem clara, quais dados pessoais o
             <span class="vinc-brand">Vinc</span> coleta através deste site, para quais finalidades, com base em qual
@@ -164,7 +162,7 @@
               <ul style="list-style-type: disc; padding-left: 20px; margin: 12px 0;">
                 <li style="margin-bottom: 10px;"><strong>Procedimentos preliminares relacionados a contrato (art. 7º, V):</strong> ao preencher o formulário de solicitação de chave de ativação, você inicia um procedimento pré-contratual de credenciamento; tratamos seus dados na medida necessária para essa análise.</li>
                 <li style="margin-bottom: 10px;"><strong>Consentimento (art. 7º, I):</strong> a inscrição na newsletter é sempre uma ação voluntária e específica sua; você pode revogar esse consentimento a qualquer momento, sem custo, pelo link de descadastro em cada e-mail ou pelo canal indicado no fim desta página.</li>
-                <li><strong>Legítimo interesse (art. 7º, IX):</strong> usamos esse fundamento para medidas estritamente necessárias ao funcionamento técnico do site, como a entrega de fontes tipográficas (ver seção 4), e para o feedback de artigo, que nos ajuda a melhorar a qualidade editorial do Blog — sempre de forma proporcional e sem finalidade de perfilamento comportamental.</li>
+                <li><strong>Legítimo interesse (art. 7º, IX):</strong> usamos esse fundamento para medidas estritamente necessárias ao funcionamento técnico do site, como a entrega das páginas e dos arquivos do próprio site (ver seção 4), e para o feedback de artigo, que nos ajuda a melhorar a qualidade editorial do Blog — sempre de forma proporcional e sem finalidade de perfilamento comportamental.</li>
               </ul>
             </div>
           </div>
@@ -209,14 +207,14 @@
                 fins de perfilamento.
               </p>
               <p style="margin-top: 12px;">
-                Duas exceções técnicas, ambas necessárias para o funcionamento visual e funcional do site, merecem
+                As fontes tipográficas são servidas pelo próprio site, sem requisição a servidores de terceiros. Uma
+                única exceção técnica, necessária para o funcionamento do formulário de newsletter, merece
                 transparência:
               </p>
               <ul style="list-style-type: disc; padding-left: 20px; margin: 12px 0;">
-                <li style="margin-bottom: 10px;"><strong>Google Fonts:</strong> todas as páginas carregam fontes tipográficas diretamente dos servidores do Google, o que transmite o endereço IP do seu navegador ao Google no momento do carregamento da página, independentemente de interação sua.</li>
                 <li><strong>Formulário de newsletter:</strong> ao enviar o formulário, seu navegador se conecta diretamente aos servidores do Mailchimp para concluir o cadastro.</li>
               </ul>
-              <p style="margin-top: 12px;">Nenhuma dessas conexões ocorre antes de você carregar a página ou enviar um formulário voluntariamente.</p>
+              <p style="margin-top: 12px;">Essa conexão só ocorre quando você envia o formulário voluntariamente.</p>
             </div>
           </div>
 

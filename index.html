@@ -7,16 +7,11 @@
   <!-- SEO Principal -->
   <title>Vinc | Aplicativo Antifraude para Comunicação com Advogados</title>
   <meta name="description" content="O Vinc é o aplicativo antifraude que protege sua comunicação com advogados. Valide contatos e evite golpes de engenharia social.">
-  <meta name="keywords" content="advogado, consulta jurídica, encontrar advogado, serviços jurídicos, plataforma jurídica, soluções legais, direito, profissionais jurídicos, Vinc">
   <meta name="author" content="Vinc">
 
   <!-- Controle de Indexação -->
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.vincapp.com.br/">
-
-  <!-- Idioma e Localização -->
-  <meta name="language" content="pt-BR">
-  <meta name="geo.region" content="BR">
 
   <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
   <meta property="og:site_name" content="Vinc">
@@ -36,10 +31,6 @@
   <!-- Favicon -->
   <link rel="icon" href="assets/icons/vinc_icon_256px_1.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/icons/vinc_icon_256px_1.png">
-
-  <!-- Pré-conexões para performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/1-settings/global.css">
@@ -94,6 +85,8 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+
 
   <!-- Cabeçalho Principal -->
   <header class="header">
@@ -106,21 +99,21 @@
       <nav class="menu" id="navigation-menu" aria-label="Menu principal">
         <a href="index.html" class="ativo">Início</a>
         <div class="menu-item-dropdown">
-          <a href="pages/como-funciona.html" id="como-funciona-toggle" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Como Funciona <span class="arrow"></span></a>
-          <div class="submenu" role="menu" aria-labelledby="como-funciona-toggle">
-            <a href="pages/como-funciona.html" role="menuitem">Visão Geral</a>
-            <a href="pages/faq.html" role="menuitem">FAQ</a>
+          <a href="pages/como-funciona.html" id="como-funciona-toggle" class="dropdown-toggle" aria-expanded="false">Como Funciona <span class="arrow"></span></a>
+          <div class="submenu">
+            <a href="pages/como-funciona.html">Visão Geral</a>
+            <a href="pages/faq.html">FAQ</a>
           </div>
         </div>
         <a href="pages/recursos.html">Recursos</a>
         <a href="pages/seguranca.html">Segurança</a>
         <a href="pages/blog.html">Blog</a>
         <div class="menu-item-dropdown">
-          <a href="#" id="gestao-toggle" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Gestão <span class="arrow"></span></a>
-          <div class="submenu" role="menu" aria-labelledby="gestao-toggle">
-            <a href="pages/advogados.html" role="menuitem">Advogados</a>
-            <a href="pages/clientes.html" role="menuitem">Clientes</a>
-            <a href="pages/escritorios.html" role="menuitem">Escritório</a>
+          <a href="#" id="gestao-toggle" class="dropdown-toggle" aria-expanded="false">Gestão <span class="arrow"></span></a>
+          <div class="submenu">
+            <a href="pages/advogados.html">Advogados</a>
+            <a href="pages/clientes.html">Clientes</a>
+            <a href="pages/escritorios.html">Escritório</a>
           </div>
         </div>
         <a href="pages/contato.html">Contato</a>
@@ -133,7 +126,7 @@
   </header>
 
   <!-- Conteúdo Principal -->
-  <main>
+  <main id="conteudo-principal" tabindex="-1">
     <!-- Hero Principal -->
     <section class="hero" aria-labelledby="hero-title" id="hero-section">
       <div class="container">

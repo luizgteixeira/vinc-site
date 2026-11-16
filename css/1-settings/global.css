@@ -51,6 +51,31 @@
   outline-offset: 2px;
 }
 
+/* Link "Pular para o conteúdo": invisível até receber foco por teclado. */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 3000;
+  padding: 10px 16px;
+  background: var(--deep-blue);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* <main tabindex="-1"> recebe foco ao pular o menu; não é interativo, então sem contorno. */
+main:focus {
+  outline: none;
+}
+
 body {
   background: var(--background);
   color: var(--text-primary);
@@ -364,3 +389,17 @@ blockquote.cta-quote {
   line-height: 1.6;
 }
 
+/* ============================================
+   PREFERÊNCIA DO USUÁRIO: MOVIMENTO REDUZIDO
+   Remove animações e transições para quem ativou "reduzir movimento" no sistema.
+   Duração de 0,01 ms (e não "none") para que eventos como transitionend continuem
+   disparando — os accordions dependem deles.
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

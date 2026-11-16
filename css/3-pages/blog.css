@@ -90,7 +90,6 @@
   background-color: var(--surface);
   border-color: var(--blue);
   box-shadow: 0 0 0 3px rgba(42, 94, 168, 0.15);
-  outline: none;
 }
 
 .search-box svg {
@@ -332,6 +331,7 @@
 .article-title {
   font-size: 1.25rem;
   font-weight: 700;
+  letter-spacing: inherit; /* h2 global define -0.5px; antes era h3 sem letter-spacing */
   color: var(--deep-blue);
   line-height: 1.4;
   margin-top: 8px;
@@ -387,6 +387,8 @@
 .widget-title {
   font-size: 18px;
   font-weight: 800;
+  letter-spacing: inherit; /* h2 global define -0.5px/1.3; antes era h3 */
+  line-height: inherit;
   color: var(--deep-blue);
   margin-bottom: 20px;
   padding-bottom: 10px;
@@ -527,9 +529,11 @@
   margin-bottom: 16px;
 }
 
-.newsletter-widget h3 {
+.newsletter-widget h2 {
   font-size: 18px;
   font-weight: 800;
+  letter-spacing: inherit;
+  line-height: inherit;
   color: var(--deep-blue);
   margin-bottom: 8px;
 }
@@ -557,7 +561,6 @@
 
 .newsletter-form input:focus {
   border-color: var(--blue);
-  outline: none;
 }
 
 .newsletter-form .btn-primary {
@@ -582,8 +585,12 @@
   opacity: 0.5;
 }
 
-.empty-state h3 {
+.empty-state h1,
+.empty-state h2 {
   font-size: 20px;
+  font-weight: 700; /* h1/h2 globais usam 800; antes era h3 (negrito padrão) */
+  letter-spacing: inherit;
+  line-height: inherit;
   color: var(--deep-blue);
   margin-bottom: 8px;
 }
@@ -867,7 +874,10 @@
   box-shadow: var(--shadow-sm);
 }
 
-.toc-title {
+/* .post-toc .toc-title (e não só .toc-title): o índice fica dentro de .post-body, e
+   ".post-body h2" (24px, margem superior) teria mais especificidade que ".toc-title". */
+.post-toc .toc-title {
+  line-height: inherit; /* h2 global define 1.3; antes era h4 */
   font-size: 15px;
   font-weight: 800;
   color: var(--deep-blue);
@@ -1073,7 +1083,6 @@
   background-color: var(--surface);
   border-color: var(--blue);
   box-shadow: 0 0 0 3px rgba(42, 94, 168, 0.15);
-  outline: none;
 }
 
 /* Botões e Mensagens de Feedback */

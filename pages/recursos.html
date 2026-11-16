@@ -31,10 +31,6 @@
   <link rel="icon" href="../assets/icons/vinc_icon_256px_1.png" type="image/png">
   <link rel="apple-touch-icon" href="../assets/icons/vinc_icon_256px_1.png">
 
-  <!-- Pré-conexões -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <!-- CSS -->
   <link rel="stylesheet" href="../css/1-settings/global.css">
   <link rel="stylesheet" href="../css/1-settings/tipografia.css">
@@ -48,6 +44,8 @@
   <link rel="stylesheet" href="../css/1-settings/responsivo.css">
 </head>
 <body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+
 
   <!-- Cabeçalho -->
   <header class="header">
@@ -60,21 +58,21 @@
       <nav class="menu" id="navigation-menu" aria-label="Menu principal">
         <a href="../index.html">Início</a>
         <div class="menu-item-dropdown">
-          <a href="como-funciona.html" id="como-funciona-toggle" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Como Funciona <span class="arrow"></span></a>
-          <div class="submenu" role="menu" aria-labelledby="como-funciona-toggle">
-            <a href="como-funciona.html" role="menuitem">Visão Geral</a>
-            <a href="faq.html" role="menuitem">FAQ</a>
+          <a href="como-funciona.html" id="como-funciona-toggle" class="dropdown-toggle" aria-expanded="false">Como Funciona <span class="arrow"></span></a>
+          <div class="submenu">
+            <a href="como-funciona.html">Visão Geral</a>
+            <a href="faq.html">FAQ</a>
           </div>
         </div>
         <a href="recursos.html" class="ativo">Recursos</a>
         <a href="seguranca.html">Segurança</a>
         <a href="blog.html">Blog</a>
         <div class="menu-item-dropdown">
-          <a href="#" id="gestao-toggle" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Gestão <span class="arrow"></span></a>
-          <div class="submenu" role="menu" aria-labelledby="gestao-toggle">
-            <a href="advogados.html" role="menuitem">Advogados</a>
-            <a href="clientes.html" role="menuitem">Clientes</a>
-            <a href="escritorios.html" role="menuitem">Escritório</a>
+          <a href="#" id="gestao-toggle" class="dropdown-toggle" aria-expanded="false">Gestão <span class="arrow"></span></a>
+          <div class="submenu">
+            <a href="advogados.html">Advogados</a>
+            <a href="clientes.html">Clientes</a>
+            <a href="escritorios.html">Escritório</a>
           </div>
         </div>
         <a href="contato.html">Contato</a>
@@ -87,7 +85,7 @@
   </header>
 
   <!-- Conteúdo Principal -->
-  <main>
+  <main id="conteudo-principal" tabindex="-1">
     <!-- Hero Recursos -->
     <section class="hero-recursos" aria-labelledby="recursos-hero-title">
       <div class="container">
@@ -297,7 +295,7 @@
 
         <div class="dashboard-cards-grid">
           <div class="dash-item-card">
-            <h4>
+            <h3>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="8.5" cy="7" r="4"></circle>
@@ -305,12 +303,12 @@
                 <line x1="23" y1="11" x2="17" y2="11"></line>
               </svg>
               Convites
-            </h4>
+            </h3>
             <p>Geração e gestão de convites temporários para onboarding de novos clientes e profissionais de equipe.</p>
           </div>
 
           <div class="dash-item-card">
-            <h4>
+            <h3>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                 <polyline points="14 2 14 8 20 8"></polyline>
@@ -319,12 +317,12 @@
                 <polyline points="10 9 9 9 8 9"></polyline>
               </svg>
               Contratos
-            </h4>
+            </h3>
             <p>Gerenciamento integrado e rastreamento de todos os casos e processos judiciais com os respectivos vínculos ativos no sistema.</p>
           </div>
 
           <div class="dash-item-card">
-            <h4>
+            <h3>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
@@ -332,24 +330,24 @@
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
               </svg>
               Usuários
-            </h4>
+            </h3>
             <p>Controle de acesso baseado em funções para advogados, administradores e equipe de staff, mantendo a governança interna de dados.</p>
           </div>
 
           <div class="dash-item-card">
-            <h4>
+            <h3>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
                 <line x1="12" y1="9" x2="12" y2="13"></line>
                 <line x1="12" y1="17" x2="12.01" y2="17"></line>
               </svg>
               Solicitações
-            </h4>
+            </h3>
             <p>Painel de alertas com fila de solicitações de verificação em tempo real enviadas por clientes em situação de contato suspeito.</p>
           </div>
 
           <div class="dash-item-card">
-            <h4>
+            <h3>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                 <polyline points="14 2 14 8 20 8"></polyline>
@@ -358,19 +356,19 @@
                 <polyline points="10 9 9 9 8 9"></polyline>
               </svg>
               Relatórios
-            </h4>
+            </h3>
             <p>Geração de relatórios consolidados de conformidade, tentativas de fraude registradas e métricas operacionais de mitigação de risco.</p>
           </div>
 
           <div class="dash-item-card">
-            <h4>
+            <h3>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="18" y1="20" x2="18" y2="10"></line>
                 <line x1="12" y1="20" x2="12" y2="4"></line>
                 <line x1="6" y1="20" x2="6" y2="14"></line>
               </svg>
               Indicadores
-            </h4>
+            </h3>
             <p>Gráficos analíticos rápidos exibindo tempo médio de resposta do escritório aos relatos e status de segurança do ecossistema.</p>
           </div>
         </div>

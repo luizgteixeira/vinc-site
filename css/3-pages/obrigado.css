@@ -33,3 +33,9 @@
   color: var(--text-secondary);
   margin-bottom: 32px;
 }
+
+/* Links dentro do texto (usado pela página 404, que reaproveita este cartão) */
+.thanks-card p a {
+  color: var(--blue);
+  font-weight: 600;
+}

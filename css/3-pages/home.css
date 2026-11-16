@@ -2,7 +2,11 @@
    HOMEPAGE (INÍCIO)
 ========================================== */
 .hero {
-  background-image: linear-gradient(rgba(246, 248, 252, 0.90), rgba(246, 248, 252, 0.90)), url('../assets/images/vinc_infrastructure.jpg');
+  /* A camada com assets/images/vinc_infrastructure.jpg foi retirada: o caminho antigo (../assets/…) sempre
+     deu 404, então esse fundo nunca apareceu em produção; com o caminho corrigido, o texto embutido na
+     imagem ficava sobreposto ao título e ao subtítulo. Para reativar: acrescente
+     ", url('../../assets/images/vinc_infrastructure.jpg')" abaixo e aumente a opacidade do degradê. */
+  background-image: linear-gradient(rgba(246, 248, 252, 0.90), rgba(246, 248, 252, 0.90));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -108,9 +108,12 @@
   box-shadow: var(--shadow-sm);
 }
 
-.pillar-card h4 {
+.pillar-card h3 {
   font-size: 18px;
   font-weight: 700;
+  /* .card h3 (cards.css) tem a mesma especificidade; herdar mantém o visual de quando era h4 */
+  line-height: inherit;
+  letter-spacing: inherit;
   color: var(--text-primary);
   margin-bottom: 10px;
 }
@@ -128,14 +131,14 @@
   align-items: center;
 }
 
-.pillar-text h4 {
+.pillar-text h3 {
   font-size: 20px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 10px;
 }
 
-.pillar-text h4:last-of-type {
+.pillar-text h3:last-of-type {
   margin-top: 30px;
 }
 
@@ -300,7 +303,7 @@
   flex-shrink: 0;
 }
 
-.mini-card-text h5 {
+.mini-card-text h3 {
   font-size: 16px;
   font-weight: 700;
   color: var(--text-primary);

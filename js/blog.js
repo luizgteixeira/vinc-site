@@ -15,71 +15,24 @@
  *
  */
 
-// --------------------------------------------------------------------------
-// AUTORES DO BLOG
-// --------------------------------------------------------------------------
-const AUTHORS = {
-  luiz_gustavo: {
-    name: 'Luiz Gustavo',
-    avatarUrl: '../assets/images/luiz-gustavo-avatar.jpg',
-    role: 'Desenvolvedor Web e Mobile',
-    bio: 'Co-fundador do Vinc, desenvolvedor responsável por construir a plataforma que conecta advogados e clientes com segurança.',
-  },
-};
+import {
+  CATEGORIES,
+  normalizePost,
+  parsePublishedAtToISO,
+  getReadingTime,
+  articleHref,
+  canonicalUrlFor,
+  absoluteImageUrl,
+  buildStructuredData,
+  renderArticleMarkup,
+  renderPopularMarkup,
+  renderCategoriesMarkup,
+  renderTagsMarkup,
+} from './blog-shared.js';
 
-// --------------------------------------------------------------------------
-// CATEGORIAS DO NOVO MODELO EDITORIAL (Mapeamento de Metadados)
-// --------------------------------------------------------------------------
-const CATEGORIES = {
-  ANATOMIA_GOLPES: {
-    name: 'Anatomia de Golpes e Alertas',
-    slug: 'anatomia-golpes',
-    description:
-      'Educação preventiva para identificar e desarmar golpes de engenharia social.',
-    icon: '🚨',
-    color: '#e11d48', // Vermelho/Laranja Carmim para Alertas
-  },
-  GESTAO_REPUTACAO: {
-    name: 'Gestão de Reputação para Advogados',
-    slug: 'gestao-reputacao',
-    description:
-      'Estratégias para proteger a identidade digital profissional e a confiança do cliente.',
-    icon: '🛡️',
-    color: '#2563eb', // Azul Profundo para Confiança
-  },
-  TECNOLOGIA_DADOS: {
-    name: 'Tecnologia e Soberania de Dados',
-    slug: 'tecnologia-dados',
-    description:
-      'Detalhamento acessível sobre criptografia, segurança e arquitetura de dados.',
-    icon: '⚙️',
-    color: '#0d9488', // Verde Azulado para Tecnologia
-  },
-  GUIA_FUNCIONALIDADES: {
-    name: 'Guia de Funcionalidades e Onboarding',
-    slug: 'guia-funcionalidades',
-    description:
-      'Manuais passo a passo para extrair o máximo de segurança da plataforma Vinc.',
-    icon: '📖',
-    color: '#d97706', // Âmbar para Educação Operacional
-  },
-  CIBERSEGURANCA_COMPLIANCE: {
-    name: 'Cibersegurança e Compliance (LGPD)',
-    slug: 'ciberseguranca-compliance',
-    description:
-      'Conformidade jurídica, governança de privacidade e as melhores práticas digitais.',
-    icon: '🔒',
-    color: '#4f46e5', // Índigo para Compliance
-  },
-  CASOS_SUCESSO: {
-    name: 'Casos de Sucesso e Segurança Jurídica',
-    slug: 'casos-sucesso',
-    description:
-      'Histórias e análises baseadas em simulações e dados anonimizados de segurança real.',
-    icon: '🤝',
-    color: '#16a34a', // Verde Esmeralda para Sucesso
-  },
-};
+// Autores, categorias, normalizePost, datas e os blocos que montam HTML (artigo, relacionados,
+// sidebar, JSON-LD) ficam em js/blog-shared.js, que também é usado no Node para gerar as
+// páginas estáticas dos artigos (scripts/build-articles.mjs).
 
 // --------------------------------------------------------------------------
 // BANCO DE DADOS DE ARTIGOS
@@ -92,30 +45,28 @@ const CATEGORIES = {
 let BLOG_POSTS = [];
 
 /**
- * Resolve categoryKey/authorKey (referências leves salvas no JSON) nos
- * objetos completos de CATEGORIES/AUTHORS, no mesmo formato que o resto
- * do blog.js sempre esperou (post.category, post.author.name, etc.).
- */
-function normalizePost(raw) {
-  const category = CATEGORIES[raw.categoryKey];
-  const author = AUTHORS[raw.authorKey];
-
-  return {
-    ...raw,
-    category: category.name,
-    categorySlug: category.slug,
-    categoryIcon: category.icon,
-    categoryColor: category.color,
-    author,
-  };
-}
-
-/**
- * Busca o índice de artigos e cada JSON individual em content/posts/.
+ * Carrega os artigos: primeiro o pacote único content/posts.json (1 requisição,
+ * gerado no deploy) e, na falta dele, o índice + cada JSON de content/posts/.
  * Precisa ser servido via HTTP (não funciona abrindo o HTML direto com
  * file://) — ver instruções de execução local no README.
  */
 async function loadBlogPosts() {
+  // Caminho rápido: um único arquivo com todos os artigos, gerado a cada deploy por
+  // scripts/build-posts.py. Se não existir (ex.: dev local sem rodar o script) ou vier
+  // inválido, cai no carregamento arquivo a arquivo abaixo, que sempre funciona.
+  try {
+    const bundleResponse = await fetch('../content/posts.json');
+    if (bundleResponse.ok) {
+      const bundle = await bundleResponse.json();
+      if (Array.isArray(bundle) && bundle.length > 0) {
+        BLOG_POSTS = bundle.map(normalizePost);
+        return;
+      }
+    }
+  } catch (error) {
+    // segue para o fallback
+  }
+
   const indexResponse = await fetch('../content/posts/index.json');
   if (!indexResponse.ok) {
     throw new Error('Não foi possível carregar content/posts/index.json');
@@ -175,7 +126,7 @@ function renderBlogPosts() {
     postsContainer.innerHTML = `
       <div class="empty-state" id="blog-empty-state">
         <div class="empty-state-icon">🔍</div>
-        <h3>Nenhum artigo encontrado</h3>
+        <h2>Nenhum artigo encontrado</h2>
         <p>Tente alterar as palavras-chave ou selecionar outra categoria.</p>
       </div>
     `;
@@ -192,7 +143,7 @@ function renderBlogPosts() {
 
     featuredContainer.innerHTML = `
       <article class="featured-card" id="featured-card-item">
-        <a href="artigo-detalhes.html?slug=${featuredPost.slug}" class="featured-img-link" aria-label="Ler artigo em destaque: ${featuredPost.title}">
+        <a href="${articleHref(featuredPost)}" class="featured-img-link" aria-label="Ler artigo em destaque: ${featuredPost.title}">
           <img src="${featuredPost.featuredImage}" alt="Capa: ${featuredPost.title}" class="featured-img">
         </a>
         <div class="featured-content">
@@ -205,7 +156,7 @@ function renderBlogPosts() {
             <span>${getReadingTime(featuredPost)} min de leitura</span>
           </div>
           <h2 class="featured-title">
-            <a href="artigo-detalhes.html?slug=${featuredPost.slug}">${featuredPost.title}</a>
+            <a href="${articleHref(featuredPost)}">${featuredPost.title}</a>
           </h2>
           <p class="featured-excerpt">${featuredPost.excerpt}</p>
           <div class="featured-footer">
@@ -216,7 +167,7 @@ function renderBlogPosts() {
                 <span style="font-size: 11px; color: var(--text-secondary); font-weight: 300;">${featuredPost.author.role}</span>
               </div>
             </div>
-            <a href="artigo-detalhes.html?slug=${featuredPost.slug}" class="btn-primary btn-small" id="btn-read-featured">Ler artigo</a>
+            <a href="${articleHref(featuredPost)}" class="btn-primary btn-small" id="btn-read-featured">Ler artigo</a>
           </div>
         </div>
       </article>
@@ -232,7 +183,7 @@ function renderBlogPosts() {
         .map(
           (post) => `
         <article class="article-card" id="article-card-${post.id}">
-          <a href="artigo-detalhes.html?slug=${post.slug}" class="article-img-link" aria-label="Ler artigo: ${post.title}">
+          <a href="${articleHref(post)}" class="article-img-link" aria-label="Ler artigo: ${post.title}">
             <img src="${post.featuredImage}" alt="Capa: ${post.title}" class="article-img" loading="lazy">
           </a>
           <div class="article-content">
@@ -244,16 +195,16 @@ function renderBlogPosts() {
               <span>•</span>
               <span>${getReadingTime(post)} min de leitura</span>
             </div>
-            <h3 class="article-title">
-              <a href="artigo-detalhes.html?slug=${post.slug}">${post.title}</a>
-            </h3>
+            <h2 class="article-title">
+              <a href="${articleHref(post)}">${post.title}</a>
+            </h2>
             <p class="article-excerpt">${post.excerpt}</p>
             <div class="article-footer">
               <div class="author-info">
                 <img src="${post.author.avatarUrl}" alt="Avatar de ${post.author.name}" class="author-avatar" width="28" height="28" loading="lazy">
                 <span class="author-name" style="font-size: 13px;">${post.author.name}</span>
               </div>
-              <a href="artigo-detalhes.html?slug=${post.slug}" class="btn-secondary btn-small" style="padding: 6px 14px; font-size: 13px;" id="btn-read-more-${post.id}">Ler mais</a>
+              <a href="${articleHref(post)}" class="btn-secondary btn-small" style="padding: 6px 14px; font-size: 13px;" id="btn-read-more-${post.id}">Ler mais</a>
             </div>
           </div>
         </article>
@@ -345,6 +296,13 @@ function loadSinglePost() {
     return;
   }
 
+  // Em produção cada artigo tem uma página estática (post.url, definida no pacote de artigos
+  // gerado no deploy): quem chegou pelo endereço antigo (?slug=) é levado para ela.
+  if (post.url) {
+    window.location.replace(post.url + window.location.hash);
+    return;
+  }
+
   // 1. Atualizar Tags de SEO e Metadados dinamicamente para melhor indexação
   // Usa seo.metaTitle (dimensionado para o limite do SERP, ~50-60 caracteres),
   // não post.title (o título editorial completo, que pode passar de 100
@@ -364,7 +322,7 @@ function loadSinglePost() {
   // Atualizar Canonical: cada artigo precisa da sua própria URL canônica
   // (slug incluído), senão o Google entende todos os artigos como duplicatas
   // da mesma URL sem slug e deixa de indexar a maioria deles.
-  const canonicalUrl = `https://www.vincapp.com.br/pages/artigo-detalhes.html?slug=${post.slug}`;
+  const canonicalUrl = canonicalUrlFor(post);
   let canonicalTag = document.querySelector('link[rel="canonical"]');
   if (canonicalTag) {
     canonicalTag.setAttribute('href', canonicalUrl);
@@ -375,285 +333,29 @@ function loadSinglePost() {
     document.head.appendChild(canonicalTag);
   }
 
-  // Crawlers de preview (WhatsApp, LinkedIn, Slack) exigem URL absoluta em og:image/twitter:image
-  const absoluteImageUrl = post.featuredImage.replace(
-    '../',
-    'https://www.vincapp.com.br/'
-  );
+  const ogImage = absoluteImageUrl(post); // URL absoluta, exigida por crawlers de preview
 
   // Atualizar Open Graph (Facebook, WhatsApp, LinkedIn)
   updateMetaTag('property', 'og:title', post.seo.metaTitle);
   updateMetaTag('property', 'og:description', post.seo.metaDesc);
   updateMetaTag('property', 'og:url', canonicalUrl);
-  updateMetaTag('property', 'og:image', absoluteImageUrl);
+  updateMetaTag('property', 'og:image', ogImage);
 
   // Atualizar Twitter / X Cards
   updateMetaTag('name', 'twitter:title', post.seo.metaTitle);
   updateMetaTag('name', 'twitter:description', post.seo.metaDesc);
-  updateMetaTag('name', 'twitter:image', absoluteImageUrl);
+  updateMetaTag('name', 'twitter:image', ogImage);
 
-  // Injetar dados estruturados JSON-LD do Schema.org para indexação do Google
-  const schemaScript = document.createElement('script');
-  schemaScript.type = 'application/ld+json';
-  schemaScript.text = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    image: [absoluteImageUrl],
-    datePublished: parsePublishedAtToISO(post.publishedAt),
-    author: [
-      {
-        '@type': 'Person',
-        name: post.author.name,
-        jobTitle: post.author.role,
-      },
-    ],
-    publisher: {
-      '@type': 'Organization',
-      name: 'Vinc',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://www.vincapp.com.br/assets/icons/vinc_icon_256px_1.png',
-      },
-    },
-    description: post.seo.metaDesc,
-    articleBody: post.content.replace(/<[^>]*>/g, ''), // Remove HTML para gerar texto cru para o buscador
+  // Dados estruturados JSON-LD (BlogPosting, BreadcrumbList e, se houver, FAQPage)
+  buildStructuredData(post, canonicalUrl).forEach((data) => {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(data);
+    document.head.appendChild(script);
   });
-  document.head.appendChild(schemaScript);
 
-  // Injetar Schema.org BreadcrumbList, espelhando a trilha visual (Início > Blog > Categoria)
-  const breadcrumbSchema = document.createElement('script');
-  breadcrumbSchema.type = 'application/ld+json';
-  breadcrumbSchema.text = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Início',
-        item: 'https://www.vincapp.com.br/',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Blog',
-        item: 'https://www.vincapp.com.br/pages/blog.html',
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: post.category,
-        item: canonicalUrl,
-      },
-    ],
-  });
-  document.head.appendChild(breadcrumbSchema);
-
-  // Injetar Schema.org FAQPage apenas nos posts que têm um bloco de FAQ real no conteúdo
-  if (post.faq && post.faq.length > 0) {
-    const faqSchema = document.createElement('script');
-    faqSchema.type = 'application/ld+json';
-    faqSchema.text = JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: post.faq.map((item) => ({
-        '@type': 'Question',
-        name: item.question,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: item.answer,
-        },
-      })),
-    });
-    document.head.appendChild(faqSchema);
-  }
-
-  // 2. Renderizar o layout básico do post
-  singlePostContainer.innerHTML = `
-    <!-- Link de retorno para a listagem -->
-    <a href="blog.html" class="back-to-blog" id="btn-back-to-blog">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="19" y1="12" x2="5" y2="12"></line>
-        <polyline points="12 19 5 12 12 5"></polyline>
-      </svg>
-      Voltar para o Blog
-    </a>
-
-    <!-- Navegação em Breadcrumbs (Acessibilidade e SEO) -->
-    <nav class="breadcrumbs" aria-label="Navegação de trilha (Breadcrumbs)" id="post-breadcrumbs">
-      <a href="../index.html">Início</a>
-      <span class="breadcrumbs-separator">/</span>
-      <a href="blog.html">Blog</a>
-      <span class="breadcrumbs-separator">/</span>
-      <span class="breadcrumbs-current" style="color: ${post.categoryColor}; font-weight: 700;">${post.category}</span>
-    </nav>
-
-    <!-- Cabeçalho Principal do Artigo -->
-    <header class="post-header" id="post-title-header">
-      <div class="post-header-meta">
-        <span class="blog-badge" style="background-color: ${post.categoryColor}15; color: ${post.categoryColor}; border-left: 2px solid ${post.categoryColor};">
-          ${post.categoryIcon} ${post.category}
-        </span>
-        <span style="color: var(--text-secondary); font-size: 14px;">${post.publishedAt}</span>
-        <span style="color: var(--border);">|</span>
-        <span style="color: var(--text-secondary); font-size: 14px;">${getReadingTime(post)} min de leitura</span>
-      </div>
-      <h1 class="post-title" id="post-main-title">${post.title}</h1>
-    </header>
-
-    <!-- Capa do Artigo -->
-    <div class="post-cover-wrap" id="post-cover-image">
-      <img src="${post.featuredImage}" alt="Capa: ${post.title}" class="post-cover">
-    </div>
-
-    <!-- Corpo de Texto do Artigo -->
-    <article class="post-body" id="post-text-body">
-      ${post.content}
-    </article>
-
-    <!-- Assinatura de fechamento, única para todos os artigos (antes duplicada em 6 deles) -->
-    <div class="post-signature" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
-      <p style="margin: 0 0 8px 0; font-weight: bold; color: var(--text-primary);">Vinc — confirme antes de confiar.</p>
-      <p style="margin: 0; font-style: italic; color: var(--text-secondary); font-size: 14px;">Desenvolvido com foco total em soberania tecnológica e segurança jurídica.</p>
-    </div>
-
-    <!-- Seção de Interação / Feedback (Fase 1) -->
-    <section class="post-interaction-box" id="post-feedback-section" aria-labelledby="feedback-section-title">
-      <h3 class="interaction-heading" id="feedback-section-title">📬 Compartilhe sua Opinião</h3>
-
-      <form id="feedback-interaction-form" onsubmit="event.preventDefault();">
-        <!-- ETAPA 1 — Avaliação do artigo -->
-        <fieldset style="border: none; padding: 0; margin: 0 0 24px 0;">
-          <legend class="interaction-subheading" style="font-size: 1.05rem; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;">Este artigo foi útil?</legend>
-          <div class="rating-options" role="radiogroup" aria-label="Avaliação do artigo">
-            <button type="button" class="rating-btn" data-rating="very-useful" role="radio" aria-checked="false" aria-label="Muito útil">
-              <span class="emoji" aria-hidden="true">👍</span>
-              <span>Muito útil</span>
-            </button>
-            <button type="button" class="rating-btn" data-rating="useful" role="radio" aria-checked="false" aria-label="Útil">
-              <span class="emoji" aria-hidden="true">🙂</span>
-              <span>Útil</span>
-            </button>
-            <button type="button" class="rating-btn" data-rating="so-so" role="radio" aria-checked="false" aria-label="Mais ou menos">
-              <span class="emoji" aria-hidden="true">😐</span>
-              <span>Mais ou menos</span>
-            </button>
-            <button type="button" class="rating-btn" data-rating="not-helpful" role="radio" aria-checked="false" aria-label="Não ajudou">
-              <span class="emoji" aria-hidden="true">👎</span>
-              <span>Não ajudou</span>
-            </button>
-          </div>
-          <div id="rating-feedback-msg" class="feedback-message" style="display: none;" aria-live="polite"></div>
-        </fieldset>
-
-        <!-- ETAPA 2 — Interesse em novos conteúdos -->
-        <fieldset style="border: none; padding: 0; margin: 0 0 24px 0;">
-          <legend class="interaction-subheading" style="font-size: 1.05rem; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;">Gostaria de ler mais conteúdos sobre:</legend>
-          <div class="topics-grid" id="topics-selection-grid">
-            <label class="topic-label" id="label-golpes">
-              <input type="checkbox" name="topics" value="Golpes digitais" id="checkbox-golpes">
-              <span>Golpes digitais</span>
-            </label>
-            <label class="topic-label" id="label-seguranca">
-              <input type="checkbox" name="topics" value="Segurança Jurídica" id="checkbox-seguranca">
-              <span>Segurança Jurídica</span>
-            </label>
-            <label class="topic-label" id="label-lgpd">
-              <input type="checkbox" name="topics" value="LGPD" id="checkbox-lgpd">
-              <span>LGPD</span>
-            </label>
-            <label class="topic-label" id="label-ia">
-              <input type="checkbox" name="topics" value="Inteligência Artificial" id="checkbox-ia">
-              <span>Inteligência Artificial</span>
-            </label>
-            <label class="topic-label" id="label-escritorios">
-              <input type="checkbox" name="topics" value="Escritórios de Advocacia" id="checkbox-escritorios">
-              <span>Escritórios de Advocacia</span>
-            </label>
-            <label class="topic-label" id="label-clientes">
-              <input type="checkbox" name="topics" value="Clientes" id="checkbox-clientes">
-              <span>Clientes</span>
-            </label>
-            <label class="topic-label" id="label-advogados">
-              <input type="checkbox" name="topics" value="Advogados" id="checkbox-advogados">
-              <span>Advogados</span>
-            </label>
-            <label class="topic-label" id="label-engenharia">
-              <input type="checkbox" name="topics" value="Engenharia Social" id="checkbox-engenharia">
-              <span>Engenharia Social</span>
-            </label>
-            <label class="topic-label" id="label-seguranca-dig">
-              <input type="checkbox" name="topics" value="Segurança Digital" id="checkbox-seguranca-dig">
-              <span>Segurança Digital</span>
-            </label>
-            <label class="topic-label" id="label-outros">
-              <input type="checkbox" name="topics" value="Outros" id="checkbox-outros">
-              <span>Outros</span>
-            </label>
-          </div>
-          <div id="topics-feedback-msg" class="feedback-message" style="display: none;" aria-live="polite"></div>
-        </fieldset>
-
-        <!-- ETAPA 3 — Sugestão de temas -->
-        <div class="suggestions-box">
-          <label for="suggestion-text" class="interaction-subheading" style="font-size: 1.05rem; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; display: block;">Sugestões ou Comentários (Opcional)</label>
-          <textarea id="suggestion-text" class="suggestions-textarea" placeholder="Conte para nós suas sugestões de temas, comentários sobre o blog (ex: frequência de posts) ou feedbacks gerais." aria-label="Sua sugestão de temas ou comentários para o blog"></textarea>
-          <p class="form-privacy-note">Este botão envia também a avaliação e os temas selecionados acima, se houver. Ao enviar, você concorda com nossa <a href="privacidade.html">Política de Privacidade</a>.</p>
-          <button type="button" class="btn-primary btn-submit-suggestion" id="btn-send-suggestion">Enviar feedback</button>
-          <div id="suggestion-feedback-msg" class="feedback-message" style="display: none;" aria-live="polite"></div>
-        </div>
-      </form>
-    </section>
-
-    <!-- Caixa de Apresentação de Autor -->
-    <section class="post-author-box" aria-labelledby="author-heading" id="post-author-section">
-      <img src="${post.author.avatarUrl}" alt="Foto de ${post.author.name}" class="post-author-avatar" width="80" height="80">
-      <div class="post-author-info">
-        <h4 id="author-heading" style="margin: 0 0 4px 0;">${post.author.name}</h4>
-        <p class="post-author-role">${post.author.role}</p>
-        <p class="post-author-bio">${post.author.bio}</p>
-      </div>
-    </section>
-
-    <!-- Artigos Relacionados (Sempre linkados para evitar posts isolados) -->
-    <section class="related-posts" aria-labelledby="related-heading" id="post-related-section">
-      <h3 class="related-title" id="related-heading">Artigos Relacionados</h3>
-      <div class="articles-grid" id="related-articles-grid">
-        ${renderRelatedPostsMarkup(post)}
-      </div>
-    </section>
-  `;
-
-  // 3. Geração Automática do Índice de Conteúdo (Table of Contents - TOC)
-  const postBody = document.getElementById('post-text-body');
-  if (postBody) {
-    const headings = postBody.querySelectorAll('h2');
-    if (headings.length > 0) {
-      const tocContainer = document.createElement('div');
-      tocContainer.className = 'post-toc';
-      tocContainer.innerHTML = `
-        <h4 class="toc-title">📍 Índice do Artigo</h4>
-        <ul class="toc-list">
-          ${Array.from(headings)
-            .map((h, index) => {
-              const headingId = `topico-${index + 1}`;
-              h.id = headingId; // Seta o id dinâmico no elemento H2 do texto
-              return `
-              <li>
-                <a href="#${headingId}" class="toc-link">
-                  <span class="toc-bullet">▶</span> ${h.textContent}
-                </a>
-              </li>
-            `;
-            })
-            .join('')}
-        </ul>
-      `;
-      // Injeta o Índice de Conteúdo logo no topo do texto do artigo para melhorar UX
-      postBody.insertBefore(tocContainer, postBody.firstChild);
-    }
-  }
+  // 2. Layout do post, com Índice de Conteúdo (TOC) e artigos relacionados
+  singlePostContainer.innerHTML = renderArticleMarkup(post, BLOG_POSTS, articleHref);
 
   // Inicializa os event listeners do bloco de feedback/interação (Fase 1)
   initFeedbackSection(post);
@@ -673,6 +375,11 @@ function initFeedbackSection(post) {
   );
   const sendSuggestionBtn = document.getElementById('btn-send-suggestion');
   const suggestionTextarea = document.getElementById('suggestion-text');
+
+  // O envio é feito por fetch no botão "Enviar feedback"; impede o submit nativo (Enter no
+  // formulário). Feito aqui, e não com onsubmit inline, para funcionar sob CSP sem 'unsafe-inline'.
+  const feedbackForm = document.getElementById('feedback-interaction-form');
+  if (feedbackForm) feedbackForm.addEventListener('submit', (e) => e.preventDefault());
 
   // Elementos de mensagem de feedback
   const ratingFeedbackMsg = document.getElementById('rating-feedback-msg');
@@ -758,7 +465,7 @@ function initFeedbackSection(post) {
             Accept: 'application/json',
           },
           body: JSON.stringify({
-            access_key: '933b21fa-2815-45e6-9d9a-7935a7e8a000',
+            access_key: '58f9c5cc-4b90-44bd-b4be-2524d364115d',
             subject: `Feedback do Blog Vinc - Artigo: ${postTitle}`,
             artigo: postTitle,
             avaliacao: selectedRatingLabel || 'Não informada',
@@ -795,44 +502,9 @@ function initFeedbackSection(post) {
   }
 }
 
-/**
- * Auxiliar para atualizar tags meta dinâmicas de SEO
- */
-// Converte datas no formato exibido "DD Mon YYYY" (ex.: "15 Jul 2026") para
-// ISO 8601, exigido pelo campo datePublished do Schema.org.
-const PT_BR_MONTHS = {
-  jan: '01',
-  fev: '02',
-  mar: '03',
-  abr: '04',
-  mai: '05',
-  jun: '06',
-  jul: '07',
-  ago: '08',
-  set: '09',
-  out: '10',
-  nov: '11',
-  dez: '12',
-};
-
-function parsePublishedAtToISO(publishedAt) {
-  const [day, month, year] = publishedAt.split(' ');
-  const monthNumber = PT_BR_MONTHS[month.toLowerCase()];
-  return `${year}-${monthNumber}-${day.padStart(2, '0')}T09:00:00-03:00`;
-}
-
-// Calcula o tempo de leitura a partir do conteúdo real do post (200 palavras/min,
-// padrão editorial comum), em vez de um número fixo por post que fica desatualizado
-// a cada edição de conteúdo.
-const WORDS_PER_MINUTE = 200;
-
-function getReadingTime(post) {
-  const plainText = post.content
-    .replace(/<[^>]*>/g, ' ')
-    .replace(/&[a-z]+;/gi, ' ')
-    .trim();
-  const wordCount = plainText.split(/\s+/).filter(Boolean).length;
-  return Math.max(1, Math.ceil(wordCount / WORDS_PER_MINUTE));
+// Rolagem suave, exceto para quem pediu movimento reduzido no sistema.
+function getScrollBehavior() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
 }
 
 function updateMetaTag(attribute, value, content) {
@@ -848,53 +520,6 @@ function updateMetaTag(attribute, value, content) {
 }
 
 /**
- * Retorna o HTML estruturado para até 3 artigos relacionados na mesma categoria
- * Promove uma excelente malha de links internos inteligentes para maximizar SEO.
- */
-function renderRelatedPostsMarkup(currentPost) {
-  // Busca posts da mesma categoria (excluindo o post ativo)
-  let related = BLOG_POSTS.filter(
-    (p) => p.id !== currentPost.id && p.category === currentPost.category
-  );
-
-  // Caso não existam posts suficientes na mesma categoria, preenche com os demais
-  if (related.length < 3) {
-    const extra = BLOG_POSTS.filter(
-      (p) => p.id !== currentPost.id && p.category !== currentPost.category
-    );
-    related = [...related, ...extra].slice(0, 3);
-  } else {
-    related = related.slice(0, 3);
-  }
-
-  return related
-    .map(
-      (post) => `
-    <article class="article-card" id="related-card-${post.id}">
-      <a href="artigo-detalhes.html?slug=${post.slug}" class="article-img-link" aria-label="Artigo Relacionado: ${post.title}">
-        <img src="${post.featuredImage}" alt="Capa: ${post.title}" class="article-img" loading="lazy">
-      </a>
-      <div class="article-content" style="padding: 20px;">
-        <div class="meta-info" style="font-size: 12px; margin-bottom: 8px;">
-          <span class="blog-badge" style="font-size: 10px; padding: 2px 6px; background-color: ${post.categoryColor}15; color: ${post.categoryColor};">
-            ${post.categoryIcon} ${post.category}
-          </span>
-          <span>${post.publishedAt}</span>
-          <span>•</span>
-          <span>${getReadingTime(post)} min</span>
-        </div>
-        <h4 class="article-title" style="font-size: 1rem; margin-top: 4px; margin-bottom: 8px;">
-          <a href="artigo-detalhes.html?slug=${post.slug}">${post.title}</a>
-        </h4>
-        <a href="artigo-detalhes.html?slug=${post.slug}" class="btn-secondary btn-small" style="padding: 4px 10px; font-size: 12px; align-self: flex-start; margin-top: auto;" id="btn-read-related-${post.id}">Ler mais</a>
-      </div>
-    </article>
-  `
-    )
-    .join('');
-}
-
-/**
  * Interface limpa amigável exibida caso o artigo não seja localizado
  */
 function renderSinglePostNotFound() {
@@ -904,7 +529,7 @@ function renderSinglePostNotFound() {
   container.innerHTML = `
     <div class="empty-state" style="margin: 60px 0;" id="post-not-found-state">
       <div class="empty-state-icon">⚠️</div>
-      <h3>Artigo não encontrado</h3>
+      <h1>Artigo não encontrado</h1>
       <p>O endereço acessado pode ter sido alterado ou o artigo foi temporariamente arquivado.</p>
       <a href="blog.html" class="btn-primary" style="margin-top: 20px; display: inline-block;">Voltar para o Blog</a>
     </div>
@@ -963,115 +588,60 @@ function initNewsletter() {
 // --------------------------------------------------------------------------
 
 /**
- * Alimenta dinamicamente os widgets da Sidebar reutilizando o mesmo banco de dados central.
+ * Monta os widgets da Sidebar (recentes, categorias e tags) reutilizando o mesmo banco de dados
+ * central. Nas páginas estáticas dos artigos isso já vem pronto no HTML; só os eventos são ligados.
  */
-function initSidebar() {
+function renderSidebar() {
   const popularContainer = document.getElementById('popular-posts-list');
-  const categoriesContainer = document.getElementById(
-    'sidebar-categories-list'
-  );
+  const categoriesContainer = document.getElementById('sidebar-categories-list');
   const tagsContainer = document.getElementById('sidebar-tags-cloud');
 
-  // 1. Popula a lista de Artigos Recentes, ordenados pela data real de publicação
-  // (não temos contagem de leituras real, então "mais lidos" seria uma métrica
-  // inventada; recência é o único sinal verdadeiro que o post.publishedAt garante).
-  if (popularContainer) {
-    const recentPosts = [...BLOG_POSTS]
-      .sort(
-        (a, b) =>
-          new Date(parsePublishedAtToISO(b.publishedAt)) -
-          new Date(parsePublishedAtToISO(a.publishedAt))
-      )
-      .slice(0, 4);
-    popularContainer.innerHTML = recentPosts
-      .map(
-        (post, idx) => `
-      <li class="popular-item" id="popular-item-${post.id}">
-        <span class="popular-number" style="color: ${post.categoryColor}; opacity: 0.4;">0${idx + 1}</span>
-        <div class="popular-item-content">
-          <a href="artigo-detalhes.html?slug=${post.slug}" class="popular-item-title">${post.title}</a>
-          <span class="popular-item-meta">${post.publishedAt} • ${getReadingTime(post)} min</span>
-        </div>
-      </li>
-    `
-      )
-      .join('');
-  }
+  if (popularContainer) popularContainer.innerHTML = renderPopularMarkup(BLOG_POSTS, articleHref);
+  if (categoriesContainer) categoriesContainer.innerHTML = renderCategoriesMarkup(BLOG_POSTS);
+  if (tagsContainer) tagsContainer.innerHTML = renderTagsMarkup(BLOG_POSTS);
+}
 
-  // 2. Popula e faz a contagem de posts por categoria na barra lateral
+/**
+ * Liga os cliques das categorias e das tags da Sidebar. Na listagem do blog filtram em tempo real;
+ * nas demais páginas guardam o filtro na sessão para a listagem carregar já filtrada.
+ */
+function bindSidebarEvents() {
+  const categoriesContainer = document.getElementById('sidebar-categories-list');
+  const tagsContainer = document.getElementById('sidebar-tags-cloud');
+
   if (categoriesContainer) {
-    const counts = {};
-    BLOG_POSTS.forEach((post) => {
-      counts[post.category] = (counts[post.category] || 0) + 1;
-    });
-
-    categoriesContainer.innerHTML = Object.values(CATEGORIES)
-      .map((cat) => {
-        const count = counts[cat.name] || 0;
-        return `
-        <li class="sidebar-cat-item" id="sidebar-cat-item-${cat.slug}">
-          <a href="blog.html" class="sidebar-cat-link" data-category="${cat.name}">
-            <span style="color: ${cat.color};">${cat.icon}</span> ${cat.name}
-          </a>
-          <span class="sidebar-cat-count">${count}</span>
-        </li>
-      `;
-      })
-      .join('');
-
     // Permite que cliques nas categorias da sidebar realizem filtros em tempo real
-    categoriesContainer
-      .querySelectorAll('.sidebar-cat-link')
-      .forEach((link) => {
-        link.addEventListener('click', (e) => {
-          const listPostsContainer = document.getElementById(
-            'blog-posts-container'
-          );
-          if (listPostsContainer) {
-            e.preventDefault();
-            activeCategory = link.getAttribute('data-category');
+    categoriesContainer.querySelectorAll('.sidebar-cat-link').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const listPostsContainer = document.getElementById('blog-posts-container');
+        if (listPostsContainer) {
+          e.preventDefault();
+          activeCategory = link.getAttribute('data-category');
 
-            // Altera o estado visual correspondente na barra superior de categorias
-            const filterButtons = document.querySelectorAll(
-              '#category-filters-wrap .category-btn'
-            );
-            filterButtons.forEach((btn) => {
-              if (btn.getAttribute('data-category') === activeCategory) {
-                btn.classList.add('active');
-              } else {
-                btn.classList.remove('active');
-              }
-            });
+          // Altera o estado visual correspondente na barra superior de categorias
+          const filterButtons = document.querySelectorAll('#category-filters-wrap .category-btn');
+          filterButtons.forEach((btn) => {
+            if (btn.getAttribute('data-category') === activeCategory) {
+              btn.classList.add('active');
+            } else {
+              btn.classList.remove('active');
+            }
+          });
 
-            renderBlogPosts();
-            listPostsContainer.scrollIntoView({ behavior: 'smooth' });
-          } else {
-            // Se estiver nos detalhes, armazena para carregar filtrado na Home do blog
-            sessionStorage.setItem(
-              'active_category_filter',
-              link.getAttribute('data-category')
-            );
-          }
-        });
+          renderBlogPosts();
+          listPostsContainer.scrollIntoView({ behavior: getScrollBehavior() });
+        } else {
+          // Se estiver nos detalhes, armazena para carregar filtrado na Home do blog
+          sessionStorage.setItem('active_category_filter', link.getAttribute('data-category'));
+        }
       });
+    });
   }
 
-  // 3. Nuvem de Tags Dinâmica, agregada a partir das tags reais de cada post
   if (tagsContainer) {
-    const tags = [...new Set(BLOG_POSTS.flatMap((post) => post.tags))].sort();
-    tagsContainer.innerHTML = tags
-      .map(
-        (tag) => `
-      <a href="blog.html" class="tag-badge" data-tag="${tag}">#${tag}</a>
-    `
-      )
-      .join('');
-
     tagsContainer.querySelectorAll('.tag-badge').forEach((badge) => {
       badge.addEventListener('click', (e) => {
-        const listPostsContainer = document.getElementById(
-          'blog-posts-container'
-        );
+        const listPostsContainer = document.getElementById('blog-posts-container');
         if (listPostsContainer) {
           e.preventDefault();
           const tagValue = badge.getAttribute('data-tag');
@@ -1080,23 +650,36 @@ function initSidebar() {
             searchInput.value = tagValue;
             searchQuery = tagValue;
             renderBlogPosts();
-            listPostsContainer.scrollIntoView({ behavior: 'smooth' });
+            listPostsContainer.scrollIntoView({ behavior: getScrollBehavior() });
           }
         } else {
-          sessionStorage.setItem(
-            'active_tag_search',
-            badge.getAttribute('data-tag')
-          );
+          sessionStorage.setItem('active_tag_search', badge.getAttribute('data-tag'));
         }
       });
     });
   }
 }
 
+function initSidebar() {
+  renderSidebar();
+  bindSidebarEvents();
+}
+
 // --------------------------------------------------------------------------
 // INICIALIZAÇÃO CENTRAL DO BLOG (DOM CONTENT LOADED)
 // --------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', async () => {
+  // Página de artigo estática (gerada no deploy por scripts/build-articles.mjs): o HTML já traz
+  // o artigo, as metas, o JSON-LD e a sidebar. Não carrega os artigos nem renderiza nada; só
+  // liga o formulário de feedback, os cliques da sidebar e a newsletter.
+  if (document.documentElement.hasAttribute('data-prerendered')) {
+    const titleElement = document.getElementById('post-main-title');
+    initFeedbackSection({ title: titleElement ? titleElement.textContent : document.title });
+    bindSidebarEvents();
+    initNewsletter();
+    return;
+  }
+
   // Carrega filtros de categoria salvos de outras páginas
   const savedCategory = sessionStorage.getItem('active_category_filter');
   if (savedCategory) {
@@ -1127,7 +710,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch (error) {
     console.error('Falha ao carregar os artigos do blog:', error);
     const message =
-      '<div class="empty-state"><div class="empty-state-icon">⚠️</div><h3>Não foi possível carregar os artigos</h3><p>Isso costuma acontecer quando a página é aberta direto do arquivo (file://) em vez de um servidor local. Veja as instruções de execução no README.</p></div>';
+      '<div class="empty-state"><div class="empty-state-icon">⚠️</div><h2>Não foi possível carregar os artigos</h2><p>Isso costuma acontecer quando a página é aberta direto do arquivo (file://) em vez de um servidor local. Veja as instruções de execução no README.</p></div>';
     const listContainer = document.getElementById('blog-posts-container');
     if (listContainer) listContainer.innerHTML = message;
     const singleContainer = document.getElementById('single-post-container');

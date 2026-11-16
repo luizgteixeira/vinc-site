@@ -31,10 +31,6 @@
   <link rel="icon" href="../assets/icons/vinc_icon_256px_1.png" type="image/png">
   <link rel="apple-touch-icon" href="../assets/icons/vinc_icon_256px_1.png">
 
-  <!-- Pré-conexões -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <!-- CSS -->
   <link rel="stylesheet" href="../css/1-settings/global.css">
   <link rel="stylesheet" href="../css/1-settings/tipografia.css">
@@ -48,6 +44,8 @@
   <link rel="stylesheet" href="../css/1-settings/responsivo.css">
 </head>
 <body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+
 
   <!-- Cabeçalho -->
   <header class="header">
@@ -60,21 +58,21 @@
       <nav class="menu" id="navigation-menu" aria-label="Menu principal">
         <a href="../index.html">Início</a>
         <div class="menu-item-dropdown">
-          <a href="como-funciona.html" id="como-funciona-toggle" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Como Funciona <span class="arrow"></span></a>
-          <div class="submenu" role="menu" aria-labelledby="como-funciona-toggle">
-            <a href="como-funciona.html" role="menuitem">Visão Geral</a>
-            <a href="faq.html" role="menuitem">FAQ</a>
+          <a href="como-funciona.html" id="como-funciona-toggle" class="dropdown-toggle" aria-expanded="false">Como Funciona <span class="arrow"></span></a>
+          <div class="submenu">
+            <a href="como-funciona.html">Visão Geral</a>
+            <a href="faq.html">FAQ</a>
           </div>
         </div>
         <a href="recursos.html">Recursos</a>
         <a href="seguranca.html">Segurança</a>
         <a href="blog.html">Blog</a>
         <div class="menu-item-dropdown">
-          <a href="#" id="gestao-toggle" class="dropdown-toggle ativo" aria-haspopup="true" aria-expanded="false">Gestão <span class="arrow"></span></a>
-          <div class="submenu" role="menu" aria-labelledby="gestao-toggle">
-            <a href="advogados.html" role="menuitem">Advogados</a>
-            <a href="clientes.html" role="menuitem" class="ativo">Clientes</a>
-            <a href="escritorios.html" role="menuitem">Escritório</a>
+          <a href="#" id="gestao-toggle" class="dropdown-toggle ativo" aria-expanded="false">Gestão <span class="arrow"></span></a>
+          <div class="submenu">
+            <a href="advogados.html">Advogados</a>
+            <a href="clientes.html" class="ativo">Clientes</a>
+            <a href="escritorios.html">Escritório</a>
           </div>
         </div>
         <a href="contato.html">Contato</a>
@@ -87,7 +85,7 @@
   </header>
 
   <!-- Conteúdo Principal -->
-  <main>
+  <main id="conteudo-principal" tabindex="-1">
     <!-- Seção "Por que você precisa" -->
     <section class="why-vinc-section" aria-labelledby="why-vinc-title">
       <div class="container">
@@ -107,7 +105,7 @@
                     <line x1="9" y1="9" x2="15" y2="15"/>
                   </svg>
                 </div>
-                <h3>Diga não ao Boleto Falso</h3>
+                <h2>Diga não ao Boleto Falso</h2>
                 <p>Criminosos alteram os dados de cobrança e fingem urgência na liberação de alvarás para roubar depósitos.</p>
               </div>
 
@@ -120,7 +118,7 @@
                     <line x1="9" y1="9" x2="15" y2="15"/>
                   </svg>
                 </div>
-                <h3>Evite o Golpe do "Número Novo"</h3>
+                <h2>Evite o Golpe do "Número Novo"</h2>
                 <p>O <span class="vinc-brand">Vinc</span> atua bloqueando e denunciando qualquer contato suspeito se passando pelo seu patrono legal.</p>
               </div>
             </div>
@@ -198,15 +196,15 @@
           <!-- Card 1: Aguardando Resposta -->
           <div class="practice-card">
             <div class="practice-image-wrapper">
-              <img src="../assets/images/agurdando-contato.png"
+              <img src="../assets/images/agurdando-contato.webp"
                 alt="Tela do aplicativo Vinc mostrando o status aguardando resposta do advogado."
                 loading="lazy"
                 decoding="async"
-                width="320"
-                height="560">
+                width="600"
+                height="1300">
             </div>
             <div class="practice-card-content">
-              <h4>Aguardando validação</h4>
+              <h3>Aguardando validação</h3>
               <p>O cliente acompanha em tempo real que sua solicitação foi enviada aos advogados oficialmente vinculados ao caso.</p>
             </div>
           </div>
@@ -214,15 +212,15 @@
           <!-- Card 2: Contato Confirmado -->
           <div class="practice-card">
             <div class="practice-image-wrapper">
-              <img src="../assets/images/contato-confirmado.png"
+              <img src="../assets/images/contato-confirmado.webp"
                 alt="Tela do aplicativo Vinc mostrando a confirmação oficial do contato pelo escritório."
                 loading="lazy"
                 decoding="async"
-                width="320"
-                height="560">
+                width="600"
+                height="1300">
             </div>
             <div class="practice-card-content">
-              <h4>Contato confirmado</h4>
+              <h3>Contato confirmado</h3>
               <p>Após a confirmação do escritório, o cliente sabe que pode continuar a comunicação pelos canais oficiais.</p>
             </div>
           </div>

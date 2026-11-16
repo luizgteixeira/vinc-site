@@ -1,0 +1,16 @@
+# Gerado a cada deploy por scripts/build-posts.py (ver .github/workflows/mirror-to-hostinger.yml).
+# Não commitar: a fonte da verdade são os arquivos em content/posts/.
+content/posts.json
+
+# Gerado a cada deploy por scripts/build-sitemap.py (a partir das páginas e de content/posts/).
+sitemap.xml
+
+# Páginas estáticas dos artigos, geradas a cada deploy por scripts/build-articles.mjs.
+/blog/
+
+# Arquivos de editor e do sistema (pessoais/locais; não devem ir para o repositório nem para produção).
+.vscode/
+desktop.ini
+.DS_Store
+Thumbs.db
+node_modules/
