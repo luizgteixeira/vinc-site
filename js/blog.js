@@ -522,7 +522,7 @@ function loadSinglePost() {
     <section class="post-interaction-box" id="post-feedback-section" aria-labelledby="feedback-section-title">
       <h3 class="interaction-heading" id="feedback-section-title">📬 Compartilhe sua Opinião</h3>
 
-      <form id="feedback-interaction-form" onsubmit="event.preventDefault();">
+      <form id="feedback-interaction-form">
         <!-- ETAPA 1 — Avaliação do artigo -->
         <fieldset style="border: none; padding: 0; margin: 0 0 24px 0;">
           <legend class="interaction-subheading" style="font-size: 1.05rem; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;">Este artigo foi útil?</legend>
@@ -673,6 +673,11 @@ function initFeedbackSection(post) {
   );
   const sendSuggestionBtn = document.getElementById('btn-send-suggestion');
   const suggestionTextarea = document.getElementById('suggestion-text');
+
+  // O envio é feito por fetch no botão "Enviar feedback"; impede o submit nativo (Enter no
+  // formulário). Feito aqui, e não com onsubmit inline, para funcionar sob CSP sem 'unsafe-inline'.
+  const feedbackForm = document.getElementById('feedback-interaction-form');
+  if (feedbackForm) feedbackForm.addEventListener('submit', (e) => e.preventDefault());
 
   // Elementos de mensagem de feedback
   const ratingFeedbackMsg = document.getElementById('rating-feedback-msg');

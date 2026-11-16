@@ -1,0 +1,27 @@
+# ==========================================================================
+# Cabeçalhos de segurança — Vinc (site estático, Hostinger / Apache-LiteSpeed)
+# Os blocos <IfModule> evitam erro 500 se o módulo não estiver disponível.
+# ==========================================================================
+
+<IfModule mod_headers.c>
+  # Impede o navegador de "adivinhar" o tipo do arquivo (MIME sniffing).
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Envia só a origem (sem caminho/query) a outros sites; URL completa dentro do próprio site.
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Impede o site de ser embutido em <iframe> de terceiros (clickjacking).
+  # X-Frame-Options é o equivalente legado do frame-ancestors do CSP abaixo.
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # O site não usa nenhuma dessas APIs do navegador.
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+
+  # Política de Conteúdo (CSP):
+  #  - scripts e fontes só do próprio domínio (nenhuma fonte/script de terceiros);
+  #  - style-src mantém 'unsafe-inline' porque há estilos inline em HTML e em templates do blog.js
+  #    (reduzir isso é pré-requisito para um CSP mais estrito);
+  #  - connect-src/form-action: Web3Forms (contato e feedback) e Mailchimp (newsletter);
+  #  - frame-src: o iframe oculto que recebe a resposta do Mailchimp.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com https://*.list-manage.com; frame-src https://*.list-manage.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self'"
+</IfModule>
