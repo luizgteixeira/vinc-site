@@ -86,11 +86,37 @@ function initDropdownMenu() {
     });
   };
 
+  // Desktop: o submenu também abre/fecha com o foco do teclado (antes só abria no :hover,
+  // deixando os links internos inalcançáveis por Tab).
+  let skipFocusOpen = false;
+
+  const setDesktopOpen = (dropdown, open) => {
+    const toggle = dropdown.querySelector('.dropdown-toggle');
+    dropdown.classList.toggle('submenu-aberto', open);
+    if (toggle) toggle.setAttribute('aria-expanded', String(open));
+  };
+
   dropdowns.forEach((dropdown) => {
     const toggle = dropdown.querySelector('.dropdown-toggle');
     if (!toggle) return;
 
+    dropdown.addEventListener('focusin', () => {
+      if (window.innerWidth <= 1024 || skipFocusOpen) return;
+      closeAllDropdowns(dropdown);
+      setDesktopOpen(dropdown, true);
+    });
+
+    dropdown.addEventListener('focusout', (event) => {
+      if (window.innerWidth <= 1024) return;
+      if (!dropdown.contains(event.relatedTarget)) setDesktopOpen(dropdown, false);
+    });
+
     toggle.addEventListener('click', (event) => {
+      if (window.innerWidth > 1024) {
+        // Toggle sem destino real (href="#"): evita pular para o topo da página.
+        if (toggle.getAttribute('href') === '#') event.preventDefault();
+        return;
+      }
       if (window.innerWidth <= 1024) {
         event.preventDefault();
         const isOpen = dropdown.classList.contains('submenu-aberto');
@@ -120,7 +146,16 @@ function initDropdownMenu() {
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
+      // Se o foco está dentro de um submenu, devolve-o ao toggle (sem reabrir) antes de fechar.
+      const focusedToggle = document.activeElement && document.activeElement.closest('.submenu')
+        ? document.activeElement.closest('.menu-item-dropdown')?.querySelector('.dropdown-toggle')
+        : null;
       closeAllDropdowns();
+      if (focusedToggle) {
+        skipFocusOpen = true;
+        focusedToggle.focus();
+        skipFocusOpen = false;
+      }
     }
   });
 

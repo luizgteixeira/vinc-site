@@ -152,10 +152,14 @@
   color: var(--deep-blue);
 }
 
-.menu-item-dropdown:hover .submenu {
+/* .submenu-aberto é controlado por JS (foco por teclado) — ver initDropdownMenu em script.js */
+.menu-item-dropdown:hover .submenu,
+.menu-item-dropdown.submenu-aberto .submenu {
   opacity: 1;
   transform: translateY(0);
   visibility: visible;
+  /* visibility sem atraso ao abrir: o link precisa ser focável já no primeiro Tab */
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s;
 }
 
 .menu a.ativo {
