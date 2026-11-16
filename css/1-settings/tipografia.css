@@ -3,52 +3,32 @@
 ========================================== */
 
 /*
- * ESTRATÉGIA DE CARREGAMENTO DA FONTE
- * A fonte é servida por duas fontes distintas, propositalmente sobrepostas:
+ * CARREGAMENTO DA FONTE
+ * Plus Jakarta Sans é servida 100% deste domínio (assets/fonts/), em duas
+ * fontes variáveis (normal e itálico) que cobrem todos os pesos de 200 a 800
+ * em um único arquivo cada. Não há requisição ao Google Fonts: nenhum IP de
+ * visitante é enviado a terceiros e não há @import bloqueando a renderização.
  *
- * 1. @import do Google Fonts (abaixo) carrega TODOS os pesos e itálicos da
- *    família (300 a 800), servindo como cobertura completa da fonte.
- * 2. Os três @font-face locais logo em seguida redeclaram os pesos 300/400/800
- *    em estilo normal, self-hosted em assets/fonts/. Por serem declarados
- *    DEPOIS do @import no mesmo arquivo, a cascata do CSS faz essas regras
- *    locais vencerem para exatamente essa combinação de family+weight+style
- *    — ou seja, o navegador nunca chega a baixar do Google os pesos que já
- *    temos localmente.
- *
- * Resultado prático: os pesos 300/400/800 (os mais usados no site, em corpo
- * de texto e headings) carregam localmente, sem round-trip até o Google;
- * os pesos 500/600/700 e todos os itálicos (usados pontualmente, ex.:
- * .cta-quote) continuam vindo do Google Fonts, que preenche essa lacuna.
- * Não é um "fallback" no sentido de failover — é uma divisão fixa de
- * responsabilidade resolvida via ordem de declaração no cascade.
+ * O subconjunto é "latin" (inclui acentos do português, aspas, travessões e
+ * símbolos comuns). Glifos fora dele usam a fonte de sistema do fallback.
  */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
-/* Plus Jakarta Sans - Extra Bold (Local) */
+/* Plus Jakarta Sans - variável, normal (200–800) */
 @font-face {
   font-family: 'Plus Jakarta Sans';
-  src: url('../../assets/fonts/PlusJakartaSans-ExtraBold.woff2') format('woff2');
-  font-weight: 800;
+  src: url('../../assets/fonts/PlusJakartaSans-Variable.woff2') format('woff2');
+  font-weight: 200 800;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Plus Jakarta Sans - Regular (Local) */
+/* Plus Jakarta Sans - variável, itálico (200–800) */
 @font-face {
   font-family: 'Plus Jakarta Sans';
-  src: url('../../assets/fonts/PlusJakartaSans-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
+  src: url('../../assets/fonts/PlusJakartaSans-Variable-Italic.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: italic;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
-/* Plus Jakarta Sans - Light (Local) */
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('../../assets/fonts/PlusJakartaSans-Light.woff2') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-

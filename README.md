@@ -78,7 +78,7 @@ O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build s
 │       └── <slug>.json                 # Dados e conteúdo HTML de cada artigo
 │
 ├── assets/                             # Biblioteca de mídias e recursos de marca do Vinc
-│   ├── fonts/                          # Fontes locais (Plus Jakarta Sans)
+│   ├── fonts/                          # Plus Jakarta Sans self-hosted (2 arquivos variáveis: normal e itálico, pesos 200–800); sem Google Fonts
 │   ├── icons/                          # Logo e favicon do Vinc
 │   └── images/                         # Ilustrações, banners de suporte, mockups de painéis e infográficos
 │
