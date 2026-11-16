@@ -158,6 +158,9 @@ O site do Vinc foi minuciosamente revisado para garantir a melhor experiência e
 -   **Contraste e Legibilidade**: Combinações cromáticas em conformidade com as diretrizes do WCAG para leitura agradável e sem fadiga visual.
 -   **Layout Mobile-First**: Menus de navegação suspensos, tabelas informativas, botões e cards de artigos que se adaptam fluidamente a smartphones e tablets.
 -   **Foco na Usabilidade**: Links intuitivos, estrutura de tópicos bem hierarquizada e navegação rápida por categorias.
+-   **Teclado**: link "Pular para o conteúdo" como primeiro foco de toda página (`.skip-link`, destino `<main id="conteudo-principal">`); submenus abrem com o foco (Tab) e fecham com Escape.
+-   **Movimento reduzido**: `@media (prefers-reduced-motion: reduce)` em `css/1-settings/global.css` desliga animações e transições; a rolagem suave do blog (`js/blog.js`) também respeita a preferência.
+-   **Hierarquia de títulos**: um único `<h1>` por página e nenhum nível pulado (h1 → h2 → h3), inclusive nos trechos gerados por `js/blog.js`. Ao criar conteúdo novo, escolha o nível pela estrutura e ajuste a aparência no CSS, não pela tag. Cuidado: `h2` tem estilo global (`letter-spacing`, `line-height`), então uma regra de classe para um `<h2>` deve defini-los.
 
 ---
 

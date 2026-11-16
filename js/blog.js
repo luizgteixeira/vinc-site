@@ -192,7 +192,7 @@ function renderBlogPosts() {
     postsContainer.innerHTML = `
       <div class="empty-state" id="blog-empty-state">
         <div class="empty-state-icon">🔍</div>
-        <h3>Nenhum artigo encontrado</h3>
+        <h2>Nenhum artigo encontrado</h2>
         <p>Tente alterar as palavras-chave ou selecionar outra categoria.</p>
       </div>
     `;
@@ -261,9 +261,9 @@ function renderBlogPosts() {
               <span>•</span>
               <span>${getReadingTime(post)} min de leitura</span>
             </div>
-            <h3 class="article-title">
+            <h2 class="article-title">
               <a href="artigo-detalhes.html?slug=${post.slug}">${post.title}</a>
-            </h3>
+            </h2>
             <p class="article-excerpt">${post.excerpt}</p>
             <div class="article-footer">
               <div class="author-info">
@@ -652,7 +652,7 @@ function loadSinglePost() {
       const tocContainer = document.createElement('div');
       tocContainer.className = 'post-toc';
       tocContainer.innerHTML = `
-        <h4 class="toc-title">📍 Índice do Artigo</h4>
+        <h2 class="toc-title">📍 Índice do Artigo</h2>
         <ul class="toc-list">
           ${Array.from(headings)
             .map((h, index) => {
@@ -859,6 +859,11 @@ function getReadingTime(post) {
   return Math.max(1, Math.ceil(wordCount / WORDS_PER_MINUTE));
 }
 
+// Rolagem suave, exceto para quem pediu movimento reduzido no sistema.
+function getScrollBehavior() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+}
+
 function updateMetaTag(attribute, value, content) {
   let tag = document.querySelector(`meta[${attribute}="${value}"]`);
   if (tag) {
@@ -928,7 +933,7 @@ function renderSinglePostNotFound() {
   container.innerHTML = `
     <div class="empty-state" style="margin: 60px 0;" id="post-not-found-state">
       <div class="empty-state-icon">⚠️</div>
-      <h3>Artigo não encontrado</h3>
+      <h1>Artigo não encontrado</h1>
       <p>O endereço acessado pode ter sido alterado ou o artigo foi temporariamente arquivado.</p>
       <a href="blog.html" class="btn-primary" style="margin-top: 20px; display: inline-block;">Voltar para o Blog</a>
     </div>
@@ -1068,7 +1073,7 @@ function initSidebar() {
             });
 
             renderBlogPosts();
-            listPostsContainer.scrollIntoView({ behavior: 'smooth' });
+            listPostsContainer.scrollIntoView({ behavior: getScrollBehavior() });
           } else {
             // Se estiver nos detalhes, armazena para carregar filtrado na Home do blog
             sessionStorage.setItem(
@@ -1104,7 +1109,7 @@ function initSidebar() {
             searchInput.value = tagValue;
             searchQuery = tagValue;
             renderBlogPosts();
-            listPostsContainer.scrollIntoView({ behavior: 'smooth' });
+            listPostsContainer.scrollIntoView({ behavior: getScrollBehavior() });
           }
         } else {
           sessionStorage.setItem(
@@ -1151,7 +1156,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch (error) {
     console.error('Falha ao carregar os artigos do blog:', error);
     const message =
-      '<div class="empty-state"><div class="empty-state-icon">⚠️</div><h3>Não foi possível carregar os artigos</h3><p>Isso costuma acontecer quando a página é aberta direto do arquivo (file://) em vez de um servidor local. Veja as instruções de execução no README.</p></div>';
+      '<div class="empty-state"><div class="empty-state-icon">⚠️</div><h2>Não foi possível carregar os artigos</h2><p>Isso costuma acontecer quando a página é aberta direto do arquivo (file://) em vez de um servidor local. Veja as instruções de execução no README.</p></div>';
     const listContainer = document.getElementById('blog-posts-container');
     if (listContainer) listContainer.innerHTML = message;
     const singleContainer = document.getElementById('single-post-container');

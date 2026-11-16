@@ -46,6 +46,8 @@
   <link rel="stylesheet" href="../css/1-settings/responsivo.css">
 </head>
 <body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+
 
   <!-- Cabeçalho -->
   <header class="header">
@@ -85,7 +87,7 @@
   </header>
 
   <!-- Conteúdo Principal -->
-  <main style="padding-top: 100px;">
+  <main id="conteudo-principal" tabindex="-1" style="padding-top: 100px;">
     <div class="container">
       
       <!-- Layout de Visualização de Artigo (Artigo + Sidebar) -->
@@ -101,7 +103,7 @@
           
           <!-- Widget: Artigos Populares -->
           <section class="sidebar-widget" aria-labelledby="widget-popular-title" id="widget-popular">
-            <h3 class="widget-title" id="widget-popular-title">Artigos Recentes</h3>
+            <h2 class="widget-title" id="widget-popular-title">Artigos Recentes</h2>
             <ul class="popular-list" id="popular-posts-list">
               <!-- Gerado Dinamicamente pelo JS -->
             </ul>
@@ -109,7 +111,7 @@
 
           <!-- Widget: Categorias com Contagem -->
           <section class="sidebar-widget" aria-labelledby="widget-categories-title" id="widget-categories">
-            <h3 class="widget-title" id="widget-categories-title">Categorias</h3>
+            <h2 class="widget-title" id="widget-categories-title">Categorias</h2>
             <ul class="sidebar-categories" id="sidebar-categories-list">
               <!-- Gerado Dinamicamente pelo JS -->
             </ul>
@@ -117,7 +119,7 @@
 
           <!-- Widget: Nuvem de Tags -->
           <section class="sidebar-widget" aria-labelledby="widget-tags-title" id="widget-tags">
-            <h3 class="widget-title" id="widget-tags-title">Tags Populares</h3>
+            <h2 class="widget-title" id="widget-tags-title">Tags Populares</h2>
             <div class="tags-cloud" id="sidebar-tags-cloud">
               <!-- Gerado Dinamicamente pelo JS -->
             </div>
@@ -126,7 +128,7 @@
           <!-- Widget: Newsletter de Segurança -->
           <section class="sidebar-widget newsletter-widget" aria-labelledby="widget-newsletter-title" id="widget-newsletter">
             <div class="newsletter-widget-icon" aria-hidden="true">✉️</div>
-            <h3 id="widget-newsletter-title">Receba Dicas de Segurança</h3>
+            <h2 id="widget-newsletter-title">Receba Dicas de Segurança</h2>
             <p>Receba novos conteúdos educativos e alertas sobre golpes e prevenção a fraudes jurídicas direto na sua caixa de entrada.</p>
             
             <form class="newsletter-form" id="newsletter-sidebar-form"
