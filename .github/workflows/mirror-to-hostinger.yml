@@ -24,6 +24,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          # Histórico completo. O push do espelho precisa enviar todo commit que o destino ainda não
+          # tem. Com o clone raso padrão (fetch-depth: 1), um merge commit, cujo 2º pai o espelho nunca
+          # recebeu, é rejeitado: "remote: fatal: did not receive expected object <sha do 2º pai>".
+          fetch-depth: 0
 
       # A ordem importa: as páginas estáticas (blog/) são geradas primeiro; o pacote de artigos e o
       # sitemap passam a apontar para elas quando existem.
