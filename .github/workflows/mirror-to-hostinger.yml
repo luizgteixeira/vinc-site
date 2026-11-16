@@ -19,6 +19,9 @@ jobs:
       - name: Gerar content/posts.json (pacote único dos artigos do blog)
         run: python3 scripts/build-posts.py
 
+      - name: Gerar sitemap.xml (páginas + artigos, com lastmod dos artigos)
+        run: python3 scripts/build-sitemap.py
+
       - name: Carregar chave SSH
         uses: webfactory/ssh-agent@v0.9.0
         with:
@@ -35,7 +38,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git add -f content/posts.json   # gerado acima; ignorado no .gitignore deste repositório
+          git add -f content/posts.json sitemap.xml   # gerados acima; ignorados no .gitignore deste repositório
           git commit -m "Mirror de vinc-site@${GITHUB_SHA}" --allow-empty
           git remote add hostinger git@github.com:luizgteixeira/vinc-site-hostinger.git
           git push --force hostinger HEAD:main

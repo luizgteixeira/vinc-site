@@ -83,10 +83,11 @@ O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build s
 │   └── images/                         # Ilustrações, banners de suporte, mockups de painéis e infográficos
 │
 ├── scripts/
-│   └── build-posts.py                  # Gera content/posts.json (pacote único dos artigos) e valida os JSON; roda no deploy
+│   ├── build-posts.py                  # Gera content/posts.json (pacote único dos artigos) e valida os JSON; roda no deploy
+│   └── build-sitemap.py                # Gera sitemap.xml (canonicals das páginas + artigos, lastmod só onde é confiável); roda no deploy
 │
 ├── robots.txt                          # Diretivas para motores de busca
-├── sitemap.xml                         # Mapa do site indexável para otimização de SEO
+├── sitemap.xml                         # (gerado no deploy; não versionado) Mapa do site: páginas indexáveis + artigos
 ├── favicon.ico                         # Favicon na raiz (requisitado por padrão por navegadores e robôs)
 └── .htaccess                           # Cabeçalhos de segurança (CSP, nosniff, Referrer-Policy, X-Frame-Options, Permissions-Policy)
 ```
@@ -120,9 +121,11 @@ Nenhum código precisa ser alterado para adicionar um artigo novo:
 
 1.  Crie `content/posts/<slug-do-artigo>.json` usando um artigo existente como modelo. Campos esperados: `id`, `title`, `slug`, `excerpt`, `categoryKey` (uma das chaves de `CATEGORIES` em `js/blog.js`, ex.: `ANATOMIA_GOLPES`), `publishedAt`, `authorKey` (chave de `AUTHORS` em `js/blog.js`), `featuredImage`, `tags`, `faq` (opcional) e `content` (HTML do corpo do artigo), além do bloco `seo` (`metaTitle`, `metaDesc`).
 2.  Adicione o slug em `content/posts/index.json`.
-3.  Adicione a URL do artigo em `sitemap.xml`, se for ficar indexado.
+3.  Nada a fazer no `sitemap.xml`: ele é gerado no deploy e já inclui todo slug listado em `index.json`.
 
 A ordem de exibição (mais recente primeiro) é calculada automaticamente a partir de `publishedAt` — a ordem dentro de `index.json` não importa.
+
+**Data de atualização (opcional):** se você revisar um artigo de forma relevante, adicione `"updatedAt": "DD Mmm AAAA"` (mesmo formato de `publishedAt`, ex.: `"20 Nov 2026"`) ao JSON. Ela vira o `<lastmod>` do sitemap e o `dateModified` do JSON-LD do artigo. Sem o campo, vale `publishedAt`.
 
 **Pacote único (`content/posts.json`):** a cada deploy, o workflow roda `scripts/build-posts.py`, que junta todos os artigos listados em `index.json` num único arquivo. Assim o blog carrega tudo em **1 requisição** em vez de 14. O arquivo é gerado, não versionado (`.gitignore`) e não precisa de nenhuma ação sua. O script também valida os artigos (slug igual ao nome do arquivo, campos obrigatórios, slugs repetidos), e o deploy falha se algo estiver errado. Para testar localmente: `python3 scripts/build-posts.py`. Sem o pacote, o blog continua funcionando, carregando os arquivos um a um.
 

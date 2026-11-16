@@ -418,6 +418,8 @@ function loadSinglePost() {
     headline: post.title,
     image: [absoluteImageUrl],
     datePublished: parsePublishedAtToISO(post.publishedAt),
+    // updatedAt é opcional no JSON do artigo; o mesmo campo vira o <lastmod> do sitemap.xml.
+    dateModified: parsePublishedAtToISO(post.updatedAt || post.publishedAt),
     author: [
       {
         '@type': 'Person',

@@ -1,3 +1,6 @@
 # Gerado a cada deploy por scripts/build-posts.py (ver .github/workflows/mirror-to-hostinger.yml).
 # Não commitar: a fonte da verdade são os arquivos em content/posts/.
 content/posts.json
+
+# Gerado a cada deploy por scripts/build-sitemap.py (a partir das páginas e de content/posts/).
+sitemap.xml
