@@ -58,7 +58,7 @@ O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build s
 │   ├── faq.html                      # Central de Dúvidas Frequentes (com Schema.org FAQPage)
 │   ├── contato.html                  # Canais oficiais, checklist antifraude e solicitação de chave de ativação
 │   ├── privacidade.html              # Política de Privacidade (LGPD) — bases legais, operadores terceiros, direitos do titular
-│   ├── obrigado.html                 # Confirmação pós-envio do formulário de contato (noindex)
+│   ├── obrigado.html                 # Confirmação pós-envio do formulário de contato (noindex; fora do sitemap)
 │   ├── blog.html                     # Portal do Centro de Conhecimento (listagem de artigos)
 │   └── artigo-detalhes.html          # Template de leitura dinâmica para os artigos do blog
 │
@@ -69,7 +69,7 @@ O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build s
 │
 ├── js/                                 # Motores funcionais de interatividade do site
 │   ├── script.js                       # Navegação, menu mobile, dropdowns e accordions (FAQ/Contato)
-│   ├── contato.js                      # Envio do formulário de solicitação de chave (Web3Forms)
+│   ├── contato.js                      # Envio do formulário de solicitação de chave (Web3Forms); em caso de sucesso, redireciona para obrigado.html
 │   └── blog.js                         # Motor do Blog client-side (busca os artigos via fetch, filtros, SEO dinâmico, JSON-LD, busca)
 │
 ├── content/
