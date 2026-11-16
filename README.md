@@ -82,6 +82,9 @@ O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem build s
 │   ├── icons/                          # Logo e favicon do Vinc
 │   └── images/                         # Ilustrações, banners de suporte, mockups de painéis e infográficos
 │
+├── scripts/
+│   └── build-posts.py                  # Gera content/posts.json (pacote único dos artigos) e valida os JSON; roda no deploy
+│
 ├── robots.txt                          # Diretivas para motores de busca
 ├── sitemap.xml                         # Mapa do site indexável para otimização de SEO
 ├── favicon.ico                         # Favicon na raiz (requisitado por padrão por navegadores e robôs)
@@ -120,6 +123,8 @@ Nenhum código precisa ser alterado para adicionar um artigo novo:
 3.  Adicione a URL do artigo em `sitemap.xml`, se for ficar indexado.
 
 A ordem de exibição (mais recente primeiro) é calculada automaticamente a partir de `publishedAt` — a ordem dentro de `index.json` não importa.
+
+**Pacote único (`content/posts.json`):** a cada deploy, o workflow roda `scripts/build-posts.py`, que junta todos os artigos listados em `index.json` num único arquivo. Assim o blog carrega tudo em **1 requisição** em vez de 14. O arquivo é gerado, não versionado (`.gitignore`) e não precisa de nenhuma ação sua. O script também valida os artigos (slug igual ao nome do arquivo, campos obrigatórios, slugs repetidos), e o deploy falha se algo estiver errado. Para testar localmente: `python3 scripts/build-posts.py`. Sem o pacote, o blog continua funcionando, carregando os arquivos um a um.
 
 ---
 

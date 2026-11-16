@@ -16,6 +16,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Gerar content/posts.json (pacote único dos artigos do blog)
+        run: python3 scripts/build-posts.py
+
       - name: Carregar chave SSH
         uses: webfactory/ssh-agent@v0.9.0
         with:
@@ -26,12 +29,13 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-      - name: Espelhar para vinc-site-hostinger (sem .github, que é só deste repositório)
+      - name: Espelhar para vinc-site-hostinger (sem .github e scripts, que são só deste repositório)
         run: |
-          rm -rf .github
+          rm -rf .github scripts
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
+          git add -f content/posts.json   # gerado acima; ignorado no .gitignore deste repositório
           git commit -m "Mirror de vinc-site@${GITHUB_SHA}" --allow-empty
           git remote add hostinger git@github.com:luizgteixeira/vinc-site-hostinger.git
           git push --force hostinger HEAD:main

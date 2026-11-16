@@ -111,11 +111,28 @@ function normalizePost(raw) {
 }
 
 /**
- * Busca o índice de artigos e cada JSON individual em content/posts/.
+ * Carrega os artigos: primeiro o pacote único content/posts.json (1 requisição,
+ * gerado no deploy) e, na falta dele, o índice + cada JSON de content/posts/.
  * Precisa ser servido via HTTP (não funciona abrindo o HTML direto com
  * file://) — ver instruções de execução local no README.
  */
 async function loadBlogPosts() {
+  // Caminho rápido: um único arquivo com todos os artigos, gerado a cada deploy por
+  // scripts/build-posts.py. Se não existir (ex.: dev local sem rodar o script) ou vier
+  // inválido, cai no carregamento arquivo a arquivo abaixo, que sempre funciona.
+  try {
+    const bundleResponse = await fetch('../content/posts.json');
+    if (bundleResponse.ok) {
+      const bundle = await bundleResponse.json();
+      if (Array.isArray(bundle) && bundle.length > 0) {
+        BLOG_POSTS = bundle.map(normalizePost);
+        return;
+      }
+    }
+  } catch (error) {
+    // segue para o fallback
+  }
+
   const indexResponse = await fetch('../content/posts/index.json');
   if (!indexResponse.ok) {
     throw new Error('Não foi possível carregar content/posts/index.json');
