@@ -758,7 +758,7 @@ function initFeedbackSection(post) {
             Accept: 'application/json',
           },
           body: JSON.stringify({
-            access_key: '933b21fa-2815-45e6-9d9a-7935a7e8a000',
+            access_key: '58f9c5cc-4b90-44bd-b4be-2524d364115d',
             subject: `Feedback do Blog Vinc - Artigo: ${postTitle}`,
             artigo: postTitle,
             avaliacao: selectedRatingLabel || 'Não informada',
