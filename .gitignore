@@ -7,3 +7,10 @@ sitemap.xml
 
 # Páginas estáticas dos artigos, geradas a cada deploy por scripts/build-articles.mjs.
 /blog/
+
+# Arquivos de editor e do sistema (pessoais/locais; não devem ir para o repositório nem para produção).
+.vscode/
+desktop.ini
+.DS_Store
+Thumbs.db
+node_modules/

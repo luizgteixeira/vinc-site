@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Principal -->
+  <title>Página não encontrada | Vinc</title>
+  <meta name="description" content="A página que você procura não existe ou foi movida. Volte ao início do Vinc ou confira os artigos do blog.">
+
+  <!-- Página de erro: nunca deve ser indexada -->
+  <meta name="robots" content="noindex, follow">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/icons/vinc_icon_256px_1.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/icons/vinc_icon_256px_1.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/1-settings/global.css">
+  <link rel="stylesheet" href="/css/1-settings/tipografia.css">
+  <link rel="stylesheet" href="/css/2-components/botoes.css">
+  <link rel="stylesheet" href="/css/2-components/menu.css">
+  <link rel="stylesheet" href="/css/2-components/rodape.css">
+  <!-- Reaproveita o cartão central (.thanks-*) da página de obrigado -->
+  <link rel="stylesheet" href="/css/3-pages/obrigado.css">
+  <link rel="stylesheet" href="/css/1-settings/responsivo.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+
+  <!-- Cabeçalho -->
+  <header class="header">
+    <div class="container header-content" id="header-container">
+      <a href="/" class="logo" id="logo-main">
+        <img src="/assets/icons/vinc_icon_256px_1.png" alt="Logotipo do Vinc" class="logo-icon" width="40" height="40" decoding="async">
+        <span class="logo-text">Vinc<span class="logo-dot">.</span></span>
+      </a>
+
+      <nav class="menu" id="navigation-menu" aria-label="Menu principal">
+        <a href="/">Início</a>
+        <div class="menu-item-dropdown">
+          <a href="/pages/como-funciona.html" id="como-funciona-toggle" class="dropdown-toggle" aria-expanded="false">Como Funciona <span class="arrow"></span></a>
+          <div class="submenu">
+            <a href="/pages/como-funciona.html">Visão Geral</a>
+            <a href="/pages/faq.html">FAQ</a>
+          </div>
+        </div>
+        <a href="/pages/recursos.html">Recursos</a>
+        <a href="/pages/seguranca.html">Segurança</a>
+        <a href="/pages/blog.html">Blog</a>
+        <div class="menu-item-dropdown">
+          <a href="#" id="gestao-toggle" class="dropdown-toggle" aria-expanded="false">Gestão <span class="arrow"></span></a>
+          <div class="submenu">
+            <a href="/pages/advogados.html">Advogados</a>
+            <a href="/pages/clientes.html">Clientes</a>
+            <a href="/pages/escritorios.html">Escritório</a>
+          </div>
+        </div>
+        <a href="/pages/contato.html">Contato</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-controls="navigation-menu" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main id="conteudo-principal" tabindex="-1">
+    <section class="thanks-section" aria-labelledby="notfound-title">
+      <div class="container">
+        <div class="thanks-card">
+          <div class="thanks-icon" aria-hidden="true">🧭</div>
+          <h1 id="notfound-title">Página não encontrada.</h1>
+          <p>O endereço que você acessou não existe ou foi movido. Volte ao início ou leia os artigos do <a href="/pages/blog.html">blog do Vinc</a>.</p>
+          <a href="/" class="btn-primary">Voltar para o início</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="footer-content" id="footer-container">
+      <p class="footer-main">
+        <span class="vinc-brand">Vinc</span>: a tecnologia que protege a confiança entre você e seu advogado.
+      </p>
+      <div class="footer-whatsapp-wrap">
+        <a href="https://wa.me/5531992609970" class="footer-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Fale pelo WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="24" height="24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.966-.272-.099-.471-.149-.67.149-.198.297-.768.966-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.149-.174.199-.297.298-.496.099-.198.05-.372-.025-.521-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.372-.01-.571-.01-.198 0-.521.074-.792.372-.271.297-1.036 1.018-1.036 2.479 0 1.462 1.061 2.875 1.207 3.073.146.198 2.089 3.2 5.076 4.487.709.306 1.262.49 1.694.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347Z" />
+            <path d="M20.52 3.449A11.93 11.93 0 0 0 12.003 0C5.64 0 0.495 5.145.495 11.51c0 2.027.53 4.004 1.537 5.748L0 24l6.924-1.818a11.95 11.95 0 0 0 5.56 1.415h.004c6.364 0 11.509-5.145 11.509-11.51 0-3.074-1.197-5.97-3.367-8.14ZM12.003 21.09h-.003a9.92 9.92 0 0 1-5.05-1.387l-.362-.215-4.107 1.078 1.096-4.001-.236-.367a9.91 9.91 0 0 1-1.535-5.31c0-5.49 4.47-9.96 9.96-9.96 2.66 0 5.16 1.035 7.035 2.912a9.9 9.9 0 0 1 2.912 7.035c0 5.49-4.47 9.96-9.96 9.96Z" />
+          </svg>
+        </a>
+        <a href="https://wa.me/5531992609970" class="footer-whatsapp-text" target="_blank" rel="noopener noreferrer">Dúvidas? Converse comigo!</a>
+      </div>
+      <p class="footer-links">
+        <a href="/pages/privacidade.html">Política de Privacidade</a>
+      </p>
+      <p class="footer-copy">
+        © 2026 <span class="vinc-brand">Vinc</span>. Todos os direitos reservados. Desenvolvido por <a href="https://www.luizgustavodev.com/" target="_blank" rel="noopener noreferrer">Luiz Gustavo</a>.
+      </p>
+    </div>
+  </footer>
+
+  <script src="/js/script.js" type="module"></script>
+</body>
+</html>

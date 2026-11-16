@@ -93,6 +93,7 @@ O Vinc é um site **100% estático** (HTML5, CSS3 e JavaScript puro, sem framewo
 ├── robots.txt                          # Diretivas para motores de busca
 ├── sitemap.xml                         # (gerado no deploy; não versionado) Mapa do site: páginas indexáveis + artigos
 ├── favicon.ico                         # Favicon na raiz (requisitado por padrão por navegadores e robôs)
+├── 404.html                            # Página de erro 404 (noindex; caminhos absolutos, pois é servida em qualquer URL). Ativada por "ErrorDocument 404 /404.html" no .htaccess; o servidor de dev do Python não a usa
 └── .htaccess                           # Cabeçalhos de segurança (CSP, nosniff, Referrer-Policy, X-Frame-Options, Permissions-Policy)
 ```
 

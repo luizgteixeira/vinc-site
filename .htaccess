@@ -39,3 +39,8 @@
   # /blog e /blog/ (pasta das páginas estáticas dos artigos) -> listagem do blog
   RewriteRule ^blog/?$ /pages/blog.html [R=301,L]
 </IfModule>
+
+# ==========================================================================
+# Página de erro 404 do próprio site (404.html, com caminhos absolutos)
+# ==========================================================================
+ErrorDocument 404 /404.html
